@@ -16,7 +16,6 @@ class AccountFormRequest extends FormRequest
         return [
             'email' => 'required|unique:users,email|email|max:255',
             'firstName' => 'required|max:255',
-            'middleName' => 'required|max:255',
             'lastName' => 'required|max:255'
         ];
     }
@@ -25,8 +24,8 @@ class AccountFormRequest extends FormRequest
     {
         return [
             'required' => __('validation.required', ['attribute' => ':attribute']),
-            'unique' => __('validation.attributes.email', ['attribute' => ':attribute']),
-            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max'])
+            'unique' => __('validation.unique', ['attribute' => ':attribute']),
+            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
         ];
     }
 
