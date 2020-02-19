@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RequestAccount;
+use App\Http\Requests\AccountFormRequest;
+use App\Mail\AccountRequestedMail;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
-    public function create(RequestAccount $request)
+    public function create(AccountFormRequest $request)
     {
         $data = $request->validated();
 
@@ -19,6 +21,8 @@ class AccountController extends Controller
         $user->last_name = $data['lastName'];
 
         $user->save();
+
+        Mail::to($user->email)->send(new AccountRequestedMail($user));
 
         return view('welcome');
     }
