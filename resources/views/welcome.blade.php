@@ -78,11 +78,13 @@
           @endauth
         </div>
       @endif
-
       <div class="content">
-        <div class="title m-b-md">
-          Laravel
-        </div>
+        @foreach($users as $user)
+          <div class="title m-b-md">
+            {{ $user->name }}
+            {{ $user->email }}
+          </div>
+        @endforeach
 
         <div class="links">
           <a href="https://laravel.com/docs">Docs</a>
