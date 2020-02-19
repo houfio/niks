@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestAccount;
-use App\Mail\AccountRequested;
+use App\Mail\AccountRequestedMail;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,7 +22,7 @@ class AccountController extends Controller
 
         $user->save();
 
-        Mail::to($user->email)->send(new AccountRequested($user));
+        Mail::to($user->email)->send(new AccountRequestedMail($user));
 
         return view('welcome');
     }
