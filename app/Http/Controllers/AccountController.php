@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RequestAccount;
+use App\Http\Requests\AccountFormRequest;
 use App\Mail\AccountRequestedMail;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
-    public function create(RequestAccount $request)
+    public function create(AccountFormRequest $request)
     {
         $data = $request->validated();
 
