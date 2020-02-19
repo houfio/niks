@@ -9,14 +9,14 @@ class AccountController extends Controller
 {
     public function create(RequestAccount $request)
     {
-        $validatedRequest = $request->validated();
+        $data = $request->validated();
 
         $user = new User();
 
-        $user->email = $validatedRequest['email'];
-        $user->first_name = $validatedRequest['firstName'];
-        $user->middle_name = $validatedRequest['middleName'];
-        $user->last_name = $validatedRequest['lastName'];
+        $user->email = $data['email'];
+        $user->first_name = $data['firstName'];
+        $user->middle_name = $data['middleName'];
+        $user->last_name = $data['lastName'];
 
         $user->save();
 
