@@ -19,6 +19,10 @@ class AccountController extends Controller
         $user->email = $data['email'];
         $user->first_name = $data['firstName'];
         $user->last_name = $data['lastName'];
+        $user->zip_code = $data['zipCode'];
+        $user->neighbourhood = $data['neighbourhood'];
+        $user->phone_number = $data['phoneNumber'];
+        $user->house_number = $data['houseNumber'];
 
         $user->save();
 
