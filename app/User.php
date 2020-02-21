@@ -10,24 +10,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /** @var string $email */
-    public $email;
-
-    /** @var string $password */
-    public $password;
-
-    /** @var string $remember_token */
-    public $remember_token;
-
-    /** @var string $first_name */
-    public $first_name;
-
-    /** @var string $middle_name */
-    public $middle_name;
-
-    /** @var string $last_name */
-    public $last_name;
-
     public $timestamps = true;
 
     /**
@@ -36,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'email', 'password', 'last_name'
     ];
 
     /**

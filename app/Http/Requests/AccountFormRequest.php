@@ -16,8 +16,11 @@ class AccountFormRequest extends FormRequest
         return [
             'email' => 'required|unique:users,email|email|max:255',
             'firstName' => 'required|max:255',
-            'middleName' => 'required|max:255',
-            'lastName' => 'required|max:255'
+            'lastName' => 'required|max:255',
+            'phoneNumber' => 'required|phone_number',
+            'zipCode' => 'required|zip_code|max:6',
+            'neighbourhood' => 'required|max:90',
+            'houseNumber' => 'required|max:6'
         ];
     }
 
@@ -25,8 +28,10 @@ class AccountFormRequest extends FormRequest
     {
         return [
             'required' => __('validation.required', ['attribute' => ':attribute']),
-            'unique' => __('validation.attributes.email', ['attribute' => ':attribute']),
-            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max'])
+            'unique' => __('validation.unique', ['attribute' => ':attribute']),
+            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
+            'phone_number' => __('validation.phone_number', ['value' => ':value']),
+            'zip_code' => __('validation.zip_code', ['value' => ':value']),
         ];
     }
 
@@ -37,6 +42,10 @@ class AccountFormRequest extends FormRequest
             'firstName' => __('validation.attributes.firstName'),
             'middleName' => __('validation.attributes.middleName'),
             'lastName' => __('validation.attributes.lastName'),
+            'phoneNumber' => __('validation.attributes.phoneNumber'),
+            'zipCode' => __('validation.attributes.zipCode'),
+            'neighbourhood' => __('validation.attributes.neighbourhood'),
+            'houseNumber' => __('validation.attributes.houseNumber')
         ];
     }
 }
