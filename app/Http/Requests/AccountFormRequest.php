@@ -30,8 +30,8 @@ class AccountFormRequest extends FormRequest
             'required' => __('validation.required', ['attribute' => ':attribute']),
             'unique' => __('validation.unique', ['attribute' => ':attribute']),
             'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
-            'phone_number' => __('validation.phone_number', ['value' => ':value']),
-            'zip_code' => __('validation.zip_code', ['value' => ':value']),
+            'phone_number' => __('validation.phone_number', ['value' => ':input']),
+            'zip_code' => __('validation.zip_code', ['value' => ':input']),
         ];
     }
 

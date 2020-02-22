@@ -29,9 +29,9 @@ class AccountController extends Controller
         try {
             Mail::to($user->email)->send(new AccountRequestedMail($user));
         } catch (Exception $exception) {
-            return view('welcome');
+            return redirect('/');
         }
 
-        return view('welcome');
+        return redirect('/');
     }
 }

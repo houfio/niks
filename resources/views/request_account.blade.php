@@ -28,7 +28,7 @@
         <input type="text" id="houseNumber" name="houseNumber">
         <label for="neighbourhood">Wijk:</label><br>
         <input type="text" id="neighbourhood" name="neighbourhood">
-        <input type="submit" name="submit">
+        <input type="submit" name="requestAccount">
       </form>
     </div>
   </body>
