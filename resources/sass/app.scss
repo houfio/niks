@@ -1,1 +1,76 @@
-//
+@import "~normalize.css";
+@import "variables";
+@import "mixins";
+
+body {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+button {
+  border: none;
+  background: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @each $breakpoint, $size in $breakpoints {
+    @include at-breakpoint($breakpoint) {
+      width: calc(#{if($size == 0, '100%', $size)} - 2rem);
+    }
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100vh;
+  padding: 2rem;
+  background-color: $gray;
+
+  &-item {
+    padding: .75rem 1rem;
+    border-radius: 2.75rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: background-color .25s ease;
+
+    &:hover {
+      background-color: transparentize($orange, .75);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &.active {
+      color: $orange;
+    }
+
+    & .content {
+      display: none;
+      margin-left: .5rem;
+
+      @include at-breakpoint(tablet_landscape) {
+        display: inline-block;
+      }
+    }
+  }
+}
