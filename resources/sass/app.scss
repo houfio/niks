@@ -2,6 +2,10 @@
 @import "variables";
 @import "mixins";
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   min-height: 100vh;
@@ -28,7 +32,6 @@ a {
 
 .container {
   margin: 0 auto;
-  padding: 0 1rem;
 
   @each $breakpoint, $size in $breakpoints {
     @include at-breakpoint($breakpoint) {
@@ -38,22 +41,42 @@ a {
 }
 
 .navigation {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   height: 100vh;
-  padding: 2rem;
-  background-color: $gray;
+  padding: 2rem 1rem;
+  z-index: 100;
+
+  @include at-breakpoint(tablet_landscape) {
+    padding: 2rem;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: $gray;
+    z-index: -1;
+  }
 
   &-item {
-    padding: .75rem 1rem;
+    padding: .75rem 1.25rem .75rem 1rem;
     border-radius: 2.75rem;
     font-size: 1.25rem;
     font-weight: bold;
     transition: background-color .25s ease;
 
     &:hover {
-      background-color: transparentize($orange, .75);
+      background-color: transparentize($orange, .85);
+    }
+
+    &:active {
+      background-color: transparentize($orange, .65);
     }
 
     &:not(:last-child) {
