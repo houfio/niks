@@ -30,7 +30,7 @@ class LoginTest extends DuskTestCase
                 ->type('password', 'test123')
                 ->press('login')
                 ->assertPathIs('/')
-                ->assertAuthenticated();
+                ->assertAuthenticatedAs($user);
         });
     }
 

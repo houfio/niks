@@ -24,10 +24,8 @@ class LogoutTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->logout()
-                ->visit('/login')
-                ->type('email', $user->email)
-                ->type('password', 'test123')
-                ->press('login')
+                ->loginAs($user)
+                ->assertAuthenticatedAs($user)
                 ->visit('/logout')
                 ->assertPathIs('/login');
         });
