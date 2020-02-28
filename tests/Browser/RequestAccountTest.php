@@ -16,9 +16,9 @@ class RequestAccountTest extends DuskTestCase
      * @test
      * @throws Throwable
      */
-    public function requestAccountFormTest()
+    public function testRequestAccount()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->make();
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/account/request')
