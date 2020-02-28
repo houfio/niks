@@ -1,3 +1,5 @@
+import MicroModal from 'micromodal';
+
 (() => {
-  console.log('niks');
+  MicroModal.init();
 })();

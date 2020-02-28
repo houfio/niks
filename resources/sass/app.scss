@@ -1,6 +1,8 @@
 @import "~normalize.css";
 @import "variables";
 @import "mixins";
+@import "form";
+@import "modal";
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -10,6 +12,7 @@ body {
   display: flex;
   min-height: 100vh;
   font-family: 'Open Sans', sans-serif;
+  overflow-y: scroll;
 }
 
 button {
@@ -28,6 +31,14 @@ a {
   &:hover {
     cursor: pointer;
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+.fas {
+  pointer-events: none;
 }
 
 .container {
@@ -50,6 +61,7 @@ a {
   z-index: 100;
 
   @include at-breakpoint(tablet_landscape) {
+    min-width: 20rem;
     padding: 2rem;
   }
 
@@ -69,9 +81,10 @@ a {
     border-radius: 2.75rem;
     font-size: 1.25rem;
     font-weight: bold;
+    outline: none;
     transition: background-color .25s ease;
 
-    &:hover {
+    &:focus, &:hover {
       background-color: transparentize($orange, .85);
     }
 
@@ -95,5 +108,18 @@ a {
         display: inline-block;
       }
     }
+  }
+}
+
+.button {
+  padding: .75rem 1.25rem;
+  color: white;
+  background-color: $orange;
+  border-radius: 2.5rem;
+  outline: none;
+  transition: box-shadow .25s ease;
+
+  &:focus {
+    box-shadow: 0 0 0 3px transparentize($orange, .45);
   }
 }

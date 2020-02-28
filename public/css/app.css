@@ -348,6 +348,152 @@ template {
 [hidden] {
   display: none;
 }
+.text-input {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.text-input > input {
+  width: 100%;
+  padding: 1.75rem 1.25rem 0.75rem 1.25rem;
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: box-shadow 0.25s ease;
+}
+
+.text-input > input:focus {
+  box-shadow: 0 0 0 3px #dedede;
+}
+
+.text-input > label {
+  position: absolute;
+  top: 0.75rem;
+  left: 1.25rem;
+  color: #b7b7b7;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: top 0.25s ease, font-size 0.25s ease;
+}
+
+.checkbox-input {
+  position: relative;
+  height: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox-input > input {
+  opacity: 0;
+}
+
+.checkbox-input > input:focus ~ label::before {
+  box-shadow: 0 0 0 3px #dedede;
+}
+
+.checkbox-input > input:checked ~ label::before {
+  background-color: #ff9966;
+}
+
+.checkbox-input > input:focus:checked ~ label::before {
+  box-shadow: 0 0 0 3px rgba(255, 153, 102, 0.55);
+}
+
+.checkbox-input > label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.checkbox-input > label:hover {
+  cursor: pointer;
+}
+
+.checkbox-input > label::before,
+.checkbox-input > label::after {
+  content: "";
+  display: inline-block;
+}
+
+.checkbox-input > label::before {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  background-color: #f7f7f7;
+  border-radius: 0.5rem;
+  transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.checkbox-input > label::after {
+  position: absolute;
+  top: 0.2rem;
+  left: 0.5rem;
+  width: 0.5rem;
+  height: 0.9rem;
+  border: 3px solid #f7f7f7;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+  transition: left 0.25s ease;
+}
+
+.modal {
+  visibility: hidden;
+  transition: visibility 0s 0.25s;
+}
+
+.modal-overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  z-index: 250;
+  transition: opacity 0.25s ease;
+}
+
+.modal-container {
+  margin: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  transform: translateY(1rem);
+  transition: transform 0.25s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem;
+  padding: 1rem 0;
+  border-bottom: 3px solid #f7f7f7;
+}
+
+.modal-content {
+  margin: 1rem;
+}
+
+.modal.is-open {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.modal.is-open .modal-overlay {
+  opacity: 1;
+}
+
+.modal.is-open .modal-container {
+  transform: translateY(0);
+}
+
 *,
 *::before,
 *::after {
@@ -358,6 +504,7 @@ body {
   display: flex;
   min-height: 100vh;
   font-family: "Open Sans", sans-serif;
+  overflow-y: scroll;
 }
 
 button {
@@ -376,6 +523,19 @@ a {
 
 a:hover {
   cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.fas {
+  pointer-events: none;
 }
 
 .container {
@@ -413,6 +573,7 @@ a:hover {
 
 @media (min-width: 900px) {
   .navigation {
+    min-width: 20rem;
     padding: 2rem;
   }
 }
@@ -433,9 +594,11 @@ a:hover {
   border-radius: 2.75rem;
   font-size: 1.25rem;
   font-weight: bold;
+  outline: none;
   transition: background-color 0.25s ease;
 }
 
+.navigation-item:focus,
 .navigation-item:hover {
   background-color: rgba(255, 153, 102, 0.15);
 }
@@ -461,5 +624,18 @@ a:hover {
   .navigation-item .content {
     display: inline-block;
   }
+}
+
+.button {
+  padding: 0.75rem 1.25rem;
+  color: white;
+  background-color: #ff9966;
+  border-radius: 2.5rem;
+  outline: none;
+  transition: box-shadow 0.25s ease;
+}
+
+.button:focus {
+  box-shadow: 0 0 0 3px rgba(255, 153, 102, 0.55);
 }
 

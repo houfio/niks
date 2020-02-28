@@ -11,24 +11,40 @@
   <body class="container">
     <nav class="navigation">
       @component('components/navigation_item', ['icon' => 'newspaper', 'path' => '/'])
-        Home
+        {{ __('home.title') }}
       @endcomponent
-      @component('components/navigation_item', ['icon' => 'store', 'path' => '/advertisements'])
-        Advertenties
-      @endcomponent
-      @component('components/navigation_item', ['icon' => 'star', 'path' => '/favorites'])
-        Favorieten
-      @endcomponent
-      @component('components/navigation_item', ['icon' => 'envelope', 'path' => '/messages'])
-        Berichten
-      @endcomponent
-      @component('components/navigation_item', ['icon' => 'user', 'path' => '/profile'])
-        Profiel
-      @endcomponent
+      @guest
+        @if(!Request::is('login'))
+          <button class="button" data-micromodal-trigger="login-modal">
+            {{ __('login.title') }}
+          </button>
+        @endif
+      @endguest
+      @auth
+        @component('components/navigation_item', ['icon' => 'store', 'path' => 'advertisements'])
+          {{ __('advertisements.title') }}
+        @endcomponent
+        @component('components/navigation_item', ['icon' => 'star', 'path' => 'favorites'])
+          {{ __('favorites.title') }}
+        @endcomponent
+        @component('components/navigation_item', ['icon' => 'envelope', 'path' => 'messages'])
+          {{ __('messages.title') }}
+        @endcomponent
+        @component('components/navigation_item', ['icon' => 'user', 'path' => 'profile'])
+          {{ __('profile.title') }}
+        @endcomponent
+      @endauth
     </nav>
     <main>
       @yield('content')
     </main>
+    @guest
+      @if(!Request::is('login'))
+        @component('components/modal', ['id' => 'login-modal', 'title' => __('login.title')])
+          @include('components/login_form')
+        @endcomponent
+      @endif
+    @endguest
     <script src="/js/app.js"></script>
   </body>
 </html>
