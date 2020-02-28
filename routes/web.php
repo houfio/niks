@@ -18,7 +18,7 @@ Route::get('/login', function () {
 
 Route::get('/logout', function () {
     Auth::logout();
-    return view('login');
+    return redirect('/login');
 });
 
 Route::post('/account/request', 'AccountController@create');
