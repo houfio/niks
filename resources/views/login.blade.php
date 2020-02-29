@@ -5,7 +5,7 @@
 @section('content')
   @if ($errors->any())
     @foreach ($errors->all() as $error)
-      <li>{{ $error }}</li>
+      <li>{{ __($error) }}</li>
     @endforeach
   @endif
   @include('components/login_form')
