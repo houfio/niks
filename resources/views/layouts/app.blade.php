@@ -14,6 +14,9 @@
         {{ __('home.title') }}
       @endcomponent
       @guest
+        @component('components/navigation_item', ['icon' => 'envelope-open-text', 'path' => 'register'])
+          {{ __('register.title') }}
+        @endcomponent
         @if(!Request::is('login'))
           <button class="button" data-micromodal-trigger="login-modal">
             {{ __('login.title') }}

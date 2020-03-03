@@ -632,6 +632,7 @@ h6 {
   background-color: #ff9966;
   border-radius: 2.5rem;
   outline: none;
+  font-weight: bold;
   transition: box-shadow 0.25s ease;
 }
 
