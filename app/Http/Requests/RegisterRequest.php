@@ -19,7 +19,6 @@ class RegisterRequest extends FormRequest
             'lastName' => 'required|max:255',
             'phoneNumber' => 'required|phone_number',
             'zipCode' => 'required|zip_code|max:6',
-            'neighbourhood' => 'required|max:90',
             'houseNumber' => 'required|max:6'
         ];
     }
@@ -44,7 +43,6 @@ class RegisterRequest extends FormRequest
             'lastName' => __('validation.attributes.lastName'),
             'phoneNumber' => __('validation.attributes.phoneNumber'),
             'zipCode' => __('validation.attributes.zipCode'),
-            'neighbourhood' => __('validation.attributes.neighbourhood'),
             'houseNumber' => __('validation.attributes.houseNumber')
         ];
     }
