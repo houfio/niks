@@ -1,4 +1,4 @@
-<form method="post" action="{{ @action('Auth\LoginController@authenticate') }}">
+<form method="post" action="{{ @action('Auth\LoginController@login') }}">
   @csrf
   <div class="text-input">
     <label for="email">E-mail</label>

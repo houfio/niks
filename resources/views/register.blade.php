@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('mail.accountRequested.title') }}</title>
+    <title>{{ __('mail.registered.title') }}</title>
   </head>
   <body>
     <div class="content">
@@ -12,7 +12,7 @@
           <li>{{ $error }}</li>
         @endforeach
       @endif
-      <form method="POST" action="{{ @action('AccountController@create') }}">
+      <form method="POST" action="{{ @action('Auth\RegisterController@register') }}">
         @csrf
         <label for="firstName">Voornaam:</label><br>
         <input type="text" id="firstName" name="firstName"><br>

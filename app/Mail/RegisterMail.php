@@ -7,12 +7,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AccountRequestedMail extends Mailable
+class RegisterMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /** @var User $user */
-    public $user;
+    public User $user;
 
     public function __construct(User $user)
     {
@@ -21,7 +20,7 @@ class AccountRequestedMail extends Mailable
 
     public function build()
     {
-        return $this->view('mails.account_requested')
+        return $this->view('mails.registered')
             ->from('no-reply@niksvoorniks.nl')
             ->replyTo('info@niksvoorniks.nl');
     }

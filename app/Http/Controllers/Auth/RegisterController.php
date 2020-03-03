@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AccountFormRequest;
-use App\Mail\AccountRequestedMail;
+use App\Http\Requests\RegisterRequest;
+use App\Mail\RegisterMail;
 use App\User;
 use Exception;
 use Illuminate\Support\Facades\Mail;
 
-class AccountController extends Controller
+class RegisterController extends Controller
 {
-    public function create(AccountFormRequest $request)
+    public function request(RegisterRequest $request)
     {
         $data = $request->validated();
 
@@ -27,7 +27,7 @@ class AccountController extends Controller
         $user->save();
 
         try {
-            Mail::to($user->email)->send(new AccountRequestedMail($user));
+            Mail::to($user->email)->send(new RegisterMail($user));
         } catch (Exception $exception) {
             return redirect('/');
         }
