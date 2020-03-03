@@ -12,6 +12,8 @@ return [
         'neighbourhood' => 'Wijk'
     ],
     'unique' => ':attribute is al in gebruik',
+    'email' => ':value is geen geldig e-mailadres',
+    'exists' => ':attribute bestaat niet',
     'required' => ':attribute is een verplicht veld',
     'max' => ':attribute mag niet langer zijn dan :max karakters',
     'phone_number' => ':value is geen geldig Nederlands nummer',

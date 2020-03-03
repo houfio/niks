@@ -2,26 +2,25 @@
 
 namespace App\Mail;
 
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AccountRequestedMail extends Mailable
+class PasswordResetMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public User $user;
+    public string $token;
 
-    public function __construct(User $user)
+    public function __construct(string $token)
     {
-        $this->user = $user;
-        $this->subject = __('mail.accountRequested.title');
+        $this->token = $token;
+        $this->subject = __('mail.resetPassword.title');
     }
 
     public function build()
     {
-        return $this->view('mails.account_requested')
+        return $this->view('mails.reset_password')
             ->from('no-reply@niksvoorniks.nl')
             ->replyTo('info@niksvoorniks.nl');
     }
