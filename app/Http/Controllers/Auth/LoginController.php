@@ -26,15 +26,16 @@ class LoginController extends Controller
         $email = $request->get('email');
 
         $this->incrementLoginAttempts($request);
+        $tooMany = $this->hasTooManyLoginAttempts($request);
 
-        if (!$this->hasTooManyLoginAttempts($request) && Auth::attempt(['password' => $password, 'email' => $email, 'approved' => 1], $rememberMe)) {
+        if (!$tooMany && Auth::attempt(['password' => $password, 'email' => $email, 'approved' => 1], $rememberMe)) {
             $this->clearLoginAttempts($request);
             return redirect('/');
         } else {
             return redirect('/login')
                 ->withInput($request->only($this->username(), 'remember'))
                 ->withErrors([
-                    'login.invalid_login'
+                    $tooMany ? 'login.timeout' : 'login.invalid_login'
                 ]);
         }
     }

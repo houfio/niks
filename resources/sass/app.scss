@@ -123,3 +123,15 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 0 3px transparentize($orange, .45);
   }
 }
+
+main > .content {
+  margin: 1rem;
+}
+
+.error {
+  padding: 1rem;
+  color: white;
+  background-color: #ff7980;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
