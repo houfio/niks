@@ -9,7 +9,6 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use DateTime;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Support\Facades\Password;
 
 class ResetPasswordController extends Controller
 {
@@ -31,7 +30,6 @@ class ResetPasswordController extends Controller
                 ]);
         }
 
-        /** @var User $user */
         $user = User::where('email', $passwordReset->email)->take(1)->get();
         $this->resetPassword($user, $data['password']);
 
