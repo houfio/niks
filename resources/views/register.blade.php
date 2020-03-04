@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="content">
-    @include('components/errors')
+    <x-errors/>
     <form method="post" action="{{ @action('Auth\RegisterController@register') }}">
       @csrf
       <label for="firstName">Voornaam:</label><br>

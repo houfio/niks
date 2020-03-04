@@ -1,4 +1,4 @@
-<div class="modal" id="{{ $id }}" aria-hidden="true">
+<div class="modal" id="{{ $id }}-modal" aria-hidden="true">
   <div class="modal-overlay" tabindex="-1" data-micromodal-close>
     <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="{{ $id }}-title">
       <header class="modal-header">

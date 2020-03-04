@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="content">
-    @include('components/errors')
-    @include('components/login_form')
+    <x-errors/>
+    <x-login-form/>
   </div>
 @endsection
