@@ -32,4 +32,4 @@ Route::get('/reset/{token}', function () {
 Route::post('/account/request', 'AccountController@create');
 Route::post('/forgot', 'Auth\ForgotPasswordController@resetPassword');
 Route::post('/login', 'Auth\LoginController@authenticate');
-Route::post('/reset/{token}', 'Auth\ForgotPasswordController@reset');
+Route::post('/reset/{token}', 'Auth\ResetPasswordController@reset');
