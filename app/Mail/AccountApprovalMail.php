@@ -11,8 +11,7 @@ class AccountApprovalMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /** @var User $user */
-    public $user;
+    public User $user;
 
     public function __construct(User $user)
     {

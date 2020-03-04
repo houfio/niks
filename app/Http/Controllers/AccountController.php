@@ -39,21 +39,21 @@ class AccountController extends Controller
     {
         $data = $request->validated();
 
-        $approve = $data['approve'] == 'true';
+        $approve = boolval($data['approve']);
 
         $user = User::find('email', $data['email']);
         $user->approved = $approve;
         $user->save();
 
-        if($approve)
+        try
         {
-            try
+            if($approve)
             {
                 Mail::to($user->email)->send(new AccountApprovalMail($user));
-            } catch (Exception $exception)
-            {
-                return redirect('/');
             }
+        } catch (Exception $exception)
+        {
+            return redirect('/');
         }
 
         return redirect('/');
