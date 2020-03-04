@@ -34,4 +34,39 @@ class AccountController extends Controller
 
         return redirect('/');
     }
+
+    public function approve(ApproveAccountRequest $request)
+    {
+        $data = $request->validated();
+
+        $approve = $data['approve'] == 'true';
+
+        $user = User::find('email', $data['email']);
+        $user->approved = $approve;
+        $user->save();
+
+        if($approve)
+        {
+            try
+            {
+                Mail::to($user->email)->send(new AccountApprovalMail($user));
+            } catch (Exception $exception)
+            {
+                return redirect('/');
+            }
+        }
+
+        return redirect('/');
+    }
+
+    public function setPassword(SetPasswordRequest $request)
+    {
+        $data = $request->validated();
+
+        $user = User::find('email', $data['email']);
+        $user->password = Hash::make($password);
+        $user->save();
+
+        return redirect('/');
+    }
 }
