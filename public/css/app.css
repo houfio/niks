@@ -441,6 +441,21 @@ template {
   transition: left 0.25s ease;
 }
 
+.two-columns {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .two-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.two-columns > .text-input {
+  margin-bottom: 0;
+}
+
 .modal {
   visibility: hidden;
   transition: visibility 0s 0.25s;
@@ -505,6 +520,10 @@ body {
   min-height: 100vh;
   font-family: "Open Sans", sans-serif;
   overflow-y: scroll;
+}
+
+main {
+  flex: 1;
 }
 
 button {
@@ -646,6 +665,10 @@ h6 {
 
 main > .content {
   margin: 1rem;
+}
+
+.page-heading {
+  margin: 2rem;
 }
 
 .error {

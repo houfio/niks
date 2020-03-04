@@ -15,6 +15,10 @@ body {
   overflow-y: scroll;
 }
 
+main {
+  flex: 1;
+}
+
 button {
   border: none;
   background: none;
@@ -131,6 +135,10 @@ h1, h2, h3, h4, h5, h6 {
 
 main > .content {
   margin: 1rem;
+}
+
+.page-heading {
+  margin: 2rem;
 }
 
 .error {

@@ -89,3 +89,16 @@
     }
   }
 }
+
+.two-columns {
+  display: grid;
+  grid-gap: 1rem;
+
+  @include at-breakpoint(tablet_landscape) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  & > .text-input {
+    margin-bottom: 0;
+  }
+}
