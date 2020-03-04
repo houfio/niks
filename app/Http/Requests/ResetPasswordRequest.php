@@ -2,20 +2,19 @@
 
 namespace App\Http\Requests;
 
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ForgotPasswordRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     public function authorize()
     {
-        return !boolval(User::whereEmail($this->request->get('email'))->first()->approved);
+        return true;
     }
 
     public function rules()
     {
         return [
-            'email' => 'required|email|exists:users,email'
+            'password' => 'required|confirmed|max:255'
         ];
     }
 
@@ -23,15 +22,15 @@ class ForgotPasswordRequest extends FormRequest
     {
         return [
             'required' => __('validation.required', ['attribute' => ':attribute']),
-            'email' => __('validation.email', ['value' => ':input']),
-            'exists' => __('validation.exists', ['attribute' => ':attribute']),
+            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
         ];
     }
 
     public function attributes()
     {
         return [
-            'email' => __('validation.attributes.email'),
+            'password' => __('validation.attributes.password'),
+            'password_confirmation' => __('validation.attributes.passwordConfirmation'),
         ];
     }
 }

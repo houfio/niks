@@ -5,6 +5,7 @@ namespace App;
 use App\Mail\PasswordResetMail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
@@ -26,6 +27,6 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new PasswordResetMail($token));
+        Mail::to($this->email)->send(new PasswordResetMail($token, $this));
     }
 }

@@ -13,6 +13,7 @@
       </p>
       <p>
         {{ __('mail.resetPassword.paragraphTwo') }}
+        {{ $token }}
       </p>
       <span>
         {{ __('mail.greetings') }}<br/>

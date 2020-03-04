@@ -12,8 +12,8 @@ Route::get('/account/request', function () {
     return view('request_account');
 });
 
-Route::get('/reset', function () {
-    return view('reset_password');
+Route::get('/forgot', function () {
+    return view('forgot_password');
 });
 
 Route::get('/login', function () {
@@ -25,6 +25,11 @@ Route::get('/logout', function () {
     return redirect('/login');
 });
 
+Route::get('/reset/{token}', function () {
+    return view('reset_password');
+});
+
 Route::post('/account/request', 'AccountController@create');
-Route::post('/reset', 'Auth\ForgotPasswordController@resetPassword');
+Route::post('/forgot', 'Auth\ForgotPasswordController@resetPassword');
 Route::post('/login', 'Auth\LoginController@authenticate');
+Route::post('/reset/{token}', 'Auth\ForgotPasswordController@reset');

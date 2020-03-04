@@ -1,6 +1,8 @@
 <?php
 
 return [
-    'title' => 'Wachtwoord herstellen',
-    'email' => 'E-mailadres'
+    'title' => 'Wachtwoord resetten',
+    'password' => 'Wachtwoord',
+    'passwordConfirmation' => 'Wachtwoord bevestiging',
+    'tokenExpired' => 'De reset link is verlopen'
 ];
