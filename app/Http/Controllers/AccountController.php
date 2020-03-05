@@ -61,7 +61,7 @@ class AccountController extends Controller
         $data = $request->validated();
 
         $user = User::find('email', $data['email']);
-        $user->password = Hash::make($password);
+        $user->password = Hash::make($data['password']);
         $user->save();
 
         return redirect('/');
