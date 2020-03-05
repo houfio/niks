@@ -12,7 +12,7 @@
           <li>{{ $error }}</li>
         @endforeach
       @endif
-      <form method="POST" action="{{ @action('Auth\ResetPasswordController@reset') }}">
+      <form method="POST" action="{{ @action('Auth\ResetPasswordController@reset', ['token' => $token]) }}">
         @csrf
         <label for="password">{{ __('resetPassword.password') }}</label><br>
         <input type="password" id="password" name="password"><br>

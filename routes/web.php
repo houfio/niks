@@ -25,8 +25,10 @@ Route::get('/logout', function () {
     return redirect('/login');
 });
 
-Route::get('/reset/{token}', function () {
-    return view('reset_password');
+Route::get('/reset/{token}', function (string $token) {
+    return view('reset_password', [
+        'token' => $token
+    ]);
 });
 
 Route::post('/account/request', 'AccountController@create');
