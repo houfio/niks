@@ -5,15 +5,12 @@ namespace Tests\Browser;
 use App\PasswordReset;
 use App\User;
 use DateTime;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
 class FormExpiredTokenTest extends DuskTestCase
 {
-    use RefreshDatabase;
-
     /**
      * @test
      * @throws Throwable
