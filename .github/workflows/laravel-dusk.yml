@@ -19,5 +19,7 @@ jobs:
         run: ./vendor/laravel/dusk/bin/chromedriver-linux &
       - name: Run server
         run: php artisan serve &
+      - name: Run migrations & refresh database
+        run: php artisan migrate:fresh
       - name: Run tests
         run: php artisan dusk
