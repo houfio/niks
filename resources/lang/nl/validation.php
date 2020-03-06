@@ -18,6 +18,7 @@ return [
     'exists' => ':attribute bestaat niet',
     'required' => ':attribute is een verplicht veld',
     'max' => ':attribute mag niet langer zijn dan :max karakters',
+    'min' => ':attribute mag niet korter zijn dan :min karakters',
     'phone_number' => ':value is geen geldig Nederlands nummer',
     'zip_code' => ':value is geen geldig Nederlandse postcode',
     'confirmed' => ':attribute komt niet overeen'
