@@ -12,4 +12,5 @@ class Advertisement extends Model
     {
         return $this->belongsToMany(Asset::class, 'advertisement_asset');
     }
+    protected $table = 'advertisements';
 }
