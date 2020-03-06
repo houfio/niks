@@ -29,6 +29,7 @@ class AccountFormRequest extends FormRequest
         return [
             'required' => __('validation.required', ['attribute' => ':attribute']),
             'unique' => __('validation.unique', ['attribute' => ':attribute']),
+            'email' => __('validation.email', ['value' => ':input']),
             'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
             'phone_number' => __('validation.phone_number', ['value' => ':input']),
             'zip_code' => __('validation.zip_code', ['value' => ':input']),

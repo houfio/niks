@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AccountFormRequest;
 use App\Mail\AccountRequestedMail;
 use App\User;
-use Exception;
 use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
@@ -26,11 +25,7 @@ class AccountController extends Controller
 
         $user->save();
 
-        try {
-            Mail::to($user->email)->send(new AccountRequestedMail($user));
-        } catch (Exception $exception) {
-            return redirect('/');
-        }
+        Mail::to($user->email)->send(new AccountRequestedMail($user));
 
         return redirect('/');
     }
