@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function advertisements()
     {
