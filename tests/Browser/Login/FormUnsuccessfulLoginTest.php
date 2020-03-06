@@ -3,16 +3,12 @@
 namespace Tests\Browser;
 
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
 class FormUnsuccessfulLoginTest extends DuskTestCase
 {
-    use DatabaseMigrations;
-
     /**
      * @test
      * @throws Throwable

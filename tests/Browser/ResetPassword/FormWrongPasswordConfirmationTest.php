@@ -4,7 +4,6 @@ namespace Tests\Browser;
 
 use App\PasswordReset;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -12,8 +11,6 @@ use Throwable;
 
 class FormWrongPasswordConfirmationTest extends DuskTestCase
 {
-    use DatabaseMigrations;
-
     /**
      * @test
      * @throws Throwable

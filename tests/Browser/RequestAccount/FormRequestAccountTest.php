@@ -10,8 +10,6 @@ use Throwable;
 
 class FormRequestAccountTest extends DuskTestCase
 {
-    use RefreshDatabase;
-
     /**
      * @test
      * @throws Throwable
