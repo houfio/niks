@@ -4,7 +4,7 @@ use App\Advertisement;
 use App\Asset;
 use Illuminate\Database\Seeder;
 
-class AssetSeeder extends Seeder
+class AssetsSeeder extends Seeder
 {
     public function run()
     {

@@ -9,7 +9,7 @@ class AddForeignKeyToAdvertisements extends Migration
     public function up()
     {
         Schema::table('advertisements', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
