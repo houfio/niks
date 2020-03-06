@@ -12,8 +12,10 @@
         {{ __('mail.resetPassword.paragraphOne') }}
       </p>
       <p>
+        {{ env('APP_URL') }}/reset/{{ $token }}
+      </p>
+      <p>
         {{ __('mail.resetPassword.paragraphTwo') }}
-        {{ $token }}
       </p>
       <span>
         {{ __('mail.greetings') }}<br/>
