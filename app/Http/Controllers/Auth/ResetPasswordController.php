@@ -33,8 +33,9 @@ class ResetPasswordController extends Controller
 
         $user = User::where('email', $passwordReset->email)->first();
         $this->resetPassword($user, $data['password']);
+        $passwordReset->delete();
 
-        return redirect('/home');
+        return redirect('/');
     }
 
     private function tokenExpired(PasswordReset $passwordResetData): bool
