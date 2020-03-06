@@ -24,7 +24,6 @@ class ForgotPasswordTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/forgot')
-                ->screenshot('pagina')
                 ->type('email', $user->email)
                 ->press('forgot');
         });
@@ -46,7 +45,6 @@ class ForgotPasswordTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/forgot')
-                ->screenshot('pagina')
                 ->type('email', $user->email)
                 ->press('forgot');
         });
@@ -66,7 +64,6 @@ class ForgotPasswordTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/forgot')
-                ->screenshot('pagina')
                 ->type('email', $user->email)
                 ->press('forgot');
         });
@@ -88,7 +85,6 @@ class ForgotPasswordTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/forgot')
-                ->screenshot('pagina')
                 ->type('email', $user->first_name)
                 ->press('forgot');
         });
