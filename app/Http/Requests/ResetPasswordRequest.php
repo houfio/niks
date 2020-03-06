@@ -14,7 +14,8 @@ class ResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'required|confirmed|max:255'
+            'password' => 'required|confirmed|max:255',
+            'email' => 'required|max:255|exists:password_resets,email'
         ];
     }
 
@@ -23,6 +24,7 @@ class ResetPasswordRequest extends FormRequest
         return [
             'required' => __('validation.required', ['attribute' => ':attribute']),
             'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
+            'exists' => __('validation.exists', ['attribute' => ':attribute'])
         ];
     }
 
@@ -31,6 +33,7 @@ class ResetPasswordRequest extends FormRequest
         return [
             'password' => __('validation.attributes.password'),
             'password_confirmation' => __('validation.attributes.passwordConfirmation'),
+            'email' => __('validation.attributes.email')
         ];
     }
 }

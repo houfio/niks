@@ -9,7 +9,13 @@ class ForgotPasswordRequest extends FormRequest
 {
     public function authorize()
     {
-        return !boolval(User::whereEmail($this->request->get('email'))->first()->approved);
+        $user = User::whereEmail($this->request->get('email'))->first();
+
+        if (!$user) {
+            return false;
+        }
+
+        return boolval($user->approved);
     }
 
     public function rules()

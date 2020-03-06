@@ -14,6 +14,8 @@
       @endif
       <form method="POST" action="{{ @action('Auth\ResetPasswordController@reset', ['token' => $token]) }}">
         @csrf
+        <label for="email">{{ __('resetPassword.email') }}</label><br>
+        <input type="email" id="email" name="email"><br>
         <label for="password">{{ __('resetPassword.password') }}</label><br>
         <input type="password" id="password" name="password"><br>
         <label for="password_confirmation">{{ __('resetPassword.passwordConfirmation') }}</label><br>
