@@ -21,7 +21,8 @@ class CreateAdvertisementRequest extends FormRequest
             'minimum_price' => 'nullable|required_if:enable_bidding,true',
             'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
-            'asking' => 'required|boolean'
+            'asking' => 'required|boolean',
+            'images' => 'required_if:asking,false|image'
         ];
     }
 
@@ -35,7 +36,8 @@ class CreateAdvertisementRequest extends FormRequest
             'required_if' => __('validation.required', ['attribute' => ':attribute']),
             'numeric' => __('validation.numeric', ['attribute' => ':attribute']),
             'min' => __('validation.min', ['attribute' => ':attribute']),
-            'boolean' => __('validation.boolean', ['attribute' => ':attribute'])
+            'boolean' => __('validation.boolean', ['attribute' => ':attribute']),
+            'image' => __('validation.image', ['attribute' => ':attribute'])
         ];
     }
 
@@ -49,7 +51,8 @@ class CreateAdvertisementRequest extends FormRequest
             'minimum_price' => __('validation.attributes.minimum_price'),
             'price' => __('validation.attributes.price'),
             'is_service' => __('validation.attributes.is_service'),
-            'asking' => __('validation.attributes.asking')
+            'asking' => __('validation.attributes.asking'),
+            'images' => __('validation.attributes.images')
         ];
     }
 }

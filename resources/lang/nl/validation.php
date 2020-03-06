@@ -19,7 +19,8 @@ return [
         'enable_bidding' => 'Bieden',
         'minimum_price' => 'Minimum prijs',
         'is_service' => 'Dienst',
-        'asking' => 'Vraag'
+        'asking' => 'Vraag',
+        'images' => 'Afbeeldingen'
     ],
     'unique' => ':attribute is al in gebruik',
     'email' => ':value is geen geldig e-mailadres',
@@ -32,4 +33,5 @@ return [
     'confirmed' => ':attribute komt niet overeen',
     'numeric' => ':attribute moet een heel getal zijn',
     'boolean' => ':attribute is een verplicht veld en moet waar of onwaar zijn',
+    'image' => ':attribute moet een afbeelding zijn'
 ];
