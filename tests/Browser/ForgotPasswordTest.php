@@ -40,7 +40,9 @@ class ForgotPasswordTest extends DuskTestCase
      */
     public function testForgotPasswordFormInvalidUser()
     {
-        $user = factory(User::class)->make();
+        $user = factory(User::class)->make([
+            'approved' => true
+        ]);
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/forgot')
@@ -66,6 +68,28 @@ class ForgotPasswordTest extends DuskTestCase
             $browser->visit('/forgot')
                 ->screenshot('pagina')
                 ->type('email', $user->email)
+                ->press('forgot');
+        });
+
+        $this->assertDatabaseMissing('password_resets', [
+            'email' => $user->email
+        ]);
+    }
+
+    /**
+     * @test
+     * @throws Throwable
+     */
+    public function testForgotPasswordFormInvalidEmail()
+    {
+        $user = factory(User::class)->create([
+            'approved' => true
+        ]);
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->visit('/forgot')
+                ->screenshot('pagina')
+                ->type('email', $user->first_name)
                 ->press('forgot');
         });
 
