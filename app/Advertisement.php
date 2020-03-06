@@ -8,5 +8,8 @@ class Advertisement extends Model
 {
     public $timestamps = true;
 
-
+    public function assets()
+    {
+        return $this->belongsToMany(Asset::class, 'advertisement_asset');
+    }
 }

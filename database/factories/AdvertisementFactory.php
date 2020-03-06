@@ -11,6 +11,6 @@ $factory->define(Advertisement::class, function (Faker $faker) {
         'short_description' => $faker->text(60),
         'long_description' => $faker->text(1200),
         'price' => $faker->numberBetween(0, 50),
-        'enable_bidding' => $faker->boolean
+        'enable_bidding' => $faker->boolean,
     ];
 });
