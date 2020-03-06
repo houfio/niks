@@ -3,16 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('mail.accountRequested.title') }}</title>
+    <title>{{ __('mail.resetPassword.title') }}</title>
   </head>
   <body>
     <div class="content">
       <span>{{ __('mail.title', ['name' => "$user->first_name $user->last_name"]) }}</span>
       <p>
-        {{ __('mail.accountRequested.paragraphOne') }}
+        {{ __('mail.resetPassword.paragraphOne') }}
       </p>
       <p>
-        {{ __('mail.accountRequested.paragraphTwo') }}
+        {{ env('APP_URL') }}/reset/{{ $token }}
+      </p>
+      <p>
+        {{ __('mail.resetPassword.paragraphTwo') }}
       </p>
       <span>
         {{ __('mail.greetings') }}<br/>
