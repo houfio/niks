@@ -20,7 +20,7 @@ class FormInvalidUserTest extends DuskTestCase
         ]);
 
         $this->browse(function (Browser $browser) use ($user) {
-            $browser->visit('/forgot')
+            $browser->visit('/reset')
                 ->type('email', $user->email)
                 ->press('forgot');
         });
