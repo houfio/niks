@@ -7,6 +7,20 @@
     <h1 class="page-heading">
       {{ __('register.title') }}
     </h1>
+    <div class="page-subheadings">
+      <span>
+        Om het handelen in onze ruilkring zo lokaal en sociaal mogelijk te houden beperken wij registraties tot de
+        omgeving 's-Hertogenbosch. Dit zorgt ervoor dat onze ruilkring klein en gezellig blijft!
+      </span>
+      <span>
+        Nadat je je aanmelding hieronder hebt ingevuld wordt er een intakegesprek gepland. Tijdens dit gesprek proberen
+        we je te leren kennen en laten we je (mogelijk) toe tot onze leuke en uiterst gezellige ruilkring.
+      </span>
+      <span>
+        We hopen je aanmelding snel te ontvangen! Mocht je vragen hebben, stel deze dan gerust via ons contact formulier
+        op de website.
+      </span>
+    </div>
     <x-errors/>
     <form method="post" action="{{ @action('Auth\RegisterController@register') }}">
       @csrf

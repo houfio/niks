@@ -681,6 +681,28 @@ main > .content {
   margin: 2rem;
 }
 
+.page-subheadings {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.page-subheadings::after {
+  content: "";
+  margin-left: 2rem;
+  width: 4rem;
+  border-bottom: 3px solid #f7f7f7;
+}
+
+.page-subheadings > span {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.page-subheadings > span:last-child {
+  margin-bottom: 2rem;
+}
+
 .error {
   padding: 1rem;
   color: white;
