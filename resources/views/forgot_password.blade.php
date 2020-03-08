@@ -14,7 +14,7 @@
       @endif
       <form method="POST" action="{{ @action('Auth\ForgotPasswordController@resetPassword') }}">
         @csrf
-        <label for="email">{{ __('forgotPassword.email') }}</label><br>
+        <label for="email">{{ __('validation.attributes.email') }}</label><br>
         <input type="email" id="email" name="email"><br>
         <input type="submit" name="forgot">
       </form>
