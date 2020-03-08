@@ -3,13 +3,13 @@
 return [
     'attributes' => [
         'email' => 'E-mailadres',
-        'firstName' => 'Voornaam',
-        'lastName' => 'Achternaam',
-        'phoneNumber' => 'Telefoonnummer',
-        'zipCode' => 'Postcode',
-        'houseNumber' => 'Huisnummer',
+        'first_name' => 'Voornaam',
+        'last_name' => 'Achternaam',
+        'phone_number' => 'Telefoonnummer',
+        'zip_code' => 'Postcode',
+        'house_number' => 'Huisnummer',
         'password' => 'Wachtwoord',
-        'passwordConfirmation' => 'Wachtwoord herhaling',
+        'password_confirmation' => 'Wachtwoord herhaling',
         'title' => 'Title',
         'short_description' => 'Korte beschrijving',
         'long_description' => 'Lange beschrijving',
@@ -18,7 +18,8 @@ return [
         'minimum_price' => 'Minimum prijs',
         'is_service' => 'Dienst',
         'asking' => 'Vraag',
-        'images' => 'Afbeeldingen'
+        'images' => 'Afbeeldingen',
+        'remember_password' => 'Wachtwoord onthouden'
     ],
     'unique' => ':attribute is al in gebruik',
     'email' => ':value is geen geldig e-mailadres',

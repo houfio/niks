@@ -33,7 +33,7 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'password' => __('validation.attributes.password'),
-            'password_confirmation' => __('validation.attributes.passwordConfirmation'),
+            'password_confirmation' => __('validation.attributes.password_confirmation'),
             'email' => __('validation.attributes.email')
         ];
     }

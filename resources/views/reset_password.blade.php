@@ -14,11 +14,11 @@
       @endif
       <form method="POST" action="{{ @action('Auth\ResetPasswordController@reset', ['token' => $token]) }}">
         @csrf
-        <label for="email">{{ __('resetPassword.email') }}</label><br>
+        <label for="email">{{ __('validation.attributes.email') }}</label><br>
         <input type="email" id="email" name="email"><br>
-        <label for="password">{{ __('resetPassword.password') }}</label><br>
+        <label for="password">{{ __('validation.attributes.password') }}</label><br>
         <input type="password" id="password" name="password"><br>
-        <label for="password_confirmation">{{ __('resetPassword.passwordConfirmation') }}</label><br>
+        <label for="password_confirmation">{{ __('validation.attributes.password_confirmation') }}</label><br>
         <input type="password" id="password_confirmation" name="password_confirmation"><br>
         <input type="submit" name="reset">
       </form>
