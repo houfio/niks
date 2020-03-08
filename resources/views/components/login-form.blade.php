@@ -16,6 +16,6 @@
     {{ __('login.title') }}
   </button>
   <a class="button transparent" href="{{ url('reset') }}">
-    {{ __('resetPassword.title') }}
+    {{ __('forgotPassword.title') }}
   </a>
 </form>
