@@ -31,7 +31,7 @@
         <input type="text" id="zip_code" name="zip_code" value="{{ old('zip_code') }}" required/>
       </div>
       <div class="text-input">
-        <label for="house_number">Postcode</label>
+        <label for="house_number">Huisnummer</label>
         <input type="text" id="house_number" name="house_number" value="{{ old('house_number') }}" required/>
       </div>
       <button class="button" type="submit" name="register">
