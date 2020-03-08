@@ -22,7 +22,8 @@ class CreateAdvertisementRequest extends FormRequest
             'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
             'asking' => 'required|boolean',
-            'images' => 'required_if:asking,false|image'
+            'images' => 'array|required_if:asking,false',
+            'images.*' => 'image|mimes:png,jpeg,jpg'
         ];
     }
 
