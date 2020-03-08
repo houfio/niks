@@ -3,31 +3,30 @@
 namespace Tests\Browser;
 
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
-class LogoutTest extends DuskTestCase
+class FormInvalidEmailTest extends DuskTestCase
 {
-    use DatabaseMigrations;
-
     /**
      * @test
      * @throws Throwable
      */
-    public function testLogout()
+    public function testForgotPasswordFormInvalidEmail()
     {
         $user = factory(User::class)->create([
             'approved' => true
         ]);
 
         $this->browse(function (Browser $browser) use ($user) {
-            $browser->logout()
-                ->loginAs($user)
-                ->assertAuthenticatedAs($user)
-                ->visit('/logout')
-                ->assertPathIs('/login');
+            $browser->visit('/forgot')
+                ->type('email', $user->first_name)
+                ->press('forgot');
         });
+
+        $this->assertDatabaseMissing('password_resets', [
+            'email' => $user->email
+        ]);
     }
 }

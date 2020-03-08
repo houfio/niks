@@ -3,16 +3,12 @@
 namespace Tests\Browser;
 
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
-class LoginTest extends DuskTestCase
+class FormSuccessfulLoginTest extends DuskTestCase
 {
-    use DatabaseMigrations;
-
     /**
      * @test
      * @throws Throwable
@@ -31,24 +27,6 @@ class LoginTest extends DuskTestCase
                 ->press('login')
                 ->assertPathIs('/')
                 ->assertAuthenticatedAs($user);
-        });
-    }
-
-    /**
-     * @test
-     * @throws Throwable
-     */
-    public function testUnsuccessfulLogin()
-    {
-        $user = factory(User::class)->create();
-
-        $this->browse(function (Browser $browser) use ($user) {
-            $browser->logout()
-                ->visit('/login')
-                ->type('email', $user->email)
-                ->type('password', 'test123')
-                ->press('login')
-                ->assertPathIs('/login');
         });
     }
 }

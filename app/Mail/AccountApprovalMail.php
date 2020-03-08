@@ -7,7 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RegisterMail extends Mailable
+class AccountApprovalMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,12 +16,11 @@ class RegisterMail extends Mailable
     public function __construct(User $user)
     {
         $this->user = $user;
-        $this->subject = __('mail.accountRequested.title');
     }
 
     public function build()
     {
-        return $this->view('mails.registered')
+        return $this->view('mails.account_approved')
             ->from('no-reply@niksvoorniks.nl')
             ->replyTo('info@niksvoorniks.nl');
     }

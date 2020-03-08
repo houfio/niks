@@ -8,10 +8,8 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
-class RequestAccountTest extends DuskTestCase
+class FormRequestAccountTest extends DuskTestCase
 {
-    use RefreshDatabase;
-
     /**
      * @test
      * @throws Throwable
