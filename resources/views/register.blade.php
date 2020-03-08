@@ -36,6 +36,10 @@
           <input type="text" id="house_number" name="house_number" value="{{ old('house_number') }}" required/>
         </div>
       </div>
+      <div class="text-input">
+        <label for="description">{{ __('validation.attributes.long_description') }}</label>
+        <textarea type="text" id="description" name="description" required>{{ old('description') }}</textarea>
+      </div>
       <button class="button" type="submit" name="register">
         {{ __('register.title') }}
       </button>
