@@ -12,7 +12,8 @@
     "doctrine/dbal": "^2.10.1",
     "fideloper/proxy": "^4.3.0",
     "laravel/framework": "^7.0.2",
-    "laravel/tinker": "^2.2.0"
+    "laravel/tinker": "^2.2.0",
+    "laravel/ui": "^2.0"
   },
   "require-dev": {
     "facade/ignition": "^2.0.0",
