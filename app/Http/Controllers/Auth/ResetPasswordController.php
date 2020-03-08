@@ -41,6 +41,7 @@ class ResetPasswordController extends Controller
     private function tokenExpired(PasswordReset $passwordResetData): bool
     {
         $currentDate = new DateTime();
+
         return $currentDate >= $passwordResetData->created_at->modify('+1 day');
     }
 }

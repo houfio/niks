@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AccountFormRequest;
-use App\Mail\AccountRequestedMail;
+use App\Http\Requests\ApproveAccountRequest;
+use App\Mail\AccountApprovalMail;
 use App\User;
+use Exception;
 use Illuminate\Support\Facades\Mail;
 
-class AccountController extends Controller
+class ApproveController extends Controller
 {
     public function approve(ApproveAccountRequest $request)
     {
@@ -26,17 +27,6 @@ class AccountController extends Controller
         } catch (Exception $exception) {
             return redirect('/');
         }
-
-        return redirect('/');
-    }
-
-    public function setPassword(SetPasswordRequest $request)
-    {
-        $data = $request->validated();
-
-        $user = User::find('email', $data['email']);
-        $user->password = Hash::make($data['password']);
-        $user->save();
 
         return redirect('/');
     }
