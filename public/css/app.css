@@ -660,11 +660,17 @@ h6 {
   border-radius: 2.5rem;
   outline: none;
   font-weight: bold;
+  text-align: center;
   transition: box-shadow 0.25s ease;
 }
 
 .button:focus {
   box-shadow: 0 0 0 3px rgba(255, 153, 102, 0.55);
+}
+
+.button.transparent {
+  color: black;
+  background-color: transparent;
 }
 
 main > .content {
