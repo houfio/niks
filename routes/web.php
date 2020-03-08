@@ -11,7 +11,7 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/forgot', function () {
+Route::get('/reset', function () {
     return view('forgot_password');
 });
 
@@ -34,5 +34,5 @@ Route::get('/reset/{token}', function (string $token) {
     ]);
 });
 
-Route::post('/forgot', 'Auth\ForgotPasswordController@forgotPassword');
+Route::post('/reset', 'Auth\ForgotPasswordController@forgotPassword');
 Route::post('/reset/{token}', 'Auth\ResetPasswordController@reset');
