@@ -9,7 +9,6 @@ return [
         'phoneNumber' => 'Telefoonnummer',
         'zipCode' => 'Postcode',
         'houseNumber' => 'Huisnummer',
-        'neighbourhood' => 'Wijk',
         'password' => 'Wachtwoord',
         'passwordConfirmation' => 'Wachtwoord herhaling',
         'title' => 'Title',

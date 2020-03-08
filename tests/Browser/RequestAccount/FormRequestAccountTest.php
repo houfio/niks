@@ -26,7 +26,6 @@ class FormRequestAccountTest extends DuskTestCase
                 ->type('phoneNumber', $user->phone_number)
                 ->type('zipCode', $user->zip_code)
                 ->type('houseNumber', $user->house_number)
-                ->type('neighbourhood', $user->neighbourhood)
                 ->press('requestAccount')
                 ->assertPathIs('/');
         });
