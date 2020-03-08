@@ -18,7 +18,8 @@ return [
         'minimum_price' => 'Minimum prijs',
         'is_service' => 'Dienst',
         'asking' => 'Vraag',
-        'images' => 'Afbeeldingen'
+        'images' => 'Afbeeldingen',
+        'remember_password' => 'Wachtwoord onthouden'
     ],
     'unique' => ':attribute is al in gebruik',
     'email' => ':value is geen geldig e-mailadres',
