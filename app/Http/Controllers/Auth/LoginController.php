@@ -19,7 +19,7 @@ class LoginController extends Controller
         return 'email';
     }
 
-    public function authenticate(Request $request)
+    public function login(Request $request)
     {
         $rememberMe = boolval($request->get('remember'));
         $password = $request->get('password');

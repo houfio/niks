@@ -4,12 +4,10 @@ return [
     'attributes' => [
         'email' => 'E-mailadres',
         'firstName' => 'Voornaam',
-        'middleName' => 'Tussenvoegsel',
         'lastName' => 'Achternaam',
         'phoneNumber' => 'Telefoonnummer',
         'zipCode' => 'Postcode',
         'houseNumber' => 'Huisnummer',
-        'neighbourhood' => 'Wijk',
         'password' => 'Wachtwoord',
         'passwordConfirmation' => 'Wachtwoord herhaling',
         'title' => 'Title',

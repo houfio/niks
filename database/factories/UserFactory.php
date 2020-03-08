@@ -14,7 +14,6 @@ $factory->define(User::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'phone_number' => $faker->phoneNumber,
         'zip_code' => $faker->postcode,
-        'neighbourhood' => 'Uden Zuid',
         'house_number' => $faker->buildingNumber,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),

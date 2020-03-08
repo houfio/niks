@@ -10,10 +10,13 @@
   </head>
   <body class="container">
     <nav class="navigation">
-      @component('components/navigation_item', ['icon' => 'newspaper', 'path' => '/'])
+      <x-navigation-item icon="newspaper" path="/">
         {{ __('home.title') }}
-      @endcomponent
+      </x-navigation-item>
       @guest
+        <x-navigation-item icon="envelope-open-text" path="register">
+          {{ __('register.title') }}
+        </x-navigation-item>
         @if(!Request::is('login'))
           <button class="button" data-micromodal-trigger="login-modal">
             {{ __('login.title') }}
@@ -21,18 +24,18 @@
         @endif
       @endguest
       @auth
-        @component('components/navigation_item', ['icon' => 'store', 'path' => 'advertisements'])
+        <x-navigation-item icon="store" path="advertisements">
           {{ __('advertisements.title') }}
-        @endcomponent
-        @component('components/navigation_item', ['icon' => 'star', 'path' => 'favorites'])
+        </x-navigation-item>
+        <x-navigation-item icon="star" path="favorites">
           {{ __('favorites.title') }}
-        @endcomponent
-        @component('components/navigation_item', ['icon' => 'envelope', 'path' => 'messages'])
+        </x-navigation-item>
+        <x-navigation-item icon="envelope" path="messages">
           {{ __('messages.title') }}
-        @endcomponent
-        @component('components/navigation_item', ['icon' => 'user', 'path' => 'profile'])
+        </x-navigation-item>
+        <x-navigation-item icon="user" path="profile">
           {{ __('profile.title') }}
-        @endcomponent
+        </x-navigation-item>
       @endauth
     </nav>
     <main>
@@ -40,9 +43,9 @@
     </main>
     @guest
       @if(!Request::is('login'))
-        @component('components/modal', ['id' => 'login-modal', 'title' => __('login.title')])
-          @include('components/login_form')
-        @endcomponent
+        <x-modal id="login" :title="__('login.title')">
+          <x-login-form/>
+        </x-modal>
       @endif
     @endguest
     <script src="/js/app.js"></script>

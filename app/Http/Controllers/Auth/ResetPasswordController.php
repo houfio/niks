@@ -15,7 +15,7 @@ class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = RouteServiceProvider::HOME;
 
     public function reset(ResetPasswordRequest $request, string $token)
     {
@@ -41,6 +41,7 @@ class ResetPasswordController extends Controller
     private function tokenExpired(PasswordReset $passwordResetData): bool
     {
         $currentDate = new DateTime();
+
         return $currentDate >= $passwordResetData->created_at->modify('+1 day');
     }
 }

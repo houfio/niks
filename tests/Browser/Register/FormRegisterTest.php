@@ -8,7 +8,7 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
-class FormRequestAccountTest extends DuskTestCase
+class FormRegisterTest extends DuskTestCase
 {
     /**
      * @test
@@ -19,15 +19,14 @@ class FormRequestAccountTest extends DuskTestCase
         $user = factory(User::class)->make();
 
         $this->browse(function (Browser $browser) use ($user) {
-            $browser->visit('/account/request')
-                ->type('firstName', $user->first_name)
-                ->type('lastName', $user->last_name)
+            $browser->visit('/register')
+                ->type('first_name', $user->first_name)
+                ->type('last_name', $user->last_name)
                 ->type('email', $user->email)
-                ->type('phoneNumber', $user->phone_number)
-                ->type('zipCode', $user->zip_code)
-                ->type('houseNumber', $user->house_number)
-                ->type('neighbourhood', $user->neighbourhood)
-                ->press('requestAccount')
+                ->type('phone_number', $user->phone_number)
+                ->type('zip_code', $user->zip_code)
+                ->type('house_number', $user->house_number)
+                ->press('register')
                 ->assertPathIs('/');
         });
 

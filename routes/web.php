@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index', [
-        'user' => Auth::user()
-    ]);
+    return view('index');
 });
 
-Route::get('/account/request', function () {
-    return view('request_account');
+Route::get('/register', function () {
+    return view('register');
 });
 
 Route::get('/forgot', function () {
@@ -22,8 +21,12 @@ Route::get('/login', function () {
 
 Route::get('/logout', function () {
     Auth::logout();
+
     return redirect('/login');
 });
+
+Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/reset/{token}', function (string $token) {
     return view('reset_password', [
@@ -31,7 +34,5 @@ Route::get('/reset/{token}', function (string $token) {
     ]);
 });
 
-Route::post('/account/request', 'AccountController@create');
 Route::post('/forgot', 'Auth\ForgotPasswordController@resetPassword');
-Route::post('/login', 'Auth\LoginController@authenticate');
 Route::post('/reset/{token}', 'Auth\ResetPasswordController@reset');
