@@ -44,7 +44,7 @@
         {{ __('register.title') }}
       </button>
       <a class="button transparent" href="{{ url('login') }}">
-        Inloggen
+        {{ __('login.title') }}
       </a>
     </form>
   </div>
