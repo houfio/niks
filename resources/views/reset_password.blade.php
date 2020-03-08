@@ -1,27 +1,32 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('resetPassword.title') }}</title>
-  </head>
-  <body>
-    <div class="content">
-      @if ($errors->any())
-        @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-        @endforeach
-      @endif
-      <form method="POST" action="{{ @action('Auth\ResetPasswordController@reset', ['token' => $token]) }}">
-        @csrf
-        <label for="email">{{ __('validation.attributes.email') }}</label><br>
-        <input type="email" id="email" name="email"><br>
-        <label for="password">{{ __('validation.attributes.password') }}</label><br>
-        <input type="password" id="password" name="password"><br>
-        <label for="password_confirmation">{{ __('validation.attributes.password_confirmation') }}</label><br>
-        <input type="password" id="password_confirmation" name="password_confirmation"><br>
-        <input type="submit" name="reset">
-      </form>
-    </div>
-  </body>
-</html>
+@extends('layouts.app')
+
+@section('title', __('resetPassword.title'))
+
+@section('content')
+  <div class="content">
+    <h1 class="page-heading">
+      {{ __('resetPassword.title') }}
+    </h1>
+    <x-errors/>
+    <form method="post" action="{{ @action('Auth\ResetPasswordController@reset', ['token' => $token]) }}">
+      @csrf
+      <div class="text-input">
+        <label for="email">{{ __('validation.attributes.email') }}</label>
+        <input type="email" id="email" name="email" value="{{ old('email') }}" required/>
+      </div>
+      <div class="two-columns">
+        <div class="text-input">
+          <label for="password">{{ __('validation.attributes.password') }}</label>
+          <input type="password" id="password" name="password" required/>
+        </div>
+        <div class="text-input">
+          <label for="password_confirmation">{{ __('validation.attributes.password_confirmation') }}</label>
+          <input type="password" id="password_confirmation" name="password_confirmation" required/>
+        </div>
+      </div>
+      <button type="submit" class="button" name="reset">
+        {{ __('resetPassword.submit') }}
+      </button>
+    </form>
+  </div>
+@endsection
