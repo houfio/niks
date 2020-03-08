@@ -11,15 +11,17 @@ class ForgotPasswordController extends Controller
 {
     use SendsPasswordResetEmails;
 
-    public function resetPassword(ForgotPasswordRequest $request)
+    public function forgotPassword(ForgotPasswordRequest $request)
     {
         $response = $this->broker()->sendResetLink($this->credentials($request));
 
         if ($response === Password::RESET_LINK_SENT) {
             $request->session()->flash('success', __('forgotPassword.successStatus'));
+
             return $this->sendResetLinkResponse($request, $response);
         } else {
             $request->session()->flash('error', __('forgotPassword.unsuccessfulStatus'));
+
             return $this->sendResetLinkFailedResponse($request, $response);
         }
     }
