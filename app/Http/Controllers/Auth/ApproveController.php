@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ApproveAccountRequest;
 use App\Mail\AccountApprovalMail;
 use App\User;
-use Exception;
 use Illuminate\Support\Facades\Mail;
 
 class ApproveController extends Controller

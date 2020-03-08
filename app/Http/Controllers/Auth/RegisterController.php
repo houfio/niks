@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Mail\RegisterMail;
 use App\User;
-use Exception;
 use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
-    public function request(RegisterRequest $request)
+    public function register(RegisterRequest $request)
     {
         $data = $request->validated();
 
         $user = new User();
 
         $user->email = $data['email'];
-        $user->first_name = $data['firstName'];
-        $user->last_name = $data['lastName'];
-        $user->zip_code = $data['zipCode'];
-        $user->phone_number = $data['phoneNumber'];
-        $user->house_number = $data['houseNumber'];
+        $user->first_name = $data['first_name'];
+        $user->last_name = $data['last_name'];
+        $user->zip_code = $data['zip_code'];
+        $user->phone_number = $data['phone_number'];
+        $user->house_number = $data['house_number'];
 
         $user->save();
 
