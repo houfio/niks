@@ -39,11 +39,11 @@ class RegisterRequest extends FormRequest
     {
         return [
             'email' => __('validation.attributes.email'),
-            'first_name' => __('validation.attributes.firstName'),
-            'last_name' => __('validation.attributes.lastName'),
-            'phone_number' => __('validation.attributes.phoneNumber'),
-            'zip_code' => __('validation.attributes.zipCode'),
-            'house_number' => __('validation.attributes.houseNumber')
+            'first_name' => __('validation.attributes.first_name'),
+            'last_name' => __('validation.attributes.last_name'),
+            'phone_number' => __('validation.attributes.phone_number'),
+            'zip_code' => __('validation.attributes.zip_code'),
+            'house_number' => __('validation.attributes.house_number')
         ];
     }
 }
