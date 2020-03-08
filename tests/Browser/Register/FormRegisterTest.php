@@ -26,6 +26,7 @@ class FormRegisterTest extends DuskTestCase
                 ->type('phone_number', $user->phone_number)
                 ->type('zip_code', $user->zip_code)
                 ->type('house_number', $user->house_number)
+                ->type('description', 'test')
                 ->press('register')
                 ->assertPathIs('/');
         });
