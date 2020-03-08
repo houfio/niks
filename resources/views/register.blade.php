@@ -11,30 +11,30 @@
     <form class="two-columns" method="post" action="{{ @action('Auth\RegisterController@register') }}">
       @csrf
       <div class="text-input">
-        <label for="firstName">Voornaam</label>
-        <input type="text" id="firstName" name="firstName" value="{{ old('firstName') }}" required/>
+        <label for="first_name">Voornaam</label>
+        <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required/>
       </div>
       <div class="text-input">
-        <label for="lastName">Achternaam</label>
-        <input type="text" id="lastName" name="lastName" value="{{ old('firstName') }}" required/>
+        <label for="last_name">Achternaam</label>
+        <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required/>
       </div>
       <div class="text-input">
         <label for="email">E-mail</label>
         <input type="email" id="email" name="email" value="{{ old('email') }}" required/>
       </div>
       <div class="text-input">
-        <label for="phoneNumber">Telefoonnummer</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" value="{{ old('phoneNumber') }}" required/>
+        <label for="phone_number">Telefoonnummer</label>
+        <input type="text" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required/>
       </div>
       <div class="text-input">
-        <label for="zipCode">Postcode</label>
-        <input type="text" id="zipCode" name="zipCode" value="{{ old('zipCode') }}" required/>
+        <label for="zip_code">Postcode</label>
+        <input type="text" id="zip_code" name="zip_code" value="{{ old('zip_code') }}" required/>
       </div>
       <div class="text-input">
-        <label for="houseNumber">Postcode</label>
-        <input type="text" id="houseNumber" name="houseNumber" value="{{ old('houseNumber') }}" required/>
+        <label for="house_number">Postcode</label>
+        <input type="text" id="house_number" name="house_number" value="{{ old('house_number') }}" required/>
       </div>
-      <button class="button" type="submit" name="requestAccount">
+      <button class="button" type="submit" name="register">
         {{ __('register.title') }}
       </button>
     </form>
