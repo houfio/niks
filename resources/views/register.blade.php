@@ -30,9 +30,13 @@
         <label for="zipCode">Postcode</label>
         <input type="text" id="zipCode" name="zipCode" value="{{ old('zipCode') }}" required/>
       </div>
-      <label for="houseNumber">Huisnummer:</label><br>
-      <input type="text" id="houseNumber" name="houseNumber">
-      <input type="submit" name="requestAccount">
+      <div class="text-input">
+        <label for="houseNumber">Postcode</label>
+        <input type="text" id="houseNumber" name="houseNumber" value="{{ old('houseNumber') }}" required/>
+      </div>
+      <button class="button" type="submit" name="requestAccount">
+        {{ __('register.title') }}
+      </button>
     </form>
   </div>
 @endsection
