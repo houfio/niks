@@ -15,4 +15,7 @@
   <button type="submit" class="button" name="login">
     {{ __('login.title') }}
   </button>
+  <a class="button transparent" href="{{ url('forgot') }}">
+    Wachtwoord vergeten
+  </a>
 </form>
