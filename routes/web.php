@@ -34,5 +34,5 @@ Route::get('/reset/{token}', function (string $token) {
     ]);
 });
 
-Route::post('/forgot', 'Auth\ForgotPasswordController@resetPassword');
+Route::post('/forgot', 'Auth\ForgotPasswordController@forgotPassword');
 Route::post('/reset/{token}', 'Auth\ResetPasswordController@reset');
