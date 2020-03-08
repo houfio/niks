@@ -25,11 +25,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        try {
-            Mail::to($user->email)->send(new RegisterMail($user));
-        } catch (Exception $exception) {
-            return redirect('/');
-        }
+        Mail::to($user->email)->send(new RegisterMail($user));
 
         return redirect('/');
     }

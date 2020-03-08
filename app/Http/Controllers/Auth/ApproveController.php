@@ -20,12 +20,8 @@ class ApproveController extends Controller
         $user->approved = $approve;
         $user->save();
 
-        try {
-            if($approve) {
-                Mail::to($user->email)->send(new AccountApprovalMail($user));
-            }
-        } catch (Exception $exception) {
-            return redirect('/');
+        if ($approve) {
+            Mail::to($user->email)->send(new AccountApprovalMail($user));
         }
 
         return redirect('/');
