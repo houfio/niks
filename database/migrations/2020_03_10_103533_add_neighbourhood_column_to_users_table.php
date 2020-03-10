@@ -16,7 +16,7 @@ class AddNeighbourhoodColumnToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('neighbourhood', 80);
+            $table->dropColumn('neighbourhood');
         });
     }
 }
