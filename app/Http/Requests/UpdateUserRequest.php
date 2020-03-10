@@ -9,7 +9,7 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users,email|email|max:255',
+            'email' => "required|unique:users,email,{$this->user->id}|email|max:255",
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'phone_number' => 'required|phone_number',
