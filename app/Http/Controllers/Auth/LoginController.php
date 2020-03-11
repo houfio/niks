@@ -28,7 +28,7 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
         $tooMany = $this->hasTooManyLoginAttempts($request);
 
-        if (!$tooMany && Auth::attempt(['password' => $password, 'email' => $email, 'approved' => 1], $rememberMe)) {
+        if (!$tooMany && Auth::attempt(['password' => $password, 'email' => $email, 'is_approved' => 1], $rememberMe)) {
             $this->clearLoginAttempts($request);
             return redirect('/');
         } else {
