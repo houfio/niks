@@ -16,8 +16,8 @@ class UpdateUserRequest extends FormRequest
             'zip_code' => 'required|zip_code|max:6',
             'house_number' => 'required|max:6',
             'neighbourhood' => 'max:80',
-            'is_admin' => 'required|boolean',
-            'approved' => 'required|boolean'
+            'is_admin' => 'boolean',
+            'approved' => 'boolean'
         ];
     }
 
