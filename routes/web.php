@@ -11,10 +11,6 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/reset', function () {
-    return view('forgot_password');
-});
-
 Route::get('/login', function () {
     return view('login');
 });
@@ -28,11 +24,13 @@ Route::get('/logout', function () {
 Route::post('/register', 'Auth\RegisterController@register')->middleware('can:create,App\User');
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::get('/reset/{token}', function (string $token) {
-    return view('reset_password', [
-        'token' => $token
-    ]);
+Route::prefix('reset')->group(function () {
+    Route::post('', 'Auth\ForgotPasswordController@forgotPassword');
+    Route::view('', 'forgot_password');
+    Route::post('{token}', 'Auth\ResetPasswordController@reset');
+    Route::get('{token}', function (string $token) {
+        return view('reset_password', [
+            'token' => $token
+        ]);
+    });
 });
-
-Route::post('/reset', 'Auth\ForgotPasswordController@forgotPassword');
-Route::post('/reset/{token}', 'Auth\ResetPasswordController@reset');
