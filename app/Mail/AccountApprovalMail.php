@@ -20,7 +20,7 @@ class AccountApprovalMail extends Mailable
 
     public function build()
     {
-        return $this->view('mails.account_is_approved')
+        return $this->view('mails.account_approved')
             ->from('no-reply@niksvoorniks.nl')
             ->replyTo('info@niksvoorniks.nl');
     }

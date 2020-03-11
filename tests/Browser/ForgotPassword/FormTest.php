@@ -16,7 +16,7 @@ class FormTest extends DuskTestCase
     public function testForgotPasswordForm()
     {
         $user = factory(User::class)->create([
-            'approved' => true
+            'is_approved' => true
         ]);
 
         $this->browse(function (Browser $browser) use ($user) {

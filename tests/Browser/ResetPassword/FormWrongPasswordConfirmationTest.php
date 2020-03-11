@@ -18,7 +18,7 @@ class FormWrongPasswordConfirmationTest extends DuskTestCase
     public function testWrongPasswordConfirmation()
     {
         $user = factory(User::class)->create([
-            'approved' => true
+            'is_approved' => true
         ]);
 
         $passwordResetData = factory(PasswordReset::class)->make();

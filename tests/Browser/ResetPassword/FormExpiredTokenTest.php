@@ -18,7 +18,7 @@ class FormExpiredTokenTest extends DuskTestCase
     public function testResetPasswordFormExpiredToken()
     {
         $user = factory(User::class)->create([
-            'approved' => true
+            'is_approved' => true
         ]);
 
         $customDate = new DateTime();
