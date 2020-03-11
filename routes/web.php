@@ -25,7 +25,7 @@ Route::get('/logout', function () {
     return redirect('/login');
 });
 
-Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/register', 'Auth\RegisterController@register')->middleware('can:create,App\User');
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/reset/{token}', function (string $token) {
