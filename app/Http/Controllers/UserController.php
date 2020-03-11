@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -44,8 +45,11 @@ class UserController extends Controller
         $user->phone_number = $data['phone_number'];
         $user->house_number = $data['house_number'];
         $user->neighbourhood = $data['neighbourhood'];
-        $user->is_admin = $data['is_admin'];
-        $user->approved = $data['approved'];
+
+        if (Gate::forUser($user)->allows('edit-protected-user-values')) {
+            $user->is_admin = $data['is_admin'];
+            $user->approved = $data['approved'];
+        }
 
         $user->save();
 
