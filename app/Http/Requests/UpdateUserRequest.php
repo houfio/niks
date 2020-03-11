@@ -15,7 +15,8 @@ class UpdateUserRequest extends FormRequest
             'phone_number' => 'required|phone_number',
             'zip_code' => 'required|zip_code|max:6',
             'house_number' => 'required|max:6',
-            'neighbourhood' => 'max:80'
+            'neighbourhood' => 'max:80',
+            'is_admin' => 'required|boolean'
         ];
     }
 
@@ -28,6 +29,7 @@ class UpdateUserRequest extends FormRequest
             'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
             'phone_number' => __('validation.phone_number', ['value' => ':input']),
             'zip_code' => __('validation.zip_code', ['value' => ':input']),
+            'boolean' => __('validation.boolean', ['attribute' => ':attribute'])
         ];
     }
 
@@ -40,7 +42,8 @@ class UpdateUserRequest extends FormRequest
             'phone_number' => __('validation.attributes.phone_number'),
             'zip_code' => __('validation.attributes.zip_code'),
             'house_number' => __('validation.attributes.house_number'),
-            'neighbourhood' => __('validation.attributes.neighbourhood')
+            'neighbourhood' => __('validation.attributes.neighbourhood'),
+            'is_admin' => __('validation.attributes.is_admin')
         ];
     }
 }
