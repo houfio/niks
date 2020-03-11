@@ -15,7 +15,7 @@ class ForgotPasswordRequest extends FormRequest
             return false;
         }
 
-        return boolval($user->approved);
+        return $user->is_approved;
     }
 
     public function rules()

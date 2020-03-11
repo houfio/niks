@@ -18,7 +18,7 @@ class FormResetPasswordTest extends DuskTestCase
     public function testResetPasswordForm()
     {
         $user = factory(User::class)->create([
-            'approved' => true
+            'is_approved' => true
         ]);
 
         $passwordResetData = factory(PasswordReset::class)->make();

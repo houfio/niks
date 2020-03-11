@@ -17,7 +17,7 @@ class UpdateUserRequest extends FormRequest
             'house_number' => 'required|max:6',
             'neighbourhood' => 'max:80',
             'is_admin' => 'boolean',
-            'approved' => 'boolean'
+            'is_approved' => 'boolean'
         ];
     }
 
@@ -45,7 +45,7 @@ class UpdateUserRequest extends FormRequest
             'house_number' => __('validation.attributes.house_number'),
             'neighbourhood' => __('validation.attributes.neighbourhood'),
             'is_admin' => __('validation.attributes.is_admin'),
-            'approved' => __('validation.attributes.approved')
+            'is_approved' => __('validation.attributes.is_approved')
         ];
     }
 }

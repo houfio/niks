@@ -16,7 +16,7 @@ class FormSuccessfulLoginTest extends DuskTestCase
     public function testSuccessfulLogin()
     {
         $user = factory(User::class)->create([
-            'approved' => true
+            'is_approved' => true
         ]);
 
         $this->browse(function (Browser $browser) use ($user) {
