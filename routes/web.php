@@ -34,3 +34,7 @@ Route::prefix('reset')->group(function () {
         ]);
     });
 });
+
+Route::resource('users', 'UserController')->except([
+    'create', 'store'
+]);

@@ -11,7 +11,7 @@ class UserPolicy
 
     public function before(?User $user, string $ability)
     {
-        return optional($user)->is_admin;
+        return optional($user)->is_admin ? true : null;
     }
 
     public function viewAny(User $user)
