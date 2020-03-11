@@ -35,7 +35,21 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+
+        $user->email = $data['email'];
+        $user->first_name = $data['first_name'];
+        $user->last_name = $data['last_name'];
+        $user->zip_code = $data['zip_code'];
+        $user->phone_number = $data['phone_number'];
+        $user->house_number = $data['house_number'];
+        $user->neighbourhood = $data['neighbourhood'];
+        $user->is_admin = $data['is_admin'];
+        $user->approved = $data['approved'];
+
+        $user->save();
+
+        return redirect("/users/$user->id/edit");
     }
 
     public function destroy(User $user)
