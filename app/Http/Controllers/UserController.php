@@ -46,9 +46,9 @@ class UserController extends Controller
         $user->house_number = $data['house_number'];
         $user->neighbourhood = $data['neighbourhood'];
 
-        if (Gate::forUser($user)->allows('edit-protected-user-values')) {
-            $user->is_admin = $data['is_admin'];
-            $user->approved = $data['approved'];
+        if (Gate::forUser($request->user())->allows('edit-protected-user-values')) {
+            $user->approved = isset($data['approved']);
+            $user->is_admin = isset($data['is_admin']);
         }
 
         $user->save();
