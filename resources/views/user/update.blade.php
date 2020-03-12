@@ -40,8 +40,8 @@
         <input type="text" id="neighbourhood" name="neighbourhood" value="{{ $user->neighbourhood }}"/>
       </div>
       <div class="checkbox-input">
-        <input type="checkbox" id="approved" name="approved" value={{ $user->approved }} @if($user->approved) checked @endif/>
-        <label for="approved">{{ __('validation.attributes.approved') }}</label>
+        <input type="checkbox" id="is_approved" name="is_approved" value={{ $user->approved }} @if($user->approved) checked @endif/>
+        <label for="is_approved">{{ __('validation.attributes.approved') }}</label>
       </div>
       <div class="checkbox-input">
         <input type="checkbox" id="is_admin" name="is_admin" value={{ $user->is_admin }} @if($user->is_admin) checked @endif/>
