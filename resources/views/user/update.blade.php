@@ -47,7 +47,7 @@
         <input type="checkbox" id="is_admin" name="is_admin" value={{ $user->is_admin }} @if($user->is_admin) checked @endif/>
         <label for="is_admin">{{ __('validation.attributes.is_admin') }}</label>
       </div>
-      <button type="submit" class="button" name="forgot">
+      <button type="submit" class="button" name="edit">
         {{ __('updateUser.submit') }}
       </button>
     </form>
