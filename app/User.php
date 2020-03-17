@@ -38,4 +38,9 @@ class User extends Authenticatable
     {
         Mail::to($this->email)->send(new PasswordResetMail($token, $this));
     }
+
+    public function bids()
+    {
+        return $this->hasMany(Bid::class);
+    }
 }
