@@ -15,7 +15,9 @@ class FormUnsuccessfulLoginTest extends DuskTestCase
      */
     public function testUnsuccessfulLogin()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([
+            'is_approved' => false
+        ]);
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->logout()
