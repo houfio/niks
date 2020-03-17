@@ -2,6 +2,7 @@
 
 return [
     'attributes' => [
+        'bid' => 'Bod',
         'email' => 'E-mailadres',
         'first_name' => 'Voornaam',
         'last_name' => 'Achternaam',
