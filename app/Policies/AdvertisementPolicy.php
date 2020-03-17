@@ -10,6 +10,11 @@ class AdvertisementPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user, string $ability)
+    {
+        return $user->is_admin ? true : null;
+    }
+
     public function viewAny(User $user)
     {
         return $user->is_approved;
