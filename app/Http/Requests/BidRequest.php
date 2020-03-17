@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BidRequest extends FormRequest
 {
-    private function highestBid()
+    private function highestBid(): int
     {
         /** @var Advertisement $advertisement */
         $advertisement = $this->route('advertisement');
