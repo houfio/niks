@@ -20,6 +20,11 @@ Route::get('/logout', function () {
 
     return redirect('/login');
 });
+//Route::get('/advertisementlist', function () {
+//    return view('advertisementlist');
+//});
+Route::get('/advertisement', 'ShowAdvertisementController@showInformation');
+
 
 Route::post('/register', 'Auth\RegisterController@register')->middleware('can:create,App\User');
 Route::post('/login', 'Auth\LoginController@login');
