@@ -27,7 +27,16 @@
     <h3>
       Prijs : {{ $advertisement->price }} niks
       @if($advertisement->enable_bidding)
-        <button type="button"> Bieden</button>
+        <form method="post" action="{{ @action('BidController@store', ['advertisement' => $advertisement->id]) }}">
+          @csrf
+          <div class="text-input">
+            <label for="bid">Bod:</label>
+            <input type="number" id="bid" name="bid" required/>
+          </div>
+          <button type="submit" class="button" name="place_bid">
+            Bieden
+          </button>
+        </form>
       @endif
     </h3>
     <h4>

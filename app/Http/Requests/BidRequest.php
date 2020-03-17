@@ -2,17 +2,17 @@
 
 namespace App\Http\Requests;
 
-use App\Bid;
+use App\Advertisement;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BidRequest extends FormRequest
 {
     private function highestBid()
     {
-        return Bid::select('bid')
-            ->whereColumn('advertisement_id', $this->route('advertisement'))
-            ->orderBy('bid', 'desc')
-            ->limit(1);
+        /** @var Advertisement $advertisement */
+        $advertisement = $this->route('advertisement');
+        $highestBid = $advertisement->bids()->max('bid');
+        return is_null($highestBid) ? 1 : $highestBid;
     }
 
     public function authorize()
