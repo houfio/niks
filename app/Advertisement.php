@@ -18,4 +18,9 @@ class Advertisement extends Model
     {
         return $this->belongsToMany(Asset::class);
     }
+
+    public function bids()
+    {
+        return $this->hasMany(Bid::class);
+    }
 }
