@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "971589b69aed12761d85b6665c7e03a2",
+    "content-hash": "e9a443c76b9ca2e6682f143f64d4b41d",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -674,16 +674,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.0.8",
+            "version": "v7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d71ba61d51aec79a0a0f907991ec215dc24b09d4"
+                "reference": "77110b6434e65b10b655ab92e645e830b1a79caf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d71ba61d51aec79a0a0f907991ec215dc24b09d4",
-                "reference": "d71ba61d51aec79a0a0f907991ec215dc24b09d4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/77110b6434e65b10b655ab92e645e830b1a79caf",
+                "reference": "77110b6434e65b10b655ab92e645e830b1a79caf",
                 "shasum": ""
             },
             "require": {
@@ -771,7 +771,7 @@
                 "ext-memcached": "Required to use the memcache cache driver.",
                 "ext-pcntl": "Required to use all features of the queue worker.",
                 "ext-posix": "Required to use all features of the queue worker.",
-                "ext-redis": "Required to use the Redis cache and queue drivers.",
+                "ext-redis": "Required to use the Redis cache and queue drivers (^4.0|^5.0).",
                 "filp/whoops": "Required for friendly error pages in development (^2.4).",
                 "fzaninotto/faker": "Required to use the eloquent factory builder (^1.9.1).",
                 "guzzlehttp/guzzle": "Required to use the HTTP Client, Mailgun mail driver and the ping methods on schedules (^6.3.1|^7.0).",
@@ -821,7 +821,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-03-08T16:03:46+00:00"
+            "time": "2020-03-17T14:08:55+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3245,16 +3245,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "32bd5ca5a4170f88e27073353013d210a3354ae9"
+                "reference": "939dfda2d7267ac8fc53ac3d642b5de357554c39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/32bd5ca5a4170f88e27073353013d210a3354ae9",
-                "reference": "32bd5ca5a4170f88e27073353013d210a3354ae9",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/939dfda2d7267ac8fc53ac3d642b5de357554c39",
+                "reference": "939dfda2d7267ac8fc53ac3d642b5de357554c39",
                 "shasum": ""
             },
             "require": {
@@ -3303,20 +3303,20 @@
                 "env",
                 "environment"
             ],
-            "time": "2020-03-01T23:56:01+00:00"
+            "time": "2020-03-12T13:44:15+00:00"
         },
         {
             "name": "voku/portable-ascii",
-            "version": "1.4.9",
+            "version": "1.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "9fd2b224c71448b5f84aef9d499a1428d79776a2"
+                "reference": "240e93829a5f985fab0984a6e55ae5e26b78a334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/9fd2b224c71448b5f84aef9d499a1428d79776a2",
-                "reference": "9fd2b224c71448b5f84aef9d499a1428d79776a2",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/240e93829a5f985fab0984a6e55ae5e26b78a334",
+                "reference": "240e93829a5f985fab0984a6e55ae5e26b78a334",
                 "shasum": ""
             },
             "require": {
@@ -3352,7 +3352,7 @@
                 "clean",
                 "php"
             ],
-            "time": "2020-03-06T02:47:42+00:00"
+            "time": "2020-03-13T01:23:26+00:00"
         }
     ],
     "packages-dev": [
@@ -3742,16 +3742,16 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v5.9.2",
+            "version": "v5.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "7abf5a7152863f8597a43d640cce3adb6cd8ab3f"
+                "reference": "38776592d7c427a10eff69b15ba911f629a69ed8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/7abf5a7152863f8597a43d640cce3adb6cd8ab3f",
-                "reference": "7abf5a7152863f8597a43d640cce3adb6cd8ab3f",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/38776592d7c427a10eff69b15ba911f629a69ed8",
+                "reference": "38776592d7c427a10eff69b15ba911f629a69ed8",
                 "shasum": ""
             },
             "require": {
@@ -3806,7 +3806,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2020-02-18T19:13:12+00:00"
+            "time": "2020-03-17T17:00:25+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -5455,6 +5455,53 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2020-01-21T06:36:37+00:00"
+        },
+        {
+            "name": "staudenmeir/dusk-updater",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/dusk-updater.git",
+                "reference": "8e5fd6ba81146cce4f055056b9f4455f22325f6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/dusk-updater/zipball/8e5fd6ba81146cce4f055056b9f4455f22325f6b",
+                "reference": "8e5fd6ba81146cce4f055056b9f4455f22325f6b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/process": "^4.2 || ^5.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Staudenmeir\\DuskUpdater\\DuskServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\DuskUpdater\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Updater for Laravel Dusk ChromeDriver binaries",
+            "time": "2020-01-31T13:18:36+00:00"
         },
         {
             "name": "theseer/tokenizer",
