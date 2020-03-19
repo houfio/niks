@@ -47,8 +47,7 @@ class FormInvalidBidTest extends DuskTestCase
             $browser->loginAs($user)
                 ->visit("/advertisements/$advertisement->id")
                 ->type('bid', 4)
-                ->press('place_bid')
-                ;
+                ->press('place_bid');
         });
 
         $this->assertDatabaseMissing('bids', [
