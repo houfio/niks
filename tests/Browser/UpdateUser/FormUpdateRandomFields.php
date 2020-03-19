@@ -33,8 +33,7 @@ class FormUpdateRandomFields extends DuskTestCase
                 ->type('zip_code', $newUser->zip_code)
                 ->type('house_number', $newUser->house_number)
                 ->type('neighbourhood', $newUser->neighbourhood)
-                ->uncheck('is_admin')
-                ->check('is_approved')
+                ->click('@approved')
                 ->press('edit')
                 ->assertPathIs("/users/$user->id/edit");
         });
