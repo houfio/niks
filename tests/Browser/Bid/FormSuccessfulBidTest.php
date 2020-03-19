@@ -34,7 +34,7 @@ class FormSuccessfulBidTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($advertisement, $user) {
             $browser->loginAs($user)
                 ->visit("/advertisements/$advertisement->id")
-                ->type('bid', '5')
+                ->type('bid', 5)
                 ->press('place_bid');
         });
 
