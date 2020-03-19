@@ -38,3 +38,12 @@ Route::prefix('reset')->group(function () {
 Route::resource('users', 'UserController')->except([
     'create', 'store'
 ]);
+
+Route::resource('advertisements', 'AdvertisementController')->only([
+    'create', 'show'
+]);
+
+Route::prefix('bid')->group(function () {
+    Route::post('{advertisement}', 'BidController@store');
+    Route::delete('{bid}', 'BidController@destroy');
+});

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class AdvertisementController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Advertisement::class, 'advertisement');
+    }
+
     public function create(CreateAdvertisementRequest $request)
     {
         $data = $request->validated();
@@ -40,5 +45,14 @@ class AdvertisementController extends Controller
         $advertisement->save();
 
         return redirect('/');
+    }
+
+    public function show(Advertisement $advertisement)
+    {
+        return view('advertisement.show', [
+            'advertisement' => $advertisement,
+            'user' => $advertisement->user()->get()[0],
+            'assets' => $advertisement->assets()->get()
+        ]);
     }
 }
