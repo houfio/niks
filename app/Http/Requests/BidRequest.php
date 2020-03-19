@@ -12,7 +12,7 @@ class BidRequest extends FormRequest
         /** @var Advertisement $advertisement */
         $advertisement = $this->route('advertisement');
         $highestBid = $advertisement->bids()->max('bid');
-        return is_null($highestBid) ? 1 : $highestBid;
+        return is_null($highestBid) ? $advertisement->minimum_price : $highestBid;
     }
 
     public function authorize()
