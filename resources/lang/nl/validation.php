@@ -11,7 +11,7 @@ return [
         'house_number' => 'Huisnummer',
         'neighbourhood' => 'Wijk',
         'is_admin' => 'Administrator',
-        'approved' => 'Goedgekeurd',
+        'is_approved' => 'Goedgekeurd',
         'password' => 'Wachtwoord',
         'password_confirmation' => 'Wachtwoord herhaling',
         'title' => 'Title',

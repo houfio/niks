@@ -19,6 +19,7 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => Hash::make('test123'),
         'remember_token' => Str::random(10),
-        'is_approved' => $faker->boolean(70)
+        'is_approved' => $faker->boolean(70),
+        'is_admin' => $faker->boolean(7.5)
     ];
 });
