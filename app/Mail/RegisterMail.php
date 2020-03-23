@@ -16,7 +16,7 @@ class RegisterMail extends Mailable
     public function __construct(User $user)
     {
         $this->user = $user;
-        $this->subject = __('mail.accountRequested.title');
+        $this->subject = __('mail.registered.title');
     }
 
     public function build()
