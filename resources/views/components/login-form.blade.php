@@ -10,7 +10,7 @@
   </div>
   <div class="checkbox-input">
     <input type="checkbox" id="remember" name="remember" @if(old('remember')) checked @endif/>
-    <label for="remember">{{ __('validation.attributes.remember_password') }}</label>
+    <label for="remember">{{ __('validation.attributes.remember_me') }}</label>
   </div>
   <button type="submit" class="button" name="login">
     {{ __('login.title') }}

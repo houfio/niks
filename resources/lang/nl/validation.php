@@ -24,7 +24,7 @@ return [
         'is_service' => 'Dienst',
         'asking' => 'Vraag',
         'images' => 'Afbeeldingen',
-        'remember_password' => 'Wachtwoord onthouden'
+        'remember_me' => 'Houd mij ingelogd'
     ],
     'unique' => ':attribute is al in gebruik',
     'email' => ':value is geen geldig e-mailadres',
