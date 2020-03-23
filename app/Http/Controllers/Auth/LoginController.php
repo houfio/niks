@@ -36,10 +36,8 @@ class LoginController extends Controller
             $this->incrementLoginAttempts($request);
             $user = User::firstWhere('email', $email);
 
-            if (is_null($user)) {
+            if (is_null($user) || !$user->is_approved) {
                 $error = 'login.invalid_login';
-            } elseif (!$user->is_approved) {
-                $error = 'login.not_approved';
             } elseif ($tooMany) {
                 $error = 'login.timeout';
             } else {
