@@ -7,13 +7,13 @@
     <span>
       <button>Terug</button>
     </span>
-    <h1 class="page-heading">
+    <h1 class="page-heading" dusk="title">
       {{ $advertisement->title }}
     </h1>
     <span class="advertisement-info">
         <span class="made-by"> Gemaakt door: {{ $user->first_name }} {{ $user->last_name }} </span>
         <span class="create-date"> Gemaakt op: {{ $advertisement->created_at }}</span>
-        @if($advertisement->asking)
+      @if($advertisement->asking)
         <span class="asking"> Vraagt aan </span>
       @else
         <span class="asking"> Biedt aan </span>
@@ -42,6 +42,7 @@
     <h4>
       Beschrijving
     </h4>
+    <p dusk="description">
       {{ $advertisement->long_description }}
     </p>
   </div>
