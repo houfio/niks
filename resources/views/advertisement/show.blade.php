@@ -11,14 +11,14 @@
       {{ $advertisement->title }}
     </h1>
     <span class="advertisement-info">
-        <span class="made-by"> Gemaakt door: {{ $user->first_name }} {{ $user->last_name }} </span>
-        <span class="create-date"> Gemaakt op: {{ $advertisement->created_at }}</span>
-      @if($advertisement->asking)
-        <span class="asking"> Vraagt aan </span>
-      @else
-        <span class="asking"> Biedt aan </span>
-      @endif
-      </span>
+        <span class="made-by">Gemaakt door: {{ $user->first_name }} {{ $user->last_name }}</span>
+        <span class="create-date">Gemaakt op: {{ $advertisement->created_at }}</span>
+        @if($advertisement->asking)
+          <span class="asking">Vraagt aan</span>
+        @else
+          <span class="asking">Biedt aan</span>
+        @endif
+    </span>
     <div>
       @foreach($assets as $asset)
         <img src="{{ $asset->path }}" class="w3-round" height="200" width="200"/>
