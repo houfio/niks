@@ -15,6 +15,7 @@ return [
         'password' => 'Wachtwoord',
         'password_confirmation' => 'Wachtwoord herhaling',
         'title' => 'Title',
+        'motivation' => 'Motivatie',
         'short_description' => 'Korte beschrijving',
         'long_description' => 'Lange beschrijving',
         'price' => 'Prijs',
