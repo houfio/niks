@@ -20,7 +20,7 @@ class RegisterRequest extends FormRequest
             'phone_number' => 'required|phone_number',
             'zip_code' => 'required|zip_code|max:7',
             'house_number' => 'required|max:6',
-            'motivation' => 'required'
+            'motivation' => 'required|min:10'
         ];
     }
 
@@ -32,7 +32,8 @@ class RegisterRequest extends FormRequest
             'email' => __('validation.email', ['value' => ':input']),
             'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
             'phone_number' => __('validation.phone_number', ['value' => ':input']),
-            'zip_code' => __('validation.zip_code', ['value' => ':input'])
+            'zip_code' => __('validation.zip_code', ['value' => ':input']),
+            'min' => __('validation.min', ['attribute' => ':attribute', 'min' => ':min'])
         ];
     }
 
