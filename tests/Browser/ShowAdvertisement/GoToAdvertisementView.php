@@ -6,7 +6,6 @@ use App\Advertisement;
 use App\Asset;
 use App\User;
 use Laravel\Dusk\Browser;
-use PHPUnit\TextUI\Configuration\PHPUnit;
 use Tests\DuskTestCase;
 use Throwable;
 
