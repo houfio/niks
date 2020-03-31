@@ -24,6 +24,10 @@ Route::get('/logout', function () {
 Route::post('/register', 'Auth\RegisterController@register')->middleware('can:create,App\User');
 Route::post('/login', 'Auth\LoginController@login');
 
+Route::delete('/advertisement/{id}', function ($id) {
+    
+});
+
 Route::prefix('reset')->group(function () {
     Route::post('', 'Auth\ForgotPasswordController@forgotPassword');
     Route::view('', 'forgot_password');
