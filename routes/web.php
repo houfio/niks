@@ -34,7 +34,6 @@ Route::resource('advertisements', 'AdvertisementController')->only([
     'create', 'show', 'store', 'index'
 ]);
 
-
 Route::prefix('bid')->group(function () {
     Route::post('{advertisement}', 'BidController@store');
     Route::delete('{bid}', 'BidController@destroy');
