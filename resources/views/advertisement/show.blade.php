@@ -45,5 +45,15 @@
     <p dusk="description">
       {{ $advertisement->long_description }}
     </p>
+
+    @can('delete', $advertisement)
+      <form method="post" action="{{ @action('AdvertisementController@delete', ['id' => $advertisement->id]) }}">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="button">
+          Verwijderen
+        </button>
+      </form>
+    @endcan
   </div>
 @endsection
