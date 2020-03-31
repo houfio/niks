@@ -2,6 +2,7 @@
 
 return [
     'attributes' => [
+        'bid' => 'Bod',
         'email' => 'E-mailadres',
         'first_name' => 'Voornaam',
         'last_name' => 'Achternaam',
@@ -10,10 +11,11 @@ return [
         'house_number' => 'Huisnummer',
         'neighbourhood' => 'Wijk',
         'is_admin' => 'Administrator',
-        'approved' => 'Goedgekeurd',
+        'is_approved' => 'Goedgekeurd',
         'password' => 'Wachtwoord',
         'password_confirmation' => 'Wachtwoord herhaling',
         'title' => 'Title',
+        'motivation' => 'Motivatie',
         'short_description' => 'Korte beschrijving',
         'long_description' => 'Lange beschrijving',
         'price' => 'Prijs',
@@ -22,7 +24,7 @@ return [
         'is_service' => 'Dienst',
         'asking' => 'Vraag',
         'images' => 'Afbeeldingen',
-        'remember_password' => 'Wachtwoord onthouden'
+        'remember_me' => 'Ingelogd blijven'
     ],
     'unique' => ':attribute is al in gebruik',
     'email' => ':value is geen geldig e-mailadres',

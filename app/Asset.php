@@ -10,6 +10,6 @@ class Asset extends Model
 
     public function advertisements()
     {
-        return $this->belongsToMany(Advertisement::class, 'advertisement_asset');
+        return $this->belongsToMany(Advertisement::class);
     }
 }

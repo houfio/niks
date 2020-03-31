@@ -15,7 +15,9 @@ class FormNotApprovedUserTest extends DuskTestCase
      */
     public function testForgotPasswordFormNotApprovedUser()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([
+            'is_approved' => false
+        ]);
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/reset')

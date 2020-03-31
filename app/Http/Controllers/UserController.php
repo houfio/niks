@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
+use Exception;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
@@ -56,6 +58,11 @@ class UserController extends Controller
         return redirect("/users/$user->id/edit");
     }
 
+    /**
+     * @param User $user
+     * @return Redirector
+     * @throws Exception
+     */
     public function destroy(User $user)
     {
         $user->delete();

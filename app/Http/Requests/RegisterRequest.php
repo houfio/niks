@@ -18,8 +18,9 @@ class RegisterRequest extends FormRequest
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'phone_number' => 'required|phone_number',
-            'zip_code' => 'required|zip_code|max:6',
-            'house_number' => 'required|max:6'
+            'zip_code' => 'required|zip_code|max:7',
+            'house_number' => 'required|max:6',
+            'motivation' => 'required|min:10'
         ];
     }
 
@@ -32,6 +33,7 @@ class RegisterRequest extends FormRequest
             'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
             'phone_number' => __('validation.phone_number', ['value' => ':input']),
             'zip_code' => __('validation.zip_code', ['value' => ':input']),
+            'min' => __('validation.min', ['attribute' => ':attribute', 'min' => ':min'])
         ];
     }
 
@@ -43,7 +45,8 @@ class RegisterRequest extends FormRequest
             'last_name' => __('validation.attributes.last_name'),
             'phone_number' => __('validation.attributes.phone_number'),
             'zip_code' => __('validation.attributes.zip_code'),
-            'house_number' => __('validation.attributes.house_number')
+            'house_number' => __('validation.attributes.house_number'),
+            'motivation' => __('validation.attributes.motivation')
         ];
     }
 }

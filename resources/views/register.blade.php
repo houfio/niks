@@ -51,8 +51,8 @@
         </div>
       </div>
       <div class="text-input">
-        <label for="description">{{ __('validation.attributes.long_description') }}</label>
-        <textarea type="text" id="description" name="description" required>{{ old('description') }}</textarea>
+        <label for="motivation">{{ __('validation.attributes.motivation') }}</label>
+        <textarea type="text" id="motivation" name="motivation" required>{{ old('motivation') }}</textarea>
       </div>
       <button class="button" type="submit" name="register">
         {{ __('register.title') }}

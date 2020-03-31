@@ -2,12 +2,12 @@
 
 /** @var Factory $factory */
 
+use App\Bid;
 use Illuminate\Database\Eloquent\Factory;
-use App\Asset;
 use Faker\Generator as Faker;
 
-$factory->define(Asset::class, function (Faker $faker) {
+$factory->define(Bid::class, function (Faker $faker) {
     return [
-        'path' => 'https://thispersondoesnotexist.com'
+        'bid' => $faker->numberBetween(1, 30)
     ];
 });
