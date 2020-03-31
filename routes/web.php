@@ -31,8 +31,9 @@ Route::resource('users', 'UserController')->except([
 ]);
 
 Route::resource('advertisements', 'AdvertisementController')->only([
-    'create', 'show'
+    'create', 'show', 'store', 'index'
 ]);
+
 
 Route::prefix('bid')->group(function () {
     Route::post('{advertisement}', 'BidController@store');
