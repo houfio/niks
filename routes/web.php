@@ -15,8 +15,6 @@ Route::get('/logout', function () {
 Route::post('/register', 'Auth\RegisterController@register')->middleware('can:create,App\User');
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::delete('/advertisement/delete/{id}', 'AdvertisementController@delete');
-
 Route::prefix('reset')->group(function () {
     Route::post('', 'Auth\ForgotPasswordController@forgotPassword');
     Route::view('', 'forgot_password');
@@ -33,7 +31,7 @@ Route::resource('users', 'UserController')->except([
 ]);
 
 Route::resource('advertisements', 'AdvertisementController')->only([
-    'create', 'show'
+    'create', 'show', 'destroy'
 ]);
 
 Route::prefix('bid')->group(function () {

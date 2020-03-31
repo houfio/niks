@@ -47,8 +47,7 @@ class AdvertisementController extends Controller
         return redirect('/');
     }
 
-    public function delete(int $id) {
-        $advertisement = Advertisement::find($id);
+    public function destroy(Advertisement $advertisement) {
         $advertisement->delete();
 
         return redirect('/');
