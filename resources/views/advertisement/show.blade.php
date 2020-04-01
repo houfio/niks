@@ -49,7 +49,7 @@
     @can('delete', $advertisement)
       <form action="{{ @action('AdvertisementController@destroy', ['advertisement' => $advertisement]) }}">
         @csrf
-        @method('DELETE')
+        @method('delete')
         <button type="submit" class="button">
           Verwijderen
         </button>
