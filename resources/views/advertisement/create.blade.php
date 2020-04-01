@@ -37,7 +37,7 @@
         <textarea id="long_description" rows="6" name="long_description">{{ old('long_description') }}</textarea>
       </div>
       <div class="text-input">
-        <input type="file" id="images" name="images" multiple>
+        <input type="file" id="images" name="images[]" multiple>
         <label for="images">{{ __('validation.attributes.images') }}</label>
       </div>
       <div class="select-input">

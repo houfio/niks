@@ -14,11 +14,8 @@ class AdvertisementController extends Controller
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
-    public function index() {
-        return abort(404);
-    }
-
-    public function create() {
+    public function create()
+    {
         return view('advertisement.create');
     }
 
@@ -26,6 +23,7 @@ class AdvertisementController extends Controller
     {
 
         $data = $request->validated();
+        dd($data);
 
         $advertisement = new Advertisement();
 
