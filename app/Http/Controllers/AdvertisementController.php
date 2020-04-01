@@ -21,9 +21,7 @@ class AdvertisementController extends Controller
 
     public function store(CreateAdvertisementRequest $request)
     {
-
         $data = $request->validated();
-        dd($data);
 
         $advertisement = new Advertisement();
 
