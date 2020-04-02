@@ -14,7 +14,12 @@ class AdvertisementController extends Controller
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
-    public function create(CreateAdvertisementRequest $request)
+    public function create()
+    {
+        return view('advertisement.create');
+    }
+
+    public function store(CreateAdvertisementRequest $request)
     {
         $data = $request->validated();
 
@@ -24,10 +29,10 @@ class AdvertisementController extends Controller
         $advertisement->short_description = $data['short_description'];
         $advertisement->long_description = $data['long_description'];
         $advertisement->price = $data['price'];
-        $advertisement->enable_bidding = $data['enable_bidding'];
+        $advertisement->enable_bidding = isset($data['enable_bidding']);
         $advertisement->minimum_price = $data['minimum_price'];
         $advertisement->is_service = $data['is_service'];
-        $advertisement->asking = $data['asking'];
+        $advertisement->asking = isset($data['asking']);
 
         $advertisement->user()->associate($request->user());
         $assets = [];
@@ -40,9 +45,8 @@ class AdvertisementController extends Controller
             $asset->save();
             $assets[] = $asset;
         }
-
-        $advertisement->assets()->saveMany($assets);
         $advertisement->save();
+        $advertisement->assets()->saveMany($assets);
 
         return redirect('/');
     }

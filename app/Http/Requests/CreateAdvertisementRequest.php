@@ -8,7 +8,7 @@ class CreateAdvertisementRequest extends FormRequest
 {
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     public function rules()
@@ -17,12 +17,10 @@ class CreateAdvertisementRequest extends FormRequest
             'title' => 'required|max:60',
             'short_description' => 'required|max:255|min:30',
             'long_description' => 'nullable',
-            'enable_bidding' => 'required|boolean',
             'minimum_price' => 'nullable|required_if:enable_bidding,true',
             'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
-            'asking' => 'required|boolean',
-            'images' => 'array|required_if:asking,false',
+            'images' => 'required_if:asking,false',
             'images.*' => 'image|mimes:png,jpeg,jpg'
         ];
     }
