@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('theme', 'dark')
+
 @section('title', __('users.title'))
 
 @section('content')
