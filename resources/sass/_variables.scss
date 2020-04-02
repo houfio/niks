@@ -1,5 +1,6 @@
 $gray: #f7f7f7;
 $orange: #ff9966;
+$blue: #0092ff;
 
 $breakpoints: (
   phone: 0,
@@ -7,3 +8,16 @@ $breakpoints: (
   tablet_landscape: 900px,
   desktop: 1200px
 );
+
+$themes: (
+  light: (
+    foreground: #000,
+    background: #fff,
+    card: #f7f7f7
+  ),
+  dark: (
+    foreground: #fff,
+    background: #15202b,
+    card: #0d141a
+  )
+)

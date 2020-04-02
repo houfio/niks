@@ -1,6 +1,7 @@
 @import "~normalize.css";
 @import "variables";
 @import "mixins";
+@import "functions";
 @import "form";
 @import "modal";
 
@@ -13,6 +14,11 @@ body {
   min-height: 100vh;
   font-family: 'Open Sans', sans-serif;
   overflow-y: scroll;
+
+  @include with-theme {
+    color: themed('foreground');
+    background-color: themed('background');
+  }
 }
 
 main {
@@ -49,22 +55,23 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
 
   @each $breakpoint, $size in $breakpoints {
-    @include at-breakpoint($breakpoint) {
+    @include with-breakpoint($breakpoint) {
       width: calc(#{if($size == 0, '100%', $size)} - 2rem);
     }
   }
 }
 
 .navigation {
-  position: relative;
+  position: sticky;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  top: 0;
   height: 100vh;
   padding: 2rem 1rem;
   z-index: 100;
 
-  @include at-breakpoint(tablet_landscape) {
+  @include with-breakpoint(tablet_landscape) {
     min-width: 20rem;
     padding: 2rem;
   }
@@ -76,12 +83,16 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     width: 100vw;
     height: 100%;
-    background-color: $gray;
     z-index: -1;
+
+    @include with-theme {
+      background-color: themed('card');
+    }
   }
 
   &-item {
-    padding: .75rem 1.25rem .75rem 1rem;
+    position: relative;
+    padding: .75rem 1rem;
     border-radius: 2.75rem;
     font-size: 1.25rem;
     font-weight: bold;
@@ -104,11 +115,33 @@ h1, h2, h3, h4, h5, h6 {
       color: $orange;
     }
 
-    & .content {
-      display: none;
-      margin-left: .5rem;
+    &[data-dot]::after {
+      content: "";
+      position: absolute;
+      display: block;
+      top: .5rem;
+      right: .75rem;
+      width: .75rem;
+      height: .75rem;
+      background-color: $blue;
+      border-radius: 50%;
 
-      @include at-breakpoint(tablet_landscape) {
+      @include with-breakpoint(tablet_landscape) {
+        top: .75rem;
+        right: 1rem;
+      }
+
+      @include with-theme {
+        border: .1rem solid themed('card');
+      }
+    }
+
+    & > .content {
+      display: none;
+      position: relative;
+      margin: 0 .25rem 0 .5rem;
+
+      @include with-breakpoint(tablet_landscape) {
         display: inline-block;
       }
     }
@@ -134,8 +167,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   &.transparent {
-    color: black;
     background-color: transparent;
+
+    @include with-theme {
+      color: themed('foreground');
+    }
   }
 }
 
@@ -175,4 +211,12 @@ main > .content {
   background-color: #ff7980;
   margin-bottom: 1rem;
   border-radius: .5rem;
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

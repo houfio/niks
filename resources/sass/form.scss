@@ -96,7 +96,7 @@
   grid-gap: 1rem;
   margin-bottom: 1rem;
 
-  @include at-breakpoint(tablet_landscape) {
+  @include with-breakpoint(tablet_landscape) {
     grid-template-columns: 1fr 1fr;
   }
 

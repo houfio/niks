@@ -19,10 +19,13 @@
 
   &-container {
     margin: 1rem;
-    background-color: white;
     border-radius: .5rem;
     transform: translateY(1rem);
     transition: transform .25s ease;
+
+    @include with-theme {
+      background-color: themed('background');
+    }
   }
 
   &-header {
@@ -30,7 +33,10 @@
     justify-content: space-between;
     margin: 0 1rem;
     padding: 1rem 0;
-    border-bottom: 3px solid $gray;
+
+    @include with-theme {
+      border-bottom: 3px solid themed('card');
+    }
   }
 
   &-content {
