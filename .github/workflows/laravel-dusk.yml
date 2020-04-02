@@ -1,0 +1,25 @@
+name: dusk
+on: [pull_request]
+jobs:
+  dusk-php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Prepare environment
+        run: cp .env.example .env
+      - name: Create database
+        run: mysql --user="root" --password="root" -e "CREATE DATABASE niksvoorniks character set UTF8mb4 collate utf8mb4_bin;"
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Upgrade Chrome
+        run: php artisan dusk:chrome-driver
+      - name: Start Chrome
+        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
+      - name: Run server
+        run: php artisan serve &
+      - name: Run migrations & refresh database
+        run: php artisan migrate:fresh
+      - name: Run tests
+        run: php artisan dusk
