@@ -24,7 +24,7 @@ class CreateUnsuccessfulAdvertisementTest extends DuskTestCase
                 ->type('long_description', $advertisement->long_description)
                 ->attach('images[]', $image)
                 ->press('create')
-                ->pause(200)
+                ->pause(1000)
                 ->assertPathIs('//advertisements/create');
         });
     }
