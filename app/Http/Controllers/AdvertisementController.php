@@ -46,8 +46,8 @@ class AdvertisementController extends Controller
             $assets[] = $asset;
         }
         $advertisement->save();
-
         $advertisement->assets()->saveMany($assets);
+
         return redirect('/');
     }
 
