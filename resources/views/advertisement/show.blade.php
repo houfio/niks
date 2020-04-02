@@ -45,7 +45,6 @@
     <p dusk="description">
       {{ $advertisement->long_description }}
     </p>
-
     @can('delete', $advertisement)
       <form action="{{ @action('AdvertisementController@destroy', ['advertisement' => $advertisement]) }}">
         @csrf
