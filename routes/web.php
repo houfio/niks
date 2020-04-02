@@ -31,7 +31,7 @@ Route::resource('users', 'UserController')->except([
 ]);
 
 Route::resource('advertisements', 'AdvertisementController')->only([
-    'create', 'show'
+    'create', 'show', 'store'
 ]);
 
 Route::prefix('bid')->group(function () {
