@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Ad bekijken')
+@section('title', __('advertisement.title'))
 
 @section('content')
   <div class="content">
@@ -50,7 +50,7 @@
         @csrf
         @method('delete')
         <button type="submit" class="button">
-          Verwijderen
+          {{ __('advertisement.delete') }}
         </button>
       </form>
     @endcan

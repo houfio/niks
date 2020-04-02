@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'title' => 'Advertenties'
+    'title' => 'Advertenties',
+    'delete' => 'Verwijderen'
 ];
