@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Ad bekijken')
+@section('title', __('advertisement.title'))
 
 @section('content')
   <div class="content">
@@ -45,5 +45,14 @@
     <p dusk="description">
       {{ $advertisement->long_description }}
     </p>
+    @can('delete', $advertisement)
+      <form action="{{ @action('AdvertisementController@destroy', ['advertisement' => $advertisement]) }}">
+        @csrf
+        @method('delete')
+        <button type="submit" class="button">
+          {{ __('advertisement.delete') }}
+        </button>
+      </form>
+    @endcan
   </div>
 @endsection
