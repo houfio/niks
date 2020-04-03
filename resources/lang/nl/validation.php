@@ -14,7 +14,7 @@ return [
         'is_approved' => 'Goedgekeurd',
         'password' => 'Wachtwoord',
         'password_confirmation' => 'Wachtwoord herhaling',
-        'title' => 'Title',
+        'title' => 'Titel',
         'motivation' => 'Motivatie',
         'short_description' => 'Korte beschrijving',
         'long_description' => 'Lange beschrijving',
@@ -24,7 +24,8 @@ return [
         'is_service' => 'Dienst',
         'asking' => 'Vraag',
         'images' => 'Afbeeldingen',
-        'remember_me' => 'Ingelogd blijven'
+        'remember_me' => 'Ingelogd blijven',
+        'create'=> 'Aanmaken'
     ],
     'unique' => ':attribute is al in gebruik',
     'email' => ':value is geen geldig e-mailadres',

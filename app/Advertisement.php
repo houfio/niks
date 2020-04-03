@@ -16,7 +16,7 @@ class Advertisement extends Model
 
     public function assets()
     {
-        return $this->belongsToMany(Asset::class);
+        return $this->belongsToMany(Asset::class, 'advertisement_assets');
     }
 
     public function bids()
