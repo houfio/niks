@@ -11,7 +11,9 @@ class CreateAdvertisementTest extends DuskTestCase
 {
     public function testCreateAdvertisement()
     {
-        $user = User::where('is_approved', '1')->get()->first();
+        $user = factory(User::class)->create([
+            'is_approved' => true
+        ]);
         $advertisement = factory(Advertisement::class)->make();
         $image = public_path('assets/somebody.jpg');
 

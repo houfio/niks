@@ -11,7 +11,9 @@ class CreateUnsuccessfulAdvertisementTest extends DuskTestCase
 {
     public function testCreateUnsuccessfulAdvertisement()
     {
-        $user = User::where('is_approved', '1')->get()->first();
+        $user = factory(User::class)->create([
+            'is_approved' => true
+        ]);
         $advertisement = factory(Advertisement::class)->make();
         $image = public_path('assets/somebody.jpg');
 
@@ -24,7 +26,6 @@ class CreateUnsuccessfulAdvertisementTest extends DuskTestCase
                 ->type('long_description', $advertisement->long_description)
                 ->attach('images[]', $image)
                 ->press('create')
-                ->pause(1000)
                 ->assertPathIs('/advertisements/create');
         });
     }
