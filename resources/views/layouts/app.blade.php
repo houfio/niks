@@ -43,9 +43,16 @@
         @endcan
       @endauth
     </nav>
-    <main>
-      @yield('content')
-    </main>
+    <div class="main">
+      <main @if(!View::hasSection('sidebar')) style="flex: 1" @endif>
+        @yield('content')
+      </main>
+      @if(View::hasSection('sidebar'))
+        <aside>
+          @yield('sidebar')
+        </aside>
+      @endif
+    </div>
     @guest
       @if(!Request::is('login'))
         <x-modal id="login" :title="__('login.title')">

@@ -26,18 +26,6 @@
     </div>
     <h3>
       Prijs : {{ $advertisement->price }} niks
-      @if($advertisement->enable_bidding)
-        <form method="post" action="{{ @action('BidController@store', ['advertisement' => $advertisement->id]) }}">
-          @csrf
-          <div class="text-input">
-            <label for="bid">Bod:</label>
-            <input type="number" id="bid" name="bid" required/>
-          </div>
-          <button type="submit" class="button" name="place_bid">
-            Bieden
-          </button>
-        </form>
-      @endif
     </h3>
     <h4>
       Beschrijving
@@ -45,5 +33,22 @@
     <p dusk="description">
       {{ $advertisement->long_description }}
     </p>
+  </div>
+@endsection
+
+@section('sidebar')
+  <div class="sidebar">
+    @if($advertisement->enable_bidding)
+      <form method="post" action="{{ @action('BidController@store', ['advertisement' => $advertisement->id]) }}">
+        @csrf
+        <div class="text-input">
+          <label for="bid">Bod</label>
+          <input type="number" id="bid" name="bid" required/>
+        </div>
+        <button type="submit" class="button" name="place_bid">
+          Bieden
+        </button>
+      </form>
+    @endif
   </div>
 @endsection
