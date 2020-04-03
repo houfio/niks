@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="theme-@yield('theme', 'light')">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -36,6 +36,11 @@
         <x-navigation-item icon="user" path="profile">
           {{ __('profile.title') }}
         </x-navigation-item>
+        @can('viewAny', \App\User::class)
+          <x-navigation-item icon="users" path="users" dot="true">
+            {{ __('users.title') }}
+          </x-navigation-item>
+        @endcan
       @endauth
     </nav>
     <main>
