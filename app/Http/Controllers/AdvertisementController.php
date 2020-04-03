@@ -14,6 +14,11 @@ class AdvertisementController extends Controller
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
+    public function index()
+    {
+        return view('advertisement.index');
+    }
+
     public function create()
     {
         return view('advertisement.create');

@@ -25,7 +25,6 @@ class BidController extends Controller
     }
 
     /**
-     * @param Bid $bid
      * @throws Exception
      */
     public function destroy(Bid $bid)

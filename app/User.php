@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bid::class);
     }
+
+    public function getFullName(): string
+    {
+        return "$this->first_name $this->last_name";
+    }
 }

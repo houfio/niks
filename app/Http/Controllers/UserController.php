@@ -59,8 +59,6 @@ class UserController extends Controller
     }
 
     /**
-     * @param User $user
-     * @return Redirector
      * @throws Exception
      */
     public function destroy(User $user)
