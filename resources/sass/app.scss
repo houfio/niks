@@ -68,12 +68,11 @@ h1, h2, h3, h4, h5, h6 {
   align-items: flex-start;
   top: 0;
   height: 100vh;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 2rem 0;
   z-index: 100;
 
-  @include with-breakpoint(tablet_landscape) {
-    min-width: 20rem;
-    padding: 2rem;
+  @include with-breakpoint(desktop) {
+    min-width: 15rem;
   }
 
   &::before {
@@ -126,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
       background-color: $blue;
       border-radius: 50%;
 
-      @include with-breakpoint(tablet_landscape) {
+      @include with-breakpoint(desktop) {
         top: .75rem;
         right: 1rem;
       }
@@ -141,7 +140,7 @@ h1, h2, h3, h4, h5, h6 {
       position: relative;
       margin: 0 .25rem 0 .5rem;
 
-      @include with-breakpoint(tablet_landscape) {
+      @include with-breakpoint(desktop) {
         display: inline-block;
       }
     }
