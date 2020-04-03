@@ -55,7 +55,7 @@ class AdvertisementController extends Controller
     {
         $advertisement->delete();
 
-        return redirect('/');
+        return redirect('/advertisements');
     }
 
     public function show(Advertisement $advertisement)
