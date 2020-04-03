@@ -11,7 +11,7 @@
     </h1>
     @foreach($users as $user)
       <div>
-        {{ $user->first_name }} {{ $user->last_name }}
+        {{ $user->getFullName() }}
       </div>
     @endforeach
   </div>
