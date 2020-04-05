@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Mail;
 
 class ApproveController extends Controller
 {
-    public function approve(ApproveAccountRequest $request)
+    public function approve(ApproveAccountRequest $request, User $user)
     {
+        dd($request);
         $data = $request->validated();
 
         $approve = boolval($data['approve']);

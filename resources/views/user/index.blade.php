@@ -10,9 +10,12 @@
       {{ __('users.title') }}
     </h1>
     @foreach($users as $user)
-      <div>
-        {{ $user->getFullName() }}
-      </div>
+      <form action="{{ @action('user.approve', ['user' => $user->id]) }}" method="post">
+        @method('PUT')
+        <div>
+          {{ $user->getFullName() }} <button type="submit" class="button">Goedkeuren</button>
+        </div>
+      </form>
     @endforeach
   </div>
 @endsection
