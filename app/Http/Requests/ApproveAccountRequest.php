@@ -22,16 +22,16 @@ class ApproveAccountRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => __('validation.required', ['attribute' => ':attribute']),
-            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max'])
+            'required' => __('validation/messages.required', ['attribute' => ':attribute']),
+            'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max'])
         ];
     }
 
     public function attributes()
     {
         return [
-            'email' => __('validation.attributes.email'),
-            'approve' => __('validation.attributes.approve')
+            'email' => __('general/attributes.email'),
+            'approve' => __('general/attributes.approve')
         ];
     }
 }

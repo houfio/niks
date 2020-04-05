@@ -1,6 +1,6 @@
 @extends('layouts.empty')
 
-@section('title', __('advertisements.title'))
+@section('title', __('views/advertisements.title'))
 
 @section('icon', 'store')
 

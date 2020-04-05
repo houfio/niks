@@ -11,28 +11,28 @@
   <body class="container">
     <nav class="navigation">
       <x-navigation-item icon="newspaper" path="/">
-        {{ __('home.title') }}
+        {{ __('views/home.title') }}
       </x-navigation-item>
       @guest
         <x-navigation-item icon="envelope-open-text" path="register">
-          {{ __('register.title') }}
+          {{ __('views/register.title') }}
         </x-navigation-item>
         @if(!Request::is('login'))
           <button class="button" data-micromodal-trigger="login-modal">
-            {{ __('login.title') }}
+            {{ __('views/login.title') }}
           </button>
         @endif
       @endguest
       @auth
         <x-navigation-item icon="store" path="advertisements">
-          {{ __('advertisements.title') }}
+          {{ __('views/advertisements.title') }}
         </x-navigation-item>
         <x-navigation-item icon="user" path="profile">
-          {{ __('profile.title') }}
+          {{ __('views/profile.title') }}
         </x-navigation-item>
         @can('viewAny', \App\User::class)
           <x-navigation-item icon="users" path="users" dot="true">
-            {{ __('users.title') }}
+            {{ __('views/users.title') }}
           </x-navigation-item>
         @endcan
       @endauth
@@ -49,7 +49,7 @@
     </div>
     @guest
       @if(!Request::is('login'))
-        <x-modal id="login" :title="__('login.title')">
+        <x-modal id="login" :title="__('views/login.title')">
           <x-login-form/>
         </x-modal>
       @endif

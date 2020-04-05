@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', __('register.title'))
+@section('title', __('views/register.title'))
 
 @section('content')
   <div class="content">
     <h1 class="page-heading">
-      {{ __('register.title') }}
+      {{ __('views/register.title') }}
     </h1>
     <div class="page-subheadings">
       <span>
@@ -25,29 +25,29 @@
     <form method="post" action="{{ @action('Auth\RegisterController@register') }}">
       @csrf
       <div class="two-columns">
-        <x-input name="first_name" :label="__('validation.attributes.first_name')" required/>
+        <x-input name="first_name" :label="__('general/attributes.first_name')" required/>
         <x-input
           name="last_name"
-          :label="__('validation.attributes.last_name')"
+          :label="__('general/attributes.last_name')"
           help="Achternaam inclusief tussenvoegsel(s)"
           required
         />
-        <x-input name="email" type="email" :label="__('validation.attributes.email')" required/>
+        <x-input name="email" type="email" :label="__('general/attributes.email')" required/>
         <x-input
           name="phone_number"
-          :label="__('validation.attributes.phone_number')"
+          :label="__('general/attributes.phone_number')"
           help="Telefoonnummer in een Nederlands formaat (bijv. 06 12345678)"
           required
         />
         <x-input
           name="zip_code"
-          :label="__('validation.attributes.zip_code')"
+          :label="__('general/attributes.zip_code')"
           help="Postcode in een Nederlands formaat (bijv. 1234 AB)"
           required
         />
         <x-input
           name="house_number"
-          :label="__('validation.attributes.house_number')"
+          :label="__('general/attributes.house_number')"
           help="Huisnummer inclusief toevoeging(en)"
           required
         />
@@ -55,15 +55,15 @@
       <x-input
         name="motivation"
         type="textarea"
-        :label="__('validation.attributes.motivation')"
+        :label="__('general/attributes.motivation')"
         help="Motivatie waarom je graag mee wilt doen met Niksvoorniks (minimaal 60 karakters)"
         required
       />
       <button class="button" type="submit" name="register">
-        {{ __('register.title') }}
+        {{ __('views/register.title') }}
       </button>
       <a class="button transparent" href="{{ url('login') }}">
-        {{ __('login.title') }}
+        {{ __('views/login.title') }}
       </a>
     </form>
   </div>

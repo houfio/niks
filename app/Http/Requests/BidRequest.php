@@ -30,16 +30,16 @@ class BidRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => __('validation.required', ['attribute' => ':attribute']),
-            'min' => __('validation.min', ['attribute' => ':attribute', 'min' => ':min']),
-            'numeric' => __('validation.numeric', ['attribute' => ':attribute'])
+            'required' => __('validation/messages.required', ['attribute' => ':attribute']),
+            'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min']),
+            'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute'])
         ];
     }
 
     public function attributes()
     {
         return [
-            'bid' => __('validation.attributes.bid')
+            'bid' => __('general/attributes.bid')
         ];
     }
 }

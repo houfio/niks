@@ -27,7 +27,7 @@ class ResetPasswordController extends Controller
         if (!$validateToken || $this->tokenExpired($passwordReset)) {
             return redirect("/reset/$token")
                 ->withErrors([
-                    'resetPassword.tokenExpired'
+                    'views/resetPassword.tokenExpired'
                 ]);
         }
 

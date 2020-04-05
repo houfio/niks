@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', __('errors.server_error.title'))
+@section('title', __('errors/serverError.title'))
 
 @section('content')
   <div class="content">
     <h1 class="page-heading">
-      {{ __('errors.server_error.title') }}
+      {{ __('errors/serverError.title') }}
     </h1>
     <p>
-      {{ __('errors.server_error.description') }}
+      {{ __('errors/serverError.description') }}
     </p>
   </div>
 @endsection
