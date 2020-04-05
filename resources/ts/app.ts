@@ -37,6 +37,18 @@ const hideEvents = ['mouseleave', 'blur'];
     element.addEventListener('click', hide);
     setTimeout(hide, 5000);
   });
+
+  document.querySelectorAll<HTMLElement>('[data-href]').forEach((element) => {
+    const navigate = () => window.location.href = element.dataset.href || '/';
+
+    element.tabIndex = 0;
+    element.addEventListener('click', navigate);
+    element.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        navigate();
+      }
+    });
+  });
 })();
 
 function create(source: HTMLElement, target: HTMLElement) {

@@ -41,7 +41,7 @@
         @yield('content')
       </main>
       @if(View::hasSection('sidebar'))
-        <aside>
+        <aside class="aside">
           @yield('sidebar')
         </aside>
       @endif

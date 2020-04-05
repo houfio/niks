@@ -53,7 +53,9 @@
   </div>
   <div class="sidebar-footer">
     <div>{{ $user->first_name }} {{ $user->last_name }}</div>
-    <div class="subtle">{{ $advertisement->created_at->diffForHumans() }}</div>
+    <div class="subtle" title="{{ $advertisement->created_at->isoFormat('LLLL') }}">
+      {{ $advertisement->created_at->diffForHumans() }}
+    </div>
     @can('delete', $advertisement)
       <form
         method="post"

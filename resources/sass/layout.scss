@@ -8,6 +8,16 @@
   }
 }
 
+.aside {
+  margin-bottom: 1rem;
+
+  @include with-breakpoint(tablet_landscape) {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+}
+
 .container {
   margin: 0 auto;
 
@@ -126,7 +136,7 @@
   border-radius: .5rem;
 
   &-footer {
-    margin: 1rem;
+    margin: 1rem 1rem 0;
   }
 
   @include with-theme {

@@ -17,7 +17,11 @@ class AdvertisementController extends Controller
 
     public function index()
     {
-        return view('advertisement.index');
+        $advertisements = Advertisement::paginate(10);
+
+        return view('advertisement.index', [
+            'advertisements' => $advertisements
+        ]);
     }
 
     public function create()

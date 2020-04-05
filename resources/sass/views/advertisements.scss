@@ -1,3 +1,37 @@
+.advertisement {
+  padding: 2rem;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  outline: none;
+  transition: box-shadow .25s ease, background-color .25s ease;
+
+  &:hover, &:focus {
+    cursor: pointer;
+
+    @include with-theme {
+      background-color: themed('card');
+    }
+  }
+
+  &:active {
+    @include with-theme {
+      background-color: themed('cardClick');
+    }
+  }
+
+  &-description {
+    margin: 2rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @include with-breakpoint(tablet_landscape) {
+    margin-right: 1rem;
+  }
+}
+
 .bids {
   margin-bottom: 1rem;
 }
