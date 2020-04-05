@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Exception;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -54,6 +54,7 @@ class UserController extends Controller
         }
 
         $user->save();
+        $request->session()->flash('message', 'Gebruiker bijgewerkt');
 
         return redirect("/users/$user->id/edit");
     }
@@ -61,9 +62,10 @@ class UserController extends Controller
     /**
      * @throws Exception
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
         $user->delete();
+        $request->session()->flash('message', 'Gebruiker verwijderd');
 
         return redirect('/users');
     }

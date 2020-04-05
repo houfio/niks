@@ -30,6 +30,13 @@ const hideEvents = ['mouseleave', 'blur'];
       }
     }));
   });
+
+  document.querySelectorAll<HTMLElement>('.flash').forEach((element) => {
+    const hide = () => element.classList.add('dismissed');
+
+    element.addEventListener('click', hide);
+    setTimeout(hide, 5000);
+  });
 })();
 
 function create(source: HTMLElement, target: HTMLElement) {

@@ -25,6 +25,7 @@ class RegisterController extends Controller
         $user->motivation = $data['motivation'];
 
         $user->save();
+        $request->session()->flash('message', 'Aanvraag verstuurd');
 
         Mail::to($user->email)->send(new RegisterMail($user));
 

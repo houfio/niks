@@ -1,7 +1,9 @@
-@extends('layouts.empty')
+@extends('layouts.app')
 
 @section('title', __('views/advertisements.title'))
 
-@section('icon', 'store')
-
-@section('empty', 'Er zijn nog geen advertenties')
+@section('content')
+  <x-empty icon="store">
+    Er zijn nog geen advertenties
+  </x-empty>
+@endsection

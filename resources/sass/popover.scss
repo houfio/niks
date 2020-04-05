@@ -65,3 +65,44 @@
     }
   }
 }
+
+.flash {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  text-align: start;
+  outline: none;
+  z-index: 150;
+  transition: box-shadow .25s ease, transform .25s ease, visibility 0s linear .25s;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px darken($gray, 10%);
+  }
+
+  &.dismissed {
+    visibility: hidden;
+    transform: translateY(100%);
+
+    @include with-breakpoint(tablet_portrait) {
+      transform: translateY(calc(100% + 2rem));
+    }
+  }
+
+  @include with-theme {
+    color: themed('background');
+    background-color: themed('foreground');
+  }
+
+  @include with-breakpoint(tablet_portrait) {
+    bottom: 2rem;
+    left: 2rem;
+    width: auto;
+    border-radius: .5rem;
+  }
+}

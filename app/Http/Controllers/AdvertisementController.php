@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Advertisement;
 use App\Asset;
 use App\Http\Requests\CreateAdvertisementRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdvertisementController extends Controller
@@ -53,13 +54,15 @@ class AdvertisementController extends Controller
 
         $advertisement->save();
         $advertisement->assets()->saveMany($assets);
+        $request->session()->flash('message', 'Advertentie bijgewerkt');
 
         return redirect('/');
     }
 
-    public function destroy(Advertisement $advertisement)
+    public function destroy(Request $request, Advertisement $advertisement)
     {
         $advertisement->delete();
+        $request->session()->flash('message', 'Advertentie verwijderd');
 
         return redirect('/advertisements');
     }

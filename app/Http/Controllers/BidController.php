@@ -6,9 +6,15 @@ use App\Advertisement;
 use App\Bid;
 use App\Http\Requests\BidRequest;
 use Exception;
+use Illuminate\Http\Request;
 
 class BidController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Bid::class, 'bid');
+    }
+
     public function store(BidRequest $request, Advertisement $advertisement)
     {
         $data = $request->validated();
@@ -20,6 +26,7 @@ class BidController extends Controller
         $bid->user()->associate($request->user());
 
         $bid->save();
+        $request->session()->flash('message', 'Bod bijgewerkt');
 
         return redirect("/advertisements/$advertisement->id");
     }
@@ -27,8 +34,11 @@ class BidController extends Controller
     /**
      * @throws Exception
      */
-    public function destroy(Bid $bid)
+    public function destroy(Request $request, Bid $bid)
     {
         $bid->delete();
+        $request->session()->flash('message', 'Bod verwijderd');
+
+        return redirect()->back();
     }
 }

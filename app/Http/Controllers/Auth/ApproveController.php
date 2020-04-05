@@ -21,8 +21,10 @@ class ApproveController extends Controller
 
         if ($approve) {
             Mail::to($user->email)->send(new AccountApprovalMail($user));
+            $request->session()->flash('message', 'Gebruiker goedgekeurd');
         } else {
             $user->delete();
+            $request->session()->flash('message', 'Gebruiker verwijderd');
         }
 
         return redirect()->back();
