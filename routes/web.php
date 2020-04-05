@@ -30,6 +30,8 @@ Route::resource('users', 'UserController')->except([
     'create', 'store'
 ]);
 
+Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
+
 Route::resource('advertisements', 'AdvertisementController')->except([
     'edit', 'update'
 ]);
