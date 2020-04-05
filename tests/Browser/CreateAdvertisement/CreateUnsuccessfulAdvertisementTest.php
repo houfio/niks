@@ -23,7 +23,7 @@ class CreateUnsuccessfulAdvertisementTest extends DuskTestCase
                 ->type('price', $advertisement->price)
                 ->type('short_description', 'minder dan 30 characters')
                 ->type('long_description', $advertisement->long_description)
-                ->attach('images[]', 'http://placeimg.com/640/360/any')
+                ->attach('images[]', 'https://placeimg.com/640/360/any')
                 ->press('create')
                 ->assertPathIs('/advertisements/create');
         });
