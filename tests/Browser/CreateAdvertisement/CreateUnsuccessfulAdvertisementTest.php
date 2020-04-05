@@ -15,16 +15,15 @@ class CreateUnsuccessfulAdvertisementTest extends DuskTestCase
             'is_approved' => true
         ]);
         $advertisement = factory(Advertisement::class)->make();
-        $image = public_path('assets/somebody.jpg');
 
-        $this->browse(function (Browser $browser) use ($user, $advertisement, $image) {
+        $this->browse(function (Browser $browser) use ($user, $advertisement) {
             $browser->loginAs($user)
                 ->visit('/advertisements/create')
                 ->type('title', $advertisement->title)
                 ->type('price', $advertisement->price)
                 ->type('short_description', 'minder dan 30 characters')
                 ->type('long_description', $advertisement->long_description)
-                ->attach('images[]', $image)
+                ->attach('images[]', 'https://thispersondoesnotexist.com/image')
                 ->press('create')
                 ->assertPathIs('/advertisements/create');
         });
