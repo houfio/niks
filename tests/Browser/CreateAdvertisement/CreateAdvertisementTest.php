@@ -15,15 +15,16 @@ class CreateAdvertisementTest extends DuskTestCase
             'is_approved' => true
         ]);
         $advertisement = factory(Advertisement::class)->make();
+        $image = public_path('imgs/logo.png');
 
-        $this->browse(function (Browser $browser) use ($user, $advertisement) {
+        $this->browse(function (Browser $browser) use ($user, $advertisement, $image) {
             $browser->loginAs($user)
                 ->visit('/advertisements/create')
                 ->type('title', $advertisement->title)
                 ->type('price', $advertisement->price)
                 ->type('short_description', $advertisement->short_description)
                 ->type('long_description', $advertisement->long_description)
-                ->attach('images[]', 'https://placeimg.com/640/360/any')
+                ->attach('images[]', $image)
                 ->press('create')
                 ->assertPathIs('/');
         });

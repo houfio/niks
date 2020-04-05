@@ -8,9 +8,11 @@
       {{ $advertisement->title }}
     </h1>
     <x-errors/>
-    <div>
-      <img src="{{ $assets->first()->path }}" class="image"/>
-    </div>
+    @if(count($assets) > 0)
+      <div>
+        <img src="{{ $assets->first()->path }}" class="image"/>
+      </div>
+    @endif
     <p dusk="description">
       {{ $advertisement->long_description }}
     </p>
