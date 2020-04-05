@@ -38,6 +38,10 @@
     &:focus {
       box-shadow: 0 0 0 3px darken($gray, 10%);
     }
+
+    &::-webkit-resizer {
+      display: none;
+    }
   }
 
   & > label {
@@ -50,6 +54,17 @@
     text-transform: uppercase;
     pointer-events: none;
     transition: top .25s ease, font-size .25s ease;
+
+    &[data-required]::after {
+      content: " *";
+    }
+  }
+
+  & > [data-tooltip] {
+    position: absolute;
+    top: .5rem;
+    right: 1.25rem;
+    color: darken($gray, 25%);
   }
 }
 

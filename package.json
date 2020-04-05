@@ -10,10 +10,13 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
+    "@popperjs/core": "^2.2.1",
+    "autosize": "^4.0.2",
     "micromodal": "^0.4.2",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
+    "@types/autosize": "^3.0.7",
     "@types/micromodal": "^0.3.1",
     "cross-env": "^7.0.0",
     "laravel-mix": "^5.0.1",

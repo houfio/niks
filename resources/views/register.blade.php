@@ -25,35 +25,40 @@
     <form method="post" action="{{ @action('Auth\RegisterController@register') }}">
       @csrf
       <div class="two-columns">
-        <div class="text-input">
-          <label for="first_name">{{ __('validation.attributes.first_name') }}</label>
-          <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required/>
-        </div>
-        <div class="text-input">
-          <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
-          <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required/>
-        </div>
-        <div class="text-input">
-          <label for="email">{{ __('validation.attributes.email') }}</label>
-          <input type="email" id="email" name="email" value="{{ old('email') }}" required/>
-        </div>
-        <div class="text-input">
-          <label for="phone_number">{{ __('validation.attributes.phone_number') }}</label>
-          <input type="text" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required/>
-        </div>
-        <div class="text-input">
-          <label for="zip_code">{{ __('validation.attributes.zip_code') }}</label>
-          <input type="text" id="zip_code" name="zip_code" value="{{ old('zip_code') }}" required/>
-        </div>
-        <div class="text-input">
-          <label for="house_number">{{ __('validation.attributes.house_number') }}</label>
-          <input type="text" id="house_number" name="house_number" value="{{ old('house_number') }}" required/>
-        </div>
+        <x-input name="first_name" :label="__('validation.attributes.first_name')" required/>
+        <x-input
+          name="last_name"
+          :label="__('validation.attributes.last_name')"
+          help="Achternaam inclusief tussenvoegsel(s)"
+          required
+        />
+        <x-input name="email" type="email" :label="__('validation.attributes.email')" required/>
+        <x-input
+          name="phone_number"
+          :label="__('validation.attributes.phone_number')"
+          help="Telefoonnummer in een Nederlands formaat (bijv. 06 12345678)"
+          required
+        />
+        <x-input
+          name="zip_code"
+          :label="__('validation.attributes.zip_code')"
+          help="Postcode in een Nederlands formaat (bijv. 1234 AB)"
+          required
+        />
+        <x-input
+          name="house_number"
+          :label="__('validation.attributes.house_number')"
+          help="Huisnummer inclusief toevoeging(en)"
+          required
+        />
       </div>
-      <div class="text-input">
-        <label for="motivation">{{ __('validation.attributes.motivation') }}</label>
-        <textarea type="text" id="motivation" name="motivation" required>{{ old('motivation') }}</textarea>
-      </div>
+      <x-input
+        name="motivation"
+        type="textarea"
+        :label="__('validation.attributes.motivation')"
+        help="Motivatie waarom je graag mee wilt doen met Niksvoorniks (minimaal 60 karakters)"
+        required
+      />
       <button class="button" type="submit" name="register">
         {{ __('register.title') }}
       </button>

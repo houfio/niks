@@ -1,0 +1,67 @@
+.tooltip {
+  padding: .5rem .75rem;
+  border-radius: .5rem;
+  font-size: .75rem;
+  opacity: 0;
+  transform: translateY(-.25rem);
+  transition: opacity .25s ease, transform .25s ease;
+
+  & .arrow {
+    &, &::before {
+      position: absolute;
+      width: .5rem;
+      height: .5rem;
+    }
+
+    &::before {
+      content: "";
+      transform: rotate(45deg);
+
+      @include with-theme {
+        background-color: themed('foreground');
+      }
+    }
+  }
+
+  @include with-theme {
+    color: themed('background');
+    background-color: themed('foreground');
+  }
+
+  &-wrapper {
+    position: absolute;
+    visibility: hidden;
+    z-index: 1;
+    transition: visibility 0s linear .25s;
+
+    &[data-show] {
+      visibility: visible;
+      transition: visibility 0s linear 0s;
+
+      & .tooltip {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    &:not([data-popper-placement]) {
+      opacity: 0;
+    }
+
+    &[data-popper-placement^='top'] .arrow {
+      bottom: -.25rem;
+    }
+
+    &[data-popper-placement^='bottom'] .arrow {
+      top: -.25rem;
+    }
+
+    &[data-popper-placement^='left'] .arrow {
+      right: -.25rem;
+    }
+
+    &[data-popper-placement^='right'] .arrow {
+      left: -.25rem;
+    }
+  }
+}

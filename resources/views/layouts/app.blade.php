@@ -27,12 +27,6 @@
         <x-navigation-item icon="store" path="advertisements">
           {{ __('advertisements.title') }}
         </x-navigation-item>
-        <x-navigation-item icon="star" path="favorites">
-          {{ __('favorites.title') }}
-        </x-navigation-item>
-        <x-navigation-item icon="envelope" path="messages">
-          {{ __('messages.title') }}
-        </x-navigation-item>
         <x-navigation-item icon="user" path="profile">
           {{ __('profile.title') }}
         </x-navigation-item>

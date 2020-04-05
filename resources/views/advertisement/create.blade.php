@@ -32,9 +32,9 @@
                  required/>
         </div>
       </div>
-      <div class="text-input">
+      <div class="text-input" data-resize>
         <label for="long_description">{{ __('validation.attributes.long_description') }}</label>
-        <textarea id="long_description" rows="6" name="long_description">{{ old('long_description') }}</textarea>
+        <textarea id="long_description" rows="6" name="long_description" rows="3">{{ old('long_description') }}</textarea>
       </div>
       <div class="text-input">
         <input type="file" id="images" name="images[]" multiple>
