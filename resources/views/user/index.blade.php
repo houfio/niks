@@ -10,7 +10,7 @@
       {{ __('views/users.title') }}
     </h1>
     @foreach($users as $user)
-      @if( !$user->is_approved )
+      @if(!$user->is_approved)
         <form action="{{ @action('Auth\ApproveController@approve', ['user' => $user]) }}" method="post">
           @csrf
           @method('put')
