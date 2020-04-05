@@ -10,21 +10,23 @@ use Illuminate\Support\Facades\Mail;
 
 class ApproveController extends Controller
 {
-    public function approve(ApproveAccountRequest $request, User $user)
+    public function approve(ApproveAccountRequest $request, $id)
     {
-        dd($request);
         $data = $request->validated();
 
         $approve = boolval($data['approve']);
 
-        $user = User::find('email', $data['email']);
+        $user = User::find($id);
         $user->is_approved = $approve;
         $user->save();
 
         if ($approve) {
             Mail::to($user->email)->send(new AccountApprovalMail($user));
         }
+        else {
+            $user->delete();
+        }
 
-        return redirect('/');
+        return redirect()->back();
     }
 }

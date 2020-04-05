@@ -10,12 +10,17 @@
       {{ __('users.title') }}
     </h1>
     @foreach($users as $user)
-      <form action="{{ @action('Auth\ApproveController', ['user' => $user->id]) }}" method="post">
-        @method('PUT')
-        <div>
-          {{ $user->getFullName() }} <button type="submit" class="button">Goedkeuren</button>
-        </div>
-      </form>
+      @if(!$user->is_approved)
+        <form action="{{ @action('Auth\ApproveController@approve', ['user' => $user->id]) }}" method="post">
+          @csrf
+          @method('PUT')
+          <div>
+            {{ $user->getFullName() }}
+            <button type="submit" name="approve" value="1" class="button">Goedkeuren</button>
+            <button type="submit" name="approve" value="0" class="button">Afkeuren</button>
+          </div>
+        </form>
+      @endif
     @endforeach
   </div>
 @endsection
