@@ -4,9 +4,6 @@
 
 @section('content')
   <div class="content">
-    <span>
-      <button>Terug</button>
-    </span>
     <h1 class="page-heading" dusk="title">
       Advertentie aanmaken
     </h1>

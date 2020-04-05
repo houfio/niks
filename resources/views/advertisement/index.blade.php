@@ -39,6 +39,8 @@
 
 @section('sidebar')
   <div class="sidebar">
-    Zoeken
+    <a class="button" href="{{ url('/advertisements/create') }}">
+      Aanmaken
+    </a>
   </div>
 @endsection
