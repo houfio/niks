@@ -10,6 +10,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "@popperjs/core": "^2.2.1",
     "autosize": "^4.0.2",
     "micromodal": "^0.4.2",
