@@ -16,7 +16,6 @@ class ApproveController extends Controller
 
         $approve = boolval($data['approve']);
 
-        $user = User::find($user->id);
         $user->is_approved = $approve;
         $user->save();
 
