@@ -15,7 +15,7 @@ class CreateAdvertisementTest extends DuskTestCase
             'is_approved' => true
         ]);
         $advertisement = factory(Advertisement::class)->make();
-        $image = public_path('assets/somebody.jpg');
+        $image = public_path('imgs/logo.png');
 
         $this->browse(function (Browser $browser) use ($user, $advertisement, $image) {
             $browser->loginAs($user)

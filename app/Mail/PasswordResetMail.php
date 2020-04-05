@@ -18,7 +18,7 @@ class PasswordResetMail extends Mailable
     {
         $this->token = $token;
         $this->user = $user;
-        $this->subject = __('mail.resetPassword.title');
+        $this->subject = __('mail.views/resetPassword.title');
     }
 
     public function build()

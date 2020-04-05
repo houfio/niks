@@ -1,9 +1,16 @@
 @import "~normalize.css";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
 @import "variables";
 @import "mixins";
 @import "functions";
+@import "layout";
+@import "content";
 @import "form";
 @import "modal";
+@import "tooltip";
+
+@import "views/advertisements";
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -19,10 +26,6 @@ body {
     color: themed('foreground');
     background-color: themed('background');
   }
-}
-
-main {
-  flex: 1;
 }
 
 button {
@@ -49,174 +52,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .fas {
   pointer-events: none;
-}
-
-.container {
-  margin: 0 auto;
-
-  @each $breakpoint, $size in $breakpoints {
-    @include with-breakpoint($breakpoint) {
-      width: calc(#{if($size == 0, '100%', $size)} - 2rem);
-    }
-  }
-}
-
-.navigation {
-  position: sticky;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  top: 0;
-  height: 100vh;
-  padding: 2rem 1rem;
-  z-index: 100;
-
-  @include with-breakpoint(tablet_landscape) {
-    min-width: 20rem;
-    padding: 2rem;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100vw;
-    height: 100%;
-    z-index: -1;
-
-    @include with-theme {
-      background-color: themed('card');
-    }
-  }
-
-  &-item {
-    position: relative;
-    padding: .75rem 1rem;
-    border-radius: 2.75rem;
-    font-size: 1.25rem;
-    font-weight: bold;
-    outline: none;
-    transition: background-color .25s ease;
-
-    &:focus, &:hover {
-      background-color: transparentize($orange, .85);
-    }
-
-    &:active {
-      background-color: transparentize($orange, .65);
-    }
-
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
-
-    &.active {
-      color: $orange;
-    }
-
-    &[data-dot]::after {
-      content: "";
-      position: absolute;
-      display: block;
-      top: .5rem;
-      right: .75rem;
-      width: .75rem;
-      height: .75rem;
-      background-color: $blue;
-      border-radius: 50%;
-
-      @include with-breakpoint(tablet_landscape) {
-        top: .75rem;
-        right: 1rem;
-      }
-
-      @include with-theme {
-        border: .1rem solid themed('card');
-      }
-    }
-
-    & > .content {
-      display: none;
-      position: relative;
-      margin: 0 .25rem 0 .5rem;
-
-      @include with-breakpoint(tablet_landscape) {
-        display: inline-block;
-      }
-    }
-  }
-
-  & .button {
-    width: 100%;
-  }
-}
-
-.button {
-  padding: .75rem 1.25rem;
-  color: white;
-  background-color: $orange;
-  border-radius: 2.5rem;
-  outline: none;
-  font-weight: bold;
-  text-align: center;
-  transition: box-shadow .25s ease;
-
-  &:focus {
-    box-shadow: 0 0 0 3px transparentize($orange, .45);
-  }
-
-  &.transparent {
-    background-color: transparent;
-
-    @include with-theme {
-      color: themed('foreground');
-    }
-  }
-}
-
-main > .content {
-  margin: 1rem;
-}
-
-.page-heading {
-  margin: 2rem;
-}
-
-.page-subheadings {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
-
-  &::after {
-    content: "";
-    margin-left: 2rem;
-    width: 4rem;
-    border-bottom: 3px solid $gray;
-  }
-
-  & > span {
-    display: inline-block;
-    margin-bottom: 1rem;
-
-    &:last-child {
-      margin-bottom: 2rem;
-    }
-  }
-}
-
-.error {
-  padding: 1rem;
-  color: white;
-  background-color: #ff7980;
-  margin-bottom: 1rem;
-  border-radius: .5rem;
-}
-
-.centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }

@@ -27,26 +27,26 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => __('validation.required', ['attribute' => ':attribute']),
-            'unique' => __('validation.unique', ['attribute' => ':attribute']),
-            'email' => __('validation.email', ['value' => ':input']),
-            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
-            'phone_number' => __('validation.phone_number', ['value' => ':input']),
-            'zip_code' => __('validation.zip_code', ['value' => ':input']),
-            'min' => __('validation.min', ['attribute' => ':attribute', 'min' => ':min'])
+            'required' => __('validation/messages.required', ['attribute' => ':attribute']),
+            'unique' => __('validation/messages.unique', ['attribute' => ':attribute']),
+            'email' => __('validation/messages.email', ['value' => ':input']),
+            'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
+            'phone_number' => __('validation/messages.phone_number', ['value' => ':input']),
+            'zip_code' => __('validation/messages.zip_code', ['value' => ':input']),
+            'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min'])
         ];
     }
 
     public function attributes()
     {
         return [
-            'email' => __('validation.attributes.email'),
-            'first_name' => __('validation.attributes.first_name'),
-            'last_name' => __('validation.attributes.last_name'),
-            'phone_number' => __('validation.attributes.phone_number'),
-            'zip_code' => __('validation.attributes.zip_code'),
-            'house_number' => __('validation.attributes.house_number'),
-            'motivation' => __('validation.attributes.motivation')
+            'email' => __('general/attributes.email'),
+            'first_name' => __('general/attributes.first_name'),
+            'last_name' => __('general/attributes.last_name'),
+            'phone_number' => __('general/attributes.phone_number'),
+            'zip_code' => __('general/attributes.zip_code'),
+            'house_number' => __('general/attributes.house_number'),
+            'motivation' => __('general/attributes.motivation')
         ];
     }
 }

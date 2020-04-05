@@ -1,0 +1,47 @@
+main > .content {
+  margin: 1rem;
+}
+
+.page-heading {
+  margin: 2rem;
+}
+
+.page-subheadings {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+  &::after {
+    content: "";
+    margin-left: 2rem;
+    width: 4rem;
+    border-bottom: 3px solid $gray;
+  }
+
+  & > span {
+    display: inline-block;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.error {
+  padding: 1rem;
+  color: white;
+  background-color: #ff7980;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+.subtle {
+  padding-top: .5rem;
+  opacity: .25;
+}
+
+.image {
+  width: 100%;
+  border-radius: .5rem;
+}

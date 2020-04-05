@@ -37,11 +37,11 @@ class LoginController extends Controller
             $user = User::firstWhere('email', $email);
 
             if (is_null($user) || !$user->is_approved) {
-                $error = 'login.invalid_login';
+                $error = 'views/login.invalid_login';
             } elseif ($tooMany) {
-                $error = 'login.timeout';
+                $error = 'views/login.timeout';
             } else {
-                $error = 'login.invalid_login';
+                $error = 'views/login.invalid_login';
             }
 
             return redirect('/login')

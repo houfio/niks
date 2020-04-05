@@ -28,30 +28,30 @@ class CreateAdvertisementRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => __('validation.required', ['attribute' => ':attribute']),
-            'unique' => __('validation.unique', ['attribute' => ':attribute']),
-            'email' => __('validation.email', ['value' => ':input']),
-            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
-            'required_if' => __('validation.required', ['attribute' => ':attribute']),
-            'numeric' => __('validation.numeric', ['attribute' => ':attribute']),
-            'min' => __('validation.min', ['attribute' => ':attribute']),
-            'boolean' => __('validation.boolean', ['attribute' => ':attribute']),
-            'image' => __('validation.image', ['attribute' => ':attribute'])
+            'required' => __('validation/messages.required', ['attribute' => ':attribute']),
+            'unique' => __('validation/messages.unique', ['attribute' => ':attribute']),
+            'email' => __('validation/messages.email', ['value' => ':input']),
+            'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
+            'required_if' => __('validation/messages.required', ['attribute' => ':attribute']),
+            'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute']),
+            'min' => __('validation/messages.min', ['attribute' => ':attribute']),
+            'boolean' => __('validation/messages.boolean', ['attribute' => ':attribute']),
+            'image' => __('validation/messages.image', ['attribute' => ':attribute'])
         ];
     }
 
     public function attributes()
     {
         return [
-            'title' => __('validation.attributes.title'),
-            'short_description' => __('validation.attributes.short_description'),
-            'long_description' => __('validation.attributes.long_description'),
-            'enable_bidding' => __('validation.attributes.enable_bidding'),
-            'minimum_price' => __('validation.attributes.minimum_price'),
-            'price' => __('validation.attributes.price'),
-            'is_service' => __('validation.attributes.is_service'),
-            'asking' => __('validation.attributes.asking'),
-            'images' => __('validation.attributes.images')
+            'title' => __('general/attributes.title'),
+            'short_description' => __('general/attributes.short_description'),
+            'long_description' => __('general/attributes.long_description'),
+            'enable_bidding' => __('general/attributes.enable_bidding'),
+            'minimum_price' => __('general/attributes.minimum_price'),
+            'price' => __('general/attributes.price'),
+            'is_service' => __('general/attributes.is_service'),
+            'asking' => __('general/attributes.asking'),
+            'images' => __('general/attributes.images')
         ];
     }
 }

@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', __('errors.too_many_requests.title'))
+@section('title', __('errors/tooManyRequests.title'))
 
 @section('content')
   <div class="content">
     <h1 class="page-heading">
-      {{ __('errors.too_many_requests.title') }}
+      {{ __('errors/tooManyRequests.title') }}
     </h1>
     <p>
-      {{ __('errors.too_many_requests.description') }}
+      {{ __('errors/tooManyRequests.description') }}
     </p>
   </div>
 @endsection

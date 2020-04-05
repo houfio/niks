@@ -50,6 +50,7 @@ class AdvertisementController extends Controller
             $asset->save();
             $assets[] = $asset;
         }
+
         $advertisement->save();
         $advertisement->assets()->saveMany($assets);
 
@@ -67,8 +68,9 @@ class AdvertisementController extends Controller
     {
         return view('advertisement.show', [
             'advertisement' => $advertisement,
-            'user' => $advertisement->user()->get()[0],
-            'assets' => $advertisement->assets()->get()
+            'user' => $advertisement->user()->get()->first(),
+            'assets' => $advertisement->assets()->get(),
+            'bids' => $advertisement->bids()->get()
         ]);
     }
 }
