@@ -10,10 +10,10 @@
       {{ __('users.title') }}
     </h1>
     @foreach($users as $user)
-      @if(!$user->is_approved)
-        <form action="{{ @action('Auth\ApproveController@approve', ['user' => $user->id]) }}" method="post">
+      @if( !$user->is_approved )
+        <form action="{{ @action('Auth\ApproveController@approve', ['user' => $user]) }}" method="post">
           @csrf
-          @method('PUT')
+          @method('put')
           <div>
             {{ $user->getFullName() }}
             <button type="submit" name="approve" value="1" class="button">Goedkeuren</button>
