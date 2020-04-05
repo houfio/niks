@@ -56,6 +56,13 @@ class AdvertisementController extends Controller
         return redirect('/');
     }
 
+    public function destroy(Advertisement $advertisement)
+    {
+        $advertisement->delete();
+
+        return redirect('/advertisements');
+    }
+
     public function show(Advertisement $advertisement)
     {
         return view('advertisement.show', [

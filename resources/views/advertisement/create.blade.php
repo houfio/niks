@@ -24,7 +24,7 @@
         </div>
         <div class="text-input">
           <label for="minimum_price">{{ __('validation.attributes.minimum_price') }}</label>
-          <input type="number" id="minimum_price" name="minimum_price" value="{{ old('minimum_price') }}" required/>
+          <input type="number" id="minimum_price" name="minimum_price" value="{{ old('minimum_price') }}"/>
         </div>
         <div class="text-input">
           <label for="short_description">{{ __('validation.attributes.short_description') }}</label>

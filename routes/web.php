@@ -31,7 +31,7 @@ Route::resource('users', 'UserController')->except([
 ]);
 
 Route::resource('advertisements', 'AdvertisementController')->except([
-    'edit', 'update', 'destroy'
+    'edit', 'update'
 ]);
 
 Route::prefix('bid')->group(function () {
