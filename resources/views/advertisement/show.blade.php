@@ -29,7 +29,7 @@
             </span>
           </div>
         @empty
-          Geen biedingen
+          {{ __('views/advertisements.no_bids') }}
         @endforelse
       </div>
       <form method="post" action="{{ @action('BidController@store', ['advertisement' => $advertisement->id]) }}">
@@ -39,13 +39,13 @@
           <input type="number" id="bid" name="bid" required/>
         </div>
         <button type="submit" class="button" name="place_bid">
-          Bieden
+          {{ __('views/advertisements.bid') }}
         </button>
       </form>
     @else
       {{ $advertisement->price }} niksen
       <div class="subtle">
-        Vaste prijs
+        {{ __('views/advertisements.no_bidding') }}
       </div>
     @endif
   </div>
