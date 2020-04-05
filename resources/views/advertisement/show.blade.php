@@ -4,53 +4,37 @@
 
 @section('content')
   <div class="content">
-    <span>
-      <button>Terug</button>
-    </span>
     <h1 class="page-heading" dusk="title">
       {{ $advertisement->title }}
     </h1>
-    <span class="advertisement-info">
-        <span class="made-by">Gemaakt door: {{ $user->first_name }} {{ $user->last_name }}</span>
-        <span class="create-date">Gemaakt op: {{ $advertisement->created_at }}</span>
-        @if($advertisement->asking)
-          <span class="asking">Vraagt aan</span>
-        @else
-          <span class="asking">Biedt aan</span>
-        @endif
-    </span>
+    <x-errors/>
     <div>
-      @foreach($assets as $asset)
-        <img src="{{ $asset->path }}" class="w3-round" height="200" width="200"/>
-      @endforeach
+      <img src="{{ $assets->first()->path }}" class="image"/>
     </div>
-    <h3>
-      Prijs : {{ $advertisement->price }} niks
-    </h3>
-    <h4>
-      Beschrijving
-    </h4>
     <p dusk="description">
       {{ $advertisement->long_description }}
     </p>
-    @can('delete', $advertisement)
-      <form action="{{ @action('AdvertisementController@destroy', ['advertisement' => $advertisement]) }}">
-        @csrf
-        @method('delete')
-        <button type="submit" class="button">
-          {{ __('advertisement.delete') }}
-        </button>
-      </form>
-    @endcan
   </div>
 @endsection
 
 @section('sidebar')
   <div class="sidebar">
     @if($advertisement->enable_bidding)
+      <div class="bids">
+        @forelse($bids as $bid)
+          <div class="bid">
+            {{ $bid->user->first_name }}
+            <span class="price">
+              {{ $bid->bid }}
+            </span>
+          </div>
+        @empty
+          Geen biedingen
+        @endforelse
+      </div>
       <form method="post" action="{{ @action('BidController@store', ['advertisement' => $advertisement->id]) }}">
         @csrf
-        <div class="text-input">
+        <div class="text-input white">
           <label for="bid">Bod</label>
           <input type="number" id="bid" name="bid" required/>
         </div>
@@ -58,6 +42,27 @@
           Bieden
         </button>
       </form>
+    @else
+      {{ $advertisement->price }} niksen
+      <div class="subtle">
+        Vaste prijs
+      </div>
     @endif
+  </div>
+  <div class="sidebar-footer">
+    <div>{{ $user->first_name }} {{ $user->last_name }}</div>
+    <div class="subtle">{{ $advertisement->created_at->diffForHumans() }}</div>
+    @can('delete', $advertisement)
+      <form
+        method="post"
+        action="{{ @action('AdvertisementController@destroy', ['advertisement' => $advertisement]) }}"
+      >
+        @csrf
+        @method('delete')
+        <button type="submit" class="button" style="margin-top: 1rem">
+          {{ __('views/advertisements.delete') }}
+        </button>
+      </form>
+    @endcan
   </div>
 @endsection

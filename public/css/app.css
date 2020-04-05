@@ -6510,6 +6510,19 @@ readers do not read off random characters that represent icons */
   }
 }
 
+.navigation-header {
+  display: none;
+  margin: 0 0 3rem 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+@media (min-width: 1200px) {
+  .navigation-header {
+    display: block;
+  }
+}
+
 .navigation .button {
   width: 100%;
 }
@@ -6517,7 +6530,12 @@ readers do not read off random characters that represent icons */
 .sidebar {
   margin-left: 1rem;
   padding: 1rem;
+  min-width: 15rem;
   border-radius: 0.5rem;
+}
+
+.sidebar-footer {
+  margin: 1rem;
 }
 
 .theme-light .sidebar {
@@ -6532,6 +6550,10 @@ readers do not read off random characters that represent icons */
   .sidebar {
     margin: 2rem -1rem 0 0;
   }
+}
+
+.sidebar .button {
+  width: 100%;
 }
 
 .centered {
@@ -6577,6 +6599,16 @@ main > .content {
   color: white;
   background-color: #ff7980;
   margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+.subtle {
+  padding-top: 0.5rem;
+  opacity: 0.25;
+}
+
+.image {
+  width: 100%;
   border-radius: 0.5rem;
 }
 
@@ -6655,6 +6687,15 @@ main > .content {
   top: 0.5rem;
   right: 1.25rem;
   color: #b7b7b7;
+}
+
+.text-input > [data-tooltip]:hover {
+  cursor: help;
+}
+
+.text-input.white > input,
+.text-input.white > textarea {
+  background-color: white;
 }
 
 .checkbox-input {
@@ -6876,6 +6917,29 @@ main > .content {
 
 .tooltip-wrapper[data-popper-placement^=right] .arrow {
   left: -0.25rem;
+}
+
+.bids {
+  margin-bottom: 1rem;
+}
+
+.bid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.bid:last-of-type {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.bid:last-of-type .price {
+  padding: 0.25rem 0.5rem;
+  color: white;
+  background-color: #ff9966;
+  border-radius: 0.5rem;
 }
 
 *,

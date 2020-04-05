@@ -23,7 +23,7 @@ class CreateAdvertisementTest extends DuskTestCase
                 ->type('price', $advertisement->price)
                 ->type('short_description', $advertisement->short_description)
                 ->type('long_description', $advertisement->long_description)
-                ->attach('images[]', 'https://thispersondoesnotexist.com/image')
+                ->attach('images[]', 'http://placeimg.com/640/360/any')
                 ->press('create')
                 ->assertPathIs('/');
         });

@@ -65,6 +65,14 @@
     top: .5rem;
     right: 1.25rem;
     color: darken($gray, 25%);
+
+    &:hover {
+      cursor: help;
+    }
+  }
+
+  &.white > input, &.white > textarea {
+    background-color: white;
   }
 }
 

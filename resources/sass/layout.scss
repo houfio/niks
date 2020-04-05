@@ -103,6 +103,17 @@
     }
   }
 
+  &-header {
+    display: none;
+    margin: 0 0 3rem 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    @include with-breakpoint(desktop) {
+      display: block;
+    }
+  }
+
   & .button {
     width: 100%;
   }
@@ -111,7 +122,12 @@
 .sidebar {
   margin-left: 1rem;
   padding: 1rem;
+  min-width: 15rem;
   border-radius: .5rem;
+
+  &-footer {
+    margin: 1rem;
+  }
 
   @include with-theme {
     background-color: themed('card');
@@ -119,6 +135,10 @@
 
   @include with-breakpoint(tablet_landscape) {
     margin: 2rem -1rem 0 0;
+  }
+
+  & .button {
+    width: 100%;
   }
 }
 

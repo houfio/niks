@@ -9,6 +9,9 @@
   </head>
   <body class="container">
     <nav class="navigation">
+      <div class="navigation-header">
+        Niksvoorniks
+      </div>
       <x-navigation-item icon="newspaper" path="/">
         {{ __('views/home.title') }}
       </x-navigation-item>
@@ -25,9 +28,6 @@
       @auth
         <x-navigation-item icon="store" path="advertisements">
           {{ __('views/advertisements.title') }}
-        </x-navigation-item>
-        <x-navigation-item icon="user" path="profile">
-          {{ __('views/profile.title') }}
         </x-navigation-item>
         @can('viewAny', \App\User::class)
           <x-navigation-item icon="users" path="users" dot="true">
