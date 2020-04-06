@@ -23,4 +23,20 @@ class Advertisement extends Model
     {
         return $this->hasMany(Bid::class);
     }
+
+    public function cost(): ?int
+    {
+        return $this->enable_bidding ? $this->highestBid() : $this->price;
+    }
+
+    private function highestBid(): ?int
+    {
+        if (!$this->enable_bidding) {
+            return 0;
+        }
+
+        $highestBid = $this->bids()->max('bid');
+
+        return is_null($highestBid) ? $this->minimum_price : $highestBid;
+    }
 }

@@ -19,12 +19,30 @@
     }
   }
 
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &-description {
     margin: 2rem 0;
 
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  & .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: white;
+    background-color: $orange;
+    border-radius: 50%;
+    font-weight: bold;
   }
 
   @include with-breakpoint(tablet_landscape) {

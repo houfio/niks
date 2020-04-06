@@ -12,14 +12,26 @@
     <x-errors/>
     @foreach($advertisements as $advertisement)
       <div class="advertisement" data-href="{{ url("/advertisements/$advertisement->id") }}">
-        <h2>
-          {{ $advertisement->title }}
-        </h2>
-        <div class="subtle">
-          {{ $advertisement->user->getFullName() }} - {{ $advertisement->created_at->diffForHumans() }}
+        <div class="advertisement-header">
+          <div>
+            <h2>
+              {{ $advertisement->title }}
+            </h2>
+            <div class="subtle">
+              {{ $advertisement->user->getFullName() }} - {{ $advertisement->created_at->diffForHumans() }}
+            </div>
+          </div>
+          <div class="price">
+            {{ $advertisement->cost() ?? '-' }}
+          </div>
         </div>
         <div class="advertisement-description">
           {{ $advertisement->short_description }}
+          @if($advertisement->enable_bidding)
+            <div class="subtle">
+              Bieden mogelijk
+            </div>
+          @endif
         </div>
         @if(count($advertisement->assets) > 0)
           <div>

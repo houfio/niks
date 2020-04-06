@@ -9,7 +9,7 @@
 }
 
 .aside {
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 
   @include with-breakpoint(tablet_landscape) {
     position: sticky;
