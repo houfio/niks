@@ -10,7 +10,7 @@
     <x-errors/>
     @if(count($assets) > 0)
       <div>
-        <img src="{{ $assets->first()->path }}" class="image"/>
+        <img src="{{ $assets->first()->url() }}" class="image"/>
       </div>
     @endif
     <p dusk="description">

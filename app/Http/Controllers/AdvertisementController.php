@@ -50,7 +50,7 @@ class AdvertisementController extends Controller
         foreach ($data['images'] as $image) {
             $asset = new Asset();
 
-            $asset->path = Storage::put('advertisements', $image);
+            $asset->path = $image->store('advertisements');
 
             $asset->save();
             $assets[] = $asset;
