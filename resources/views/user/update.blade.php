@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', __('views/updateUser.title', ['fullName' => "$user->first_name $user->last_name"]))
+@section('theme', 'dark')
+
+@section('title', __('views/updateUser.title'))
 
 @section('content')
   <div class="content">

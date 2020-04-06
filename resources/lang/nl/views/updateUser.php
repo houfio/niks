@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'title' => 'Gebruiker :fullName bewerken',
+    'title' => 'Gebruiker bewerken',
     'submit' => 'Bijwerken'
 ];

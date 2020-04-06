@@ -22,13 +22,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(User $user)
-    {
-        return view('user.show', [
-            'user' => $user
-        ]);
-    }
-
     public function edit(User $user)
     {
         return view('user.update', [
@@ -56,7 +49,7 @@ class UserController extends Controller
         $user->save();
         $request->session()->flash('message', 'Gebruiker bijgewerkt');
 
-        return redirect("/users/$user->id/edit");
+        return redirect('/users');
     }
 
     /**

@@ -27,7 +27,7 @@ Route::prefix('reset')->group(function () {
 });
 
 Route::resource('users', 'UserController')->except([
-    'create', 'store'
+    'show', 'create', 'store'
 ]);
 
 Route::put('users/approve/{user}', 'Auth\ApproveController@approve');

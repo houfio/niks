@@ -3,7 +3,7 @@
   border-top-right-radius: .5rem;
   border-bottom-right-radius: .5rem;
   outline: none;
-  transition: box-shadow .25s ease, background-color .25s ease;
+  transition: background-color .25s ease;
 
   &:hover, &:focus {
     cursor: pointer;
@@ -70,8 +70,4 @@
       border-radius: .5rem;
     }
   }
-}
-
-.spacer {
-  flex: 1;
 }
