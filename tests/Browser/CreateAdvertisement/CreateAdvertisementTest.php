@@ -26,7 +26,7 @@ class CreateAdvertisementTest extends DuskTestCase
                 ->type('long_description', $advertisement->long_description)
                 ->attach('images[]', $image)
                 ->press('create')
-                ->assertPathIs('/');
+                ->assertPathIs('/advertisements');
         });
     }
 }

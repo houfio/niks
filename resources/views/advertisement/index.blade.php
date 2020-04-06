@@ -35,7 +35,7 @@
         </div>
         @if(count($advertisement->assets) > 0)
           <div>
-            <img src="{{ $advertisement->assets->first()->path }}" class="image"/>
+            <img src="{{ $advertisement->assets->first()->url() }}" class="image"/>
           </div>
         @endif
       </div>
