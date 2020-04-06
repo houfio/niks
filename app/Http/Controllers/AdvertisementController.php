@@ -50,7 +50,7 @@ class AdvertisementController extends Controller
         foreach ($data['images'] as $image) {
             $asset = new Asset();
 
-            $asset->path = $image->store('advertisements');
+            $asset->path = $image->store('public');
 
             $asset->save();
             $assets[] = $asset;
@@ -60,7 +60,7 @@ class AdvertisementController extends Controller
         $advertisement->assets()->saveMany($assets);
         $request->session()->flash('message', __('messages/advertisement.sent'));
 
-        return redirect('/');
+        return redirect('/advertisements');
     }
 
     public function destroy(Request $request, Advertisement $advertisement)
