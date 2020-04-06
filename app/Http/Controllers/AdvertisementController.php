@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Advertisement;
 use App\Asset;
-use App\Http\Requests\CreateAdvertisementRequest;
+use App\Http\Requests\AdvertisementRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,7 +29,7 @@ class AdvertisementController extends Controller
         return view('advertisement.create');
     }
 
-    public function store(CreateAdvertisementRequest $request)
+    public function store(AdvertisementRequest $request)
     {
         $data = $request->validated();
 

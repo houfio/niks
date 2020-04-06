@@ -1,4 +1,4 @@
-<div class="text-input">
+<div class="text-input" @if(isset($type) && $type === 'select') data-arrow @endif>
   <label for="{{ $name }}" @if(isset($required)) data-required @endif>
     {{ $label }}
   </label>
@@ -7,22 +7,32 @@
       <i class="fas fa-question-circle"></i>
     </div>
   @endif
-  @if (isset($type) && $type ==='textarea')
+  @if(isset($type) && $type === 'textarea')
     <textarea
       id="{{ $name }}"
       name="{{ $name }}"
-      rows="3"
+      rows="4"
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
-    >{{ old($name) }}</textarea>
+    >{{ $value ?? old($name) }}</textarea>
+  @elseif(isset($type) && $type === 'select')
+    <select
+      id="{{ $name }}"
+      name="{{ $name }}"
+      @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
+      @if(isset($required)) required @endif
+    >
+      {{ $slot }}
+    </select>
   @else
     <input
       type="{{ $type ?? 'text' }}"
       id="{{ $name }}"
       name="{{ $name }}"
-      value="{{ old($name) }}"
+      value="{{ $value ?? old($name) }}"
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
+      @if(isset($multiple)) multiple @endif
     />
   @endif
   @if(isset($help))

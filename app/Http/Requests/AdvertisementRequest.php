@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateAdvertisementRequest extends FormRequest
+class AdvertisementRequest extends FormRequest
 {
     public function authorize()
     {

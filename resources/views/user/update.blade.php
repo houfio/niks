@@ -13,33 +13,51 @@
     <form method="post" action="{{ @action('UserController@update', ['user' => $user->id]) }}">
       @csrf
       @method('put')
-      <div class="text-input">
-        <label for="first_name">{{ __('general/attributes.first_name') }}</label>
-        <input type="text" id="first_name" name="first_name" value="{{ $user->first_name }}" required/>
+      <div class="two-columns">
+        <x-input
+          name="first_name"
+          :value="$user->first_name"
+          :label="__('general/attributes.first_name')"
+          required
+        />
+        <x-input
+          name="last_name"
+          :value="$user->last_name"
+          :label="__('general/attributes.last_name')"
+          required
+        />
       </div>
-      <div class="text-input">
-        <label for="last_name">{{ __('general/attributes.last_name') }}</label>
-        <input type="text" id="last_name" name="last_name" value="{{ $user->last_name }}" required/>
-      </div>
-      <div class="text-input">
-        <label for="email">{{ __('general/attributes.email') }}</label>
-        <input type="email" id="email" name="email" value="{{ $user->email }}" required/>
-      </div>
-      <div class="text-input">
-        <label for="phone_number">{{ __('general/attributes.phone_number') }}</label>
-        <input type="text" id="phone_number" name="phone_number" value="{{ $user->phone_number }}" required/>
-      </div>
-      <div class="text-input">
-        <label for="zip_code">{{ __('general/attributes.zip_code') }}</label>
-        <input type="text" id="zip_code" name="zip_code" value="{{ $user->zip_code }}" required/>
-      </div>
-      <div class="text-input">
-        <label for="house_number">{{ __('general/attributes.house_number') }}</label>
-        <input type="text" id="house_number" name="house_number" value="{{ $user->house_number }}" required/>
-      </div>
-      <div class="text-input">
-        <label for="neighbourhood">{{ __('general/attributes.neighbourhood') }}</label>
-        <input type="text" id="neighbourhood" name="neighbourhood" value="{{ $user->neighbourhood }}"/>
+      <x-input
+        name="email"
+        type="email"
+        :value="$user->email"
+        :label="__('general/attributes.email')"
+        required
+      />
+      <div class="two-columns">
+        <x-input
+          name="zip_code"
+          :value="$user->zip_code"
+          :label="__('general/attributes.zip_code')"
+          required
+        />
+        <x-input
+          name="house_number"
+          :value="$user->house_number"
+          :label="__('general/attributes.house_number')"
+          required
+        />
+        <x-input
+          name="phone_number"
+          :value="$user->phone_number"
+          :label="__('general/attributes.phone_number')"
+          required
+        />
+        <x-input
+          name="neighbourhood"
+          :value="$user->neighbourhood"
+          :label="__('general/attributes.neighbourhood')"
+        />
       </div>
       <div class="checkbox-input">
         <input type="checkbox" id="is_approved" name="is_approved" @if($user->is_approved) checked @endif/>
