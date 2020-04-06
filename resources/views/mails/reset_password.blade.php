@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('mail.views/resetPassword.title') }}</title>
+    <title>{{ __('mails/resetPassword.title') }}</title>
   </head>
   <body>
     <div class="content">

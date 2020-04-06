@@ -16,6 +16,7 @@ class AccountApprovalMail extends Mailable
     public function __construct(User $user)
     {
         $this->user = $user;
+        $this->subject = __('mails/approved.title');
     }
 
     public function build()
