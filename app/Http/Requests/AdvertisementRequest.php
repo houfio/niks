@@ -34,11 +34,11 @@ class AdvertisementRequest extends FormRequest
             'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
             'required_if' => __('validation/messages.required', ['attribute' => ':attribute']),
             'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute']),
-            'min' => __('validation/messages.min', ['attribute' => ':attribute']),
+            'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min']),
             'boolean' => __('validation/messages.boolean', ['attribute' => ':attribute']),
             'image' => __('validation/messages.image', ['attribute' => ':attribute']),
-            'minimum_price.min' => __('validation/messages.min_num', ['attribute' => ':attribute']),
-            'price.min' => __('validation/messages.min_num', ['attribute' => ':attribute']),
+            'minimum_price.min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min']),
+            'price.min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min']),
         ];
     }
 
