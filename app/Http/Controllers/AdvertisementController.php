@@ -4,12 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Advertisement;
 use App\Asset;
-use App\Http\Requests\CreateAdvertisementRequest;
+use App\Http\Requests\AdvertisementRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdvertisementController extends Controller
 {
-    public function create(CreateAdvertisementRequest $request)
+    public function __construct()
+    {
+        $this->authorizeResource(Advertisement::class, 'advertisement');
+    }
+
+    public function index()
+    {
+        $advertisements = Advertisement::paginate(10);
+
+        return view('advertisement.index', [
+            'advertisements' => $advertisements
+        ]);
+    }
+
+    public function create()
+    {
+        return view('advertisement.create');
+    }
+
+    public function store(AdvertisementRequest $request)
     {
         $data = $request->validated();
 
@@ -19,10 +39,10 @@ class AdvertisementController extends Controller
         $advertisement->short_description = $data['short_description'];
         $advertisement->long_description = $data['long_description'];
         $advertisement->price = $data['price'];
-        $advertisement->enable_bidding = $data['enable_bidding'];
+        $advertisement->enable_bidding = isset($data['enable_bidding']);
         $advertisement->minimum_price = $data['minimum_price'];
         $advertisement->is_service = $data['is_service'];
-        $advertisement->asking = $data['asking'];
+        $advertisement->asking = isset($data['asking']);
 
         $advertisement->user()->associate($request->user());
         $assets = [];
@@ -30,15 +50,34 @@ class AdvertisementController extends Controller
         foreach ($data['images'] as $image) {
             $asset = new Asset();
 
-            $asset->path = Storage::put('advertisements', $image);
+            $asset->path = $image->store('public');
 
             $asset->save();
             $assets[] = $asset;
         }
 
-        $advertisement->assets()->saveMany($assets);
         $advertisement->save();
+        $advertisement->assets()->saveMany($assets);
+        $request->session()->flash('message', __('messages/advertisement.sent'));
 
-        return redirect('/');
+        return redirect('/advertisements');
+    }
+
+    public function destroy(Request $request, Advertisement $advertisement)
+    {
+        $advertisement->delete();
+        $request->session()->flash('message', __('messages/advertisement.deleted'));
+
+        return redirect('/advertisements');
+    }
+
+    public function show(Advertisement $advertisement)
+    {
+        return view('advertisement.show', [
+            'advertisement' => $advertisement,
+            'user' => $advertisement->user()->get()->first(),
+            'assets' => $advertisement->assets()->get(),
+            'bids' => $advertisement->bids()->get()
+        ]);
     }
 }

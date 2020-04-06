@@ -10,8 +10,9 @@ class DatabaseSeeder extends Seeder
         Artisan::call('migrate:fresh');
 
         $this->call([
-            UsersTableSeeder::class,
-            AssetsSeeder::class
+            UsersSeeder::class,
+            AssetsSeeder::class,
+            BidsSeeder::class
         ]);
     }
 }

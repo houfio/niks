@@ -25,6 +25,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 class Kernel extends HttpKernel
 {
     protected $middleware = [
+        StartSession::class,
         ValidatePostSize::class,
         TrimStrings::class,
         ConvertEmptyStringsToNull::class,
@@ -33,7 +34,6 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'web' => [
             AddQueuedCookiesToResponse::class,
-            StartSession::class,
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,

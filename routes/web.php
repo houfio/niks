@@ -3,36 +3,40 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::get('/reset', function () {
-    return view('forgot_password');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
+Route::view('/', 'index');
+Route::view('/register', 'register');
+Route::view('/login', 'login');
 
 Route::get('/logout', function () {
     Auth::logout();
-
     return redirect('/login');
 });
 
-Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/register', 'Auth\RegisterController@register')->middleware('can:create,App\User');
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::get('/reset/{token}', function (string $token) {
-    return view('reset_password', [
-        'token' => $token
-    ]);
+Route::prefix('reset')->group(function () {
+    Route::post('', 'Auth\ForgotPasswordController@forgotPassword');
+    Route::view('', 'forgot_password');
+    Route::post('{token}', 'Auth\ResetPasswordController@reset');
+    Route::get('{token}', function (string $token) {
+        return view('reset_password', [
+            'token' => $token
+        ]);
+    });
 });
 
-Route::post('/reset', 'Auth\ForgotPasswordController@forgotPassword');
-Route::post('/reset/{token}', 'Auth\ResetPasswordController@reset');
+Route::resource('users', 'UserController')->except([
+    'show', 'create', 'store'
+]);
+
+Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
+
+Route::resource('advertisements', 'AdvertisementController')->except([
+    'edit', 'update'
+]);
+
+Route::prefix('bid')->group(function () {
+    Route::post('{advertisement}', 'BidController@store');
+    Route::delete('{bid}', 'BidController@destroy');
+});

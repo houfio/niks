@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('mail.registered.title') }}</title>
+    <title>{{ __('mails/registered.title') }}</title>
   </head>
   <body>
     <div class="content">
-      <span>{{ __('mail.title', ['name' => "$user->first_name $user->last_name"]) }}</span>
+      <span>{{ __('mails/general.title', ['name' => "$user->first_name $user->last_name"]) }}</span>
       <p>
-        {{ __('mail.registered.paragraphOne') }}
+        {{ __('mails/registered.paragraphOne') }}
       </p>
       <p>
-        {{ __('mail.registered.paragraphTwo') }}
+        {{ __('mails/registered.paragraphTwo') }}
       </p>
       <span>
-        {{ __('mail.greetings') }}<br/>
-        {{ __('mail.team') }}
+        {{ __('mails/general.greetings') }}<br/>
+        {{ __('mails/general.team') }}
       </span>
     </div>
   </body>

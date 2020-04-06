@@ -22,8 +22,10 @@ class RegisterController extends Controller
         $user->zip_code = $data['zip_code'];
         $user->phone_number = $data['phone_number'];
         $user->house_number = $data['house_number'];
+        $user->motivation = $data['motivation'];
 
         $user->save();
+        $request->session()->flash('message', __('messages/register.sent'));
 
         Mail::to($user->email)->send(new RegisterMail($user));
 

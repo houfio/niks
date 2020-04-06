@@ -1,0 +1,73 @@
+.advertisement {
+  padding: 2rem;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  outline: none;
+  transition: background-color .25s ease;
+
+  &:hover, &:focus {
+    cursor: pointer;
+
+    @include with-theme {
+      background-color: themed('card');
+    }
+  }
+
+  &:active {
+    @include with-theme {
+      background-color: themed('cardClick');
+    }
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-description {
+    margin: 2rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: white;
+    background-color: $orange;
+    border-radius: 50%;
+    font-weight: bold;
+  }
+
+  @include with-breakpoint(tablet_landscape) {
+    margin-right: 1rem;
+  }
+}
+
+.bids {
+  margin-bottom: 1rem;
+}
+
+.bid {
+  display: flex;
+  align-items: center;
+  margin-bottom: .25rem;
+
+  &:last-of-type {
+    margin-top: .5rem;
+    font-weight: bold;
+
+    & .price {
+      padding: .25rem .5rem;
+      color: white;
+      background-color: $orange;
+      border-radius: .5rem;
+    }
+  }
+}

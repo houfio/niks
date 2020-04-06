@@ -3,9 +3,8 @@
 @section('title', 'Lokale Ruilkring \'s-Hertogenbosch')
 
 @section('content')
-  <div class="content">
-    <h1 class="page-heading">
-      Nieuws & informatie
-    </h1>
-  </div>
+  <x-errors/>
+  <x-empty icon="newspaper">
+    Er zijn nog geen nieuwsberichten
+  </x-empty>
 @endsection

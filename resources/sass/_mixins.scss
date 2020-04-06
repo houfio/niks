@@ -1,4 +1,4 @@
-@mixin at-breakpoint($breakpoint) {
+@mixin with-breakpoint($breakpoint) {
   $size: map-get($breakpoints, $breakpoint);
 
   @if $size != 0 {
@@ -7,5 +7,22 @@
     }
   } @else {
     @content;
+  }
+}
+
+@mixin with-theme() {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+
+      @each $key, $submap in $map {
+        $theme-map: map-merge($theme-map, (
+          $key: map-get(map-get($themes, $theme), '#{$key}')
+        )) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
   }
 }

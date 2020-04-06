@@ -15,7 +15,7 @@ class ForgotPasswordRequest extends FormRequest
             return false;
         }
 
-        return boolval($user->approved);
+        return $user->is_approved;
     }
 
     public function rules()
@@ -28,16 +28,16 @@ class ForgotPasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => __('validation.required', ['attribute' => ':attribute']),
-            'email' => __('validation.email', ['value' => ':input']),
-            'exists' => __('validation.exists', ['attribute' => ':attribute']),
+            'required' => __('validation/messages.required', ['attribute' => ':attribute']),
+            'email' => __('validation/messages.email', ['value' => ':input']),
+            'exists' => __('validation/messages.exists', ['attribute' => ':attribute']),
         ];
     }
 
     public function attributes()
     {
         return [
-            'email' => __('validation.attributes.email'),
+            'email' => __('general/attributes.email'),
         ];
     }
 }

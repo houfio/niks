@@ -16,6 +16,27 @@ class Advertisement extends Model
 
     public function assets()
     {
-        return $this->belongsToMany(Asset::class, 'advertisement_asset');
+        return $this->belongsToMany(Asset::class, 'advertisement_assets');
+    }
+
+    public function bids()
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+    public function cost(): ?int
+    {
+        return $this->enable_bidding ? $this->highestBid() : $this->price;
+    }
+
+    private function highestBid(): ?int
+    {
+        if (!$this->enable_bidding) {
+            return 0;
+        }
+
+        $highestBid = $this->bids()->max('bid');
+
+        return is_null($highestBid) ? $this->minimum_price : $highestBid;
     }
 }

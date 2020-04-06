@@ -9,6 +9,7 @@ class PasswordReset extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $keyType = 'string';
+    protected $primaryKey = 'email';
     protected $table = 'password_resets';
 
     protected $casts = [

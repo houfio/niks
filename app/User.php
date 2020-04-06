@@ -25,6 +25,8 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean',
+        'is_approved' => 'boolean'
     ];
 
     public function advertisements()
@@ -35,5 +37,15 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         Mail::to($this->email)->send(new PasswordResetMail($token, $this));
+    }
+
+    public function bids()
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+    public function getFullName(): string
+    {
+        return "$this->first_name $this->last_name";
     }
 }

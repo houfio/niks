@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Asset::class, function (Faker $faker) {
     return [
-        'path' => $faker->imageUrl()
+        'path' => 'https://placeimg.com/640/360/any'
     ];
 });

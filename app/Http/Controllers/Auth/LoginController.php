@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -25,17 +27,29 @@ class LoginController extends Controller
         $password = $request->get('password');
         $email = $request->get('email');
 
-        $this->incrementLoginAttempts($request);
         $tooMany = $this->hasTooManyLoginAttempts($request);
 
-        if (!$tooMany && Auth::attempt(['password' => $password, 'email' => $email, 'approved' => 1], $rememberMe)) {
+        if (!$tooMany && Auth::attempt(['password' => $password, 'email' => $email, 'is_approved' => 1], $rememberMe)) {
             $this->clearLoginAttempts($request);
+            $request->session()->flash('message', __('messages/login.success'));
+
             return redirect('/');
         } else {
+            $this->incrementLoginAttempts($request);
+            $user = User::firstWhere('email', $email);
+
+            if (is_null($user) || !$user->is_approved) {
+                $error = 'views/login.invalid_login';
+            } elseif ($tooMany) {
+                $error = 'views/login.timeout';
+            } else {
+                $error = 'views/login.invalid_login';
+            }
+
             return redirect('/login')
                 ->withInput($request->only($this->username(), 'remember'))
                 ->withErrors([
-                    $tooMany ? 'login.timeout' : 'login.invalid_login'
+                    $error
                 ]);
         }
     }

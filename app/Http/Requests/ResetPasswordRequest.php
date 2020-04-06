@@ -22,19 +22,19 @@ class ResetPasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => __('validation.required', ['attribute' => ':attribute']),
-            'max' => __('validation.max', ['attribute' => ':attribute', 'max' => ':max']),
-            'exists' => __('validation.exists', ['attribute' => ':attribute']),
-            'min' => __('validation.min', ['attribute' => ':attribute', 'min' => ':min'])
+            'required' => __('validation/messages.required', ['attribute' => ':attribute']),
+            'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
+            'exists' => __('validation/messages.exists', ['attribute' => ':attribute']),
+            'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min'])
         ];
     }
 
     public function attributes()
     {
         return [
-            'password' => __('validation.attributes.password'),
-            'password_confirmation' => __('validation.attributes.password_confirmation'),
-            'email' => __('validation.attributes.email')
+            'password' => __('general/attributes.password'),
+            'password_confirmation' => __('general/attributes.password_confirmation'),
+            'email' => __('general/attributes.email')
         ];
     }
 }

@@ -1,0 +1,165 @@
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  @include with-breakpoint(tablet_landscape) {
+    flex-direction: row;
+  }
+}
+
+.aside {
+  padding-bottom: 1rem;
+
+  @include with-breakpoint(tablet_landscape) {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+}
+
+.container {
+  margin: 0 auto;
+
+  @each $breakpoint, $size in $breakpoints {
+    @include with-breakpoint($breakpoint) {
+      width: calc(#{if($size == 0, '100%', $size)} - 2rem);
+    }
+  }
+}
+
+.navigation {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 0;
+  height: 100vh;
+  padding: 2rem 1rem 2rem 0;
+  z-index: 100;
+
+  @include with-breakpoint(desktop) {
+    min-width: 15rem;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: -1;
+
+    @include with-theme {
+      background-color: themed('card');
+    }
+  }
+
+  &-item {
+    position: relative;
+    padding: .75rem 1rem;
+    border-radius: 2.75rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    outline: none;
+    transition: background-color .25s ease;
+
+    &:focus, &:hover {
+      background-color: transparentize($orange, .85);
+    }
+
+    &:active {
+      background-color: transparentize($orange, .65);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &.active {
+      color: $orange;
+    }
+
+    &[data-dot]::after {
+      content: "";
+      position: absolute;
+      display: block;
+      top: .5rem;
+      right: .75rem;
+      width: .75rem;
+      height: .75rem;
+      background-color: $blue;
+      border-radius: 50%;
+
+      @include with-breakpoint(desktop) {
+        top: .75rem;
+        right: 1rem;
+      }
+
+      @include with-theme {
+        border: .1rem solid themed('card');
+      }
+    }
+
+    & > .content {
+      display: none;
+      position: relative;
+      margin: 0 .25rem 0 .5rem;
+
+      @include with-breakpoint(desktop) {
+        display: inline-block;
+      }
+    }
+  }
+
+  &-header {
+    display: none;
+    margin: 0 0 3rem 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    @include with-breakpoint(desktop) {
+      display: block;
+    }
+  }
+
+  & .button {
+    width: 100%;
+  }
+}
+
+.sidebar {
+  margin-left: 1rem;
+  padding: 1rem;
+  min-width: 15rem;
+  border-radius: .5rem;
+
+  &-footer {
+    margin: 1rem 1rem 0;
+  }
+
+  @include with-theme {
+    background-color: themed('card');
+  }
+
+  @include with-breakpoint(tablet_landscape) {
+    margin: 2rem -1rem 0 0;
+  }
+
+  & .button {
+    width: 100%;
+  }
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.spacer {
+  flex: 1;
+}
