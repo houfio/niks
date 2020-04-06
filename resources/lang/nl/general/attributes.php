@@ -20,7 +20,7 @@ return [
     'price' => 'Prijs',
     'enable_bidding' => 'Bieden',
     'minimum_price' => 'Minimum prijs',
-    'is_service' => 'Dienst',
+    'is_service' => 'Type',
     'asking' => 'Vraag',
     'images' => 'Afbeeldingen',
     'remember_me' => 'Ingelogd blijven',

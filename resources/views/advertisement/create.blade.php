@@ -25,23 +25,26 @@
         </div>
         <div class="text-input">
           <label for="short_description">{{ __('general/attributes.short_description') }}</label>
-          <input type="text" id="short_description" name="short_description" value="{{ old('short_description') }}"
-                 required/>
+          <input type="text" id="short_description" name="short_description" value="{{ old('short_description') }}" required/>
         </div>
       </div>
       <div class="text-input" data-resize>
         <label for="long_description">{{ __('general/attributes.long_description') }}</label>
-        <textarea id="long_description" rows="6" name="long_description" rows="3">{{ old('long_description') }}</textarea>
+        <textarea id="long_description" rows="6" name="long_description"
+                  rows="3">{{ old('long_description') }}</textarea>
       </div>
-      <div class="text-input">
-        <input type="file" id="images" name="images[]" multiple>
-        <label for="images">{{ __('general/attributes.images') }}</label>
-      </div>
-      <div class="select-input">
-        <select name="is_service">
-          <option value="0">Product</option>
-          <option value="1">Dienst</option>
-        </select>
+      <div class="two-columns">
+        <div class="text-input">
+          <input type="file" id="images" name="images[]" multiple>
+          <label for="images">{{ __('general/attributes.images') }}</label>
+        </div>
+        <div class="text-input" data-arrow>
+          <select name="is_service">
+            <option value="0">Product</option>
+            <option value="1">Dienst</option>
+          </select>
+          <label for="is_service">{{ __('general/attributes.is_service') }}</label>
+        </div>
       </div>
       <div class="checkbox-input">
         <input type="checkbox" id="enable_bidding" name="enable_bidding" value="0">
