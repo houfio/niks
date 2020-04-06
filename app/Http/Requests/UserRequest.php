@@ -13,7 +13,7 @@ class UserRequest extends FormRequest
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'phone_number' => 'required|phone_number',
-            'zip_code' => 'required|zip_code|max:6',
+            'zip_code' => 'required|zip_code|max:7',
             'house_number' => 'required|max:6',
             'neighbourhood' => 'max:80',
             'is_admin' => 'in:on,null',
