@@ -13,11 +13,13 @@ $themes: (
   light: (
     foreground: #000,
     background: #fff,
-    card: #f7f7f7
+    card: #f7f7f7,
+    cardClick: #efefef
   ),
   dark: (
     foreground: #fff,
     background: #15202b,
-    card: #0d141a
+    card: #0d141a,
+    cardClick: #080b10
   )
 )

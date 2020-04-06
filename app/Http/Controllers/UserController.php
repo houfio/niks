@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserRequest;
 use App\User;
 use Exception;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -22,13 +22,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(User $user)
-    {
-        return view('user.show', [
-            'user' => $user
-        ]);
-    }
-
     public function edit(User $user)
     {
         return view('user.update', [
@@ -36,7 +29,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         $data = $request->validated();
 
@@ -54,16 +47,18 @@ class UserController extends Controller
         }
 
         $user->save();
+        $request->session()->flash('message', __('messages/user.updated'));
 
-        return redirect("/users/$user->id/edit");
+        return redirect('/users');
     }
 
     /**
      * @throws Exception
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
         $user->delete();
+        $request->session()->flash('message', __('messages/user.deleted'));
 
         return redirect('/users');
     }

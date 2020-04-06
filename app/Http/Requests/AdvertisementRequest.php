@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateAdvertisementRequest extends FormRequest
+class AdvertisementRequest extends FormRequest
 {
     public function authorize()
     {
@@ -17,7 +17,7 @@ class CreateAdvertisementRequest extends FormRequest
             'title' => 'required|max:60',
             'short_description' => 'required|max:255|min:30',
             'long_description' => 'nullable',
-            'minimum_price' => 'nullable|required_if:enable_bidding,true',
+            'minimum_price' => 'nullable|min:1|required_if:enable_bidding,true',
             'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
             'images' => 'required_if:asking,false',
@@ -34,9 +34,11 @@ class CreateAdvertisementRequest extends FormRequest
             'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
             'required_if' => __('validation/messages.required', ['attribute' => ':attribute']),
             'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute']),
-            'min' => __('validation/messages.min', ['attribute' => ':attribute']),
+            'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min']),
             'boolean' => __('validation/messages.boolean', ['attribute' => ':attribute']),
-            'image' => __('validation/messages.image', ['attribute' => ':attribute'])
+            'image' => __('validation/messages.image', ['attribute' => ':attribute']),
+            'minimum_price.min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min']),
+            'price.min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min']),
         ];
     }
 

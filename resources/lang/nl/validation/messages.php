@@ -7,6 +7,8 @@ return [
     'required' => ':attribute is een verplicht veld',
     'max' => ':attribute mag niet langer zijn dan :max karakters',
     'min' => ':attribute mag niet korter zijn dan :min karakters',
+    'max_num' => ':attribute mag niet hoger zijn dan :max',
+    'min_num' => ':attribute mag niet lager zijn dan :min',
     'phone_number' => ':value is geen geldig Nederlands nummer',
     'zip_code' => ':value is geen geldig Nederlandse postcode',
     'confirmed' => ':attribute komt niet overeen',

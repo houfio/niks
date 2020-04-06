@@ -1,0 +1,39 @@
+.user {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  padding: 0 2rem;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  outline: none;
+  transition: background-color .25s ease;
+
+  &:hover, &:focus {
+    cursor: pointer;
+
+    @include with-theme {
+      background-color: themed('card');
+    }
+  }
+
+  &:active {
+    @include with-theme {
+      background-color: themed('cardClick');
+    }
+  }
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -.125rem;
+    left: 50%;
+    width: 25%;
+    height: .25rem;
+    transform: translateX(-50%);
+
+    @include with-theme {
+      background-color: themed('card');
+    }
+  }
+}

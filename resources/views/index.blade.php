@@ -1,7 +1,10 @@
-@extends('layouts.empty')
+@extends('layouts.app')
 
 @section('title', 'Lokale Ruilkring \'s-Hertogenbosch')
 
-@section('icon', 'newspaper')
-
-@section('empty', 'Er zijn nog geen nieuwsberichten')
+@section('content')
+  <x-errors/>
+  <x-empty icon="newspaper">
+    Er zijn nog geen nieuwsberichten
+  </x-empty>
+@endsection

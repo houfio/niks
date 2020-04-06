@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Advertisement;
 use App\Asset;
-use App\Http\Requests\CreateAdvertisementRequest;
+use App\Http\Requests\AdvertisementRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdvertisementController extends Controller
@@ -16,7 +17,11 @@ class AdvertisementController extends Controller
 
     public function index()
     {
-        return view('advertisement.index');
+        $advertisements = Advertisement::paginate(10);
+
+        return view('advertisement.index', [
+            'advertisements' => $advertisements
+        ]);
     }
 
     public function create()
@@ -24,7 +29,7 @@ class AdvertisementController extends Controller
         return view('advertisement.create');
     }
 
-    public function store(CreateAdvertisementRequest $request)
+    public function store(AdvertisementRequest $request)
     {
         $data = $request->validated();
 
@@ -53,13 +58,15 @@ class AdvertisementController extends Controller
 
         $advertisement->save();
         $advertisement->assets()->saveMany($assets);
+        $request->session()->flash('message', __('messages/advertisement.sent'));
 
         return redirect('/');
     }
 
-    public function destroy(Advertisement $advertisement)
+    public function destroy(Request $request, Advertisement $advertisement)
     {
         $advertisement->delete();
+        $request->session()->flash('message', __('messages/advertisement.deleted'));
 
         return redirect('/advertisements');
     }

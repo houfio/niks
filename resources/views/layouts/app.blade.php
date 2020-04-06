@@ -30,7 +30,7 @@
           {{ __('views/advertisements.title') }}
         </x-navigation-item>
         @can('viewAny', \App\User::class)
-          <x-navigation-item icon="users" path="users" dot="true">
+          <x-navigation-item icon="users" path="users" dot>
             {{ __('views/users.title') }}
           </x-navigation-item>
         @endcan
@@ -41,7 +41,7 @@
         @yield('content')
       </main>
       @if(View::hasSection('sidebar'))
-        <aside>
+        <aside class="aside">
           @yield('sidebar')
         </aside>
       @endif

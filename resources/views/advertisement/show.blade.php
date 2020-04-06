@@ -26,9 +26,19 @@
         @forelse($bids as $bid)
           <div class="bid">
             {{ $bid->user->first_name }}
+            <div class="spacer"></div>
             <span class="price">
               {{ $bid->bid }}
             </span>
+            @can('delete', $bid)
+              <form method="post" action="{{ @action('BidController@destroy', ['bid' => $bid->id]) }}">
+                @csrf
+                @method('delete')
+                <button type="submit">
+                  <i class="fas fa-times"></i>
+                </button>
+              </form>
+            @endcan
           </div>
         @empty
           {{ __('views/advertisements.no_bids') }}
@@ -53,7 +63,9 @@
   </div>
   <div class="sidebar-footer">
     <div>{{ $user->first_name }} {{ $user->last_name }}</div>
-    <div class="subtle">{{ $advertisement->created_at->diffForHumans() }}</div>
+    <div class="subtle" title="{{ $advertisement->created_at->isoFormat('LLLL') }}">
+      {{ $advertisement->created_at->diffForHumans() }}
+    </div>
     @can('delete', $advertisement)
       <form
         method="post"

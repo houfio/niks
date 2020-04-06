@@ -1,4 +1,5 @@
 .button {
+  display: inline-block;
   padding: .75rem 1.25rem;
   color: white;
   background-color: $orange;
@@ -25,7 +26,7 @@
   position: relative;
   margin-bottom: 1rem;
 
-  & > input, & > textarea {
+  & > input, & > textarea, & > select {
     width: 100%;
     padding: 1.75rem 1.25rem .75rem 1.25rem;
     background-color: $gray;
@@ -33,15 +34,24 @@
     border-radius: .5rem;
     outline: none;
     resize: vertical;
+    appearance: none;
     transition: box-shadow .25s ease;
 
     &:focus {
       box-shadow: 0 0 0 3px darken($gray, 10%);
     }
 
-    &::-webkit-resizer {
-      display: none;
+    &[type="file"] {
+      padding-bottom: .4rem;
     }
+  }
+
+  &[data-arrow]::after {
+    content: "\F078";
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    font-family: "Font Awesome 5 Free";
   }
 
   & > label {
@@ -53,7 +63,6 @@
     font-weight: bold;
     text-transform: uppercase;
     pointer-events: none;
-    transition: top .25s ease, font-size .25s ease;
 
     &[data-required]::after {
       content: " *";

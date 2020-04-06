@@ -16,11 +16,11 @@ class ForgotPasswordController extends Controller
         $response = $this->broker()->sendResetLink($this->credentials($request));
 
         if ($response === Password::RESET_LINK_SENT) {
-            $request->session()->flash('success', __('views/forgotPassword.successStatus'));
+            $request->session()->flash('message', __('views/forgotPassword.successStatus'));
 
             return $this->sendResetLinkResponse($request, $response);
         } else {
-            $request->session()->flash('error', __('views/forgotPassword.unsuccessfulStatus'));
+            $request->session()->flash('message', __('views/forgotPassword.unsuccessfulStatus'));
 
             return $this->sendResetLinkFailedResponse($request, $response);
         }

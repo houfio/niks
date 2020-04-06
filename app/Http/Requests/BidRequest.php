@@ -7,14 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BidRequest extends FormRequest
 {
-    private function minimumBid(): int
-    {
-        $advertisement = $this->route('advertisement');
-        $highestBid = $advertisement->bids()->max('bid');
-
-        return is_null($highestBid) ? $advertisement->minimum_price : $highestBid + 1;
-    }
-
     public function authorize()
     {
         return true;
@@ -32,7 +24,8 @@ class BidRequest extends FormRequest
         return [
             'required' => __('validation/messages.required', ['attribute' => ':attribute']),
             'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min']),
-            'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute'])
+            'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute']),
+            'bid.min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min'])
         ];
     }
 
@@ -41,5 +34,10 @@ class BidRequest extends FormRequest
         return [
             'bid' => __('general/attributes.bid')
         ];
+    }
+
+    private function minimumBid(): int
+    {
+        return $this->route('advertisement')->cost() + 1;
     }
 }
