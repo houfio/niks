@@ -16,11 +16,12 @@ class AccountApprovalMail extends Mailable
     public function __construct(User $user)
     {
         $this->user = $user;
+        $this->subject = __('mails/approved.title');
     }
 
     public function build()
     {
-        return $this->view('mails.account_approved')
+        return $this->view('mails.approved')
             ->from('no-reply@niksvoorniks.nl')
             ->replyTo('info@niksvoorniks.nl');
     }

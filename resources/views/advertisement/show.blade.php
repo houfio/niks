@@ -34,7 +34,7 @@
               <form method="post" action="{{ @action('BidController@destroy', ['bid' => $bid->id]) }}">
                 @csrf
                 @method('delete')
-                <button type="submit">
+                <button type="submit" dusk="delete_bid_{{ $bid->id }}">
                   <i class="fas fa-times"></i>
                 </button>
               </form>
