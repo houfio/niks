@@ -31,7 +31,7 @@ class LoginController extends Controller
 
         if (!$tooMany && Auth::attempt(['password' => $password, 'email' => $email, 'is_approved' => 1], $rememberMe)) {
             $this->clearLoginAttempts($request);
-            $request->session()->flash('message', 'Ingelogd');
+            $request->session()->flash('message', __('messages/login.success'));
 
             return redirect('/');
         } else {

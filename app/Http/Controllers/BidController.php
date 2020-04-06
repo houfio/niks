@@ -26,7 +26,7 @@ class BidController extends Controller
         $bid->user()->associate($request->user());
 
         $bid->save();
-        $request->session()->flash('message', 'Bod bijgewerkt');
+        $request->session()->flash('message', __('messages/bid.sent'));
 
         return redirect("/advertisements/$advertisement->id");
     }
@@ -37,7 +37,7 @@ class BidController extends Controller
     public function destroy(Request $request, Bid $bid)
     {
         $bid->delete();
-        $request->session()->flash('message', 'Bod verwijderd');
+        $request->session()->flash('message', __('messages/bid.deleted'));
 
         return redirect()->back();
     }

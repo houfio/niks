@@ -58,7 +58,7 @@ class AdvertisementController extends Controller
 
         $advertisement->save();
         $advertisement->assets()->saveMany($assets);
-        $request->session()->flash('message', 'Advertentie bijgewerkt');
+        $request->session()->flash('message', __('messages/advertisement.sent'));
 
         return redirect('/');
     }
@@ -66,7 +66,7 @@ class AdvertisementController extends Controller
     public function destroy(Request $request, Advertisement $advertisement)
     {
         $advertisement->delete();
-        $request->session()->flash('message', 'Advertentie verwijderd');
+        $request->session()->flash('message', __('messages/advertisement.deleted'));
 
         return redirect('/advertisements');
     }

@@ -47,7 +47,7 @@ class UserController extends Controller
         }
 
         $user->save();
-        $request->session()->flash('message', 'Gebruiker bijgewerkt');
+        $request->session()->flash('message', __('messages/user.updated'));
 
         return redirect('/users');
     }
@@ -58,7 +58,7 @@ class UserController extends Controller
     public function destroy(Request $request, User $user)
     {
         $user->delete();
-        $request->session()->flash('message', 'Gebruiker verwijderd');
+        $request->session()->flash('message', __('messages/user.deleted'));
 
         return redirect('/users');
     }
