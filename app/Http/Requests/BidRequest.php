@@ -24,7 +24,8 @@ class BidRequest extends FormRequest
         return [
             'required' => __('validation/messages.required', ['attribute' => ':attribute']),
             'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min']),
-            'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute'])
+            'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute']),
+            'bid.min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min'])
         ];
     }
 

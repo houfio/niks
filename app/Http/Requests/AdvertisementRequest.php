@@ -17,7 +17,7 @@ class AdvertisementRequest extends FormRequest
             'title' => 'required|max:60',
             'short_description' => 'required|max:255|min:30',
             'long_description' => 'nullable',
-            'minimum_price' => 'nullable|required_if:enable_bidding,true',
+            'minimum_price' => 'nullable|min:1|required_if:enable_bidding,true',
             'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
             'images' => 'required_if:asking,false',
@@ -36,7 +36,9 @@ class AdvertisementRequest extends FormRequest
             'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute']),
             'min' => __('validation/messages.min', ['attribute' => ':attribute']),
             'boolean' => __('validation/messages.boolean', ['attribute' => ':attribute']),
-            'image' => __('validation/messages.image', ['attribute' => ':attribute'])
+            'image' => __('validation/messages.image', ['attribute' => ':attribute']),
+            'minimum_price.min' => __('validation/messages.min_num', ['attribute' => ':attribute']),
+            'price.min' => __('validation/messages.min_num', ['attribute' => ':attribute']),
         ];
     }
 
