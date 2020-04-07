@@ -23,9 +23,9 @@ class AdvertisementController extends Controller
 
         if (isset($queries['search'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {
-                $query->where('title', "%{$queries['search']}%")
-                    ->orWhere('short_description', "%{$queries['search']}%")
-                    ->orWhere('long_description', "%{$queries['search']}%");
+                $query->where('title', 'like', "%{$queries['search']}%")
+                    ->orWhere('short_description', 'like', "%{$queries['search']}%")
+                    ->orWhere('long_description', 'like', "%{$queries['search']}%");
             });
         }
 
