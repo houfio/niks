@@ -6,7 +6,6 @@ use App\Advertisement;
 use App\Asset;
 use App\Http\Requests\AdvertisementRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class AdvertisementController extends Controller
 {
@@ -60,7 +59,7 @@ class AdvertisementController extends Controller
         $advertisement->assets()->saveMany($assets);
         $request->session()->flash('message', __('messages/advertisement.sent'));
 
-        return redirect('/advertisements');
+        return redirect()->action('AdvertisementController@index');
     }
 
     public function destroy(Request $request, Advertisement $advertisement)
@@ -68,7 +67,7 @@ class AdvertisementController extends Controller
         $advertisement->delete();
         $request->session()->flash('message', __('messages/advertisement.deleted'));
 
-        return redirect('/advertisements');
+        return redirect()->action('AdvertisementController@index');
     }
 
     public function show(Advertisement $advertisement)

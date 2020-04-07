@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'index');
+Route::view('/', 'index')->name('home');
 Route::view('/register', 'register');
 Route::view('/login', 'login');
 
@@ -24,6 +25,15 @@ Route::prefix('reset')->group(function () {
             'token' => $token
         ]);
     });
+});
+
+Route::prefix('setup')->group(function () {
+    Route::get('password/{user}', 'Auth\ForgotPasswordController@sendPasswordSetupMail')->middleware('can:edit-all');
+    Route::get('{token}', function (string $token) {
+        return view('setup_password', [
+            'token' => $token
+        ]);
+    })->name('setup_password');
 });
 
 Route::resource('users', 'UserController')->except([
