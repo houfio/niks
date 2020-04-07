@@ -20,8 +20,8 @@ class ForgotPasswordController extends Controller
         $user->is_approved = true;
 
         $user->save();
-
         $request->session()->flash('message', __('messages/user.approved'));
+
         return redirect()->action('UserController@index');
     }
 

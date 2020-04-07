@@ -28,7 +28,7 @@ Route::prefix('reset')->group(function () {
 });
 
 Route::prefix('setup')->group(function () {
-    Route::get('password/{user}', 'Auth\ForgotPasswordController@sendPasswordSetupMail')->middleware(IsAdmin::class);
+    Route::get('password/{user}', 'Auth\ForgotPasswordController@sendPasswordSetupMail')->middleware('can:edit-all');
     Route::get('{token}', function (string $token) {
         return view('setup_password', [
             'token' => $token
