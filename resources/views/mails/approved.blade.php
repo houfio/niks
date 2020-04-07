@@ -15,7 +15,7 @@
         {{ __('mails/approved.paragraphTwo') }}
       </p>
       <p>
-        {{ action('Auth\ResetPasswordController@reset', ['token' => $token]) }}
+        {{ route('setup_password', ['token' => $token]) }}
       </p>
       <span>
         {{ __('mails/general.greetings') }}<br/>
