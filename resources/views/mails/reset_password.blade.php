@@ -7,12 +7,12 @@
   </head>
   <body>
     <div class="content">
-      <span>{{ __('mails/general.title', ['name' => "$user->first_name $user->last_name"]) }}</span>
+      <span>{{ __('mails/general.title', ['name' => $user->getFullName()]) }}</span>
       <p>
         {{ __('mails/resetPassword.paragraphOne') }}
       </p>
       <p>
-        {{ env('APP_URL') }}/reset/{{ $token }}
+        {{ action('Auth\ResetPasswordController@reset', ['token' => $token]) }}
       </p>
       <p>
         {{ __('mails/resetPassword.paragraphTwo') }}

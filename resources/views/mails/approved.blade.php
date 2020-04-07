@@ -15,7 +15,7 @@
         {{ __('mails/approved.paragraphTwo') }}
       </p>
       <p>
-        {{ getenv('APP_URL') }}/reset/{{ $token }}
+        {{ action('Auth\ResetPasswordController@reset', ['token' => $token]) }}
       </p>
       <span>
         {{ __('mails/general.greetings') }}<br/>

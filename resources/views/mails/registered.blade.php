@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="content">
-      <span>{{ __('mails/general.title', ['name' => "$user->first_name $user->last_name"]) }}</span>
+      <span>{{ __('mails/general.title', ['name' => $user->getFullName()]) }}</span>
       <p>
         {{ __('mails/registered.paragraphOne') }}
       </p>
