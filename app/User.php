@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Mail\AccountApprovalMail;
 use App\Mail\PasswordResetMail;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,7 +37,11 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        Mail::to($this->email)->send(new PasswordResetMail($token, $this));
+        if ($this->is_approved) {
+            Mail::to($this->email)->send(new PasswordResetMail($token, $this));
+        } else {
+            Mail::to($this->email)->send(new AccountApprovalMail($token, $this));
+        }
     }
 
     public function bids()

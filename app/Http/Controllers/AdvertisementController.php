@@ -6,7 +6,6 @@ use App\Advertisement;
 use App\Asset;
 use App\Http\Requests\AdvertisementRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class AdvertisementController extends Controller
 {

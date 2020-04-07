@@ -26,6 +26,8 @@ Route::prefix('reset')->group(function () {
     });
 });
 
+Route::get('/setup/password/{user}', 'Auth\ForgotPasswordController@sendPasswordSetupMail');
+
 Route::resource('users', 'UserController')->except([
     'show', 'create', 'store'
 ]);

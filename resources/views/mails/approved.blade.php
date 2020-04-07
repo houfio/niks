@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="content">
-      <span>{{ __('mails/approved.title') }}</span>
+      <span>{{ __('mails/general.title', ['name' => $user->getFullName()]) }}</span>
       <p>
         {{ __('mails/approved.paragraphOne') }}
       </p>
@@ -15,7 +15,7 @@
         {{ __('mails/approved.paragraphTwo') }}
       </p>
       <p>
-        {{ getenv('APP_URL') }}
+        {{ getenv('APP_URL') }}/reset/{{ $token }}
       </p>
       <span>
         {{ __('mails/general.greetings') }}<br/>
