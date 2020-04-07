@@ -71,5 +71,10 @@
         {{ __('views/updateUser.submit') }}
       </button>
     </form>
+    <form method="post" action="{{ @action('UserController@destroy', ['user' => $user]) }}">
+      @csrf
+      @method('delete')
+      <button class="button" type="submit" name="delete">Gebruiker verwijderen</button>
+    </form>
   </div>
 @endsection
