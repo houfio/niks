@@ -20,8 +20,8 @@
           @csrf
           @method('put')
           <div>
-            <button type="submit" name="approve" value="1" class="button">Goedkeuren</button>
-            <button type="submit" name="approve" value="0" class="button">Afkeuren</button>
+            <button type="submit" name="approve" value="1" class="button" dusk="approve_{{ $user->id }}">Goedkeuren</button>
+            <button type="submit" name="approve" value="0" class="button" dusk="disapprove_{{ $user->id }}">Afkeuren</button>
           </div>
         </form>
       @endif
