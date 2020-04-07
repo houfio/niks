@@ -16,7 +16,6 @@ class ApproveController extends Controller
         $approve = boolval($data['approve']);
 
         if ($approve) {
-            $request->session()->flash('message', __('messages/user.approved'));
             return redirect()->action('Auth\ForgotPasswordController@sendPasswordSetupMail', ['user' => $user->id]);
         }
 

@@ -7,12 +7,13 @@ use App\Http\Requests\ForgotPasswordRequest;
 use App\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
 {
     use SendsPasswordResetEmails;
 
-    public function sendPasswordSetupMail(User $user)
+    public function sendPasswordSetupMail(Request $request, User $user)
     {
         $this->broker()->sendResetLink(['email' => $user->email]);
 
@@ -20,6 +21,7 @@ class ForgotPasswordController extends Controller
 
         $user->save();
 
+        $request->session()->flash('message', __('messages/user.approved'));
         return redirect()->action('UserController@index');
     }
 
