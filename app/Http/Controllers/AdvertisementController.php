@@ -14,12 +14,36 @@ class AdvertisementController extends Controller
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $advertisements = Advertisement::paginate(10);
+        $queries = $request->query();
+
+        $advertisements = new Advertisement();
+        $advertisements = $advertisements->newQuery();
+
+        if (isset($queries['search'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('title', "%{$queries['search']}%")
+                    ->orWhere('short_description', "%{$queries['search']}%")
+                    ->orWhere('long_description', "%{$queries['search']}%");
+            });
+        }
+
+        if (isset($queries['price'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('price','<=', (int)$queries['price'])
+                    ->orWhere('minimum_price', '<=', (int)$queries['price']);
+            });
+        }
+
+        if (isset($queries['bidding'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('enable_bidding', (int)$queries['bidding']);
+            });
+        }
 
         return view('advertisement.index', [
-            'advertisements' => $advertisements
+            'advertisements' => $advertisements->paginate(10)
         ]);
     }
 
