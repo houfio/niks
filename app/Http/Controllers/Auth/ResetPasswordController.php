@@ -25,7 +25,8 @@ class ResetPasswordController extends Controller
         $validateToken = Hash::check($token, $passwordReset->token);
 
         if (!$validateToken || $this->tokenExpired($passwordReset)) {
-            return redirect("/reset/$token")
+            return redirect()
+                ->action('Auth\ResetPasswordController@reset', ['token' => $token])
                 ->withErrors([
                     'views/resetPassword.tokenExpired'
                 ]);
@@ -35,7 +36,7 @@ class ResetPasswordController extends Controller
         $this->resetPassword($user, $data['password']);
         $passwordReset->delete();
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 
     private function tokenExpired(PasswordReset $passwordResetData): bool

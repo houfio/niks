@@ -29,6 +29,6 @@ class RegisterController extends Controller
 
         Mail::to($user->email)->send(new RegisterMail($user));
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 }

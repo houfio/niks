@@ -33,7 +33,7 @@ class LoginController extends Controller
             $this->clearLoginAttempts($request);
             $request->session()->flash('message', __('messages/login.success'));
 
-            return redirect('/');
+            return redirect()->route('home');
         } else {
             $this->incrementLoginAttempts($request);
             $user = User::firstWhere('email', $email);
@@ -46,7 +46,8 @@ class LoginController extends Controller
                 $error = 'views/login.invalid_login';
             }
 
-            return redirect('/login')
+            return redirect()
+                ->action('Auth\LoginController@login')
                 ->withInput($request->only($this->username(), 'remember'))
                 ->withErrors([
                     $error
