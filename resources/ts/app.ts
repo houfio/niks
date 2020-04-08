@@ -58,7 +58,7 @@ const hideEvents = ['mouseleave', 'blur'];
     const submitButton = document.querySelector<HTMLFormElement>('#deleteForm');
 
     if (input != null && warning != null && submitButton != null) {
-      button.addEventListener('click', function () {
+      button.addEventListener('click', () => {
         const inputValue = input.value;
         if (inputValue.toLowerCase() === 'verwijderen') {
           warning.textContent = '';
