@@ -14,12 +14,20 @@ $themes: (
     foreground: #000,
     background: #fff,
     card: #f7f7f7,
-    cardClick: #efefef
+    cardClick: #efefef,
+    tableHeaderBackground: #c1c1c1,
+    tableBackground: #e1e1e1,
+    tableAlternativeBackground: #d7d7d7,
+    tableHover: #d1d1d1
   ),
   dark: (
     foreground: #fff,
     background: #15202b,
     card: #0d141a,
-    cardClick: #080b10
+    cardClick: #080b10,
+    tableHeaderBackground: #0d141a,
+    tableBackground: #141e2a,
+    tableAlternativeBackground: #141d2a,
+    tableHover: #111a26
   )
 )

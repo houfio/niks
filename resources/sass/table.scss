@@ -1,0 +1,46 @@
+.table {
+  border-collapse: collapse;
+  margin: 1em 0.5em;
+}
+
+.table-fixed {
+  width: 100%;
+}
+
+.table>thead>tr {
+  @include with-theme {
+    background-color: themed('tableHeaderBackground');
+  }
+}
+
+.table>tbody>tr {
+  @include with-theme {
+    background-color: themed('tableBackground');
+  }
+}
+
+.table>thead>tr, .table>tbody>tr {
+  @include with-theme {
+    color: themed('foreground');
+  }
+}
+
+.table-striped>tbody>tr:nth-child(odd) {
+  @include with-theme {
+    background-color: themed('tableAlternativeBackground');
+  }
+}
+
+.table-hover>tbody>tr:hover {
+  @include with-theme {
+    background-color: themed('tableHover');
+  }
+}
+
+.table>thead>tr>td, .table>tbody>tr>td {
+  padding: 1em;
+}
+
+.table>tbody>tr[data-href], .table>tbody>td[data-href] {
+  cursor: pointer;
+}

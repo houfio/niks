@@ -18,7 +18,8 @@ class UserController extends Controller
     public function index()
     {
         return view('user.index', [
-            'users' => User::orderBy('created_at', 'desc')->get()
+            'approved_users' => User::orderBy('created_at', 'desc')->where('is_approved', 1)->get(),
+            'pending_users' => User::where('is_approved', 0)->get()
         ]);
     }
 
