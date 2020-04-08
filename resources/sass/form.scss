@@ -20,10 +20,14 @@
       color: themed('foreground');
     }
   }
+
+  &.danger {
+    background-color: $red !important;
+  }
 }
 
-.danger {
-  background-color: $red !important;
+#confirmation-word {
+  text-transform: uppercase;
 }
 
 .divider {
@@ -33,7 +37,6 @@
 
 .warning {
   color: $red !important;
-
 }
 
 .text-input {

@@ -55,8 +55,9 @@ class UserController extends Controller
     /**
      * @throws Exception
      */
-    public function destroy(Request $request, User $user)
+    public function destroy(Request $request, $id)
     {
+        $user = User::find($id);
         $user->delete();
         $request->session()->flash('message', __('messages/user.deleted'));
 

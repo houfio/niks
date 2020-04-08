@@ -49,6 +49,26 @@ const hideEvents = ['mouseleave', 'blur'];
       }
     });
   });
+
+  const button = document.getElementById('submitDelete');
+
+  if (button != null) {
+    const input = document.querySelector<HTMLInputElement>('#confirmation-word');
+    const warning = document.querySelector<HTMLElement>('#warning-message');
+    const submitButton = document.querySelector<HTMLFormElement>('#deleteForm');
+
+    if (input != null && warning != null && submitButton != null) {
+      button.addEventListener('click', function () {
+        const inputValue = input.value;
+        if (inputValue.toLowerCase() === 'verwijderen') {
+          warning.textContent = '';
+          submitButton.submit();
+        } else {
+          warning.textContent = 'Veld is niet correct ingevuld!';
+        }
+      });
+    }
+  }
 })();
 
 function create(source: HTMLElement, target: HTMLElement) {

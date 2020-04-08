@@ -71,8 +71,8 @@
         {{ __('views/updateUser.submit') }}
       </button>
     </form>
-    <div class="">
-      <form method="post" action="{{ @action('UserController@destroy', ['user' => $user]) }}" id="deleteForm">
+    <div>
+      <form method="post" action="{{ @action('UserController@destroy', ['user' => $user->id]) }}" id="deleteForm">
         @csrf
         @method('delete')
         <a class="button danger" data-micromodal-trigger="login-modal">

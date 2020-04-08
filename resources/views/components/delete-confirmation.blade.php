@@ -4,30 +4,16 @@
   </h3>
 </div>
 <div class="text-input">
-  <label for="confirmation-word">{{ __('views/users.type-confirmation') }}</label>
-  <input type="text" id="confirmation-word" name="confirmation-word" style="text-transform: uppercase;" autocomplete="off" required>
+  <label for="confirmation-word">{{ __('views/users.type_confirmation') }}</label>
+  <input type="text" id="confirmation-word" name="confirmation-word" autocomplete="off" required>
   <span class="warning divider" id="warning-message"></span>
 </div>
 <div>
   <p>
-    <b>LET OP</b>: Deze actie kan niet ongedaan worden gemaakt! <br>
-    Alle gekoppelde advertentie's, boden en persoonlijke gegevens zullen permanent verwijderd worden.
+    <b>{{ __('views/users.warning') }}</b>: {{ __('views/users.detailed_warning') }}
   </p>
 </div>
 <div class="button-group">
-  <a class="button danger delete" onclick="submitDelete()">Permanent verwijderen</a>
+  <a class="button danger" id="submitDelete">Permanent verwijderen</a>
   <a class="button transparent" data-micromodal-close>Terug</a>
 </div>
-<script>
-  function submitDelete() {
-    let inputval = document.getElementById("confirmation-word").value;
-    let warning = document.getElementById("warning-message");
-    if(inputval.toLowerCase() === "verwijderen") {
-      warning.textContent = "";
-      document.getElementById("deleteForm").submit();
-    }
-    else {
-      warning.textContent = "Veld is niet correct ingevuld!";
-    }
-  }
-</script>
