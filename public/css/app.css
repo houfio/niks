@@ -6661,6 +6661,15 @@ main > .content {
   background-color: #eb3434 !important;
 }
 
+.divider {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.warning {
+  color: #eb3434 !important;
+}
+
 .text-input {
   position: relative;
   margin-bottom: 1rem;

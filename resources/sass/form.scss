@@ -26,6 +26,16 @@
   background-color: $red !important;
 }
 
+.divider {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.warning {
+  color: $red !important;
+
+}
+
 .text-input {
   position: relative;
   margin-bottom: 1rem;
