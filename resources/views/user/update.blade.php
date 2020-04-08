@@ -71,10 +71,16 @@
         {{ __('views/updateUser.submit') }}
       </button>
     </form>
-    <form method="post" action="{{ @action('UserController@destroy', ['user' => $user]) }}">
+    <form method="post" action="{{ @action('UserController@destroy', ['user' => $user]) }}" id="deleteForm">
       @csrf
       @method('delete')
-      <button class="button" type="submit" name="delete">Gebruiker verwijderen</button>
+      <a class="button danger" data-micromodal-trigger="login-modal">
+        {{ __('views/users.delete') }}
+      </a>
+      <x-modal id="login" :title="__('views/users.delete')">
+        <x-delete-confirmation/>
+      </x-modal>
     </form>
   </div>
+  <script src="/js/app.js"></script>
 @endsection
