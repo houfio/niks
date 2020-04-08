@@ -67,4 +67,3 @@ function destroy(popper: Instance, target: HTMLElement) {
     once: true
   });
 }
-
