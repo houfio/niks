@@ -50,7 +50,3 @@ Route::prefix('bid')->group(function () {
     Route::post('{advertisement}', 'BidController@store');
     Route::delete('{bid}', 'BidController@destroy');
 });
-
-Route::resource('intakes', 'IntakeController')->only([
-    'index', 'create', 'store', 'destroy'
-]);
