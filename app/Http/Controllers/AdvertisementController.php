@@ -46,7 +46,7 @@ class AdvertisementController extends Controller
         $advertisement->user()->associate($request->user());
         $assets = [];
 
-        if(isset($data['images'])) {
+        if (isset($data['images'])) {
             foreach ($data['images'] as $image) {
                 $asset = new Asset();
 
