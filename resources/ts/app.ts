@@ -51,7 +51,6 @@ const hideEvents = ['mouseleave', 'blur'];
   });
 
   const button = document.getElementById('submitDelete');
-
   if (button != null) {
     const input = document.querySelector<HTMLInputElement>('#confirmation-word');
     const warning = document.querySelector<HTMLElement>('#warning-message');
@@ -60,11 +59,13 @@ const hideEvents = ['mouseleave', 'blur'];
     if (input != null && warning != null && submitButton != null) {
       button.addEventListener('click', () => {
         const inputValue = input.value;
-        if (inputValue.toLowerCase() === 'verwijderen') {
-          warning.textContent = '';
+
+        // @ts-ignore
+        if (inputValue.toLowerCase() === email) {
+          warning.style.display = 'none';
           submitButton.submit();
         } else {
-          warning.textContent = 'Veld is niet correct ingevuld!';
+          warning.style.display = 'block';
         }
       });
     }

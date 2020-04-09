@@ -79,7 +79,9 @@
           {{ __('views/users.delete') }}
         </a>
         <x-modal id="login" :title="__('views/users.delete')">
-          <x-delete-confirmation/>
+          <x-delete-confirmation
+            :email="$user->email"
+          />
         </x-modal>
       </form>
     </div>
