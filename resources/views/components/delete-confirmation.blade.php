@@ -10,7 +10,7 @@
 </div>
 <div>
   <p>
-    <b>{{ __('views/users.warning') }}</b>: {{ __('views/users.detailed_warning') }}
+    <b>{{ __('views/users.warning') }}</b>: {{ __('views/users.detailed_warning.delete_user') }}
   </p>
 </div>
 <div class="button-group">
