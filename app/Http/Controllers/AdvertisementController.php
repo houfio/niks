@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Advertisement;
 use App\Asset;
 use App\Http\Requests\AdvertisementRequest;
+use App\Services\LocationService;
 use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
 {
-    public function __construct()
+    private LocationService $locationService;
+
+    public function __construct(LocationService $locationService)
     {
+        $this->locationService = $locationService;
+
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
@@ -20,6 +25,8 @@ class AdvertisementController extends Controller
 
         $advertisements = new Advertisement();
         $advertisements = $advertisements->newQuery();
+
+        $test = $this->locationService->getCoordinates('5406AH', 131);
 
         if (isset($queries['search'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {

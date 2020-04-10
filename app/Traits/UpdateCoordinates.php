@@ -26,8 +26,8 @@ trait UpdateCoordinates
 
         if ($changed) {
             $coordinates = $this->locationService->getCoordinates($updatedAttributes['zipCode'], $updatedAttributes['houseNumber']);
-            $this->latitude = $coordinates->getLatitude();
-            $this->longitude = $coordinates->getLongitude();
+            $this->latitude = optional($coordinates)->getLatitude();
+            $this->longitude = optional($coordinates)->getLongitude();
         }
 
         return parent::save($options);
