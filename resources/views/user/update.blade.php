@@ -71,5 +71,19 @@
         {{ __('views/updateUser.submit') }}
       </button>
     </form>
+    <div>
+      <form method="post" action="{{ @action('UserController@destroy', ['user' => $user->id]) }}" id="deleteForm">
+        @csrf
+        @method('delete')
+        <a class="button danger" data-micromodal-trigger="delete-modal">
+          {{ __('views/users.delete') }}
+        </a>
+        <x-modal id="delete" :title="__('views/users.delete')">
+          <x-delete-confirmation
+            :email="$user->email"
+          />
+        </x-modal>
+      </form>
+    </div>
   </div>
 @endsection
