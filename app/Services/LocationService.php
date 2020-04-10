@@ -12,10 +12,10 @@ class LocationService
     private string $apiKey;
     private Client $client;
 
-    public function __construct(Client $client)
+    public function __construct()
     {
         $this->apiKey = getenv('KADASTER_API_KEY');
-        $this->client = $client;
+        $this->client = new Client();
     }
 
     public function getCoordinates(string $zipCode, string $houseNumber): ?Coordinates
