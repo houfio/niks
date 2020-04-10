@@ -14,10 +14,9 @@ class CreateIntakesTable extends Migration
             $table->unsignedBigInteger('invitee_id');
             $table->dateTime('date');
             $table->boolean('accepted')->default(false);
-            $table->timestamps();
-
             $table->foreign('inviter_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('invitee_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

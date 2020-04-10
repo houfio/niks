@@ -13,10 +13,10 @@ class Intake extends Model
     ];
 
     public function inviter() {
-        return $this->belongsTo(User::class, 'inviter_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     public function invitee() {
-        return $this->belongsTo(User::class, 'invitee_id', 'id');
+        return $this->belongsTo(User::class);
     }
 }

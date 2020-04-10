@@ -14,11 +14,11 @@ class UsersSeeder extends Seeder
             }
         });
 
-        factory(User::class)->create([
+        factory(User::class, 5)->create([
             'is_admin' => true,
             'is_approved' => true
         ])->each(function (User $user) {
-            $user->advertisements()->saveMany(factory(Advertisement::class, 10)->make());
+            $user->advertisements()->saveMany(factory(Advertisement::class, 5)->make());
         });
     }
 }
