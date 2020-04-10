@@ -41,7 +41,7 @@ class AdvertisementController extends Controller
         $advertisement->enable_bidding = isset($data['enable_bidding']);
         $advertisement->minimum_price = $data['minimum_price'];
         $advertisement->is_service = $data['is_service'];
-        $advertisement->asking = isset($data['asking']);
+        $advertisement->is_asking = isset($data['is_asking']);
 
         $advertisement->user()->associate($request->user());
         $assets = [];
@@ -100,7 +100,7 @@ class AdvertisementController extends Controller
         $advertisement->enable_bidding = isset($data['enable_bidding']);
         $advertisement->minimum_price = $data['minimum_price'];
         $advertisement->is_service = $data['is_service'];
-        $advertisement->asking = isset($data['asking']);
+        $advertisement->is_aksing = isset($data['is_asking']);
 
         $advertisement->user()->associate($request->user());
 
