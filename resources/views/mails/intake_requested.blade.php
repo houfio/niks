@@ -13,10 +13,10 @@
       </p>
       <ul>
         <li>
-          Datum: {{ $date }}
+          {{ __('mails/intake.date') }}: {{ $date }}
         </li>
         <li>
-          Tijd: {{ $time }}
+          {{ __('mails/intake.time') }}: {{ $time }}
         </li>
       </ul>
       <p>
