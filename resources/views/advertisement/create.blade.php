@@ -62,8 +62,8 @@
         <label for="enable_bidding">{{ __('general/attributes.enable_bidding') }}</label>
       </div>
       <div class="checkbox-input">
-        <input type="checkbox" id="asking" name="asking" value="0">
-        <label for="asking">{{ __('general/attributes.asking') }}</label>
+        <input type="checkbox" id="is_asking" name="is_asking" value="0">
+        <label for="is_asking">{{ __('general/attributes.is_asking') }}</label>
       </div>
       <button class="button" type="submit" name="create">
         {{ __('general/attributes.create') }}

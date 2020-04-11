@@ -20,7 +20,7 @@ class AdvertisementRequest extends FormRequest
             'minimum_price' => 'nullable|min:1|required_if:enable_bidding,true',
             'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
-            'images' => 'required_if:asking,false',
+            'images' => 'required_if:is_asking,false',
             'images.*' => 'image|mimes:png,jpeg,jpg'
         ];
     }
@@ -52,7 +52,7 @@ class AdvertisementRequest extends FormRequest
             'minimum_price' => __('general/attributes.minimum_price'),
             'price' => __('general/attributes.price'),
             'is_service' => __('general/attributes.is_service'),
-            'asking' => __('general/attributes.asking'),
+            'is_asking' => __('general/attributes.is_asking'),
             'images' => __('general/attributes.images')
         ];
     }
