@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Logout;
 
 use App\User;
 use Laravel\Dusk\Browser;

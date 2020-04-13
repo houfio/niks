@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Register;
 
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

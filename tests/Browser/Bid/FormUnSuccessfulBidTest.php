@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Bid;
 
 use App\Advertisement;
 use App\User;
