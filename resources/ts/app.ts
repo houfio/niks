@@ -49,27 +49,6 @@ const hideEvents = ['mouseleave', 'blur'];
       }
     });
   });
-
-  const button = document.getElementById('submitDelete');
-  if (button != null) {
-    const input = document.querySelector<HTMLInputElement>('#confirmation-word');
-    const warning = document.querySelector<HTMLElement>('#warning-message');
-    const submitButton = document.querySelector<HTMLFormElement>('#deleteForm');
-
-    if (input != null && warning != null && submitButton != null) {
-      button.addEventListener('click', () => {
-        const inputValue = input.value;
-
-        // @ts-ignore
-        if (inputValue.toLowerCase() === email) {
-          warning.style.display = 'none';
-          submitButton.submit();
-        } else {
-          warning.style.display = 'block';
-        }
-      });
-    }
-  }
 })();
 
 function create(source: HTMLElement, target: HTMLElement) {
