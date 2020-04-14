@@ -45,6 +45,16 @@ class User extends Authenticatable
         return $this->hasMany(Advertisement::class);
     }
 
+    public function intakes()
+    {
+        return $this->hasMany(Intake::class, 'invitee_id');
+    }
+
+    public function sentIntakes()
+    {
+        return $this->hasMany(Intake::class, 'inviter_id');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         if ($this->is_approved) {

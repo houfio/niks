@@ -18,7 +18,7 @@ jobs:
       - name: Install Chrome
         run: php artisan dusk:chrome-driver
       - name: Update Chrome
-        run: php artisan dusk:update
+        run: php artisan dusk:update 80
       - name: Start Chrome
         run: ./vendor/laravel/dusk/bin/chromedriver-linux &
       - name: Run server

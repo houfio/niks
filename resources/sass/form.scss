@@ -20,6 +20,27 @@
       color: themed('foreground');
     }
   }
+
+  &.danger {
+    background-color: $red !important;
+  }
+}
+
+#confirmation-word {
+  text-transform: uppercase;
+}
+
+#warning-message {
+  display: none;
+}
+
+.divider {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.warning {
+  color: $red !important;
 }
 
 .text-input {
