@@ -9,12 +9,37 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
+    $addressess = [
+        [
+            '5466PT',
+            '21'
+        ],
+        [
+            '5466PB',
+            '87'
+        ],
+        [
+            '5406AH',
+            '131'
+        ],
+        [
+            '5825JX',
+            '29'
+        ],
+        [
+            '5825JB',
+            '7'
+        ]
+    ];
+
+    $randomAddress = $addressess[array_rand($addressess)];
+
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'phone_number' => $faker->phoneNumber,
-        'zip_code' => $faker->postcode,
-        'house_number' => $faker->buildingNumber,
+        'zip_code' => $randomAddress[0],
+        'house_number' => $randomAddress[1],
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => Hash::make('test123'),

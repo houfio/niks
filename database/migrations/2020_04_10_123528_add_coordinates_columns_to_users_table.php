@@ -9,8 +9,9 @@ class AddCoordinatesColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
+            $table->string('zip_code', 6)->change();
         });
     }
 
@@ -19,6 +20,7 @@ class AddCoordinatesColumnsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('latitude');
             $table->dropColumn('longitude');
+            $table->string('zip_code', 7)->change();
         });
     }
 }
