@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
-    $addressess = [
+    $addresses = [
         [
             '5466PT',
             '21'
@@ -32,7 +32,7 @@ $factory->define(User::class, function (Faker $faker) {
         ]
     ];
 
-    $randomAddress = $addressess[array_rand($addressess)];
+    $randomAddress = $addresses[array_rand($addresses)];
 
     return [
         'first_name' => $faker->firstName,
