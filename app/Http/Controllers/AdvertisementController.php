@@ -26,8 +26,6 @@ class AdvertisementController extends Controller
         $advertisements = new Advertisement();
         $advertisements = $advertisements->newQuery();
 
-        $test = $this->locationService->getCoordinates('5406AH', 131);
-
         if (isset($queries['search'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {
                 $query->where('title', 'like', "%{$queries['search']}%")

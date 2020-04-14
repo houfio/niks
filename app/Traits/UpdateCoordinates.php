@@ -13,9 +13,7 @@ trait UpdateCoordinates
         $updatedAttributes = $this->getDirty();
 
         foreach ($updatedAttributes as $attribute) {
-            if (in_array($attribute, $this->updateCoordinates)) {
-                $changed = true;
-            }
+            $changed |= in_array($attribute, $this->updateCoordinates);
         }
 
         if ($changed) {

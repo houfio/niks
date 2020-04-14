@@ -18,13 +18,6 @@ class LocationService
         $this->client = new Client();
     }
 
-    public function validateAddress(string $zipCode, string $houseNumber): bool
-    {
-        $houseNumber = $this->getHouseNumber($houseNumber);
-        $response = $this->makeCall('GET', self::URL, self::LOCATION, "postcode=$zipCode&huisnummer=$houseNumber");
-        return isset($response->nummeraanduidingen[0]);
-    }
-
     public function getCoordinates(string $zipCode, string $houseNumber): ?Coordinates
     {
         $houseNumber = $this->getHouseNumber($houseNumber);
