@@ -47,6 +47,18 @@ class AdvertisementController extends Controller
             });
         }
 
+        if (isset($queries['distance'])) {
+            $distance = (int)$queries['distance'];
+
+            $advertisements->join('users as u', 'advertisements.user_id', '=', 'u.id');
+            $advertisements = $advertisements->where(function ($query) use ($queries, $request, $distance) {
+                $query->whereRaw("ROUND(ST_Distance_Sphere(
+                     point({$request->user()->longitude}, {$request->user()->latitude}),
+                     point(u.longitude, u.latitude)
+                 ) / 1000, 2) <= $distance");
+            });
+        }
+
         return view('advertisement.index', [
             'advertisements' => $advertisements->paginate(10)
         ]);
