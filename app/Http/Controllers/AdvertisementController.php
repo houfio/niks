@@ -53,9 +53,13 @@ class AdvertisementController extends Controller
             $advertisements->join('users as u', 'advertisements.user_id', '=', 'u.id');
             $advertisements = $advertisements->where(function ($query) use ($queries, $request, $distance) {
                 $query->whereRaw("ROUND(ST_Distance_Sphere(
-                     point({$request->user()->longitude}, {$request->user()->latitude}),
+                     point(?, ?),
                      point(u.longitude, u.latitude)
-                 ) / 1000, 2) <= $distance");
+                 ) / 1000, 2) <= ?", [
+                    $request->user()->longitude,
+                    $request->user()->latitude,
+                    $distance
+                ]);
             });
         }
 
