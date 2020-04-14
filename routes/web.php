@@ -46,6 +46,10 @@ Route::resource('advertisements', 'AdvertisementController')->except([
     'edit', 'update'
 ]);
 
+Route::resource('transactions', 'TransactionController')->except([
+    'create', 'store', 'show', 'edit', 'update', 'destroy'
+]);
+
 Route::prefix('bid')->group(function () {
     Route::post('{advertisement}', 'BidController@store');
     Route::delete('{bid}', 'BidController@destroy');

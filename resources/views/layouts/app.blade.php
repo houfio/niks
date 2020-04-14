@@ -35,6 +35,11 @@
             {{ __('views/users.title') }}
           </x-navigation-item>
         @endcan
+        @can('viewAny', \App\Transaction::class)
+          <x-navigation-item icon="coins" path="transactions">
+            {{ __('views/transactions.title') }}
+          </x-navigation-item>
+        @endcan
       @endauth
     </nav>
     <div class="main">
