@@ -5,21 +5,50 @@ namespace App\Http\Controllers;
 use App\Advertisement;
 use App\Asset;
 use App\Http\Requests\AdvertisementRequest;
+use App\Services\LocationService;
 use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
 {
-    public function __construct()
+    private LocationService $locationService;
+
+    public function __construct(LocationService $locationService)
     {
+        $this->locationService = $locationService;
+
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $advertisements = Advertisement::paginate(10);
+        $queries = $request->query();
+
+        $advertisements = new Advertisement();
+        $advertisements = $advertisements->newQuery();
+
+        if (isset($queries['search'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('title', 'like', "%{$queries['search']}%")
+                    ->orWhere('short_description', 'like', "%{$queries['search']}%")
+                    ->orWhere('long_description', 'like', "%{$queries['search']}%");
+            });
+        }
+
+        if (isset($queries['price'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('price','<=', (int)$queries['price'])
+                    ->orWhere('minimum_price', '<=', (int)$queries['price']);
+            });
+        }
+
+        if (isset($queries['bidding'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('enable_bidding', (int)$queries['bidding']);
+            });
+        }
 
         return view('advertisement.index', [
-            'advertisements' => $advertisements
+            'advertisements' => $advertisements->paginate(10)
         ]);
     }
 
