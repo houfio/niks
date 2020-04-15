@@ -11,8 +11,8 @@ class MakeFavoritePivotTable extends Migration
         Schema::create('user_favorites', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('advertisements_id')->unsigned();
-            $table->foreign('advertisements_id')->references('id')->on('advertisements')->onDelete('cascade');
+            $table->bigInteger('advertisement_id')->unsigned();
+            $table->foreign('advertisement_id')->references('id')->on('advertisements')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
