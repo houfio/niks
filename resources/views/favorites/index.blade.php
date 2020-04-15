@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Lokale Ruilkring \'s-Hertogenbosch')
+@section('title', __('views/favorites.title'))
 
 @section('content')
   <x-errors/>
-  <x-empty icon="newspaper">
-    U heeft nog geen favorieten
+  <x-empty icon="star">
+    {{ __('views/favorites.empty') }}
   </x-empty>
 @endsection

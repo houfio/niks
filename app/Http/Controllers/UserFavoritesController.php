@@ -7,7 +7,7 @@ use App\User;
 use App\UserFavorite;
 use Illuminate\Http\Request;
 
-class UserFavoriteController extends Controller
+class UserFavoritesController extends Controller
 {
     public function __construct()
     {
@@ -17,7 +17,7 @@ class UserFavoriteController extends Controller
     public function index(Request $request)
     {
         return view('favorites.index', [
-            'favorites' => $request->user()->favorites()->get()
+            'favorites' => $request->user()->favorites()->orderBy('user_favorites.created_at', 'desc')->get()
         ]);
     }
 
