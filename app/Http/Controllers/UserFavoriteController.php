@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FavoriteRequest;
 use App\User;
 use App\UserFavorite;
+use Illuminate\Http\Request;
 
 class UserFavoriteController extends Controller
 {
@@ -13,18 +14,30 @@ class UserFavoriteController extends Controller
         $this->authorizeResource(UserFavorite::class, 'userfavorite');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-
+        return view('favorites.index', [
+            'favorites' => $request->user()->favorites()->get()
+        ]);
     }
 
     public function store(FavoriteRequest $request)
     {
+        $data = $request->validated();
 
+        $user = $request->user();
+        $user->favorites()->attach($data['advertisement']);
+
+        $request->session()->flash('message', __('messages/favorite.saved'));
+
+        return redirect()->back();
     }
 
-    public function destroy(UserFavorite $userFavorite)
+    public function destroy(Request $request, UserFavorite $userFavorite)
     {
+        $userFavorite->delete();
+        $request->session()->flash('message', __('messages/favorite.deleted'));
 
+        return redirect()->back();
     }
 }
