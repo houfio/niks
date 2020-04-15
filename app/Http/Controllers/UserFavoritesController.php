@@ -17,7 +17,7 @@ class UserFavoritesController extends Controller
     public function index(Request $request)
     {
         return view('favorites.index', [
-            'favorites' => $request->user()->favorites()->orderBy('user_favorites.created_at', 'desc')->get()
+            'favorites' => $request->user()->favorites()->orderBy('user_favorites.created_at', 'desc')->paginate()
         ]);
     }
 
