@@ -8,17 +8,20 @@ class UsersSeeder extends Seeder
 {
     public function run()
     {
-        // 5 unapproved users
         factory(User::class, 5)->create();
 
-        // 5 approved users
-        factory(User::class, 5)->create([
+        $approvedUsers = factory(User::class, 5)->create([
             'is_approved' => true
         ])->each(function (User $user) {
             $user->advertisements()->saveMany(factory(Advertisement::class, 10)->make());
         });
 
-        // 5 admins
+        $advertisements = Advertisement::all();
+
+        $approvedUsers->each(function (User $user) use ($advertisements) {
+            $user->favorites()->saveMany($advertisements->random(rand(1, 4)));
+        });
+
         factory(User::class, 5)->create([
             'is_admin' => true,
             'is_approved' => true

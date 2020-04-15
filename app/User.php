@@ -73,4 +73,14 @@ class User extends Authenticatable
     {
         return "$this->first_name $this->last_name";
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Advertisement::class, 'user_favorites')
+            ->using(UserFavorite::class)
+            ->withPivot([
+                'created_at',
+                'updated_at',
+            ]);
+    }
 }
