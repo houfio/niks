@@ -24,5 +24,6 @@ return [
     'is_asking' => 'Vraag',
     'images' => 'Afbeeldingen',
     'remember_me' => 'Ingelogd blijven',
-    'create' => 'Aanmaken'
+    'create' => 'Aanmaken',
+    'advertisement' => 'Advertentie'
 ];
