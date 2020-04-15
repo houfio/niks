@@ -47,7 +47,7 @@
       <form method="post" action="{{ @action('BidController@store', ['advertisement' => $advertisement->id]) }}">
         @csrf
         <div class="text-input white">
-          <label for="bid">Bod</label>
+          <label for="bid">{{ __('general/attributes.bid') }}</label>
           <input type="number" id="bid" name="bid" required/>
         </div>
         <button type="submit" class="button" name="place_bid">
@@ -66,6 +66,15 @@
     <div class="subtle" title="{{ $advertisement->created_at->isoFormat('LLLL') }}">
       {{ $advertisement->created_at->diffForHumans() }}
     </div>
+    <form
+      method="post"
+      action="{{ @action('UserFavoritesController@store', ['advertisement' => $advertisement]) }}"
+    >
+      @csrf
+      <button type="submit" class="button" style="margin-top: 1rem">
+        {{ __('views/advertisements.favorite') }}
+      </button>
+    </form>
     @can('delete', $advertisement)
       <form
         method="post"
@@ -73,7 +82,7 @@
       >
         @csrf
         @method('delete')
-        <button type="submit" class="button" style="margin-top: 1rem">
+        <button type="submit" class="button transparent">
           {{ __('views/advertisements.delete') }}
         </button>
       </form>

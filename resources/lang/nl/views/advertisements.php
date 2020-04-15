@@ -2,6 +2,9 @@
 
 return [
     'title' => 'Advertenties',
+    'empty' => 'Er zijn nog geen advertenties',
+    'create' => 'Aanmaken',
+    'favorite' => 'Favoriet',
     'delete' => 'Verwijderen',
     'bid' => 'Bieden',
     'no_bids' => 'Geen biedingen',

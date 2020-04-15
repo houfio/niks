@@ -2,5 +2,5 @@
 
 return [
     'title' => 'Favorieten',
-    'empty' => 'U heeft nog geen favorieten'
+    'empty' => 'Je hebt nog geen favorieten'
 ];
