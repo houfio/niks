@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FavoriteRequest;
+use App\User;
 use App\UserFavorite;
-use Illuminate\Http\Request;
 
 class UserFavoriteController extends Controller
 {
-    public function index(Request $request)
+    public function __construct()
+    {
+        $this->authorizeResource(UserFavorite::class, 'userfavorite');
+    }
+
+    public function index()
     {
 
     }
 
-    public function store(Request $request)
+    public function store(FavoriteRequest $request)
     {
 
     }
-
 
     public function destroy(UserFavorite $userFavorite)
     {
