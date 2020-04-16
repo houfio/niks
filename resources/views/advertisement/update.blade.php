@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Advertentie aanmaken')
+@section('title', 'Advertentie aanpassen')
 
 @section('content')
   <div class="content">
