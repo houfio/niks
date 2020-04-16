@@ -25,5 +25,6 @@ return [
     'images' => 'Afbeeldingen',
     'remember_me' => 'Ingelogd blijven',
     'create' => 'Aanmaken',
-    'advertisement' => 'Advertentie'
+    'advertisement' => 'Advertentie',
+    'edit' => 'Aanpassen'
 ];
