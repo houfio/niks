@@ -9,7 +9,9 @@ class IntakeController extends Controller
 {
     public function index()
     {
-
+        return view('intake.index', [
+            'intakes' => Intake::orderBy('created_at', 'desc')->orderBy('accepted')->get()
+        ]);
     }
 
     public function create()
