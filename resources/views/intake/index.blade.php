@@ -13,14 +13,14 @@
     @foreach($intakes as $intake)
       <div>
         <h3>
-          {{ $intake->invitee()->getFullName() }}
+          {{ $intake->invitee->getFullName() }}
         </h3>
       </div>
     @endforeach
   @else
     <x-errors/>
     <x-empty icon="calendar-alt">
-      Er zijn nog geen intakes
+      {{ __('views/intakes.empty') }}
     </x-empty>
   @endif
 @endsection
