@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FavoriteRequest;
-use App\User;
 use App\UserFavorite;
 use Illuminate\Http\Request;
 
@@ -24,6 +23,14 @@ class UserFavoritesController extends Controller
     public function store(FavoriteRequest $request)
     {
         $data = $request->validated();
+
+        $hasFavorited = UserFavorite::where('user_id', $request->user()->id)->where('advertisement_id', (int)$data['advertisement'])->count();
+
+        if ($hasFavorited) {
+            $request->session()->flash('message', __('messages/favorite.already_favorited'));
+
+            return redirect()->back();
+        }
 
         $user = $request->user();
         $user->favorites()->attach($data['advertisement']);
