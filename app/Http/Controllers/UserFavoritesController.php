@@ -27,8 +27,6 @@ class UserFavoritesController extends Controller
         $hasFavorited = UserFavorite::where('user_id', $request->user()->id)->where('advertisement_id', (int)$data['advertisement'])->count();
 
         if ($hasFavorited) {
-            $request->session()->flash('message', __('messages/favorite.already_favorited'));
-
             return redirect()->back();
         }
 
