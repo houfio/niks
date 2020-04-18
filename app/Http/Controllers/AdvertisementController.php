@@ -5,21 +5,66 @@ namespace App\Http\Controllers;
 use App\Advertisement;
 use App\Asset;
 use App\Http\Requests\AdvertisementRequest;
+use App\Services\LocationService;
 use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
 {
-    public function __construct()
+    private LocationService $locationService;
+
+    public function __construct(LocationService $locationService)
     {
+        $this->locationService = $locationService;
+
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $advertisements = Advertisement::paginate(10);
+        $queries = $request->query();
+
+        $advertisements = new Advertisement();
+        $advertisements = $advertisements->newQuery();
+
+        if (isset($queries['search'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('title', 'like', "%{$queries['search']}%")
+                    ->orWhere('short_description', 'like', "%{$queries['search']}%")
+                    ->orWhere('long_description', 'like', "%{$queries['search']}%");
+            });
+        }
+
+        if (isset($queries['price'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('price','<=', (int)$queries['price'])
+                    ->orWhere('minimum_price', '<=', (int)$queries['price']);
+            });
+        }
+
+        if (isset($queries['bidding'])) {
+            $advertisements = $advertisements->where(function ($query) use ($queries) {
+                $query->where('enable_bidding', (int)$queries['bidding']);
+            });
+        }
+
+        if (isset($queries['distance'])) {
+            $distance = (int)$queries['distance'];
+
+            $advertisements->join('users as u', 'advertisements.user_id', '=', 'u.id');
+            $advertisements = $advertisements->where(function ($query) use ($queries, $request, $distance) {
+                $query->whereRaw("ROUND(ST_Distance_Sphere(
+                     point(?, ?),
+                     point(u.longitude, u.latitude)
+                 ) / 1000, 2) <= ?", [
+                    $request->user()->longitude,
+                    $request->user()->latitude,
+                    $distance
+                ]);
+            });
+        }
 
         return view('advertisement.index', [
-            'advertisements' => $advertisements
+            'advertisements' => $advertisements->paginate(10)
         ]);
     }
 
@@ -41,7 +86,7 @@ class AdvertisementController extends Controller
         $advertisement->enable_bidding = isset($data['enable_bidding']);
         $advertisement->minimum_price = $data['minimum_price'];
         $advertisement->is_service = $data['is_service'];
-        $advertisement->asking = isset($data['asking']);
+        $advertisement->is_asking = isset($data['is_asking']);
 
         $advertisement->user()->associate($request->user());
         $assets = [];
@@ -80,5 +125,46 @@ class AdvertisementController extends Controller
             'assets' => $advertisement->assets()->get(),
             'bids' => $advertisement->bids()->get()
         ]);
+    }
+
+    public function edit(Advertisement $advertisement)
+    {
+        return view('advertisement.update', [
+            'advertisement' => $advertisement
+        ]);
+    }
+
+    public function update(AdvertisementRequest $request, Advertisement $advertisement)
+    {
+        $data = $request->validated();
+
+        $advertisement->title = $data['title'];
+        $advertisement->short_description = $data['short_description'];
+        $advertisement->long_description = $data['long_description'];
+        $advertisement->price = $data['price'];
+        $advertisement->enable_bidding = isset($data['enable_bidding']);
+        $advertisement->minimum_price = $data['minimum_price'];
+        $advertisement->is_service = $data['is_service'];
+        $advertisement->is_aksing = isset($data['is_asking']);
+
+        $advertisement->user()->associate($request->user());
+
+        if (isset($data['images'])) {
+            $assets = [];
+            foreach ($data['images'] as $image) {
+                $asset = new Asset();
+
+                $asset->path = $image->store('public');
+
+                $asset->save();
+                $assets[] = $asset;
+            }
+        }
+
+        $advertisement->save();
+        $advertisement->assets()->saveMany($assets);
+        $request->session()->flash('message', __('messages/advertisement.updated'));
+
+        return redirect()->action('AdvertisementController@index');
     }
 }

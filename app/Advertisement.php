@@ -39,4 +39,9 @@ class Advertisement extends Model
 
         return is_null($highestBid) ? $this->minimum_price : $highestBid;
     }
+
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class)->using(UserFavorite::class);
+    }
 }

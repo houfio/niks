@@ -50,6 +50,10 @@ Route::resource('intakes', 'Intakecontroller')->except([
     'edit', 'update'
 ]);
 
+Route::resource('favorites', 'UserFavoritesController')->only([
+    'index', 'store', 'destroy'
+]);
+
 Route::prefix('bid')->group(function () {
     Route::post('{advertisement}', 'BidController@store');
     Route::delete('{bid}', 'BidController@destroy');
