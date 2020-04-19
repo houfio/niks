@@ -20,7 +20,7 @@
             @csrf
             @method('delete')
             <button class="button" type="submit">
-              <i class="fas fa-trash-alt"></i>
+              {{ __('views/intakes.delete') }}
             </button>
           </form>
         @endif
