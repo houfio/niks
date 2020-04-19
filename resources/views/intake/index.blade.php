@@ -12,9 +12,18 @@
     <x-errors/>
     @foreach($intakes as $intake)
       <div>
-        <h3>
-          {{ $intake->invitee->getFullName() }}
-        </h3>
+        {{ $intake->invitee->getFullName() }}
+        {{ $intake->date }}
+
+        @if(!$intake->accepted)
+          <form action="{{ @action('IntakeController@destroy', ['intake' => $intake]) }}" method="post">
+            @csrf
+            @method('delete')
+            <button class="button" type="submit">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </form>
+        @endif
       </div>
     @endforeach
   @else

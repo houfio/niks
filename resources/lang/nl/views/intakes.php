@@ -2,5 +2,6 @@
 
 return [
     'title' => 'Intakes',
-    'empty' => 'Er zijn geen intakes'
+    'empty' => 'Er zijn geen intakes',
+    'delete' => 'Verwijderen'
 ];

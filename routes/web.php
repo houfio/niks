@@ -46,7 +46,7 @@ Route::resource('advertisements', 'AdvertisementController')->except([
     'edit', 'update'
 ]);
 
-Route::resource('intakes', 'Intakecontroller')->except([
+Route::resource('intakes', 'IntakeController')->except([
     'edit', 'update'
 ]);
 
