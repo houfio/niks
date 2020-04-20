@@ -11,7 +11,7 @@
     </div>
     <x-errors/>
     @foreach($intakes as $intake)
-      <div>
+      <div data-href="{{ url("/intakes/$intake->id") }}">
         {{ $intake->invitee->getFullName() }}
         {{ $intake->date }}
 

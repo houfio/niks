@@ -26,7 +26,9 @@ class IntakeController extends Controller
 
     public function show(Intake $intake)
     {
-
+        return view('intake.show', [
+            'intake' => $intake
+        ]);
     }
 
     public function destroy(Request $request, Intake $intake)
