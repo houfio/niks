@@ -9,7 +9,7 @@ class AddTokenColumnToIntakesTable extends Migration
     public function up()
     {
         Schema::table('intakes', function (Blueprint $table) {
-            $table->string('token', 32);
+            $table->string('token', 300);
         });
     }
 

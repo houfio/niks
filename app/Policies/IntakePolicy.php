@@ -12,7 +12,7 @@ class IntakePolicy
 
     public function before(User $user, string $ability)
     {
-        return optional($user)->is_admin && optional($user)->is_approved ? true : null;
+        return $user->is_admin && $user->is_approved ? true : null;
     }
 
     public function viewAny(User $user) {

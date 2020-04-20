@@ -13,18 +13,18 @@
       </p>
       <ul>
         <li>
-          {{ __('mails/intake.date') }}: {{ date('d-m-Y', strtotime($intake->date)) }}
+          {{ __('mails/intake.date') }}: {{ \Carbon\Carbon::parse($intake->date)->format('d-m-Y') }}
         </li>
         <li>
-          {{ __('mails/intake.time') }}: {{ date('H:i', strtotime($intake->date)) }}
+          {{ __('mails/intake.time') }}: {{ \Carbon\Carbon::parse($intake->date)->format('H:i') }}
         </li>
       </ul>
       <p>
         {{ __('mails/intake.requested.paragraphTwo') }}
-        <a href="{{ route('accept_intake', ['token' => $intake->token, 'accepted' => true]) }}" class="button">
+        <a href="{{ route('accept_intake', ['token' => $intake->token, 'accepted' => 1]) }}" class="button">
           {{ __('mails/intake.accept') }}
         </a>
-        <a href="{{ route('accept_intake', ['token' => $intake->token, 'accepted' => false]) }}" class="button">
+        <a href="{{ route('accept_intake', ['token' => $intake->token, 'accepted' => 0]) }}" class="button">
           {{ __('mails/intake.reject') }}
         </a>
       </p>

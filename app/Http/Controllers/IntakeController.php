@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\IntakeAcceptRequest;
 use App\Http\Requests\IntakeRequest;
 use App\Intake;
 use App\Mail\IntakeAcceptedMail;
 use App\Mail\IntakeMail;
+use App\Mail\IntakeRejectedMail;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class IntakeController extends Controller
 {
@@ -29,7 +30,9 @@ class IntakeController extends Controller
     public function create()
     {
         return view('intake.create', [
-            'invitees' => User::where('is_approved', 0)->get()
+            'invitees' => User::where('is_approved', 0)->whereHas('intakes', function(Builder $query) {
+                $query->where('accepted', '=', 0);
+            })->get()
         ]);
     }
 
@@ -41,10 +44,10 @@ class IntakeController extends Controller
 
         $invitee = User::find($data['invitee']);
 
-        $intake->inviter_id = Auth::id();
-        $intake->invitee_id = $invitee->id;
+        $intake->inviter()->associate($request->user());
+        $intake->invitee()->associate($invitee);
         $intake->date = $data['date'];
-        $intake->token = md5(uniqid('', true));
+        $intake->token = encrypt(Str::random(64));
 
         $intake->save();
 
@@ -70,23 +73,27 @@ class IntakeController extends Controller
         return redirect()->action('IntakeController@index');
     }
 
-    public function accept(Request $request, $token, $accepted) {
-        $data = $request->all();
-
+    public function accept(Request $request, string $token, bool $accepted) {
         $intake = Intake::where('token', $token)->first();
-        $intake->accepted = $accepted;
-
-        $intake->save();
 
         $inviter = User::find($intake->inviter_id);
         $invitee = User::find($intake->invitee_id);
 
-        foreach ([$inviter, $invitee] as $user) {
-            Mail::to($user->email)->send(new IntakeAcceptedMail($intake));
+        if($accepted) {
+            $intake->accepted = $accepted;
+            $intake->save();
+
+            Mail::to($inviter->email)->send(new IntakeAcceptedMail($intake, $inviter));
+            Mail::to($invitee->email)->send(new IntakeAcceptedMail($intake, $invitee));
+        } else {
+            Mail::to($inviter->email)->send(new IntakeRejectedMail($intake, $inviter));
+            Mail::to($invitee->email)->send(new IntakeRejectedMail($intake, $invitee));
+
+            $intake->delete();
         }
 
         $request->session()->flash('message', $accepted ?  __('messages/intake.accepted') :  __('messages/intake.rejected'));
 
-        return redirect()->action('IntakeController@index');
+        return redirect()->route('home');
     }
 }

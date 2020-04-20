@@ -9,7 +9,7 @@
     <div class="content">
       <span>{{ __('mails/general.title', ['name' => $receiver->getFullName()]) }}</span>
       <p>
-        {{ __('mails/intake.accepted.paragraphOne') }}
+        {{ __('mails/intake.rejected.paragraphOne') }}
       </p>
       <ul>
         <li>

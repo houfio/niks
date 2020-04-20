@@ -50,7 +50,7 @@ Route::resource('intakes', 'IntakeController')->except([
     'edit', 'update'
 ]);
 
-Route::get('intakes/accept/{token}{accepted}', 'IntakeController@accept')->name('accept_intake');
+Route::get('intakes/accept/{token}/{accepted}', 'IntakeController@accept')->name('accept_intake');
 
 Route::resource('favorites', 'UserFavoritesController')->only([
     'index', 'store', 'destroy'
