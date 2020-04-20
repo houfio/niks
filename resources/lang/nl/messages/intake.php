@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'deleted' => 'Intake verwijderd'
+    'deleted' => 'Intake verwijderd',
+    'sent' => 'Intake ingepland'
 ];

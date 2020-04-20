@@ -2,6 +2,7 @@
 
 return [
     'title' => 'Intakes',
+    'title_create' => 'Intake inplannen',
     'individual_title' => 'Intake',
     'empty' => 'Er zijn geen intakes',
     'delete' => 'Verwijderen',

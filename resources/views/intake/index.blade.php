@@ -26,6 +26,12 @@
         @endif
       </div>
     @endforeach
+
+    <form action="{{ @action('IntakeController@create') }}" method="get">
+      <button class="button" type="submit">
+        {{ __('general/attributes.create') }}
+      </button>
+    </form>
   @else
     <x-errors/>
     <x-empty icon="calendar-alt">
