@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'title' => 'Intake aangevraagd',
+    'title_requested' => 'Intake aangevraagd',
+    'title_accepted' => 'Intake geaccepteerd',
     'name' => 'Naam',
     'date' => 'Datum',
     'time' => 'Tijd',

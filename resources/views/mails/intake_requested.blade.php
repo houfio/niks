@@ -21,10 +21,10 @@
       </ul>
       <p>
         {{ __('mails/intake.requested.paragraphTwo') }}
-        <a href="{{ route('accept_intake', ['user' => $invitee, 'accepted' => true]) }}" class="button">
+        <a href="{{ route('accept_intake', ['intake' => $intake, 'accepted' => true]) }}" class="button">
           {{ __('mails/intake.accept') }}
         </a>
-        <a href="{{ route('accept_intake', ['user' => $invitee, 'accepted' => false]) }}" class="button">
+        <a href="{{ route('accept_intake', ['intake' => $intake, 'accepted' => false]) }}" class="button">
           {{ __('mails/intake.reject') }}
         </a>
       </p>

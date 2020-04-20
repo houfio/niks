@@ -49,6 +49,9 @@ Route::resource('advertisements', 'AdvertisementController')->except([
 Route::resource('intakes', 'IntakeController')->except([
     'edit', 'update'
 ]);
+Route::prefix('intakes')->group(function() {
+    Route::put('accept', 'IntakeController@accept')->name('accept_intake');
+});
 
 Route::resource('favorites', 'UserFavoritesController')->only([
     'index', 'store', 'destroy'
