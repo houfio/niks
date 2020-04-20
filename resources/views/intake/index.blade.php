@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('theme', 'dark')
+
 @section('title', __('views/intakes.title'))
 
 @section('content')

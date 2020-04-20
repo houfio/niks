@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@can('before', \App\User::class)
+  @section('theme', 'dark')
+@endcan
+
 @section('title', __('views/intakes.title'))
 
 @section('content')
