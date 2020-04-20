@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Mail;
 
 class IntakeController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Intake::class, 'intake');
+    }
+
     public function index()
     {
         return view('intake.index', [
@@ -39,6 +44,7 @@ class IntakeController extends Controller
         $intake->inviter_id = Auth::id();
         $intake->invitee_id = $invitee->id;
         $intake->date = $data['date'];
+        $intake->token = md5(uniqid('', true));
 
         $intake->save();
 
@@ -64,11 +70,11 @@ class IntakeController extends Controller
         return redirect()->action('IntakeController@index');
     }
 
-    public function accept(IntakeAcceptRequest $request) {
-        $data = $request->validated();
+    public function accept(Request $request, $token, $accepted) {
+        $data = $request->all();
 
-        $intake = $data['intake'];
-        $intake->accepted = $data['accepted'];
+        $intake = Intake::where('token', $token)->first();
+        $intake->accepted = $accepted;
 
         $intake->save();
 
@@ -76,7 +82,11 @@ class IntakeController extends Controller
         $invitee = User::find($intake->invitee_id);
 
         foreach ([$inviter, $invitee] as $user) {
-            Mail::to($user->email)->send(new IntakeAcceptedMail($invitee));
+            Mail::to($user->email)->send(new IntakeAcceptedMail($intake));
         }
+
+        $request->session()->flash('message', $accepted ?  __('messages/intake.accepted') :  __('messages/intake.rejected'));
+
+        return redirect()->action('IntakeController@index');
     }
 }

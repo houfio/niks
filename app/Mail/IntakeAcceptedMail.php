@@ -2,9 +2,8 @@
 
 namespace App\Mail;
 
-use App\User;
+use App\Intake;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -12,11 +11,11 @@ class IntakeAcceptedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public User $invitee;
+    public Intake $intake;
 
-    public function __construct(User $invitee)
+    public function __construct(Intake $intake)
     {
-        $this->invitee = $invitee;
+        $this->intake = $intake;
         $this->subject = __('mails/intake.title_accepted');
     }
 

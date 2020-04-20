@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Intakes',
+    'title' => 'Intakegesprekken',
     'title_create' => 'Intake inplannen',
     'individual_title' => 'Intake',
     'empty' => 'Er zijn geen intakes',

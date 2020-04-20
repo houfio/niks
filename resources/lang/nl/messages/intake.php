@@ -2,5 +2,7 @@
 
 return [
     'deleted' => 'Intake verwijderd',
-    'sent' => 'Intake ingepland'
+    'sent' => 'Intake ingepland',
+    'accepted' => 'Intake geaccepteerd',
+    'rejected' => 'Intake geweigerd'
 ];

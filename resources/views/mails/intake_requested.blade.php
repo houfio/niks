@@ -7,24 +7,24 @@
   </head>
   <body>
     <div class="content">
-      <span>{{ __('mails/general.title', ['name' => $invitee->getFullName()]) }}</span>
+      <span>{{ __('mails/general.title', ['name' => $intake->invitee->getFullName()]) }}</span>
       <p>
         {{ __('mails/intake.requested.paragraphOne') }}
       </p>
       <ul>
         <li>
-          {{ __('mails/intake.date') }}: {{ $date }}
+          {{ __('mails/intake.date') }}: {{ date('d-m-Y', strtotime($intake->date)) }}
         </li>
         <li>
-          {{ __('mails/intake.time') }}: {{ $time }}
+          {{ __('mails/intake.time') }}: {{ date('H:i', strtotime($intake->date)) }}
         </li>
       </ul>
       <p>
         {{ __('mails/intake.requested.paragraphTwo') }}
-        <a href="{{ route('accept_intake', ['intake' => $intake, 'accepted' => true]) }}" class="button">
+        <a href="{{ route('accept_intake', ['token' => $intake->token, 'accepted' => true]) }}" class="button">
           {{ __('mails/intake.accept') }}
         </a>
-        <a href="{{ route('accept_intake', ['intake' => $intake, 'accepted' => false]) }}" class="button">
+        <a href="{{ route('accept_intake', ['token' => $intake->token, 'accepted' => false]) }}" class="button">
           {{ __('mails/intake.reject') }}
         </a>
       </p>
