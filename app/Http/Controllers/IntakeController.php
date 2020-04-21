@@ -10,6 +10,7 @@ use App\Mail\IntakeRejectedMail;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -47,11 +48,13 @@ class IntakeController extends Controller
         $intake->inviter()->associate($request->user());
         $intake->invitee()->associate($invitee);
         $intake->date = $data['date'];
-        $intake->token = encrypt(Str::random(64));
+
+        $unhashedToken = Str::random(64);
+        $intake->token = Hash::make($unhashedToken);
 
         $intake->save();
 
-        Mail::to($invitee->email)->send(new IntakeMail($intake));
+        Mail::to($invitee->email)->send(new IntakeMail($intake, $unhashedToken));
 
         $request->session()->flash('message', __('messages/intake.sent'));
 
@@ -73,8 +76,14 @@ class IntakeController extends Controller
         return redirect()->action('IntakeController@index');
     }
 
-    public function accept(Request $request, string $token, bool $accepted) {
-        $intake = Intake::where('token', $token)->first();
+    public function accept(Request $request, Intake $intake, string $token, bool $accepted) {
+        if(!Hash::check($token, $intake->token)) {
+            return redirect()
+                ->route('home')
+                ->withErrors([
+                    'views/intakes.invalid_token'
+                ]);
+        }
 
         $inviter = User::find($intake->inviter_id);
         $invitee = User::find($intake->invitee_id);

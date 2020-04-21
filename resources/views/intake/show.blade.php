@@ -23,7 +23,7 @@
   </div>
   <div>
     {{ __('views/intakes.date') }}:
-    {{ $intake->date }}
+    {{ $intake->date->isoFormat('LLLL') }}
   </div>
   <div>
     {{ __('views/intakes.accepted') }}:

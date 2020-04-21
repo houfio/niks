@@ -11,5 +11,6 @@ return [
     'date' => 'Datum',
     'accepted' => 'Geaccepteerd',
     'yes' => 'Ja',
-    'no' => 'Nee'
+    'no' => 'Nee',
+    'invalid_token' => 'De gegeven token is ongeldig.'
 ];

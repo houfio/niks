@@ -15,7 +15,7 @@
     @foreach($intakes as $intake)
       <div data-href="{{ url("/intakes/$intake->id") }}">
         {{ $intake->invitee->getFullName() }}
-        {{ $intake->date }}
+        {{ $intake->date->isoFormat('LLLL') }}
 
         @if(!$intake->accepted)
           <form action="{{ @action('IntakeController@destroy', ['intake' => $intake]) }}" method="post">

@@ -13,10 +13,12 @@ class IntakeMail extends Mailable
     use Queueable, SerializesModels;
 
     public Intake $intake;
+    public string $unhashedToken;
 
-    public function __construct(Intake $intake)
+    public function __construct(Intake $intake, string $unhashedToken)
     {
         $this->intake = $intake;
+        $this->unhashedToken = $unhashedToken;
         $this->subject = __('mails/intake.title_requested');
     }
 
