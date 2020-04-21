@@ -31,7 +31,7 @@ class IntakeController extends Controller
     public function create()
     {
         return view('intake.create', [
-            'invitees' => User::where('is_approved', 0)->whereHas('intakes', function(Builder $query) {
+            'invitees' => User::where('is_approved', 0)->whereHas('intakes', function (Builder $query) {
                 $query->where('accepted', '=', 0);
             })->get()
         ]);
@@ -49,12 +49,12 @@ class IntakeController extends Controller
         $intake->invitee()->associate($invitee);
         $intake->date = $data['date'];
 
-        $unhashedToken = Str::random(64);
-        $intake->token = Hash::make($unhashedToken);
+        $token = Str::random(64);
+        $intake->token = Hash::make($token);
 
         $intake->save();
 
-        Mail::to($invitee->email)->send(new IntakeMail($intake, $unhashedToken));
+        Mail::to($invitee->email)->send(new IntakeMail($intake, $token));
 
         $request->session()->flash('message', __('messages/intake.sent'));
 
@@ -76,8 +76,11 @@ class IntakeController extends Controller
         return redirect()->action('IntakeController@index');
     }
 
-    public function accept(Request $request, Intake $intake, string $token, bool $accepted) {
-        if(!Hash::check($token, $intake->token)) {
+    public function accept(Request $request, string $token, Intake $intake)
+    {
+        $accepted = (bool)$request->query('accepted');
+
+        if (!Hash::check($token, $intake->token)) {
             return redirect()
                 ->route('home')
                 ->withErrors([
@@ -88,7 +91,7 @@ class IntakeController extends Controller
         $inviter = User::find($intake->inviter_id);
         $invitee = User::find($intake->invitee_id);
 
-        if($accepted) {
+        if ($accepted) {
             $intake->accepted = $accepted;
             $intake->save();
 
@@ -101,7 +104,7 @@ class IntakeController extends Controller
             $intake->delete();
         }
 
-        $request->session()->flash('message', $accepted ?  __('messages/intake.accepted') :  __('messages/intake.rejected'));
+        $request->session()->flash('message', $accepted ? __('messages/intake.accepted') : __('messages/intake.rejected'));
 
         return redirect()->route('home');
     }
