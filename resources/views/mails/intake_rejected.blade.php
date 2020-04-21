@@ -7,11 +7,14 @@
   </head>
   <body>
     <div class="content">
-      <span>{{ __('mails/general.title', ['name' => $intake->invitee->getFullName()]) }}</span>
+      <span>{{ __('mails/general.title', ['name' => $receiver->getFullName()]) }}</span>
       <p>
-        {{ __('mails/intake.requested.paragraphOne') }}
+        {{ __('mails/intake.rejected.paragraphOne') }}
       </p>
       <ul>
+        <li>
+          {{ __('mails/intake.name') }}: {{ $intake->invitee->getFullName() }}
+        </li>
         <li>
           {{ __('mails/intake.date') }}: {{ $intake->date->format('d-m-Y') }}
         </li>
@@ -19,15 +22,6 @@
           {{ __('mails/intake.time') }}: {{ $intake->date->format('H:i') }}
         </li>
       </ul>
-      <p>
-        {{ __('mails/intake.requested.paragraphTwo') }}
-        <a href="{{ action('IntakeController@accept', [$intake->id, $token, 'accepted' => 1]) }}" class="button">
-          {{ __('mails/intake.accept') }}
-        </a>
-        <a href="{{ action('IntakeController@accept', [$intake->id, $token, 'accepted' => 0]) }}" class="button">
-          {{ __('mails/intake.reject') }}
-        </a>
-      </p>
       <span>
         {{ __('mails/general.greetings') }}<br/>
         {{ __('mails/general.team') }}

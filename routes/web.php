@@ -46,6 +46,12 @@ Route::resource('advertisements', 'AdvertisementController')->except([
     'edit', 'update'
 ]);
 
+Route::resource('intakes', 'IntakeController')->except([
+    'edit', 'update'
+]);
+
+Route::get('intakes/accept/{intake}/{token}', 'IntakeController@accept');
+
 Route::resource('favorites', 'UserFavoritesController')->only([
     'index', 'store', 'destroy'
 ]);

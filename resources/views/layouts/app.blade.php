@@ -36,6 +36,9 @@
           <x-navigation-item icon="users" path="users" dot>
             {{ __('views/users.title') }}
           </x-navigation-item>
+          <x-navigation-item icon="comments" path="intakes">
+            {{ __('views/intakes.title') }}
+          </x-navigation-item>
         @endcan
       @endauth
     </nav>
