@@ -50,14 +50,14 @@ const hideEvents = ['mouseleave', 'blur'];
     });
   });
 
-  const button = document.getElementById('submitDelete');
-  if (button != null) {
+  const deleteButton = document.getElementById('submitDelete');
+  if (deleteButton != null) {
     const input = document.querySelector<HTMLInputElement>('#confirmation-word');
     const warning = document.querySelector<HTMLElement>('#warning-message');
     const submitButton = document.querySelector<HTMLFormElement>('#deleteForm');
 
     if (input != null && warning != null && submitButton != null) {
-      button.addEventListener('click', () => {
+      deleteButton.addEventListener('click', () => {
         const inputValue = input.value;
 
         // @ts-ignore
@@ -70,6 +70,31 @@ const hideEvents = ['mouseleave', 'blur'];
       });
     }
   }
+
+  const deleteImagesButton = document.getElementById('delete-images');
+  if (deleteImagesButton != null) {
+    const fileInput = document.querySelector<HTMLFormElement>('#images\\[\\]');
+    if (fileInput != null) {
+      if (fileInput.parentNode != null) {
+        (fileInput.parentNode as HTMLElement).style.display = 'none';
+      }
+    }
+
+    deleteImagesButton.addEventListener('click', (e) => {
+      if (fileInput != null) {
+        if (fileInput.parentNode != null) {
+          e.preventDefault();
+          deleteImagesButton.style.display = 'none';
+          (fileInput.parentNode as HTMLElement).style.display = 'block';
+          const images = document.querySelectorAll<HTMLElement>('input[type="hidden"][name="delete_images"');
+          Array.prototype.forEach.call(images, function (node) {
+            node.parentNode.removeChild(node);
+          });
+        }
+      }
+    });
+  }
+
 })();
 
 function create(source: HTMLElement, target: HTMLElement) {

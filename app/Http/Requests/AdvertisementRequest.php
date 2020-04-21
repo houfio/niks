@@ -23,7 +23,8 @@ class AdvertisementRequest extends FormRequest
             'images' => 'required_if:is_asking,false',
             'images.*' => 'image|mimes:png,jpeg,jpg',
             'enable_bidding' => 'in:on,null',
-            'is_asking' => 'in:on,null'
+            'is_asking' => 'in:on,null',
+            'delete_images' => 'nullable'
         ];
     }
 

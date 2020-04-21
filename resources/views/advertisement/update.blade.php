@@ -8,7 +8,8 @@
       Advertentie aanpassen
     </h1>
     <x-errors/>
-    <form method="post" action="{{ @action('AdvertisementController@update', ['advertisement' => $advertisement]) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ @action('AdvertisementController@update', ['advertisement' => $advertisement]) }}"
+          enctype="multipart/form-data">
       @csrf
       @method('put')
       <div class="two-columns">
@@ -48,12 +49,22 @@
         :label="__('general/attributes.long_description')"
       />
       <div class="two-columns">
+        @if($assets)
+          <button class="button danger" id="delete-images">
+            {{ __('general/attributes.images').' '.strtolower(__('views/advertisements.delete')) }}
+          </button>
+        @endif
         <x-input
           name="images[]"
           type="file"
           :label="__('general/attributes.images')"
           multiple
         />
+
+        @if($assets)
+          <input type="hidden" value="1" name="delete_images">
+        @endif
+
         <x-input
           name="is_service"
           type="select"
@@ -64,7 +75,8 @@
         </x-input>
       </div>
       <div class="checkbox-input">
-        <input type="checkbox" id="enable_bidding" name="enable_bidding" @if($advertisement->enable_bidding) checked @endif>
+        <input type="checkbox" id="enable_bidding" name="enable_bidding"
+               @if($advertisement->enable_bidding) checked @endif>
         <label for="enable_bidding">{{ __('general/attributes.enable_bidding') }}</label>
       </div>
       <div class="checkbox-input">

@@ -130,7 +130,8 @@ class AdvertisementController extends Controller
     public function edit(Advertisement $advertisement)
     {
         return view('advertisement.update', [
-            'advertisement' => $advertisement
+            'advertisement' => $advertisement,
+            'assets' => $advertisement->assets()->get()
         ]);
     }
 
@@ -149,15 +150,19 @@ class AdvertisementController extends Controller
 
         $advertisement->user()->associate($request->user());
 
-        if (isset($data['images'])) {
-            $assets = [];
-            foreach ($data['images'] as $image) {
-                $asset = new Asset();
+        if(!isset($data['delete_images'])) {
+            $advertisement->assets()->detach();
 
-                $asset->path = $image->store('public');
+            if (isset($data['images'])) {
+                $assets = [];
+                foreach ($data['images'] as $image) {
+                    $asset = new Asset();
 
-                $asset->save();
-                $assets[] = $asset;
+                    $asset->path = $image->store('public');
+
+                    $asset->save();
+                    $assets[] = $asset;
+                }
             }
         }
 
