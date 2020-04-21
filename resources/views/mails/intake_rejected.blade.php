@@ -16,10 +16,10 @@
           {{ __('mails/intake.name') }}: {{ $intake->invitee->getFullName() }}
         </li>
         <li>
-          {{ __('mails/intake.date') }}: {{ $intake->date->format('d-M-Y') }}
+          {{ __('mails/intake.date') }}: {{ $intake->date->format('d-m-Y') }}
         </li>
         <li>
-          {{ __('mails/intake.time') }}: {{ $intake->date->format('H:m') }}
+          {{ __('mails/intake.time') }}: {{ $intake->date->format('H:i') }}
         </li>
       </ul>
       <span>

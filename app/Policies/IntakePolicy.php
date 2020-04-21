@@ -15,7 +15,8 @@ class IntakePolicy
         return $user->is_admin && $user->is_approved ? true : null;
     }
 
-    public function viewAny(User $user) {
+    public function viewAny(User $user)
+    {
         return true;
     }
 
@@ -24,11 +25,13 @@ class IntakePolicy
         return $user->id === $intake->invitee->id || ($user->is_admin && $user->is_approved);
     }
 
-    public function create(User $user) {
+    public function create(User $user)
+    {
         return true;
     }
 
-    public function delete(User $user) {
+    public function delete(User $user)
+    {
         return true;
     }
 }
