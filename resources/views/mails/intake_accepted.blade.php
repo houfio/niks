@@ -16,10 +16,10 @@
           {{ __('mails/intake.name') }}: {{ $intake->invitee->getFullName() }}
         </li>
         <li>
-          {{ __('mails/intake.date') }}: {{ \Carbon\Carbon::parse($intake->date)->format('d-M-Y') }}
+          {{ __('mails/intake.date') }}: {{ $intake->date->format('d-M-Y') }}
         </li>
         <li>
-          {{ __('mails/intake.time') }}: {{ \Carbon\Carbon::parse($intake->date)->format('H:m') }}
+          {{ __('mails/intake.time') }}: {{ $intake->date->format('H:m') }}
         </li>
       </ul>
       <span>

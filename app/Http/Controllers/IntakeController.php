@@ -76,7 +76,7 @@ class IntakeController extends Controller
         return redirect()->action('IntakeController@index');
     }
 
-    public function accept(Request $request, string $token, Intake $intake)
+    public function accept(Request $request, Intake $intake, string $token)
     {
         $accepted = (bool)$request->query('accepted');
 
