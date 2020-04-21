@@ -1,6 +1,7 @@
 <?php
 
 use App\Advertisement;
+use App\Asset;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -13,7 +14,10 @@ class UsersSeeder extends Seeder
         $approvedUsers = factory(User::class, 5)->create([
             'is_approved' => true
         ])->each(function (User $user) {
+            $user->header()->associate(factory(Asset::class)->create());
+            $user->avatar()->associate(factory(Asset::class)->create());
             $user->advertisements()->saveMany(factory(Advertisement::class, 10)->make());
+            $user->save();
         });
 
         $advertisements = Advertisement::all();
@@ -26,7 +30,10 @@ class UsersSeeder extends Seeder
             'is_admin' => true,
             'is_approved' => true
         ])->each(function (User $user) {
+            $user->header()->associate(factory(Asset::class)->create());
+            $user->avatar()->associate(factory(Asset::class)->create());
             $user->advertisements()->saveMany(factory(Advertisement::class, 5)->make());
+            $user->save();
         });
     }
 }
