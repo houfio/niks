@@ -72,17 +72,17 @@ const hideEvents = ['mouseleave', 'blur'];
   }
 
   const deleteImagesButton = document.getElementById('delete-images');
-  if (deleteImagesButton != null) {
+  if (deleteImagesButton) {
     const fileInput = document.querySelector<HTMLFormElement>('#images\\[\\]');
-    if (fileInput != null) {
-      if (fileInput.parentNode != null) {
+    if (fileInput) {
+      if (fileInput.parentNode) {
         (fileInput.parentNode as HTMLElement).style.display = 'none';
       }
     }
 
     deleteImagesButton.addEventListener('click', (e) => {
-      if (fileInput != null) {
-        if (fileInput.parentNode != null) {
+      if (fileInput) {
+        if (fileInput.parentNode) {
           e.preventDefault();
           deleteImagesButton.style.display = 'none';
           (fileInput.parentNode as HTMLElement).style.display = 'block';
