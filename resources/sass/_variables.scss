@@ -1,7 +1,7 @@
 $gray: #f7f7f7;
 $orange: #ff9966;
 $blue: #0092ff;
-$red: #eb3434;
+$red: #ff6666;
 
 $breakpoints: (
   phone: 0,
@@ -14,13 +14,13 @@ $themes: (
   light: (
     foreground: #000,
     background: #fff,
-    card: #f7f7f7,
-    cardClick: #efefef
+    card: #f1f3f4,
+    cardClick: #e9ebec
   ),
   dark: (
     foreground: #fff,
-    background: #15202b,
-    card: #0d141a,
-    cardClick: #080b10
+    background: #35363a,
+    card: #292a2d,
+    cardClick: #202124
   )
 )

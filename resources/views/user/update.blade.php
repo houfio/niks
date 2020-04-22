@@ -75,15 +75,32 @@
       <form method="post" action="{{ @action('UserController@destroy', ['user' => $user->id]) }}" id="deleteForm">
         @csrf
         @method('delete')
-        <a class="button danger" data-micromodal-trigger="delete-modal">
-          {{ __('views/users.delete') }}
-        </a>
-        <x-modal id="delete" :title="__('views/users.delete')">
-          <x-delete-confirmation
-            :email="$user->email"
+        <button type="button" class="button transparent" data-micromodal-trigger="delete-modal">
+          {{ __('views/updateUser.delete') }}
+        </button>
+        <x-modal id="delete" :title="__('views/updateUser.delete')">
+          <p>
+            {{ __('views/updateUser.delete_user') }}
+          </p>
+          <x-input
+            name="confirmation"
+            :label="__('views/updateUser.confirmation_label', ['email' => $user->email])"
+            :error="__('views/updateUser.input_error')"
+            required
           />
+          <div>
+            <button type="button" class="button danger" id="deleteSubmit">{{ __('views/updateUser.confirm') }}</button>
+            <button type="button" class="button transparent" data-micromodal-close>{{ __('views/updateUser.cancel') }}</button>
+          </div>
         </x-modal>
       </form>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+  <script>
+    const confirmation = '{{ __('views/updateUser.delete') }}';
+  </script>
+  <script src="{{ mix('/js/confirm.js') }}"></script>
 @endsection

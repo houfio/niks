@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\ResetPassword;
 
 use App\PasswordReset;
 use App\User;
