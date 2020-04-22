@@ -70,8 +70,8 @@
           type="select"
           :label="__('general/attributes.is_service')"
         >
-          <option value="0" @if(!$advertisement->is_service) selected @endif>Product</option>
-          <option value="1" @if($advertisement->is_service) selected @endif>Dienst</option>
+          <option value="0" @if(!$advertisement->is_service) selected @endif>{{ __('general/attributes.product') }}</option>
+          <option value="1" @if($advertisement->is_service) selected @endif>{{ __('general/attributes.service') }}</option>
         </x-input>
       </div>
       <div class="checkbox-input">
