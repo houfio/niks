@@ -17,7 +17,9 @@ class UserRequest extends FormRequest
             'house_number' => 'required|max:6',
             'neighbourhood' => 'max:80',
             'is_admin' => 'in:on,null',
-            'is_approved' => 'in:on,null'
+            'is_approved' => 'in:on,null',
+            'avatar' => 'sometimes|image|mimes:png,jpeg,jpg',
+            'header' => 'sometimes|image|mimes:png,jpeg,jpg'
         ];
     }
 
