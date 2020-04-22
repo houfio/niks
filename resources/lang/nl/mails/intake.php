@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'title' => 'Intake aangevraagd',
+    'title_requested' => 'Intake aangevraagd',
+    'title_accepted' => 'Intake geaccepteerd',
+    'title_rejected' => 'Intake afgewezen',
     'name' => 'Naam',
     'date' => 'Datum',
     'time' => 'Tijd',
@@ -12,6 +14,9 @@ return [
         'paragraphTwo' => 'Klik op een van de onderstaande opties om de afspraak met de gegeven datum en tijd te accepteren of niet.'
     ],
     'accepted' => [
-        'paragraphOne' => 'Het aangevraagde intakegesprek met onderstaande gegevens is door beide partijen geaccepteerd'
+        'paragraphOne' => 'Het aangevraagde intakegesprek met onderstaande gegevens is door beide partijen geaccepteerd.'
+    ],
+    'rejected' => [
+        'paragraphOne' => 'Het aangevraagde intakegesprek met onderstaande gegevens is geweigerd door de uitgenodigde.'
     ]
 ];
