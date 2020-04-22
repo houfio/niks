@@ -30,9 +30,15 @@
         <x-navigation-item icon="store" path="advertisements">
           {{ __('views/advertisements.title') }}
         </x-navigation-item>
+        <x-navigation-item duskSelector="favorites" icon="star" path="favorites">
+          {{ __('views/favorites.title') }}
+        </x-navigation-item>
         @can('viewAny', \App\User::class)
           <x-navigation-item icon="users" path="users" dot>
             {{ __('views/users.title') }}
+          </x-navigation-item>
+          <x-navigation-item icon="comments" path="intakes">
+            {{ __('views/intakes.title') }}
           </x-navigation-item>
         @endcan
         @can('viewAny', \App\Transaction::class)

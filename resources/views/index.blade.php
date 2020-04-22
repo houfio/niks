@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Lokale Ruilkring \'s-Hertogenbosch')
+@section('title', __('views/news.title'))
 
 @section('content')
   <x-errors/>
   <x-empty icon="newspaper">
-    Er zijn nog geen nieuwsberichten
+    {{ __('views/news.empty') }}
   </x-empty>
 @endsection

@@ -23,6 +23,9 @@ return [
     'is_service' => 'Type',
     'is_asking' => 'Vraag',
     'images' => 'Afbeeldingen',
+    'product' => 'Product',
+    'service' => 'Dienst',
     'remember_me' => 'Ingelogd blijven',
-    'create' => 'Aanmaken'
+    'create' => 'Aanmaken',
+    'advertisement' => 'Advertentie'
 ];

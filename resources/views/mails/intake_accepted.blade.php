@@ -7,19 +7,19 @@
   </head>
   <body>
     <div class="content">
-      <span>{{ __('mails/general.title', ['name' => $invitee->getFullName()]) }}</span>
+      <span>{{ __('mails/general.title', ['name' => $receiver->getFullName()]) }}</span>
       <p>
         {{ __('mails/intake.accepted.paragraphOne') }}
       </p>
       <ul>
         <li>
-          {{ __('mails/intake.name') }}: {{ $invitee->getFullName() }}
+          {{ __('mails/intake.name') }}: {{ $intake->invitee->getFullName() }}
         </li>
         <li>
-          {{ __('mails/intake.date') }}: {{ $date }}
+          {{ __('mails/intake.date') }}: {{ $intake->date->format('d-m-Y') }}
         </li>
         <li>
-          {{ __('mails/intake.time') }}: {{ $time }}
+          {{ __('mails/intake.time') }}: {{ $intake->date->format('H:i') }}
         </li>
       </ul>
       <span>
