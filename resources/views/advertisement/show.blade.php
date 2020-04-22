@@ -70,15 +70,6 @@
     <div class="subtle" title="{{ $advertisement->created_at->isoFormat('LLLL') }}">
       {{ $advertisement->created_at->diffForHumans() }}
     </div>
-    <form
-      method="post"
-      action="{{ @action('UserFavoritesController@store', ['advertisement' => $advertisement]) }}"
-    >
-      @csrf
-      <button type="submit" class="button" style="margin-top: 1rem" dusk="favorite_button">
-        {{ __('views/advertisements.favorite') }}
-      </button>
-    </form>
     @can('delete', $advertisement)
       <form
         method="post"
