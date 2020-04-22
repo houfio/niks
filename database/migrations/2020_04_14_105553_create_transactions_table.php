@@ -13,8 +13,8 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger('amount');
             $table->unsignedBigInteger('receiver_id');
             $table->unsignedBigInteger('sender_id');
-            $table->foreign('receiver_id')->references('id')->on('users');
-            $table->foreign('sender_id')->references('id')->on('users');
+            $table->foreign('receiver_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('sender_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }
