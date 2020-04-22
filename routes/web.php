@@ -56,6 +56,10 @@ Route::resource('favorites', 'UserFavoritesController')->only([
     'index', 'store', 'destroy'
 ]);
 
+Route::resource('transactions', 'TransactionController')->except([
+    'create', 'store', 'show', 'edit', 'update', 'destroy'
+]);
+
 Route::prefix('bid')->group(function () {
     Route::post('{advertisement}', 'BidController@store');
     Route::delete('{bid}', 'BidController@destroy');

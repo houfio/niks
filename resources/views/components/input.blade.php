@@ -2,11 +2,6 @@
   <label for="{{ $name }}" @if(isset($required)) data-required @endif>
     {{ $label }}
   </label>
-  @if(isset($help))
-    <div data-tooltip="{{ $name }}_help">
-      <i class="fas fa-question-circle"></i>
-    </div>
-  @endif
   @if(isset($type) && $type === 'textarea')
     <textarea
       id="{{ $name }}"
@@ -14,6 +9,7 @@
       rows="4"
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
+      @if(isset($error)) data-error @endif
     >{{ $value ?? old($name) }}</textarea>
   @elseif(isset($type) && $type === 'select')
     <select
@@ -21,6 +17,7 @@
       name="{{ $name }}"
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
+      @if(isset($error)) data-error @endif
     >
       {{ $slot }}
     </select>
@@ -33,7 +30,13 @@
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
       @if(isset($multiple)) multiple @endif
+      @if(isset($error)) data-error @endif
     />
+  @endif
+  @if(isset($help))
+    <div data-tooltip="{{ $name }}_help" tabindex="0">
+      <i class="fas fa-question-circle"></i>
+    </div>
   @endif
   @if(isset($help))
     <div id="{{ $name }}_help" class="tooltip-wrapper" role="tooltip">
@@ -43,4 +46,7 @@
       </div>
     </div>
   @endif
+  <div class="input-error">
+    {{ $error ?? '' }}
+  </div>
 </div>

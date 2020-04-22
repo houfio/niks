@@ -8,7 +8,7 @@
       {{ __('views/advertisements.title_create') }}
     </h1>
     <x-errors/>
-    <form method="post" action="{{ route('advertisements.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ @action('AdvertisementController@store') }}" enctype="multipart/form-data">
       @csrf
       <div class="two-columns">
         <x-input

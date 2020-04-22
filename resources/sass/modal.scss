@@ -19,6 +19,7 @@
 
   &-container {
     margin: 1rem;
+    max-width: 35rem;
     border-radius: .5rem;
     transform: translateY(1rem);
     transition: transform .25s ease;
@@ -33,6 +34,12 @@
     justify-content: space-between;
     margin: 0 1rem;
     padding: 1rem 0;
+
+    & > button {
+      @include with-theme {
+        color: themed('foreground');
+      }
+    }
 
     @include with-theme {
       border-bottom: 3px solid themed('card');
