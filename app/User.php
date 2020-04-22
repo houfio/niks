@@ -55,6 +55,14 @@ class User extends Authenticatable
         return $this->hasMany(Intake::class, 'inviter_id');
     }
 
+    public function avatar() {
+        return $this->belongsTo(Asset::class, 'avatar_id');
+    }
+
+    public function header() {
+        return $this->belongsTo(Asset::class, 'header_id');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         if ($this->is_approved) {
