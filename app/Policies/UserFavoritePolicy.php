@@ -27,6 +27,8 @@ class UserFavoritePolicy
 
     public function delete(User $user, UserFavorite $model)
     {
+        dd($user, $model);
+
         return $user->id === $model->user_id;
     }
 }

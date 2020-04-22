@@ -52,8 +52,8 @@ Route::resource('intakes', 'IntakeController')->except([
 
 Route::get('intakes/accept/{intake}/{token}', 'IntakeController@accept');
 
-Route::resource('favorites', 'UserFavoritesController')->only([
-    'index', 'store', 'destroy'
+Route::resource('favorites', 'UserFavoritesController')->except([
+    'create', 'show', 'edit', 'update'
 ]);
 
 Route::resource('transactions', 'TransactionController')->except([

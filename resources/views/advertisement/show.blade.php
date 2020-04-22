@@ -7,9 +7,10 @@
     <h1 class="page-heading" dusk="title">
       {{ $advertisement->title }}
       <x-icon-action
-        :action="action('UserFavoritesController@store', ['advertisement' => $advertisement])"
+        :action="action($favorite ? 'UserFavoritesController@destroy' : 'UserFavoritesController@store', $favorite ? ['favorite' => $favorite] : ['advertisement' => $advertisement])"
         icon="heart"
-        class="heart {{ $advertisement->favoritedBy->contains(Auth::user()) ? 'active' : '' }}"
+        :method="$favorite ? 'delete' : 'post'"
+        :class="'heart' . ($favorite ? ' active' : '')"
       />
     </h1>
     <x-errors/>

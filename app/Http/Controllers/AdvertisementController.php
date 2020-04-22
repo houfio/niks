@@ -6,7 +6,9 @@ use App\Advertisement;
 use App\Asset;
 use App\Http\Requests\AdvertisementRequest;
 use App\Services\LocationService;
+use App\UserFavorite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdvertisementController extends Controller
 {
@@ -123,7 +125,8 @@ class AdvertisementController extends Controller
             'advertisement' => $advertisement,
             'user' => $advertisement->user()->get()->first(),
             'assets' => $advertisement->assets()->get(),
-            'bids' => $advertisement->bids()->get()
+            'bids' => $advertisement->bids()->get(),
+            'favorite' =>  UserFavorite::where('user_id', Auth::user()->id)->where('advertisement_id', $advertisement->id)->first()
         ]);
     }
 
