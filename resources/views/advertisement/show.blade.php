@@ -71,7 +71,7 @@
       action="{{ @action('UserFavoritesController@store', ['advertisement' => $advertisement]) }}"
     >
       @csrf
-      <button type="submit" class="button" style="margin-top: 1rem">
+      <button type="submit" class="button" style="margin-top: 1rem" dusk="favorite_button">
         {{ __('views/advertisements.favorite') }}
       </button>
     </form>

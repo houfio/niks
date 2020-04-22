@@ -81,10 +81,6 @@
     cursor: pointer;
   }
 
-  &:focus {
-    box-shadow: 0 0 0 3px darken($gray, 10%);
-  }
-
   &.dismissed {
     visibility: hidden;
     transform: translateY(100%);
@@ -97,6 +93,10 @@
   @include with-theme {
     color: themed('background');
     background-color: themed('foreground');
+
+    &:focus {
+      box-shadow: 0 0 0 3px themed('card');
+    }
   }
 
   @include with-breakpoint(tablet_portrait) {

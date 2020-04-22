@@ -2,6 +2,7 @@
 
 return [
     'title' => 'Advertenties',
+    'title_create' => 'Advertentie aanmaken',
     'empty' => 'Er zijn nog geen advertenties',
     'create' => 'Aanmaken',
     'edit' => 'Advertentie aanpassen',

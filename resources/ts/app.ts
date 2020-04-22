@@ -94,7 +94,6 @@ const hideEvents = ['mouseleave', 'blur'];
       }
     });
   }
-
 })();
 
 function create(source: HTMLElement, target: HTMLElement) {

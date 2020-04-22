@@ -44,8 +44,18 @@ Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
 
 Route::resource('advertisements', 'AdvertisementController');
 
+Route::resource('intakes', 'IntakeController')->except([
+    'edit', 'update'
+]);
+
+Route::get('intakes/accept/{intake}/{token}', 'IntakeController@accept');
+
 Route::resource('favorites', 'UserFavoritesController')->only([
     'index', 'store', 'destroy'
+]);
+
+Route::resource('transactions', 'TransactionController')->except([
+    'create', 'store', 'show', 'edit', 'update', 'destroy'
 ]);
 
 Route::prefix('bid')->group(function () {

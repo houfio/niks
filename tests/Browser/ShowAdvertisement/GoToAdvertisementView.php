@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\ShowAdvertisement;
 
 use App\Advertisement;
 use App\Asset;

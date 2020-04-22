@@ -3,8 +3,16 @@
   display: flex;
   flex-direction: column;
 
+  & > main.no-sidebar {
+    flex: 1;
+  }
+
   @include with-breakpoint(tablet_landscape) {
     flex-direction: row;
+
+    & > main {
+      flex: 1;
+    }
   }
 }
 
@@ -158,6 +166,10 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  &.empty {
+    padding: 2rem;
+  }
 }
 
 .spacer {

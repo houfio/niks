@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Advertentie aanmaken')
+@section('title', __('views/advertisements.title_create'))
 
 @section('content')
   <div class="content">
     <h1 class="page-heading" dusk="title">
-      Advertentie aanmaken
+      {{ __('views/advertisements.title_create') }}
     </h1>
     <x-errors/>
-    <form method="post" action="{{ route('advertisements.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ @action('AdvertisementController@store') }}" enctype="multipart/form-data">
       @csrf
       <div class="two-columns">
         <x-input
@@ -53,8 +53,8 @@
           type="select"
           :label="__('general/attributes.is_service')"
         >
-          <option value="0">Product</option>
-          <option value="1">Dienst</option>
+          <option value="0">{{ __('general/attributes.product') }}</option>
+          <option value="1">{{ __('general/attributes.service') }}</option>
         </x-input>
       </div>
       <div class="checkbox-input">

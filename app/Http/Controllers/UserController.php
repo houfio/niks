@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Asset;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Exception;
@@ -40,6 +41,24 @@ class UserController extends Controller
         $user->phone_number = $data['phone_number'];
         $user->house_number = $data['house_number'];
         $user->neighbourhood = $data['neighbourhood'];
+
+        if ($request->hasFile('avatar')) {
+            $asset = new Asset();
+
+            $asset->path = $request->avatar->store('public');
+
+            $asset->save();
+            $user->avatar()->associate($asset);
+        }
+
+        if ($request->hasFile('header')) {
+            $asset = new Asset();
+
+            $asset->path = $request->header->store('public');
+
+            $asset->save();
+            $user->header()->associate($asset);
+        }
 
         if (Gate::allows('edit-all')) {
             $user->is_approved = isset($data['is_approved']);
