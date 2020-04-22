@@ -21,7 +21,10 @@ class AdvertisementRequest extends FormRequest
             'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
             'images' => 'required_if:is_asking,false',
-            'images.*' => 'image|mimes:png,jpeg,jpg'
+            'images.*' => 'image|mimes:png,jpeg,jpg',
+            'enable_bidding' => 'in:on,null',
+            'is_asking' => 'in:on,null',
+            'delete_images' => 'nullable'
         ];
     }
 

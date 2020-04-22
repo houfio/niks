@@ -42,9 +42,7 @@ Route::resource('users', 'UserController')->except([
 
 Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
 
-Route::resource('advertisements', 'AdvertisementController')->except([
-    'edit', 'update'
-]);
+Route::resource('advertisements', 'AdvertisementController');
 
 Route::resource('intakes', 'IntakeController')->except([
     'edit', 'update'

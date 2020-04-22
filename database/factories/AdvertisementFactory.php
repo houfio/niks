@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Advertisement::class, function (Faker $faker) {
     return [
         'title' => 'Taart bakken',
-        'short_description' => $faker->realText(mt_rand(31, 100)),
+        'short_description' => 'Lekkere appeltaarten voor een lage prijs!',
         'long_description' => $faker->text(1200),
         'price' => $faker->numberBetween(1, 50),
         'enable_bidding' => $faker->boolean(50),

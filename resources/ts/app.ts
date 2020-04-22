@@ -49,6 +49,51 @@ const hideEvents = ['mouseleave', 'blur'];
       }
     });
   });
+
+  const deleteButton = document.getElementById('submitDelete');
+  if (deleteButton) {
+    const input = document.querySelector<HTMLInputElement>('#confirmation-word');
+    const warning = document.querySelector<HTMLElement>('#warning-message');
+    const submitButton = document.querySelector<HTMLFormElement>('#deleteForm');
+
+    if (input && warning && submitButton) {
+      deleteButton.addEventListener('click', () => {
+        const inputValue = input.value;
+
+        // @ts-ignore
+        if (inputValue.toLowerCase() === email) {
+          warning.style.display = 'none';
+          submitButton.submit();
+        } else {
+          warning.style.display = 'block';
+        }
+      });
+    }
+  }
+
+  const deleteImagesButton = document.getElementById('delete-images');
+  if (deleteImagesButton) {
+    const fileInput = document.querySelector<HTMLFormElement>('#images\\[\\]');
+    if (fileInput) {
+      if (fileInput.parentNode) {
+        (fileInput.parentNode as HTMLElement).style.display = 'none';
+      }
+    }
+
+    deleteImagesButton.addEventListener('click', (e) => {
+      if (fileInput) {
+        if (fileInput.parentNode) {
+          e.preventDefault();
+          deleteImagesButton.style.display = 'none';
+          (fileInput.parentNode as HTMLElement).style.display = 'block';
+          const images = document.querySelectorAll<HTMLElement>('input[type="hidden"][name="delete_images"');
+          Array.prototype.forEach.call(images, function (node) {
+            node.parentNode.removeChild(node);
+          });
+        }
+      }
+    });
+  }
 })();
 
 function create(source: HTMLElement, target: HTMLElement) {

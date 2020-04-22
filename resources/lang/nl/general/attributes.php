@@ -27,5 +27,9 @@ return [
     'service' => 'Dienst',
     'remember_me' => 'Ingelogd blijven',
     'create' => 'Aanmaken',
-    'advertisement' => 'Advertentie'
+    'advertisement' => 'Advertentie',
+    'edit' => 'Aanpassen',
+    'product' => 'Product',
+    'service' => 'Dienst'
+
 ];
