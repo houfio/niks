@@ -11,8 +11,8 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('amount');
-            $table->unsignedBigInteger('receiver_id');
-            $table->unsignedBigInteger('sender_id');
+            $table->unsignedBigInteger('receiver_id')->nullable();
+            $table->unsignedBigInteger('sender_id')->nullable();
             $table->foreign('receiver_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('sender_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
