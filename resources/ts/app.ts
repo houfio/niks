@@ -51,12 +51,12 @@ const hideEvents = ['mouseleave', 'blur'];
   });
 
   const deleteButton = document.getElementById('submitDelete');
-  if (deleteButton != null) {
+  if (deleteButton) {
     const input = document.querySelector<HTMLInputElement>('#confirmation-word');
     const warning = document.querySelector<HTMLElement>('#warning-message');
     const submitButton = document.querySelector<HTMLFormElement>('#deleteForm');
 
-    if (input != null && warning != null && submitButton != null) {
+    if (input && warning && submitButton) {
       deleteButton.addEventListener('click', () => {
         const inputValue = input.value;
 
