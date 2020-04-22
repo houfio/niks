@@ -172,6 +172,6 @@ class AdvertisementController extends Controller
         }
         $request->session()->flash('message', __('messages/advertisement.updated'));
 
-        return redirect()->action('AdvertisementController@index');
+        return redirect()->route('advertisements.show', $advertisement->id);
     }
 }

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Advertentie aanpassen')
+@section('title', __('views/advertisements.edit'))
 
 @section('content')
   <div class="content">
     <h1 class="page-heading" dusk="title">
-      Advertentie aanpassen
+      {{ __('views/advertisements.edit') }}
     </h1>
     <x-errors/>
     <form method="post" action="{{ @action('AdvertisementController@update', ['advertisement' => $advertisement]) }}"
@@ -51,7 +51,7 @@
       <div class="two-columns">
         @if($assets)
           <button class="button danger" id="delete-images">
-            {{ __('general/attributes.images').' '.strtolower(__('views/advertisements.delete')) }}
+            {{ __('views/advertisements.delete_image') }}
           </button>
         @endif
         <x-input
