@@ -32,7 +32,7 @@ class AdvertisementPolicy
 
     public function update(User $user, Advertisement $advertisement)
     {
-        return $user->id === $advertisement->user_id || $user->is_admin ? true : null;
+        return $user->id === $advertisement->user_id;
     }
 
     public function delete(User $user, Advertisement $advertisement)
