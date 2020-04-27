@@ -87,5 +87,10 @@
         </button>
       </form>
     @endcan
+    @can('update', $advertisement)
+      <button class="button transparent" data-href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
+        {{ __('general/attributes.edit') }}
+      </button>
+    @endcan
   </div>
 @endsection
