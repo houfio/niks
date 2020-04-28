@@ -50,7 +50,7 @@
       />
       <div class="two-columns">
         @if($assets)
-          <button class="button danger" id="delete-images">
+          <button dusk="clear_images" class="button danger" id="delete-images">
             {{ __('views/advertisements.delete_image') }}
           </button>
         @endif
@@ -83,7 +83,7 @@
         <input type="checkbox" id="is_asking" name="is_asking" @if($advertisement->is_asking) checked @endif>
         <label for="is_asking">{{ __('general/attributes.is_asking') }}</label>
       </div>
-      <button class="button" type="submit" name="edit">
+      <button dusk="update" class="button" type="submit" name="edit">
         {{ __('general/attributes.edit') }}
       </button>
     </form>
