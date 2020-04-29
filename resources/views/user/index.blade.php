@@ -12,7 +12,7 @@
     <x-errors/>
   </div>
   @foreach($users as $user)
-    <div class="list-item" data-href="{{ url("/users/$user->id/edit") }}">
+    <div class="list-item" data-href="{{ @action('UserController@edit', ['user' => $user]) }}">
       {{ $user->getFullName() }}
       <div class="spacer"></div>
       @if(!$user->is_approved)
