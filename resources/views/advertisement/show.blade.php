@@ -6,6 +6,12 @@
   <div class="content">
     <h1 class="page-heading" dusk="title">
       {{ $advertisement->title }}
+      <x-icon-action
+        :action="action($favorite ? 'UserFavoritesController@destroy' : 'UserFavoritesController@store', $favorite ? ['favorite' => $favorite] : ['advertisement' => $advertisement])"
+        icon="heart"
+        :method="$favorite ? 'delete' : 'post'"
+        :class="'heart' . ($favorite ? ' active' : '')"
+      />
     </h1>
     <x-errors/>
     @if(count($assets) > 0)
@@ -31,13 +37,12 @@
               {{ $bid->bid }}
             </span>
             @can('delete', $bid)
-              <form method="post" action="{{ @action('BidController@destroy', ['bid' => $bid->id]) }}">
-                @csrf
-                @method('delete')
-                <button type="submit" dusk="delete_bid_{{ $bid->id }}">
-                  <i class="fas fa-times"></i>
-                </button>
-              </form>
+              <x-icon-action
+                :action="action('BidController@destroy', ['bid' => $bid->id])"
+                method="delete"
+                :duskSelector="'delete_bid_' . $bid->id"
+                icon="times"
+              />
             @endcan
           </div>
         @empty
@@ -66,15 +71,6 @@
     <div class="subtle" title="{{ $advertisement->created_at->isoFormat('LLLL') }}">
       {{ $advertisement->created_at->diffForHumans() }}
     </div>
-    <form
-      method="post"
-      action="{{ @action('UserFavoritesController@store', ['advertisement' => $advertisement]) }}"
-    >
-      @csrf
-      <button type="submit" class="button" style="margin-top: 1rem" dusk="favorite_button">
-        {{ __('views/advertisements.favorite') }}
-      </button>
-    </form>
     @can('delete', $advertisement)
       <form
         method="post"
@@ -82,7 +78,7 @@
       >
         @csrf
         @method('delete')
-        <button type="submit" class="button transparent">
+        <button type="submit" class="button transparent" style="margin-top: 1rem">
           {{ __('views/advertisements.delete') }}
         </button>
       </form>

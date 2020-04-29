@@ -10,7 +10,7 @@ class UserFavoritesController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(UserFavorite::class, 'userfavorite');
+        $this->authorizeResource(UserFavorite::class, 'favorite');
     }
 
     public function index(Request $request)
@@ -38,9 +38,9 @@ class UserFavoritesController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request, UserFavorite $userFavorite)
+    public function destroy(Request $request, UserFavorite $favorite)
     {
-        $userFavorite->delete();
+        $favorite->delete();
         $request->session()->flash('message', __('messages/favorite.deleted'));
 
         return redirect()->back();

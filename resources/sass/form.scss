@@ -219,3 +219,19 @@
     margin-bottom: 0;
   }
 }
+
+.heart {
+  transition: opacity .25s ease;
+
+  @include with-theme {
+    color: themed('cardClick');
+  }
+
+  &:hover {
+    opacity: .5;
+  }
+
+  &.active {
+    color: $red;
+  }
+}
