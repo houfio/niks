@@ -10,9 +10,9 @@ class UserFavoritePolicy
 {
     use HandlesAuthorization;
 
-    public function before(?User $user, string $ability)
+    public function before(User $user, string $ability)
     {
-        return optional($user)->is_admin ? true : null;
+        return $user->is_admin ? true : null;
     }
 
     public function viewAny(User $user)
@@ -25,10 +25,8 @@ class UserFavoritePolicy
         return true;
     }
 
-    public function delete(User $user, UserFavorite $model)
+    public function delete(User $user, UserFavorite $favorite)
     {
-        dd($user, $model);
-
-        return $user->id === $model->user_id;
+        return $user->id === $favorite->user_id;
     }
 }
