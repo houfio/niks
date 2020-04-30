@@ -27,5 +27,12 @@
     <a class="button" href="{{ url('/advertisements/create') }}">
       {{ __('views/advertisements.create') }}
     </a>
+    <form method="get" action="{{ @action('AdvertisementController@index') }}">
+      <x-input
+        name="search"
+        label="Zoeken"
+        white
+      />
+    </form>
   </div>
 @endsection
