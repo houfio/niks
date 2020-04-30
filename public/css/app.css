@@ -6861,7 +6861,8 @@ main > .content {
 }
 
 .text-input.white > input,
-.text-input.white > textarea {
+.text-input.white > textarea,
+.text-input.white > select {
   background-color: white;
 }
 

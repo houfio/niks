@@ -126,7 +126,7 @@
     }
   }
 
-  &.white > input, &.white > textarea {
+  &.white > input, &.white > textarea, &.white > select {
     background-color: white;
   }
 }
