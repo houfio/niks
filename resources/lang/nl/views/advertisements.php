@@ -15,5 +15,8 @@ return [
     'short_description_help' => 'Beschrijving die te vinden is in het overzicht (minimaal 30 karakters en maximaal 255)',
     'price_help' => 'Prijs van de advertentie (alleen verplciht wanneer bieden uit staat)',
     'minimum_price_help' => 'Minimale prijs van de advertentie (alleen verplicht wanneer bieden aan staat)',
-    'delete_image' => 'Afbeelding verwijderen'
+    'delete_image' => 'Afbeelding verwijderen',
+    'price' => 'Prijs',
+    'search' => 'Zoeken',
+    'distance' => 'Afstand'
 ];
