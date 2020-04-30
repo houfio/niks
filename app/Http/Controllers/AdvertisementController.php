@@ -38,7 +38,7 @@ class AdvertisementController extends Controller
 
         if (isset($queries['price'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {
-                $query->where('price','<=', (int)$queries['price'])
+                $query->where('price', '<=', (int)$queries['price'])
                     ->orWhere('minimum_price', '<=', (int)$queries['price']);
             });
         }
@@ -51,18 +51,18 @@ class AdvertisementController extends Controller
 
         if (isset($queries['distance'])) {
             $distance = (int)$queries['distance'];
-
-            $advertisements->join('users as u', 'advertisements.user_id', '=', 'u.id');
-            $advertisements = $advertisements->where(function ($query) use ($queries, $request, $distance) {
-                $query->whereRaw("ROUND(ST_Distance_Sphere(
-                     point(?, ?),
-                     point(u.longitude, u.latitude)
-                 ) / 1000, 2) <= ?", [
-                    $request->user()->longitude,
-                    $request->user()->latitude,
-                    $distance
-                ]);
-            });
+            $advertisements
+                ->join('users as u', 'advertisements.user_id', '=', 'u.id')
+                ->where(function ($query) use ($queries, $request, $distance) {
+                    $query->whereRaw("ROUND(ST_Distance_Sphere(
+                        point(?, ?),
+                        point(u.longitude, u.latitude)
+                    ) / 1000, 2) <= ?", [
+                        $request->user()->longitude,
+                        $request->user()->latitude,
+                        $distance
+                    ]);
+                });
         }
 
         return view('advertisement.index', [
@@ -126,7 +126,7 @@ class AdvertisementController extends Controller
             'user' => $advertisement->user()->get()->first(),
             'assets' => $advertisement->assets()->get(),
             'bids' => $advertisement->bids()->get(),
-            'favorite' =>  UserFavorite::where('user_id', Auth::user()->id)->where('advertisement_id', $advertisement->id)->first()
+            'favorite' => UserFavorite::where('user_id', Auth::user()->id)->where('advertisement_id', $advertisement->id)->first()
         ]);
     }
 
@@ -153,7 +153,7 @@ class AdvertisementController extends Controller
 
         $advertisement->user()->associate($request->user());
 
-        if(!isset($data['delete_images'])) {
+        if (!isset($data['delete_images'])) {
             $advertisement->assets()->detach();
 
             if (isset($data['images'])) {
@@ -170,7 +170,7 @@ class AdvertisementController extends Controller
         }
 
         $advertisement->save();
-        if(isset($data['images'])) {
+        if (isset($data['images'])) {
             $advertisement->assets()->saveMany($assets);
         }
         $request->session()->flash('message', __('messages/advertisement.updated'));

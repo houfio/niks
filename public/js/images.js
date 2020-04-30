@@ -81,50 +81,55 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/ts/confirm.ts":
-/*!*********************************!*\
-  !*** ./resources/ts/confirm.ts ***!
-  \*********************************/
+/***/ "./resources/ts/images.ts":
+/*!********************************!*\
+  !*** ./resources/ts/images.ts ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 (function () {
-    var form = document.getElementById('deleteForm');
-    var input = document.getElementById('confirmation');
-    var submit = document.getElementById('deleteSubmit');
-    if (!form || !input || !submit) {
+    var button = document.getElementById('delete-images');
+    var input = document.getElementById('images[]');
+    if (!input) {
         return;
     }
-    input.removeAttribute('data-error');
-    submit.addEventListener('click', function () {
-        if (input.value.toLowerCase() === confirmation) {
-            input.removeAttribute('data-error');
-            form.submit();
+    if (input.parentNode) {
+        input.parentNode.style.display = 'none';
+    }
+    if (!button) {
+        return;
+    }
+    button.addEventListener('click', function (e) {
+        if (!input.parentNode) {
+            return;
         }
-        else {
-            input.setAttribute('data-error', '');
-        }
+        e.preventDefault();
+        button.style.display = 'none';
+        input.parentNode.style.display = 'block';
+        var images = document.querySelectorAll('input[type="hidden"][name="delete_images"');
+        images.forEach(function (image) { return image.parentNode && image.parentNode.removeChild(image); });
     });
 })();
 
 
 /***/ }),
 
-/***/ 1:
-/*!***************************************!*\
-  !*** multi ./resources/ts/confirm.ts ***!
-  \***************************************/
+/***/ 2:
+/*!**************************************!*\
+  !*** multi ./resources/ts/images.ts ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/lex/Projects/niks/resources/ts/confirm.ts */"./resources/ts/confirm.ts");
+module.exports = __webpack_require__(/*! /Users/lex/Projects/niks/resources/ts/images.ts */"./resources/ts/images.ts");
 
 
 /***/ })
