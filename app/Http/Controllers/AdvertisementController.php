@@ -51,8 +51,7 @@ class AdvertisementController extends Controller
 
         if (isset($queries['distance'])) {
             $distance = (int)$queries['distance'];
-            $advertisements
-                ->join('users as u', 'advertisements.user_id', '=', 'u.id')
+            $advertisements->join('users as u', 'advertisements.user_id', '=', 'u.id')
                 ->where(function ($query) use ($queries, $request, $distance) {
                     $query->whereRaw("ROUND(ST_Distance_Sphere(
                         point(?, ?),
@@ -119,14 +118,14 @@ class AdvertisementController extends Controller
         return redirect()->action('AdvertisementController@index');
     }
 
-    public function show(Advertisement $advertisement)
+    public function show(Request $request, Advertisement $advertisement)
     {
         return view('advertisement.show', [
             'advertisement' => $advertisement,
             'user' => $advertisement->user()->get()->first(),
             'assets' => $advertisement->assets()->get(),
             'bids' => $advertisement->bids()->get(),
-            'favorite' => UserFavorite::where('user_id', Auth::user()->id)->where('advertisement_id', $advertisement->id)->first()
+            'favorite' => UserFavorite::where('user_id', $request->user()->id)->where('advertisement_id', $advertisement->id)->first()
         ]);
     }
 
