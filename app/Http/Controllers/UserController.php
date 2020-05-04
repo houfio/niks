@@ -32,8 +32,14 @@ class UserController extends Controller
             });
         }
 
+        if (isset($queries['sort']) && ($queries['sort'] === 'first_name' || $queries['sort'] === 'last_name' || $queries['sort'] === 'email')) {
+            $users = $users->orderBy($queries['sort'], isset($queries['direction']) && $queries['direction'] === 'desc' ? 'desc' : 'asc')->get();
+        } else {
+            $users = $users->orderBy('created_at', 'desc')->get();
+        }
+
         return view('user.index', [
-            'users' => $users->orderBy('created_at', 'desc')->get()
+            'users' => $users
         ]);
     }
 
