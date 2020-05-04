@@ -16,10 +16,24 @@ class UserController extends Controller
         $this->authorizeResource(User::class, 'user');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $queries = $request->query();
+
+        $users = new User();
+        $users = $users->newQuery();
+
+        if (isset($queries['search'])) {
+            $users = $users->where(function ($query) use ($queries) {
+                $query->where('email', 'like', "%{$queries['search']}%")
+                    ->orWhereRaw('concat(first_name, " ", last_name) LIKE ?', [
+                        "%{$queries['search']}%"
+                    ]);
+            });
+        }
+
         return view('user.index', [
-            'users' => User::orderBy('created_at', 'desc')->get()
+            'users' => $users->orderBy('created_at', 'desc')->get()
         ]);
     }
 
