@@ -1,8 +1,8 @@
 declare const confirmation: string;
 
 (() => {
-  const form = document.getElementById('deleteForm') as HTMLFormElement;
-  const input = document.getElementById('confirmation') as HTMLInputElement;
+  const form = document.getElementById('deleteForm') as HTMLFormElement | null;
+  const input = document.getElementById('confirmation') as HTMLInputElement | null;
   const submit = document.getElementById('deleteSubmit');
 
   if (!form || !input || !submit) {

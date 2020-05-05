@@ -126,7 +126,7 @@
     }
   }
 
-  &.white > input, &.white > textarea {
+  &.white > input, &.white > textarea, &.white > select {
     background-color: white;
   }
 }
@@ -203,6 +203,10 @@
     &:focus:checked ~ label::before {
       box-shadow: 0 0 0 3px transparentize($orange, .45);
     }
+  }
+
+  &.white > label::before {
+    background-color: white;
   }
 }
 

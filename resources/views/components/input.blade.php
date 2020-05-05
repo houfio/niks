@@ -1,4 +1,4 @@
-<div class="text-input" @if(isset($type) && $type === 'select') data-arrow @endif>
+<div class="text-input @if(isset($white)) white @endif" @if(isset($type) && $type === 'select') data-arrow @endif>
   <label for="{{ $name }}" @if(isset($required)) data-required @endif>
     {{ $label }}
   </label>
@@ -10,7 +10,7 @@
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
       @if(isset($error)) data-error @endif
-    >{{ $value ?? old($name) }}</textarea>
+    >{{ $value ?? old($name) ?? request()->get($name) }}</textarea>
   @elseif(isset($type) && $type === 'select')
     <select
       id="{{ $name }}"
@@ -26,7 +26,7 @@
       type="{{ $type ?? 'text' }}"
       id="{{ $name }}"
       name="{{ $name }}"
-      value="{{ $value ?? old($name) }}"
+      value="{{ $value ?? old($name) ?? request()->get($name) }}"
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
       @if(isset($multiple)) multiple @endif
