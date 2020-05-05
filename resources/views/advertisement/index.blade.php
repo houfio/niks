@@ -32,9 +32,9 @@
       <x-input name="price" :label="__('views/advertisements.price')" type="number" white/>
       <x-input name="distance" :label="__('views/advertisements.distance')" type="select" white>
         <option></option>
-        <option @if(request()->get('distance') === '5') selected @endif>5</option>
-        <option @if(request()->get('distance') === '10') selected @endif>10</option>
-        <option @if(request()->get('distance') === '15') selected @endif>15</option>
+        @foreach(['5', '10', '15'] as $distance)
+          <option @if(request()->get('distance') === $distance) selected @endif>{{ $distance }}</option>
+        @endforeach
       </x-input>
       <div class="checkbox-input white">
         <input
