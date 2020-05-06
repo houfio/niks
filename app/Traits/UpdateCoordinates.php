@@ -12,8 +12,8 @@ trait UpdateCoordinates
         $locationService = new LocationService();
         $updatedAttributes = $this->getDirty();
 
-        foreach ($updatedAttributes as $attribute) {
-            $changed |= in_array($attribute, $this->updateCoordinates);
+        foreach ($updatedAttributes as $key => $attribute) {
+            $changed |= in_array($key, $this->updateCoordinates);
         }
 
         if ($changed) {
