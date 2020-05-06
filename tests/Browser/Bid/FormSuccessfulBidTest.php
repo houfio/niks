@@ -26,8 +26,7 @@ class FormSuccessfulBidTest extends DuskTestCase
 
         $advertisement = factory(Advertisement::class)->create([
             'enable_bidding' => true,
-            'minimum_price' => 4,
-            'price' => null,
+            'price' => 4,
             'user_id' => $owner->id
         ]);
 

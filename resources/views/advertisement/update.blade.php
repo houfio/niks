@@ -37,13 +37,6 @@
           :value="$advertisement->price"
           :help="__('views/advertisements.price_help')"
         />
-        <x-input
-          name="minimum_price"
-          type="number"
-          :label="__('general/attributes.minimum_price')"
-          :value="$advertisement->minimum_price"
-          :help="__('views/advertisements.minimum_price_help')"
-        />
       </div>
       <x-input
         name="long_description"
