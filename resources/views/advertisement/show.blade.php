@@ -11,6 +11,7 @@
         icon="heart"
         :method="$favorite ? 'delete' : 'post'"
         :class="'heart' . ($favorite ? ' active' : '')"
+        :duskSelector="'favorite_button'"
       />
     </h1>
     <x-errors/>
