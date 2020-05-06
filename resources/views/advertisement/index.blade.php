@@ -47,7 +47,7 @@
           {{ __('views/advertisements.bid') }}
         </label>
       </div>
-      <button class="button" type="submit">
+      <button class="button" type="submit" dusk="search">
         {{ __('views/advertisements.search') }}
       </button>
     </form>

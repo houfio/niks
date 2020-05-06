@@ -16,7 +16,7 @@ return [
     'price_help' => 'Prijs van de advertentie (alleen verplciht wanneer bieden uit staat)',
     'minimum_price_help' => 'Minimale prijs van de advertentie (alleen verplicht wanneer bieden aan staat)',
     'delete_image' => 'Afbeelding verwijderen',
-    'price' => 'Prijs',
+    'price' => 'Max prijs (niks)',
     'search' => 'Zoeken',
-    'distance' => 'Afstand'
+    'distance' => 'Max afstand (km)'
 ];
