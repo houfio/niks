@@ -42,6 +42,6 @@ class Advertisement extends Model
 
         $highestBid = $this->bids()->max('bid');
 
-        return is_null($highestBid) ? $this->minimum_price : $highestBid;
+        return is_null($highestBid) ? $this->price : $highestBid;
     }
 }

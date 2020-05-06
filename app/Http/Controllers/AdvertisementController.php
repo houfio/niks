@@ -38,8 +38,7 @@ class AdvertisementController extends Controller
 
         if (isset($queries['price'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {
-                $query->where('price', '<=', (int)$queries['price'])
-                    ->orWhere('minimum_price', '<=', (int)$queries['price']);
+                $query->where('price', '<=', (int)$queries['price']);
             });
         }
 
@@ -85,7 +84,6 @@ class AdvertisementController extends Controller
         $advertisement->long_description = $data['long_description'];
         $advertisement->price = $data['price'];
         $advertisement->enable_bidding = isset($data['enable_bidding']);
-        $advertisement->minimum_price = $data['minimum_price'];
         $advertisement->is_service = $data['is_service'];
         $advertisement->is_asking = isset($data['is_asking']);
 
@@ -146,7 +144,6 @@ class AdvertisementController extends Controller
         $advertisement->long_description = $data['long_description'];
         $advertisement->price = $data['price'];
         $advertisement->enable_bidding = isset($data['enable_bidding']);
-        $advertisement->minimum_price = $data['minimum_price'];
         $advertisement->is_service = $data['is_service'];
         $advertisement->is_asking = isset($data['is_asking']);
 
