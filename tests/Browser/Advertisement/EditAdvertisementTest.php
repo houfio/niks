@@ -6,9 +6,14 @@ use App\Advertisement;
 use App\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Throwable;
 
 class EditAdvertisementTest extends DuskTestCase
 {
+    /**
+     * @test
+     * @throws Throwable
+     */
     public function testEditAdvertisement()
     {
         $user = factory(User::class)->create([
