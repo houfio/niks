@@ -12,21 +12,35 @@
       {{ __('views/intakes.individual_title') }} - {{ $intake->invitee->getFullName() }}
     </h1>
     <x-errors/>
-    <div>
-      {{ __('views/intakes.inviter') }}:
-      {{ $intake->invitee->getFullName() }}
-    </div>
-    <div>
-      {{ __('views/intakes.invitee') }}:
-      {{ $intake->inviter->getFullName() }}
-    </div>
-    <div>
-      {{ __('views/intakes.date') }}:
-      {{ $intake->date->isoFormat('LLLL') }}
-    </div>
-    <div>
-      {{ __('views/intakes.accepted') }}:
-      {{ $intake->accepted ? __('views/intakes.yes') : __('views/intakes.no') }}
+    <x-input
+      name="inviter"
+      :label="__('views/intakes.inviter')"
+      :value="$intake->inviter->getFullName()"
+      disabled
+    />
+    <x-input
+      name="invitee"
+      :label="__('views/intakes.invitee')"
+      :value="$intake->invitee->getFullName()"
+      disabled
+    />
+    <x-input
+      name="date"
+      :label="__('views/intakes.date')"
+      :value="$intake->date->isoFormat('LLLL')"
+      disabled
+    />
+    <div class="checkbox-input">
+      <input
+        type="checkbox"
+        id="accepted"
+        name="accepted"
+        @if($intake->accepted) checked @endif
+        disabled
+      />
+      <label for="accepted">
+        {{ __('views/intakes.accepted') }}
+      </label>
     </div>
   </div>
 @endsection

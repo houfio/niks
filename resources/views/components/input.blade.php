@@ -10,6 +10,7 @@
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
       @if(isset($error)) data-error @endif
+      @if(isset($disabled)) disabled @endif
     >{{ $value ?? old($name) ?? request()->get($name) }}</textarea>
   @elseif(isset($type) && $type === 'select')
     <select
@@ -18,6 +19,7 @@
       @if(isset($help)) aria-describedby="{{ $name }}_help" @endif
       @if(isset($required)) required @endif
       @if(isset($error)) data-error @endif
+      @if(isset($disabled)) disabled @endif
     >
       {{ $slot }}
     </select>
@@ -31,6 +33,7 @@
       @if(isset($required)) required @endif
       @if(isset($multiple)) multiple @endif
       @if(isset($error)) data-error @endif
+      @if(isset($disabled)) disabled @endif
     />
   @endif
   @if(isset($help))
