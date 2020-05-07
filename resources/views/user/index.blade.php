@@ -21,10 +21,10 @@
           @method('put')
           <div class="button-group">
             <button type="submit" name="approve" value="1" class="button" dusk="approve_{{ $user->id }}">
-              {{ __('views/users.approve') }}
+              <i class="fas fa-check fa-fw"></i>
             </button>
             <button type="submit" name="approve" value="0" class="button" dusk="disapprove_{{ $user->id }}">
-              {{ __('views/users.reject') }}
+              <i class="fas fa-times fa-fw"></i>
             </button>
           </div>
         </form>

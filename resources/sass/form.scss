@@ -225,7 +225,7 @@
 
     &:checked ~ label {
       &::before {
-        background-color: $orange;
+        background-color: $orange !important;
       }
 
       &::after {
