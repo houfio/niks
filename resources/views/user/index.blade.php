@@ -19,7 +19,7 @@
         <form action="{{ @action('Auth\ApproveController@approve', ['user' => $user]) }}" method="post">
           @csrf
           @method('put')
-          <div>
+          <div class="button-group">
             <button type="submit" name="approve" value="1" class="button" dusk="approve_{{ $user->id }}">
               {{ __('views/users.approve') }}
             </button>

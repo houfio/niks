@@ -6776,6 +6776,36 @@ main > .content {
   box-shadow: 0 0 0 3px rgba(255, 102, 102, 0.55) !important;
 }
 
+.button-group {
+  display: flex;
+}
+
+.button-group > .button {
+  position: relative;
+  border-radius: 0;
+}
+
+.button-group > .button:first-child {
+  border-top-left-radius: 2.5rem;
+  border-bottom-left-radius: 2.5rem;
+}
+
+.button-group > .button:last-child {
+  border-top-right-radius: 2.5rem;
+  border-bottom-right-radius: 2.5rem;
+}
+
+.button-group > .button:not(:first-child)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(50% - .75rem);
+  left: -0.0625rem;
+  width: 0.125rem;
+  height: 1.5rem;
+  background-color: #ff7733;
+}
+
 .divider {
   display: inline-block;
   margin-top: 5px;
