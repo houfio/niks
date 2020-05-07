@@ -39,14 +39,14 @@
       <x-input name="search" :label="__('views/users.search')"/>
       <x-input name="sort" :label="__('views/users.sort_by')" type="select">
         <option></option>
-        @foreach([__('general/attributes.first_name') => 'first_name', __('general/attributes.last_name') => 'last_name', __('general/attributes.email') => 'email'] as $key => $attribute)
-          <option @if(request()->get('sort') === $attribute) selected @endif value="{{ $attribute }}">{{ $key }}</option>
+        @foreach(['first_name' => __('general/attributes.first_name'), 'last_name' => __('general/attributes.last_name'), 'email' => __('general/attributes.email')] as $key => $attribute)
+          <option @if(request()->get('sort') === $key) selected @endif value="{{ $key }}">{{ $attribute }}</option>
         @endforeach
       </x-input>
       <x-input name="direction" :label="__('views/users.sort_direction')" type="select">
         <option></option>
-        @foreach(['Gesorteerd van A-Z' => 'asc', 'Gesorteerd van Z-A' => 'desc'] as $key => $direction)
-          <option @if(request()->get('direction') === $direction) selected @endif value="{{ $direction }}">{{ $key }}</option>
+        @foreach(['asc' => __('views/users.asc'), 'desc' => __('views/users.desc')] as $key => $direction)
+          <option @if(request()->get('direction') === $key) selected @endif value="{{ $key }}">{{ $direction }}</option>
         @endforeach
       </x-input>
       <button class="button" type="submit" dusk="search">

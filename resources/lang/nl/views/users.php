@@ -15,5 +15,7 @@ return [
     'sort_direction' => 'Volgorde',
     'sort_by' => 'Sorteer op',
     'search' => 'Zoeken',
-    'search_button' => 'Zoeken/sorteren'
+    'search_button' => 'Zoeken/sorteren',
+    'asc' => 'Gesorteerd van A-Z',
+    'desc' => 'Gesorteerd van Z-A'
 ];
