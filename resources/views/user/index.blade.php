@@ -12,8 +12,8 @@
     <x-errors/>
   </div>
   @foreach($users as $user)
-    <div id="user" class="list-item" data-href="{{ @action('UserController@edit', ['user' => $user]) }}">
-      {{ $user->getFullName() }}
+    <div class="list-item" data-href="{{ @action('UserController@edit', ['user' => $user]) }}">
+      <span id="user">{{ $user->getFullName() }}</span>
       <div class="spacer"></div>
       @if(!$user->is_approved)
         <form action="{{ @action('Auth\ApproveController@approve', ['user' => $user]) }}" method="post">
