@@ -36,17 +36,17 @@
 @section('sidebar')
   <div class="sidebar">
     <form method="get" action="{{ @action('UserController@index') }}" style="margin-top: 1rem">
-      <x-input name="search" :label="__('views/advertisements.search')" white/>
-      <x-input name="sort" :label="__('views/users.sort_by')" type="select" white>
+      <x-input name="search" :label="__('views/users.search')"/>
+      <x-input name="sort" :label="__('views/users.sort_by')" type="select">
         <option></option>
         @foreach([__('general/attributes.first_name') => 'first_name', __('general/attributes.last_name') => 'last_name', __('general/attributes.email') => 'email'] as $key => $attribute)
           <option @if(request()->get('sort') === $attribute) selected @endif value="{{ $attribute }}">{{ $key }}</option>
         @endforeach
       </x-input>
-      <x-input name="direction" :label="__('views/users.sort_direction')" type="select" white>
+      <x-input name="direction" :label="__('views/users.sort_direction')" type="select">
         <option></option>
         @foreach(['Gesorteerd van A-Z' => 'asc', 'Gesorteerd van Z-A' => 'desc'] as $key => $direction)
-          <option @if(request()->get('distance') === $direction) selected @endif value="{{ $direction }}">{{ $key }}</option>
+          <option @if(request()->get('direction') === $direction) selected @endif value="{{ $direction }}">{{ $key }}</option>
         @endforeach
       </x-input>
       <button class="button" type="submit" dusk="search">
