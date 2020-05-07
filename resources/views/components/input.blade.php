@@ -1,4 +1,4 @@
-<div class="text-input @if(isset($white)) white @endif" @if(isset($type) && $type === 'select') data-arrow @endif>
+<div class="text-input @if(isset($light)) light @endif" @if(isset($type) && $type === 'select') data-arrow @endif>
   <label for="{{ $name }}" @if(isset($required)) data-required @endif>
     {{ $label }}
   </label>

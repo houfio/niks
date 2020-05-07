@@ -31,10 +31,8 @@
 
 @section('sidebar')
   <div class="sidebar">
-    <form action="{{ @action('IntakeController@create') }}" method="get">
-      <button class="button" type="submit">
-        {{ __('general/attributes.create') }}
-      </button>
-    </form>
+    <a class="button" href="{{ action('IntakeController@create') }}">
+      {{ __('general/attributes.create') }}
+    </a>
   </div>
 @endsection

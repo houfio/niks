@@ -126,8 +126,10 @@
     }
   }
 
-  &.white > input, &.white > textarea, &.white > select {
-    background-color: white;
+  &.light > input, &.light > textarea, &.light > select {
+    @include with-theme {
+      background-color: themed('background');
+    }
   }
 }
 
@@ -205,8 +207,10 @@
     }
   }
 
-  &.white > label::before {
-    background-color: white;
+  &.light > label::before {
+    @include with-theme {
+      background-color: themed('background');
+    }
   }
 }
 
