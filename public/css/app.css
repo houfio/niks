@@ -6947,16 +6947,15 @@ main > .content {
 
 .checkbox-input {
   position: relative;
-  height: 1.5rem;
   margin-bottom: 1rem;
 }
 
 .checkbox-input > label {
-  position: absolute;
   display: flex;
   align-items: center;
-  top: 0;
-  left: 0;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
 }
 
 .checkbox-input > label:hover {
@@ -6978,19 +6977,20 @@ main > .content {
 }
 
 .theme-light .checkbox-input > label::before {
-  background-color: #f1f3f4;
+  background-color: #fff;
 }
 
 .theme-dark .checkbox-input > label::before {
-  background-color: #292a2d;
+  background-color: #35363a;
 }
 
 .checkbox-input > label::after {
   position: absolute;
-  top: 0.2rem;
-  left: 0.5rem;
+  top: 0.7rem;
+  left: 1.25rem;
   width: 0.5rem;
   height: 0.9rem;
+  border: 3px solid;
   border-top: none !important;
   border-left: none !important;
   transform: rotate(45deg);
@@ -6998,14 +6998,25 @@ main > .content {
 }
 
 .theme-light .checkbox-input > label::after {
-  border: 3px solid #f1f3f4;
+  border-color: #fff;
 }
 
 .theme-dark .checkbox-input > label::after {
-  border: 3px solid #292a2d;
+  border-color: #35363a;
+}
+
+.theme-light .checkbox-input > label {
+  background-color: #f1f3f4;
+}
+
+.theme-dark .checkbox-input > label {
+  background-color: #292a2d;
 }
 
 .checkbox-input > input {
+  display: block;
+  width: 0;
+  height: 0;
   opacity: 0;
 }
 
@@ -7022,7 +7033,7 @@ main > .content {
 }
 
 .checkbox-input > input:checked ~ label::after {
-  border: 3px solid #f7f7f7;
+  border-color: #f7f7f7 !important;
 }
 
 .checkbox-input > input:focus:checked ~ label::before {
@@ -7030,10 +7041,26 @@ main > .content {
 }
 
 .theme-light .checkbox-input.light > label::before {
-  background-color: #fff;
+  background-color: #f1f3f4;
 }
 
 .theme-dark .checkbox-input.light > label::before {
+  background-color: #292a2d;
+}
+
+.theme-light .checkbox-input.light > label::after {
+  border-color: #f1f3f4;
+}
+
+.theme-dark .checkbox-input.light > label::after {
+  border-color: #292a2d;
+}
+
+.theme-light .checkbox-input.light > label {
+  background-color: #fff;
+}
+
+.theme-dark .checkbox-input.light > label {
   background-color: #35363a;
 }
 

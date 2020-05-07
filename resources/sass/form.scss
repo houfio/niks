@@ -166,15 +166,14 @@
 
 .checkbox-input {
   position: relative;
-  height: 1.5rem;
   margin-bottom: 1rem;
 
   & > label {
-    position: absolute;
     display: flex;
     align-items: center;
-    top: 0;
-    left: 0;
+    width: 100%;
+    padding: .5rem .75rem;
+    border-radius: .5rem;
 
     &:hover {
       cursor: pointer;
@@ -193,28 +192,36 @@
       transition: box-shadow .25s ease, background-color .25s ease;
 
       @include with-theme {
-        background-color: themed('card');
+        background-color: themed('background');
       }
     }
 
     &::after {
       position: absolute;
-      top: .2rem;
-      left: .5rem;
+      top: .7rem;
+      left: 1.25rem;
       width: .5rem;
       height: .9rem;
+      border: 3px solid;
       border-top: none !important;
       border-left: none !important;
       transform: rotate(45deg);
       transition: left .25s ease, border-color .25s ease;
 
       @include with-theme {
-        border: 3px solid themed('card');
+        border-color: themed('background');
       }
+    }
+
+    @include with-theme {
+      background-color: themed('card');
     }
   }
 
   & > input {
+    display: block;
+    width: 0;
+    height: 0;
     opacity: 0;
 
     &:focus ~ label::before {
@@ -229,7 +236,7 @@
       }
 
       &::after {
-        border: 3px solid $gray;
+        border-color: $gray !important;
       }
     }
 
@@ -238,7 +245,19 @@
     }
   }
 
-  &.light > label::before {
+  &.light > label {
+    &::before {
+      @include with-theme {
+        background-color: themed('card');
+      }
+    }
+
+    &::after {
+      @include with-theme {
+        border-color: themed('card');
+      }
+    }
+
     @include with-theme {
       background-color: themed('background');
     }

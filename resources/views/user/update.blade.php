@@ -58,14 +58,14 @@
           :value="$user->neighbourhood"
           :label="__('general/attributes.neighbourhood')"
         />
-      </div>
-      <div class="checkbox-input">
-        <input type="checkbox" id="is_approved" name="is_approved" @if($user->is_approved) checked @endif/>
-        <label for="is_approved" dusk="approved">{{ __('general/attributes.is_approved') }}</label>
-      </div>
-      <div class="checkbox-input">
-        <input type="checkbox" id="is_admin" name="is_admin" @if($user->is_admin) checked @endif/>
-        <label for="is_admin" dusk="admin">{{ __('general/attributes.is_admin') }}</label>
+        <div class="checkbox-input">
+          <input type="checkbox" id="is_approved" name="is_approved" @if($user->is_approved) checked @endif/>
+          <label for="is_approved" dusk="approved">{{ __('general/attributes.is_approved') }}</label>
+        </div>
+        <div class="checkbox-input">
+          <input type="checkbox" id="is_admin" name="is_admin" @if($user->is_admin) checked @endif/>
+          <label for="is_admin" dusk="admin">{{ __('general/attributes.is_admin') }}</label>
+        </div>
       </div>
       <button type="submit" class="button" name="edit">
         {{ __('views/updateUser.submit') }}
