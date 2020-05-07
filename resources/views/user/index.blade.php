@@ -32,3 +32,30 @@
     </div>
   @endforeach
 @endsection
+
+@section('sidebar')
+  <div class="sidebar">
+    <form method="get" action="{{ @action('UserController@index') }}">
+      <x-input name="search" :label="__('views/users.search')"/>
+      <x-input name="sort" :label="__('views/users.sort_by')" type="select">
+        <option></option>
+        @foreach(['first_name' => 'general/attributes.first_name', 'last_name' => 'general/attributes.last_name', 'email' => 'general/attributes.email'] as $key => $label)
+          <option @if(request()->get('sort') === $key) selected @endif value="{{ $key }}">
+            {{ __($label) }}
+          </option>
+        @endforeach
+      </x-input>
+      <x-input name="direction" :label="__('views/users.sort_direction')" type="select">
+        <option></option>
+        @foreach(['asc' => 'views/users.asc', 'desc' => 'views/users.desc'] as $key => $label)
+          <option @if(request()->get('direction') === $key) selected @endif value="{{ $key }}">
+            {{ __($label) }}
+          </option>
+        @endforeach
+      </x-input>
+      <button class="button" type="submit" dusk="search">
+        {{ __('views/users.search_button') }}
+      </button>
+    </form>
+  </div>
+@endsection

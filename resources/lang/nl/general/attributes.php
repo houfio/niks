@@ -28,8 +28,5 @@ return [
     'remember_me' => 'Ingelogd blijven',
     'create' => 'Aanmaken',
     'advertisement' => 'Advertentie',
-    'edit' => 'Aanpassen',
-    'product' => 'Product',
-    'service' => 'Dienst'
-
+    'edit' => 'Aanpassen'
 ];
