@@ -11,5 +11,9 @@ return [
         'delete_user' => 'Deze actie kan niet ongedaan worden gemaakt! Alle gekoppelde advertentie\'s, boden en persoonlijke gegevens zullen permanent verwijderd worden.'
     ],
     'approve' => 'Goedkeuren',
-    'reject' => 'Afwijzen'
+    'reject' => 'Afwijzen',
+    'sort_direction' => 'Volgorde',
+    'sort_by' => 'Sorteer op',
+    'search' => 'Zoeken',
+    'search_button' => 'Zoeken/sorteren'
 ];
