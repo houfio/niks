@@ -17,12 +17,12 @@ class AdvertisementRequest extends FormRequest
             'title' => 'required|max:60',
             'short_description' => 'required|max:255|min:30',
             'long_description' => 'nullable',
-            'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
+            'price' => 'nullable|numeric|min:1|max:2147483647|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
             'images' => 'required_if:is_asking,false',
             'images.*' => 'image|mimes:png,jpeg,jpg',
-            'enable_bidding' => 'in:on,null',
-            'is_asking' => 'in:on,null',
+            'enable_bidding' => 'nullable',
+            'is_asking' => 'nullable',
             'delete_images' => 'nullable'
         ];
     }
