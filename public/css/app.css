@@ -7040,6 +7040,10 @@ main > .content {
   box-shadow: 0 0 0 3px rgba(255, 153, 102, 0.55);
 }
 
+.checkbox-input > input:disabled ~ label {
+  pointer-events: none;
+}
+
 .theme-light .checkbox-input.light > label::before {
   background-color: #f1f3f4;
 }
