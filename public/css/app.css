@@ -6862,6 +6862,7 @@ main > .content {
   top: 1.25rem;
   right: 1.25rem;
   font-family: "Font Awesome 5 Free";
+  pointer-events: none;
 }
 
 .text-input > label {
