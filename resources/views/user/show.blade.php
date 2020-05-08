@@ -8,7 +8,7 @@
   <div class="profile-header">
     <div class="profile-info">
       <div class="profile-image"></div>
-      {{ $user->getFullName() }}
+      <span dusk="user_name">{{ $user->getFullName() }}</span>
       @can('update', $user)
         <a class="button light small" href="{{ action('UserController@edit', ['user' => $user]) }}">
           {{ __('views/profile.edit') }}
