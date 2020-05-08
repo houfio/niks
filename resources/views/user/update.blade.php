@@ -112,7 +112,7 @@
 
 @section('scripts')
   <script>
-    const confirmation = '{{ __('views/updateUser.delete') }}';
+    var confirmation = '{{ __('views/updateUser.delete') }}';
   </script>
   <script src="{{ mix('/js/confirm.js') }}"></script>
 @endsection
