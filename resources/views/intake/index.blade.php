@@ -31,7 +31,7 @@
 
 @section('sidebar')
   <div class="sidebar">
-    <a class="button" href="{{ action('IntakeController@create') }}">
+    <a dusk="create_intake" class="button" href="{{ action('IntakeController@create') }}">
       {{ __('general/attributes.create') }}
     </a>
   </div>
