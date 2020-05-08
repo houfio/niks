@@ -16,14 +16,11 @@
       @endcan
     </div>
   </div>
-  @if(count($advertisements))
-    @foreach($advertisements as $advertisement)
-      <x-advertisement :advertisement="$advertisement"/>
-    @endforeach
-    {{ $advertisements->links() }}
-  @else
+  @forelse($advertisements as $advertisement)
+    <x-advertisement :advertisement="$advertisement"/>
+  @empty
     <x-empty icon="store">
       {{ __('views/advertisements.empty') }}
     </x-empty>
-  @endif
+  @endforelse
 @endsection
