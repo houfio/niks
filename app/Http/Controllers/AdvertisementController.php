@@ -35,7 +35,8 @@ class AdvertisementController extends Controller
         }
 
         if (isset($queries['price'])) {
-            $advertisements = $advertisements->where('price', '<=', (int)$queries['price']);
+            $advertisements = $advertisements->where('price', '<=', (int)$queries['price'])
+                ->where('enable_bidding', '=', 0);
         }
 
         if (isset($queries['bidding'])) {
