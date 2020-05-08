@@ -28,6 +28,36 @@
       box-shadow: 0 0 0 3px transparentize($red, .45) !important;
     }
   }
+
+  &-group {
+    display: flex;
+
+    & > .button {
+      position: relative;
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: 2.5rem;
+        border-bottom-left-radius: 2.5rem;
+      }
+
+      &:last-child {
+        border-top-right-radius: 2.5rem;
+        border-bottom-right-radius: 2.5rem;
+      }
+
+      &:not(:first-child)::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: calc(50% - .75rem);
+        left: -0.0625rem;
+        width: .125rem;
+        height: 1.5rem;
+        background-color: darken($orange, 10);
+      }
+    }
+  }
 }
 
 .divider {
@@ -88,6 +118,7 @@
     top: 1.25rem;
     right: 1.25rem;
     font-family: "Font Awesome 5 Free";
+    pointer-events: none;
   }
 
   & > label {
@@ -126,22 +157,23 @@
     }
   }
 
-  &.white > input, &.white > textarea, &.white > select {
-    background-color: white;
+  &.light > input, &.light > textarea, &.light > select {
+    @include with-theme {
+      background-color: themed('background');
+    }
   }
 }
 
 .checkbox-input {
   position: relative;
-  height: 1.5rem;
   margin-bottom: 1rem;
 
   & > label {
-    position: absolute;
     display: flex;
     align-items: center;
-    top: 0;
-    left: 0;
+    width: 100%;
+    padding: .5rem .75rem;
+    border-radius: .5rem;
 
     &:hover {
       cursor: pointer;
@@ -160,28 +192,36 @@
       transition: box-shadow .25s ease, background-color .25s ease;
 
       @include with-theme {
-        background-color: themed('card');
+        background-color: themed('background');
       }
     }
 
     &::after {
       position: absolute;
-      top: .2rem;
-      left: .5rem;
+      top: .7rem;
+      left: 1.25rem;
       width: .5rem;
       height: .9rem;
+      border: 3px solid;
       border-top: none !important;
       border-left: none !important;
       transform: rotate(45deg);
       transition: left .25s ease, border-color .25s ease;
 
       @include with-theme {
-        border: 3px solid themed('card');
+        border-color: themed('background');
       }
+    }
+
+    @include with-theme {
+      background-color: themed('card');
     }
   }
 
   & > input {
+    display: block;
+    width: 0;
+    height: 0;
     opacity: 0;
 
     &:focus ~ label::before {
@@ -192,21 +232,39 @@
 
     &:checked ~ label {
       &::before {
-        background-color: $orange;
+        background-color: $orange !important;
       }
 
       &::after {
-        border: 3px solid $gray;
+        border-color: $gray !important;
       }
     }
 
     &:focus:checked ~ label::before {
       box-shadow: 0 0 0 3px transparentize($orange, .45);
     }
+
+    &:disabled ~ label {
+      pointer-events: none;
+    }
   }
 
-  &.white > label::before {
-    background-color: white;
+  &.light > label {
+    &::before {
+      @include with-theme {
+        background-color: themed('card');
+      }
+    }
+
+    &::after {
+      @include with-theme {
+        border-color: themed('card');
+      }
+    }
+
+    @include with-theme {
+      background-color: themed('background');
+    }
   }
 }
 

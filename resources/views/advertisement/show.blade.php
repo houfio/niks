@@ -52,7 +52,7 @@
       </div>
       <form method="post" action="{{ @action('BidController@store', ['advertisement' => $advertisement->id]) }}">
         @csrf
-        <div class="text-input white">
+        <div class="text-input light">
           <label for="bid">{{ __('general/attributes.bid') }}</label>
           <input type="number" id="bid" name="bid" required/>
         </div>
