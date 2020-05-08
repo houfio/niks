@@ -17,7 +17,7 @@
       <button type="submit" class="button" name="forgot">
         {{ __('views/forgotPassword.submit') }}
       </button>
-      <a class="button transparent" href="{{ url('login') }}">
+      <a class="button light" href="{{ url('login') }}">
         {{ __('views/login.title') }}
       </a>
     </form>

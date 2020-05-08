@@ -59,7 +59,7 @@
       <button class="button" type="submit" name="register">
         {{ __('views/register.title') }}
       </button>
-      <a class="button transparent" href="{{ url('login') }}">
+      <a class="button light" href="{{ url('login') }}">
         {{ __('views/login.title') }}
       </a>
     </form>

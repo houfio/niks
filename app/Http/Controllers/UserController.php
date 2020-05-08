@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertisement;
 use App\Asset;
 use App\Http\Requests\UserRequest;
 use App\User;
@@ -19,9 +20,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $queries = $request->query();
-
-        $users = new User();
-        $users = $users->newQuery();
+        $users = User::query();
 
         if (isset($queries['search'])) {
             $users = $users->where(function ($query) use ($queries) {
@@ -33,13 +32,23 @@ class UserController extends Controller
         }
 
         if (isset($queries['sort']) && ($queries['sort'] === 'first_name' || $queries['sort'] === 'last_name' || $queries['sort'] === 'email')) {
-            $users = $users->orderBy($queries['sort'], isset($queries['direction']) && $queries['direction'] === 'desc' ? 'desc' : 'asc')->get();
+            $users = $users->orderBy($queries['sort'], isset($queries['direction']) && $queries['direction'] === 'desc' ? 'desc' : 'asc');
         } else {
-            $users = $users->orderBy('created_at', 'desc')->get();
+            $users = $users->orderBy('created_at', 'desc');
         }
 
         return view('user.index', [
-            'users' => $users
+            'users' => $users->paginate()
+        ]);
+    }
+
+    public function show(User $user)
+    {
+        $advertisements = Advertisement::where('user_id', $user->id)->paginate();
+
+        return view('user.show', [
+            'user' => $user,
+            'advertisements' => $advertisements
         ]);
     }
 
@@ -88,7 +97,11 @@ class UserController extends Controller
         $user->save();
         $request->session()->flash('message', __('messages/user.updated'));
 
-        return redirect()->action('UserController@index');
+        if (Gate::allows('edit-all')) {
+            return redirect()->action('UserController@index');
+        }
+
+        return redirect()->action('UserController@show', ['user' => $user]);
     }
 
     /**

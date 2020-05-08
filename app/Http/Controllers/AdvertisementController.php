@@ -24,9 +24,7 @@ class AdvertisementController extends Controller
     public function index(Request $request)
     {
         $queries = $request->query();
-
-        $advertisements = new Advertisement();
-        $advertisements = $advertisements->newQuery();
+        $advertisements = Advertisement::query();
 
         if (isset($queries['search'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {
@@ -64,7 +62,7 @@ class AdvertisementController extends Controller
         }
 
         return view('advertisement.index', [
-            'advertisements' => $advertisements->paginate(10)
+            'advertisements' => $advertisements->paginate()
         ]);
     }
 

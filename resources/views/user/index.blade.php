@@ -31,6 +31,7 @@
       @endif
     </div>
   @endforeach
+  {{ $users->links() }}
 @endsection
 
 @section('sidebar')

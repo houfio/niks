@@ -17,12 +17,12 @@ class UserFavoritePolicy
 
     public function viewAny(User $user)
     {
-        return true;
+        return $user->is_approved;
     }
 
     public function create(User $user)
     {
-        return true;
+        return $user->is_approved;
     }
 
     public function delete(User $user, UserFavorite $favorite)

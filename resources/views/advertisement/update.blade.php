@@ -24,13 +24,6 @@
           required
         />
         <x-input
-          name="short_description"
-          :label="__('general/attributes.short_description')"
-          :value="$advertisement->short_description"
-          :help="__('views/advertisements.short_description_help')"
-          required
-        />
-        <x-input
           name="price"
           type="number"
           :label="__('general/attributes.price')"
@@ -38,6 +31,13 @@
           :help="__('views/advertisements.price_help')"
         />
       </div>
+      <x-input
+        name="short_description"
+        :label="__('general/attributes.short_description')"
+        :value="$advertisement->short_description"
+        :help="__('views/advertisements.short_description_help')"
+        required
+      />
       <x-input
         name="long_description"
         type="textarea"
@@ -71,19 +71,19 @@
             {{ __('general/attributes.service') }}
           </option>
         </x-input>
-      </div>
-      <div class="checkbox-input">
-        <input
-          type="checkbox"
-          id="enable_bidding"
-          name="enable_bidding"
-          @if($advertisement->enable_bidding) checked @endif
-        />
-        <label for="enable_bidding">{{ __('general/attributes.enable_bidding') }}</label>
-      </div>
-      <div class="checkbox-input">
-        <input type="checkbox" id="is_asking" name="is_asking" @if($advertisement->is_asking) checked @endif>
-        <label for="is_asking">{{ __('general/attributes.is_asking') }}</label>
+          <div class="checkbox-input">
+            <input
+              type="checkbox"
+              id="enable_bidding"
+              name="enable_bidding"
+              @if($advertisement->enable_bidding) checked @endif
+            />
+            <label for="enable_bidding">{{ __('general/attributes.enable_bidding') }}</label>
+          </div>
+          <div class="checkbox-input">
+            <input type="checkbox" id="is_asking" name="is_asking" @if($advertisement->is_asking) checked @endif>
+            <label for="is_asking">{{ __('general/attributes.is_asking') }}</label>
+          </div>
       </div>
       <button dusk="update" class="button" type="submit" name="edit">
         {{ __('general/attributes.edit') }}

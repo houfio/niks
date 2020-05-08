@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('theme', 'dark')
+@can('edit-all')
+  @section('theme', 'dark')
+@endcan
 
 @section('title', __('views/updateUser.title'))
 
@@ -58,26 +60,30 @@
           :value="$user->neighbourhood"
           :label="__('general/attributes.neighbourhood')"
         />
-        <div class="checkbox-input">
-          <input type="checkbox" id="is_approved" name="is_approved" @if($user->is_approved) checked @endif/>
-          <label for="is_approved" dusk="approved">{{ __('general/attributes.is_approved') }}</label>
-        </div>
-        <div class="checkbox-input">
-          <input type="checkbox" id="is_admin" name="is_admin" @if($user->is_admin) checked @endif/>
-          <label for="is_admin" dusk="admin">{{ __('general/attributes.is_admin') }}</label>
-        </div>
+        @can('edit-all')
+          <div class="checkbox-input">
+            <input type="checkbox" id="is_approved" name="is_approved" @if($user->is_approved) checked @endif/>
+            <label for="is_approved" dusk="approved">{{ __('general/attributes.is_approved') }}</label>
+          </div>
+          <div class="checkbox-input">
+            <input type="checkbox" id="is_admin" name="is_admin" @if($user->is_admin) checked @endif/>
+            <label for="is_admin" dusk="admin">{{ __('general/attributes.is_admin') }}</label>
+          </div>
+        @endcan
       </div>
-      <button type="submit" class="button" name="edit">
-        {{ __('views/updateUser.submit') }}
-      </button>
+      <div class="button-group">
+        <button type="submit" class="button" name="edit">
+          {{ __('views/updateUser.submit') }}
+        </button>
+        <button type="button" class="button light" data-micromodal-trigger="delete-modal">
+          {{ __('views/updateUser.delete') }}
+        </button>
+      </div>
     </form>
     <div>
       <form method="post" action="{{ @action('UserController@destroy', ['user' => $user->id]) }}" id="deleteForm">
         @csrf
         @method('delete')
-        <button type="button" class="button transparent" data-micromodal-trigger="delete-modal">
-          {{ __('views/updateUser.delete') }}
-        </button>
         <x-modal id="delete" :title="__('views/updateUser.delete')">
           <p>
             {{ __('views/updateUser.delete_user') }}
@@ -88,9 +94,15 @@
             :error="__('views/updateUser.input_error')"
             required
           />
-          <div>
+          <div class="button-group">
             <button type="button" class="button danger" id="deleteSubmit">{{ __('views/updateUser.confirm') }}</button>
-            <button type="button" class="button transparent" data-micromodal-close>{{ __('views/updateUser.cancel') }}</button>
+            <button
+              type="button"
+              class="button light"
+              data-micromodal-close
+            >
+              {{ __('views/updateUser.cancel') }}
+            </button>
           </div>
         </x-modal>
       </form>
