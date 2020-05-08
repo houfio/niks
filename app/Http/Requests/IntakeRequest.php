@@ -25,7 +25,7 @@ class IntakeRequest extends FormRequest
             'required' => __('validation/messages.required', ['attribute' => ':attribute']),
             'numeric' => __('validation/messages.integer', ['value' => ':input']),
             'date' => __('validation/messages.date', ['value' => ':input']),
-            'after' => __('validation/messages.after_today')
+            'after' => __('validation/messages.after_today', ['attribute' => ':attribute'])
         ];
     }
 
