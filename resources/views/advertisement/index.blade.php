@@ -13,7 +13,12 @@
     @foreach($advertisements as $advertisement)
       <x-advertisement :advertisement="$advertisement"/>
     @endforeach
-    {{ $advertisements->links() }}
+    {{ $advertisements->appends([
+      'search' => request()->get('search'),
+      'price' => request()->get('price'),
+      'distance' => request()->get('distance'),
+      'bidding' => request()->get('bidding')
+    ])->links() }}
   @else
     <x-errors/>
     <x-empty icon="store">

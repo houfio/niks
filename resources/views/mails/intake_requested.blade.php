@@ -24,6 +24,7 @@
         <a href="{{ action('IntakeController@accept', [$intake->id, $token, 'accepted' => 1]) }}" class="button">
           {{ __('mails/intake.accept') }}
         </a>
+        <br/>
         <a href="{{ action('IntakeController@accept', [$intake->id, $token, 'accepted' => 0]) }}" class="button">
           {{ __('mails/intake.reject') }}
         </a>
