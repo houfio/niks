@@ -23,8 +23,8 @@ class SearchUserTest extends DuskTestCase
 
         /** @var User $foundUser */
         $foundUser = factory(User::class)->create([
-            'first_name' => 'Test',
-            'last_name' => 'User'
+            'first_name' => 'First name',
+            'last_name' => 'von Last name'
         ]);
 
         factory(User::class, 5)->create();
