@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@can('before', \App\User::class)
+@can('edit-all')
   @section('theme', 'dark')
 @endcan
 
