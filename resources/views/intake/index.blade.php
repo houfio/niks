@@ -20,7 +20,7 @@
         <form action="{{ @action('IntakeController@destroy', ['intake' => $intake]) }}" method="post">
           @csrf
           @method('delete')
-          <button class="button" type="submit">
+          <button dusk="delete_intake_{{ $intake->id }}" class="button" type="submit">
             <i class="fas fa-trash"></i>
           </button>
         </form>

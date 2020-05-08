@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\Intake;
 
+use App\Intake;
 use App\User;
 use DateTime;
 use Facebook\WebDriver\WebDriverBy;
@@ -9,13 +10,13 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
-class CreateIntakeTest extends DuskTestCase
+class DeleteIntakeTest extends DuskTestCase
 {
     /**
      * @test
      * @throws Throwable
      */
-    public function testCreateIntake()
+    public function testDeleteIntake()
     {
         $user = factory(User::class)->create([
             'is_approved' => true,
@@ -33,20 +34,28 @@ class CreateIntakeTest extends DuskTestCase
             'is_admin' => false
         ]);
 
-        $this->browse(function (Browser $browser) use ($user, $newUser, $dueOn) {
+        /** @var Intake $intake */
+        $intake = factory(Intake::class)->make();
+
+        $intake->invitee()->associate($newUser);
+        $intake->inviter()->associate($user);
+        $intake->date = $dueOn;
+
+        $intake->save();
+
+        $this->assertDatabaseHas('intakes', [
+            'inviter_id' => $user->id,
+            'invitee_id' => $newUser->id
+        ]);
+
+        $this->browse(function (Browser $browser) use ($user, $newUser, $dueOn, $intake) {
             $browser->loginAs($user)
                 ->visit('/intakes')
-                ->press('@create_intake')
-                ->select('invitee', $newUser->id)
-                ->script([
-                    'document.getElementById("date").value = "' . str_replace('UTC', 'T', $dueOn->format('Y-m-dTH:i')) . '"',
-                ]);
-
-            $browser->press('create')
+                ->press("@delete_intake_{$intake->id}")
                 ->assertPathIs('/intakes');
         });
 
-        $this->assertDatabaseHas('intakes', [
+        $this->assertDatabaseMissing('intakes', [
             'inviter_id' => $user->id,
             'invitee_id' => $newUser->id
         ]);
