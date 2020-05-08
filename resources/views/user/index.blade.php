@@ -31,7 +31,11 @@
       @endif
     </div>
   @endforeach
-  {{ $users->links() }}
+  {{ $users->appends([
+    'search' => request()->get('search'),
+    'sort' => request()->get('sort'),
+    'direction' => request()->get('direction')
+  ])->links() }}
 @endsection
 
 @section('sidebar')

@@ -12,7 +12,7 @@ declare const confirmation: string;
   input.removeAttribute('data-error');
 
   submit.addEventListener('click', () => {
-    if (input.value.toLowerCase() === confirmation) {
+    if (input.value.toLowerCase() === confirmation.toLowerCase()) {
       input.removeAttribute('data-error');
       form.submit();
     } else {

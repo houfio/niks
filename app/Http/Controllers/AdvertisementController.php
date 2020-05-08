@@ -35,15 +35,11 @@ class AdvertisementController extends Controller
         }
 
         if (isset($queries['price'])) {
-            $advertisements = $advertisements->where(function ($query) use ($queries) {
-                $query->where('price', '<=', (int)$queries['price']);
-            });
+            $advertisements = $advertisements->where('price', '<=', (int)$queries['price']);
         }
 
         if (isset($queries['bidding'])) {
-            $advertisements = $advertisements->where(function ($query) use ($queries) {
-                $query->where('enable_bidding', (int)$queries['bidding']);
-            });
+            $advertisements = $advertisements->where('enable_bidding', '=', (int)$queries['bidding']);
         }
 
         if (isset($queries['distance'])) {
