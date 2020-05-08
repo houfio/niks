@@ -79,13 +79,13 @@
       >
         @csrf
         @method('delete')
-        <button type="submit" class="button transparent" style="margin-top: 1rem">
+        <button type="submit" class="button light" style="margin-top: 1rem">
           {{ __('views/advertisements.delete') }}
         </button>
       </form>
     @endcan
     @can('update', $advertisement)
-      <button dusk="edit_advertisement" class="button transparent" data-href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
+      <button dusk="edit_advertisement" class="button light" data-href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
         {{ __('general/attributes.edit') }}
       </button>
     @endcan

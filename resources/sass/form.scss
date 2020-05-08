@@ -13,11 +13,10 @@
     box-shadow: 0 0 0 3px transparentize($orange, .45);
   }
 
-  &.transparent {
-    background-color: transparent;
-
+  &.light {
     @include with-theme {
       color: themed('foreground');
+      background-color: themed('card');
     }
   }
 
@@ -46,15 +45,23 @@
         border-bottom-right-radius: 2.5rem;
       }
 
-      &:not(:first-child)::after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: calc(50% - .75rem);
-        left: -0.0625rem;
-        width: .125rem;
-        height: 1.5rem;
-        background-color: darken($orange, 10);
+      &:not(:first-child) {
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: calc(50% - .75rem);
+          left: -0.0625rem;
+          width: .125rem;
+          height: 1.5rem;
+          background-color: darken($orange, 10);
+        }
+
+        &.light::after {
+          @include with-theme {
+            background-color: darken(themed('card'), 10);
+          }
+        }
       }
     }
   }
