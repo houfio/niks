@@ -8,7 +8,7 @@
   <div class="profile-header">
     <div class="profile-info">
       <div class="profile-image"></div>
-      {{ $user->getFullName() }}
+      <span dusk="user_name">{{ $user->getFullName() }}</span>
       @can('update', $user)
         <a class="button light small" href="{{ action('UserController@edit', ['user' => $user]) }}">
           {{ __('views/profile.edit') }}
@@ -16,14 +16,12 @@
       @endcan
     </div>
   </div>
-  @if(count($advertisements))
-    @foreach($advertisements as $advertisement)
-      <x-advertisement :advertisement="$advertisement"/>
-    @endforeach
-    {{ $advertisements->links() }}
-  @else
+  @forelse($advertisements as $advertisement)
+    <x-advertisement :advertisement="$advertisement"/>
+  @empty
     <x-empty icon="store">
       {{ __('views/advertisements.empty') }}
     </x-empty>
-  @endif
+  @endforelse
+  {{ $advertisements->links() }}
 @endsection

@@ -33,7 +33,7 @@
         <x-navigation-item duskSelector="favorites" icon="star" path="favorites">
           {{ __('views/favorites.title') }}
         </x-navigation-item>
-        <x-navigation-item icon="user" path="{{ 'users/' . auth()->user()->id }}">
+        <x-navigation-item duskSelector="profile" icon="user" path="{{ 'users/' . auth()->user()->id }}">
           {{ __('views/profile.title') }}
         </x-navigation-item>
         @can('viewAny', \App\User::class)
