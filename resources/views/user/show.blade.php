@@ -1,14 +1,19 @@
 @extends('layouts.app')
 
 @section('title')
-  {{ __('views/profile.title') }} - {{ $user->first_name }} {{ $user->last_name }}
+  {{ __('views/profile.title') }} - {{ $user->getFullName() }}
 @endsection
 
 @section('content')
   <div class="profile-header">
     <div class="profile-info">
       <div class="profile-image"></div>
-      {{ $user->first_name }} {{ $user->last_name }}
+      {{ $user->getFullName() }}
+      @can('update', $user)
+        <a class="button light small" href="{{ action('UserController@edit', ['user' => $user]) }}">
+          {{ __('views/profile.edit') }}
+        </a>
+      @endcan
     </div>
   </div>
   @if(count($advertisements))

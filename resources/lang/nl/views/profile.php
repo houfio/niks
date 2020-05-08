@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'title' => 'Profiel'
+    'title' => 'Profiel',
+    'edit' => 'Aanpassen'
 ];

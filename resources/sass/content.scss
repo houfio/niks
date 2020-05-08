@@ -105,10 +105,12 @@ main > .content {
 
 .profile-info {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   top: calc(100% - 5rem);
   left: 50%;
   font-size: 1.5rem;
-  text-align: center;
   white-space: nowrap;
   transform: translateX(-50%);
 }

@@ -28,6 +28,11 @@
     }
   }
 
+  &.small {
+    padding: .25rem .5rem;
+    font-size: .75rem;
+  }
+
   &-group {
     display: flex;
 
