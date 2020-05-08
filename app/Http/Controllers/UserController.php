@@ -112,6 +112,10 @@ class UserController extends Controller
         $user->delete();
         $request->session()->flash('message', __('messages/user.deleted'));
 
-        return redirect()->action('UserController@index');
+        if (Gate::allows('edit-all')) {
+            return redirect()->action('UserController@index');
+        }
+
+        return redirect()->route('home');
     }
 }
