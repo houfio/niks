@@ -23,4 +23,5 @@
       {{ __('views/advertisements.empty') }}
     </x-empty>
   @endforelse
+  {{ $advertisements->links() }}
 @endsection
