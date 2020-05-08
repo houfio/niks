@@ -13,18 +13,83 @@
     box-shadow: 0 0 0 3px transparentize($orange, .45);
   }
 
-  &.transparent {
-    background-color: transparent;
-
+  &.light {
     @include with-theme {
       color: themed('foreground');
+      background-color: themed('card');
     }
   }
+
+  &.danger {
+    background-color: $red !important;
+
+    &:focus {
+      box-shadow: 0 0 0 3px transparentize($red, .45) !important;
+    }
+  }
+
+  &.small {
+    padding: .25rem .5rem;
+    font-size: .75rem;
+  }
+
+  &-group {
+    display: flex;
+
+    & > .button {
+      position: relative;
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: 2.5rem;
+        border-bottom-left-radius: 2.5rem;
+      }
+
+      &:last-child {
+        border-top-right-radius: 2.5rem;
+        border-bottom-right-radius: 2.5rem;
+      }
+
+      &:not(:first-child) {
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: calc(50% - .75rem);
+          left: -0.0625rem;
+          width: .125rem;
+          height: 1.5rem;
+          background-color: darken($orange, 10);
+        }
+
+        &.light::after {
+          @include with-theme {
+            background-color: darken(themed('card'), 10);
+          }
+        }
+      }
+    }
+  }
+}
+
+.divider {
+  display: inline-block;
+  margin-top: 5px;
 }
 
 .text-input {
   position: relative;
   margin-bottom: 1rem;
+
+  & .input-error {
+    display: none;
+    padding: .5rem 1.25rem;
+    color: white;
+    background-color: $red;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    box-shadow: 0 -3px 0 3px $red;
+  }
 
   & > input, & > textarea, & > select {
     width: 100%;
@@ -37,12 +102,25 @@
     appearance: none;
     transition: box-shadow .25s ease;
 
-    &:focus {
-      box-shadow: 0 0 0 3px darken($gray, 10%);
-    }
-
     &[type="file"] {
       padding-bottom: .4rem;
+    }
+
+    &[data-error] {
+      box-shadow: 0 0 0 3px $red;
+
+      & ~ .input-error {
+        display: block;
+      }
+    }
+
+    @include with-theme {
+      color: themed('foreground');
+      background-color: themed('card');
+
+      &:focus {
+        box-shadow: 0 0 0 3px themed('cardClick');
+      }
     }
   }
 
@@ -52,6 +130,7 @@
     top: 1.25rem;
     right: 1.25rem;
     font-family: "Font Awesome 5 Free";
+    pointer-events: none;
   }
 
   & > label {
@@ -74,44 +153,39 @@
     top: .5rem;
     right: 1.25rem;
     color: darken($gray, 25%);
+    border-radius: 50%;
+    line-height: 1;
+    outline: none;
+    transition: box-shadow .25s ease;
 
     &:hover {
       cursor: help;
     }
+
+    &:focus {
+      @include with-theme {
+        box-shadow: 0 0 0 3px themed('cardClick');
+      }
+    }
   }
 
-  &.white > input, &.white > textarea {
-    background-color: white;
+  &.light > input, &.light > textarea, &.light > select {
+    @include with-theme {
+      background-color: themed('background');
+    }
   }
 }
 
 .checkbox-input {
   position: relative;
-  height: 1.5rem;
   margin-bottom: 1rem;
 
-  & > input {
-    opacity: 0;
-
-    &:focus ~ label::before {
-      box-shadow: 0 0 0 3px darken($gray, 10%);
-    }
-
-    &:checked ~ label::before {
-      background-color: $orange;
-    }
-
-    &:focus:checked ~ label::before {
-      box-shadow: 0 0 0 3px transparentize($orange, .45);
-    }
-  }
-
   & > label {
-    position: absolute;
     display: flex;
     align-items: center;
-    top: 0;
-    left: 0;
+    width: 100%;
+    padding: .5rem .75rem;
+    border-radius: .5rem;
 
     &:hover {
       cursor: pointer;
@@ -126,22 +200,82 @@
       width: 1.5rem;
       height: 1.5rem;
       margin-right: .5rem;
-      background-color: $gray;
       border-radius: .5rem;
       transition: box-shadow .25s ease, background-color .25s ease;
+
+      @include with-theme {
+        background-color: themed('background');
+      }
     }
 
     &::after {
       position: absolute;
-      top: .2rem;
-      left: .5rem;
+      top: .7rem;
+      left: 1.25rem;
       width: .5rem;
       height: .9rem;
-      border: 3px solid $gray;
-      border-top: none;
-      border-left: none;
+      border: 3px solid;
+      border-top: none !important;
+      border-left: none !important;
       transform: rotate(45deg);
-      transition: left .25s ease;
+      transition: left .25s ease, border-color .25s ease;
+
+      @include with-theme {
+        border-color: themed('background');
+      }
+    }
+
+    @include with-theme {
+      background-color: themed('card');
+    }
+  }
+
+  & > input {
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+    &:focus ~ label::before {
+      @include with-theme {
+        box-shadow: 0 0 0 3px themed('cardClick');
+      }
+    }
+
+    &:checked ~ label {
+      &::before {
+        background-color: $orange !important;
+      }
+
+      &::after {
+        border-color: $gray !important;
+      }
+    }
+
+    &:focus:checked ~ label::before {
+      box-shadow: 0 0 0 3px transparentize($orange, .45);
+    }
+
+    &:disabled ~ label {
+      pointer-events: none;
+    }
+  }
+
+  &.light > label {
+    &::before {
+      @include with-theme {
+        background-color: themed('card');
+      }
+    }
+
+    &::after {
+      @include with-theme {
+        border-color: themed('card');
+      }
+    }
+
+    @include with-theme {
+      background-color: themed('background');
     }
   }
 }
@@ -157,5 +291,21 @@
 
   & > .text-input {
     margin-bottom: 0;
+  }
+}
+
+.heart {
+  transition: opacity .25s ease;
+
+  @include with-theme {
+    color: themed('cardClick');
+  }
+
+  &:hover {
+    opacity: .5;
+  }
+
+  &.active {
+    color: $red;
   }
 }

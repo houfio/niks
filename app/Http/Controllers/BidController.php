@@ -28,7 +28,7 @@ class BidController extends Controller
         $bid->save();
         $request->session()->flash('message', __('messages/bid.sent'));
 
-        return redirect("/advertisements/$advertisement->id");
+        return redirect()->action('AdvertisementController@show', ['advertisement' => $advertisement->id]);
     }
 
     /**

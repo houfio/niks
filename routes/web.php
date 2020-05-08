@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'index');
+Route::view('/', 'index')->name('home');
 Route::view('/register', 'register');
 Route::view('/login', 'login');
 
@@ -26,14 +27,35 @@ Route::prefix('reset')->group(function () {
     });
 });
 
+Route::prefix('setup')->group(function () {
+    Route::get('password/{user}', 'Auth\ForgotPasswordController@sendPasswordSetupMail')->middleware('can:edit-all');
+    Route::get('{token}', function (string $token) {
+        return view('setup_password', [
+            'token' => $token
+        ]);
+    })->name('setup_password');
+});
+
 Route::resource('users', 'UserController')->except([
-    'show', 'create', 'store'
+    'create', 'store'
 ]);
 
 Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
 
-Route::resource('advertisements', 'AdvertisementController')->except([
+Route::resource('advertisements', 'AdvertisementController');
+
+Route::resource('intakes', 'IntakeController')->except([
     'edit', 'update'
+]);
+
+Route::get('intakes/accept/{intake}/{token}', 'IntakeController@accept');
+
+Route::resource('favorites', 'UserFavoritesController')->except([
+    'create', 'show', 'edit', 'update'
+]);
+
+Route::resource('transactions', 'TransactionController')->except([
+    'create', 'store', 'show', 'edit', 'update', 'destroy'
 ]);
 
 Route::prefix('bid')->group(function () {

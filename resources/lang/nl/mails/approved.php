@@ -3,5 +3,5 @@
 return [
     'title' => 'Account goedgekeurd',
     'paragraphOne' => 'Uw account bij NiksvoorNiks is goedgekeurd.',
-    'paragraphTwo' => 'U kunt aanmelden met onderstaande link:'
+    'paragraphTwo' => 'U kunt uw wachtwoord opzetten met onderstaande link:'
 ];

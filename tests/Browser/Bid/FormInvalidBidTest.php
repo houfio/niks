@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Bid;
 
 use App\Advertisement;
 use App\Bid;
@@ -28,8 +28,7 @@ class FormInvalidBidTest extends DuskTestCase
         /** @var Advertisement $advertisement */
         $advertisement = factory(Advertisement::class)->make([
             'enable_bidding' => true,
-            'minimum_price' => 4,
-            'price' => null
+            'price' => 4
         ]);
 
         $advertisement->user()->associate($owner)->save();

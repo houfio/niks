@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertisement;
+use App\Asset;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Exception;
@@ -15,10 +17,38 @@ class UserController extends Controller
         $this->authorizeResource(User::class, 'user');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $queries = $request->query();
+        $users = User::query();
+
+        if (isset($queries['search'])) {
+            $users = $users->where(function ($query) use ($queries) {
+                $query->where('email', 'like', "%{$queries['search']}%")
+                    ->orWhereRaw('concat(first_name, " ", last_name) LIKE ?', [
+                        "%{$queries['search']}%"
+                    ]);
+            });
+        }
+
+        if (isset($queries['sort']) && ($queries['sort'] === 'first_name' || $queries['sort'] === 'last_name' || $queries['sort'] === 'email')) {
+            $users = $users->orderBy($queries['sort'], isset($queries['direction']) && $queries['direction'] === 'desc' ? 'desc' : 'asc');
+        } else {
+            $users = $users->orderBy('created_at', 'desc');
+        }
+
         return view('user.index', [
-            'users' => User::all()
+            'users' => $users->paginate()
+        ]);
+    }
+
+    public function show(User $user)
+    {
+        $advertisements = Advertisement::where('user_id', $user->id)->paginate();
+
+        return view('user.show', [
+            'user' => $user,
+            'advertisements' => $advertisements
         ]);
     }
 
@@ -41,7 +71,25 @@ class UserController extends Controller
         $user->house_number = $data['house_number'];
         $user->neighbourhood = $data['neighbourhood'];
 
-        if (Gate::forUser($request->user())->allows('edit-protected-user-values')) {
+        if ($request->hasFile('avatar')) {
+            $asset = new Asset();
+
+            $asset->path = $request->avatar->store('public');
+
+            $asset->save();
+            $user->avatar()->associate($asset);
+        }
+
+        if ($request->hasFile('header')) {
+            $asset = new Asset();
+
+            $asset->path = $request->header->store('public');
+
+            $asset->save();
+            $user->header()->associate($asset);
+        }
+
+        if (Gate::allows('edit-all')) {
             $user->is_approved = isset($data['is_approved']);
             $user->is_admin = isset($data['is_admin']);
         }
@@ -49,7 +97,11 @@ class UserController extends Controller
         $user->save();
         $request->session()->flash('message', __('messages/user.updated'));
 
-        return redirect('/users');
+        if (Gate::allows('edit-all')) {
+            return redirect()->action('UserController@index');
+        }
+
+        return redirect()->action('UserController@show', ['user' => $user]);
     }
 
     /**
@@ -60,6 +112,10 @@ class UserController extends Controller
         $user->delete();
         $request->session()->flash('message', __('messages/user.deleted'));
 
-        return redirect('/users');
+        if (Gate::allows('edit-all')) {
+            return redirect()->action('UserController@index');
+        }
+
+        return redirect()->route('home');
     }
 }

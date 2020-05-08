@@ -1,14 +1,19 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Advertisement;
 
 use App\Advertisement;
 use App\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Throwable;
 
 class CreateUnsuccessfulAdvertisementTest extends DuskTestCase
 {
+    /**
+     * @test
+     * @throws Throwable
+     */
     public function testCreateUnsuccessfulAdvertisement()
     {
         $user = factory(User::class)->create([

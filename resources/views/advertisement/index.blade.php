@@ -11,40 +11,18 @@
     </div>
     <x-errors/>
     @foreach($advertisements as $advertisement)
-      <div class="advertisement" data-href="{{ url("/advertisements/$advertisement->id") }}">
-        <div class="advertisement-header">
-          <div>
-            <h2>
-              {{ $advertisement->title }}
-            </h2>
-            <div class="subtle">
-              {{ $advertisement->user->getFullName() }} - {{ $advertisement->created_at->diffForHumans() }}
-            </div>
-          </div>
-          <div class="price">
-            {{ $advertisement->cost() ?? '-' }}
-          </div>
-        </div>
-        <div class="advertisement-description">
-          {{ $advertisement->short_description }}
-          @if($advertisement->enable_bidding)
-            <div class="subtle">
-              Bieden mogelijk
-            </div>
-          @endif
-        </div>
-        @if(count($advertisement->assets) > 0)
-          <div>
-            <img src="{{ $advertisement->assets->first()->url() }}" class="image"/>
-          </div>
-        @endif
-      </div>
+      <x-advertisement :advertisement="$advertisement"/>
     @endforeach
-    {{ $advertisements->links() }}
+    {{ $advertisements->appends([
+      'search' => request()->get('search'),
+      'price' => request()->get('price'),
+      'distance' => request()->get('distance'),
+      'bidding' => request()->get('bidding')
+    ])->links() }}
   @else
     <x-errors/>
     <x-empty icon="store">
-      Er zijn nog geen advertenties
+      {{ __('views/advertisements.empty') }}
     </x-empty>
   @endif
 @endsection
@@ -52,7 +30,31 @@
 @section('sidebar')
   <div class="sidebar">
     <a class="button" href="{{ url('/advertisements/create') }}">
-      Aanmaken
+      {{ __('views/advertisements.create') }}
     </a>
+    <form method="get" action="{{ @action('AdvertisementController@index') }}" style="margin-top: 1rem">
+      <x-input name="search" :label="__('views/advertisements.search')" light/>
+      <x-input name="price" :label="__('views/advertisements.price')" type="number" light/>
+      <x-input name="distance" :label="__('views/advertisements.distance')" type="select" light>
+        <option></option>
+        @foreach(['5', '10', '15'] as $distance)
+          <option @if(request()->get('distance') === $distance) selected @endif>{{ $distance }}</option>
+        @endforeach
+      </x-input>
+      <div class="checkbox-input light">
+        <input
+          type="checkbox"
+          id="bidding"
+          name="bidding"
+          @if(request()->get('bidding')) checked @endif
+        />
+        <label for="bidding">
+          {{ __('views/advertisements.bid') }}
+        </label>
+      </div>
+      <button class="button" type="submit" dusk="search">
+        {{ __('views/advertisements.search') }}
+      </button>
+    </form>
   </div>
 @endsection

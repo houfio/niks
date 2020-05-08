@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{{ config('app.name') }} - @yield('title')</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap"/>
-    <link rel="stylesheet" href="/css/app.css"/>
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}"/>
+    @yield('styles')
   </head>
   <body class="container">
     <nav class="navigation">
@@ -29,15 +30,31 @@
         <x-navigation-item icon="store" path="advertisements">
           {{ __('views/advertisements.title') }}
         </x-navigation-item>
+        <x-navigation-item duskSelector="favorites" icon="star" path="favorites">
+          {{ __('views/favorites.title') }}
+        </x-navigation-item>
+        <x-navigation-item duskSelector="profile" icon="user" path="{{ 'users/' . auth()->user()->id }}">
+          {{ __('views/profile.title') }}
+        </x-navigation-item>
         @can('viewAny', \App\User::class)
           <x-navigation-item icon="users" path="users" dot>
             {{ __('views/users.title') }}
           </x-navigation-item>
         @endcan
+        @can('viewAny', \App\Intake::class)
+          <x-navigation-item icon="comments" path="intakes">
+            {{ __('views/intakes.title') }}
+          </x-navigation-item>
+        @endcan
+        @can('viewAny', \App\Transaction::class)
+          {{--<x-navigation-item icon="coins" path="transactions">
+            {{ __('views/transactions.title') }}
+          </x-navigation-item>--}}
+        @endcan
       @endauth
     </nav>
     <div class="main">
-      <main @if(!View::hasSection('sidebar')) style="flex: 1" @endif>
+      <main @if(!View::hasSection('sidebar')) class="no-sidebar" @endif>
         @yield('content')
       </main>
       @if(View::hasSection('sidebar'))
@@ -53,6 +70,7 @@
         </x-modal>
       @endif
     @endguest
-    <script src="/js/app.js"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
+    @yield('scripts')
   </body>
 </html>

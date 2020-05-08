@@ -15,7 +15,7 @@
   <button type="submit" class="button" name="login">
     {{ __('views/login.title') }}
   </button>
-  <a class="button transparent" href="{{ url('reset') }}">
+  <a class="button light" href="{{ url('reset') }}">
     {{ __('views/forgotPassword.title') }}
   </a>
 </form>

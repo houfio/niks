@@ -6,6 +6,13 @@
   <div class="content">
     <h1 class="page-heading" dusk="title">
       {{ $advertisement->title }}
+      <x-icon-action
+        :action="action($favorite ? 'UserFavoritesController@destroy' : 'UserFavoritesController@store', $favorite ? ['favorite' => $favorite] : ['advertisement' => $advertisement])"
+        icon="heart"
+        :method="$favorite ? 'delete' : 'post'"
+        :class="'heart' . ($favorite ? ' active' : '')"
+        :duskSelector="'favorite_button'"
+      />
     </h1>
     <x-errors/>
     @if(count($assets) > 0)
@@ -31,13 +38,12 @@
               {{ $bid->bid }}
             </span>
             @can('delete', $bid)
-              <form method="post" action="{{ @action('BidController@destroy', ['bid' => $bid->id]) }}">
-                @csrf
-                @method('delete')
-                <button type="submit" dusk="delete_bid_{{ $bid->id }}">
-                  <i class="fas fa-times"></i>
-                </button>
-              </form>
+              <x-icon-action
+                :action="action('BidController@destroy', ['bid' => $bid->id])"
+                method="delete"
+                :duskSelector="'delete_bid_' . $bid->id"
+                icon="times"
+              />
             @endcan
           </div>
         @empty
@@ -46,8 +52,8 @@
       </div>
       <form method="post" action="{{ @action('BidController@store', ['advertisement' => $advertisement->id]) }}">
         @csrf
-        <div class="text-input white">
-          <label for="bid">Bod</label>
+        <div class="text-input light">
+          <label for="bid">{{ __('general/attributes.bid') }}</label>
           <input type="number" id="bid" name="bid" required/>
         </div>
         <button type="submit" class="button" name="place_bid">
@@ -73,10 +79,15 @@
       >
         @csrf
         @method('delete')
-        <button type="submit" class="button" style="margin-top: 1rem">
+        <button type="submit" class="button light" style="margin-top: 1rem">
           {{ __('views/advertisements.delete') }}
         </button>
       </form>
+    @endcan
+    @can('update', $advertisement)
+      <a dusk="edit_advertisement" class="button light" href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
+        {{ __('general/attributes.edit') }}
+      </a>
     @endcan
   </div>
 @endsection

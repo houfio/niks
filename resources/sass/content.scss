@@ -45,3 +45,84 @@ main > .content {
   width: 100%;
   border-radius: .5rem;
 }
+
+.pagination {
+  display: flex;
+  margin: 1rem;
+  padding: 0;
+
+  & .page-item {
+    list-style: none;
+    background-color: $orange;
+    transition: background-color .25s ease;
+
+    &.disabled {
+      opacity: .75;
+    }
+
+    &.active {
+      cursor: default;
+      background-color: darken($orange, 5);
+    }
+
+    &:not(.disabled):not(.active):hover {
+      background-color: darken($orange, 10);
+    }
+
+    &:first-child {
+      border-top-left-radius: .5rem;
+      border-bottom-left-radius: .5rem;
+    }
+
+    &:last-child {
+      border-top-right-radius: .5rem;
+      border-bottom-right-radius: .5rem;
+    }
+  }
+
+  & .page-link {
+    display: block;
+    padding: .5rem .75rem;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.profile-header {
+  position: relative;
+  height: 10rem;
+  margin-bottom: 10rem;
+  border-bottom-right-radius: 1.5rem;
+
+  @include with-breakpoint(tablet_landscape) {
+    height: 20rem;
+  }
+
+  @include with-theme {
+    background-color: themed('card');
+  }
+}
+
+.profile-info {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: calc(100% - 5rem);
+  left: 50%;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.profile-image {
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+
+  @include with-theme {
+    border: .5rem solid themed('background');
+    background-color: themed('cardClick');
+  }
+}

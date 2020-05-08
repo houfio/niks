@@ -17,11 +17,13 @@ class AdvertisementRequest extends FormRequest
             'title' => 'required|max:60',
             'short_description' => 'required|max:255|min:30',
             'long_description' => 'nullable',
-            'minimum_price' => 'nullable|min:1|required_if:enable_bidding,true',
-            'price' => 'nullable|numeric|min:1|required_if:enable_bidding,false',
+            'price' => 'nullable|numeric|min:1|max:2147483647|required_if:enable_bidding,false',
             'is_service' => 'required|boolean',
-            'images' => 'required_if:asking,false',
-            'images.*' => 'image|mimes:png,jpeg,jpg'
+            'images' => 'required_if:is_asking,false',
+            'images.*' => 'image|mimes:png,jpeg,jpg',
+            'enable_bidding' => 'nullable',
+            'is_asking' => 'nullable',
+            'delete_images' => 'nullable'
         ];
     }
 
@@ -37,7 +39,6 @@ class AdvertisementRequest extends FormRequest
             'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min']),
             'boolean' => __('validation/messages.boolean', ['attribute' => ':attribute']),
             'image' => __('validation/messages.image', ['attribute' => ':attribute']),
-            'minimum_price.min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min']),
             'price.min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min']),
         ];
     }
@@ -49,10 +50,9 @@ class AdvertisementRequest extends FormRequest
             'short_description' => __('general/attributes.short_description'),
             'long_description' => __('general/attributes.long_description'),
             'enable_bidding' => __('general/attributes.enable_bidding'),
-            'minimum_price' => __('general/attributes.minimum_price'),
             'price' => __('general/attributes.price'),
             'is_service' => __('general/attributes.is_service'),
-            'asking' => __('general/attributes.asking'),
+            'is_asking' => __('general/attributes.is_asking'),
             'images' => __('general/attributes.images')
         ];
     }

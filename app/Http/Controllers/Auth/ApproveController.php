@@ -13,19 +13,14 @@ class ApproveController extends Controller
     public function approve(ApproveAccountRequest $request, User $user)
     {
         $data = $request->validated();
-
         $approve = boolval($data['approve']);
 
-        $user->is_approved = $approve;
-        $user->save();
-
         if ($approve) {
-            Mail::to($user->email)->send(new AccountApprovalMail($user));
-            $request->session()->flash('message', __('messages/user.approved'));
-        } else {
-            $user->delete();
-            $request->session()->flash('message', __('messages/user.deleted'));
+            return redirect()->action('Auth\ForgotPasswordController@sendPasswordSetupMail', ['user' => $user->id]);
         }
+
+        $user->delete();
+        $request->session()->flash('message', __('messages/user.deleted'));
 
         return redirect()->back();
     }

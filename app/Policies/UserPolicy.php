@@ -21,7 +21,7 @@ class UserPolicy
 
     public function view(User $user, User $model)
     {
-        return $user->id === $model->id;
+        return $user->is_approved;
     }
 
     public function create(?User $user)

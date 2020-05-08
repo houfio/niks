@@ -21,8 +21,12 @@ return [
     'enable_bidding' => 'Bieden',
     'minimum_price' => 'Minimum prijs',
     'is_service' => 'Type',
-    'asking' => 'Vraag',
+    'is_asking' => 'Vraag',
     'images' => 'Afbeeldingen',
+    'product' => 'Product',
+    'service' => 'Dienst',
     'remember_me' => 'Ingelogd blijven',
-    'create' => 'Aanmaken'
+    'create' => 'Aanmaken',
+    'advertisement' => 'Advertentie',
+    'edit' => 'Aanpassen'
 ];

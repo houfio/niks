@@ -11,7 +11,7 @@ class Advertisement extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     public function assets()
@@ -22,6 +22,11 @@ class Advertisement extends Model
     public function bids()
     {
         return $this->hasMany(Bid::class);
+    }
+
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'user_favorites')->using(UserFavorite::class);
     }
 
     public function cost(): ?int
@@ -37,6 +42,6 @@ class Advertisement extends Model
 
         $highestBid = $this->bids()->max('bid');
 
-        return is_null($highestBid) ? $this->minimum_price : $highestBid;
+        return is_null($highestBid) ? $this->price : $highestBid;
     }
 }
