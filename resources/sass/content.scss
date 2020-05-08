@@ -87,3 +87,40 @@ main > .content {
     font-weight: bold;
   }
 }
+
+.profile-header {
+  position: relative;
+  height: 10rem;
+  margin-bottom: 10rem;
+  border-bottom-right-radius: 1.5rem;
+
+  @include with-breakpoint(tablet_landscape) {
+    height: 20rem;
+  }
+
+  @include with-theme {
+    background-color: themed('card');
+  }
+}
+
+.profile-info {
+  position: absolute;
+  top: calc(100% - 5rem);
+  left: 50%;
+  font-size: 1.5rem;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.profile-image {
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+
+  @include with-theme {
+    border: .5rem solid themed('background');
+    background-color: themed('cardClick');
+  }
+}

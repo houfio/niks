@@ -24,9 +24,7 @@ class AdvertisementController extends Controller
     public function index(Request $request)
     {
         $queries = $request->query();
-
-        $advertisements = new Advertisement();
-        $advertisements = $advertisements->newQuery();
+        $advertisements = Advertisement::query();
 
         if (isset($queries['search'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {

@@ -6740,6 +6740,54 @@ main > .content {
   font-weight: bold;
 }
 
+.profile-header {
+  position: relative;
+  height: 10rem;
+  margin-bottom: 10rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .profile-header {
+    height: 20rem;
+  }
+}
+
+.theme-light .profile-header {
+  background-color: #f1f3f4;
+}
+
+.theme-dark .profile-header {
+  background-color: #292a2d;
+}
+
+.profile-info {
+  position: absolute;
+  top: calc(100% - 5rem);
+  left: 50%;
+  font-size: 1.5rem;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.profile-image {
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+}
+
+.theme-light .profile-image {
+  border: 0.5rem solid #fff;
+  background-color: #e9ebec;
+}
+
+.theme-dark .profile-image {
+  border: 0.5rem solid #35363a;
+  background-color: #202124;
+}
+
 .button {
   display: inline-block;
   padding: 0.75rem 1.25rem;
