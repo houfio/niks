@@ -85,9 +85,9 @@
       </form>
     @endcan
     @can('update', $advertisement)
-      <button dusk="edit_advertisement" class="button light" data-href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
+      <a dusk="edit_advertisement" class="button light" href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
         {{ __('general/attributes.edit') }}
-      </button>
+      </a>
     @endcan
   </div>
 @endsection
