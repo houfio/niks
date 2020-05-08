@@ -33,13 +33,20 @@ class UserController extends Controller
         }
 
         if (isset($queries['sort']) && ($queries['sort'] === 'first_name' || $queries['sort'] === 'last_name' || $queries['sort'] === 'email')) {
-            $users = $users->orderBy($queries['sort'], isset($queries['direction']) && $queries['direction'] === 'desc' ? 'desc' : 'asc')->get();
+            $users = $users->orderBy($queries['sort'], isset($queries['direction']) && $queries['direction'] === 'desc' ? 'desc' : 'asc');
         } else {
-            $users = $users->orderBy('created_at', 'desc')->get();
+            $users = $users->orderBy('created_at', 'desc');
         }
 
         return view('user.index', [
-            'users' => $users
+            'users' => $users->paginate()
+        ]);
+    }
+
+    public function show(User $user)
+    {
+        return view('user.show', [
+            'user' => $user
         ]);
     }
 
@@ -88,7 +95,11 @@ class UserController extends Controller
         $user->save();
         $request->session()->flash('message', __('messages/user.updated'));
 
-        return redirect()->action('UserController@index');
+        if (Gate::allows('edit-all')) {
+            return redirect()->action('UserController@index');
+        }
+
+        return redirect()->action('UserController@show', ['user' => $user]);
     }
 
     /**

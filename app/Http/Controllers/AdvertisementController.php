@@ -64,7 +64,7 @@ class AdvertisementController extends Controller
         }
 
         return view('advertisement.index', [
-            'advertisements' => $advertisements->paginate(10)
+            'advertisements' => $advertisements->paginate()
         ]);
     }
 

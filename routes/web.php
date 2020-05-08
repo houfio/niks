@@ -37,7 +37,7 @@ Route::prefix('setup')->group(function () {
 });
 
 Route::resource('users', 'UserController')->except([
-    'show', 'create', 'store'
+    'create', 'store'
 ]);
 
 Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
