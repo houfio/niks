@@ -30,10 +30,12 @@ class IntakeController extends Controller
 
     public function create()
     {
+        $invitees = User::where('is_approved', 0)->whereDoesntHave('intakes', function (Builder $query) {
+            $query->where('accepted', '=', 1);
+        });
+
         return view('intake.create', [
-            'invitees' => User::where('is_approved', 0)->whereHas('intakes', function (Builder $query) {
-                $query->where('accepted', '=', 0);
-            })->get()
+            'invitees' => $invitees->get()
         ]);
     }
 

@@ -20,7 +20,7 @@
         <form action="{{ @action('IntakeController@destroy', ['intake' => $intake]) }}" method="post">
           @csrf
           @method('delete')
-          <button class="button" type="submit">
+          <button dusk="delete_intake_{{ $intake->id }}" class="button" type="submit">
             <i class="fas fa-trash"></i>
           </button>
         </form>
@@ -31,7 +31,7 @@
 
 @section('sidebar')
   <div class="sidebar">
-    <a class="button" href="{{ action('IntakeController@create') }}">
+    <a dusk="create_intake" class="button" href="{{ action('IntakeController@create') }}">
       {{ __('general/attributes.create') }}
     </a>
   </div>
