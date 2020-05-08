@@ -40,6 +40,7 @@ class DeleteIntakeTest extends DuskTestCase
         $intake->invitee()->associate($newUser);
         $intake->inviter()->associate($user);
         $intake->date = $dueOn;
+        $intake->accepted = false;
 
         $intake->save();
 
