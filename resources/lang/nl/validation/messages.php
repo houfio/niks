@@ -15,5 +15,6 @@ return [
     'numeric' => ':attribute moet een heel getal zijn',
     'boolean' => ':attribute is een verplicht veld en moet waar of onwaar zijn',
     'image' => ':attribute moet een afbeelding zijn',
-    'date' => ':attribute moet een datum zijn'
+    'date' => ':attribute moet een datum zijn',
+    'after_today' => ':attribute moet na vandaag zijn'
 ];

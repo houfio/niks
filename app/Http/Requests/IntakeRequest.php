@@ -15,7 +15,7 @@ class IntakeRequest extends FormRequest
     {
         return [
             'invitee' => 'required|numeric',
-            'date' => 'date|required'
+            'date' => 'date|required|after:today'
         ];
     }
 
@@ -24,7 +24,8 @@ class IntakeRequest extends FormRequest
         return [
             'required' => __('validation/messages.required', ['attribute' => ':attribute']),
             'numeric' => __('validation/messages.integer', ['value' => ':input']),
-            'date' => __('validation/messages.date', ['value' => ':input'])
+            'date' => __('validation/messages.date', ['value' => ':input']),
+            'after' => __('validation/messages.after_today')
         ];
     }
 
