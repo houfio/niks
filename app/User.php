@@ -45,6 +45,11 @@ class User extends Authenticatable
         return $this->hasMany(Advertisement::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function intakes()
     {
         return $this->hasMany(Intake::class, 'invitee_id');
