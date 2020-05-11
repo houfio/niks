@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function create()
     {
-
+        return view('post.create');
     }
 
     public function store(Request $request)
@@ -26,12 +26,17 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-
+        return view('post.show', [
+            'post' => $post,
+            'creator' => $post->creator()->get()
+        ]);
     }
 
     public function edit(Post $post)
     {
-
+        return view('post.update', [
+            'post' => $post
+        ]);
     }
 
     public function update(Request $request, Post $post)
@@ -39,8 +44,11 @@ class PostController extends Controller
 
     }
 
-    public function destroy(Post $post)
+    public function destroy(Request $request, Post $post)
     {
+        $post->delete();
+        $request->session()->flash('message', __('messages/post.deleted'));
 
+        return redirect()->action('PostController@index');
     }
 }
