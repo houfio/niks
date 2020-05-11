@@ -12,8 +12,8 @@ class AddNewsTable extends Migration
             $table->id();
             $table->string('title', 120);
             $table->longText('content');
-            $table->unsignedBigInteger('creator_id');
-            $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

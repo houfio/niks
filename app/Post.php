@@ -9,8 +9,8 @@ class Post extends Model
     protected $table = 'posts';
     public $timestamps = true;
 
-    public function creator()
+    public function author()
     {
-        return $this->belongsTo(User::class, 'creator_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 }
