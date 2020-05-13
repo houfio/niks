@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class PostController extends Controller
         return view('post.create');
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
 
     }
@@ -28,7 +29,7 @@ class PostController extends Controller
     {
         return view('post.show', [
             'post' => $post,
-            'creator' => $post->creator()->get()
+            'creator' => $post->author()->get()
         ]);
     }
 
@@ -39,7 +40,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
 
     }
