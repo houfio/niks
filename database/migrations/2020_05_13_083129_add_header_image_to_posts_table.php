@@ -9,7 +9,7 @@ class AddHeaderImageToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedBigInteger('header_id');
+            $table->unsignedBigInteger('header_id')->nullable();
             $table->foreign('header_id')->references('id')->on('assets')->onDelete('cascade');
         });
     }

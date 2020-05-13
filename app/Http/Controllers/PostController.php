@@ -31,16 +31,21 @@ class PostController extends Controller
         $data = $request->validated();
 
         $post = new Post();
-        $header = new Asset();
 
         $post->title = $data['title'];
         $post->content = $data['content'];
-        $header->path = $data['header']->store('public');
+
+        if ($request->hasFile('header')) {
+            $header = new Asset();
+
+            $header->path = $data['header']->store('public');
+
+            $post->header()->associate($header);
+            $header->save();
+        }
 
         $post->author()->associate($request->user());
-        $post->header()->associate($header);
 
-        $header->save();
         $post->save();
         $request->session()->flash('message', __('messages/post.sent'));
 
@@ -65,16 +70,20 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $data = $request->validated();
-        $header = new Asset();
 
         $post->title = $data['title'];
         $post->content = $data['content'];
-        $header->path = $data['header']->store('public');
 
-        $post->header()->delete();
-        $post->header()->associate($header);
+        if ($request->hasFile('header')) {
+            $header = new Asset();
 
-        $header->save();
+            $header->path = $data['header']->store('public');
+
+            $post->header()->delete();
+            $post->header()->associate($header);
+            $header->save();
+        }
+
         $post->save();
         $request->session()->flash('message', __('messages/post.updated'));
 
