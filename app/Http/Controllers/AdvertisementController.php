@@ -161,9 +161,11 @@ class AdvertisementController extends Controller
         }
 
         $advertisement->save();
+
         if (isset($data['images'])) {
             $advertisement->assets()->saveMany($assets);
         }
+        
         $request->session()->flash('message', __('messages/advertisement.updated'));
 
         return redirect()->route('advertisements.show', $advertisement->id);

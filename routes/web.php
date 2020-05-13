@@ -44,6 +44,8 @@ Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
 
 Route::resource('advertisements', 'AdvertisementController');
 
+Route::resource('posts', 'PostController');
+
 Route::resource('intakes', 'IntakeController')->except([
     'edit', 'update'
 ]);
