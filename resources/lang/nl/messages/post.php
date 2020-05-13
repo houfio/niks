@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'deleted' => 'Bericht verwijderd'
+    'deleted' => 'Bericht verwijderd',
+    'sent' => 'Bericht aangemaakt'
 ];

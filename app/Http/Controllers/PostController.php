@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Asset;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
@@ -22,7 +23,23 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
+        $data = $request->validated();
 
+        $post = new Post();
+        $header = new Asset();
+
+        $post->title = $data['title'];
+        $post->content = $data['content'];
+        $header->path = $data['header']->store('public');
+
+        $post->author()->associate($request->user());
+        $post->header()->associate($header);
+
+        $header->save();
+        $post->save();
+        $request->session()->flash('message', __('messages/post.sent'));
+
+        return redirect()->action('PostController@index');
     }
 
     public function show(Post $post)
