@@ -15,7 +15,8 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required|max:60',
-            'content' => 'required|min:120'
+            'content' => 'required|min:120',
+            'header' => 'image|mimes:png,jpeg,jpg'
         ];
     }
 
@@ -25,7 +26,7 @@ class PostRequest extends FormRequest
             'required' => __('validation/messages.required', ['attribute' => ':attribute']),
             'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
             'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min']),
-            'image' => __('validation/messages.image', ['attribute' => ':attribute']),
+            'image' => __('validation/messages.image', ['attribute' => ':attribute'])
         ];
     }
 
@@ -33,7 +34,8 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => __('general/attributes.title'),
-            'content' => __('general/attributes.content')
+            'content' => __('general/attributes.content'),
+            'header' => __('general/attributes.header')
         ];
     }
 }

@@ -23,6 +23,7 @@ return [
     'minimum_price' => 'Minimum prijs',
     'is_service' => 'Type',
     'is_asking' => 'Vraag',
+    'header' => 'Hoofd afbeelding',
     'images' => 'Afbeeldingen',
     'product' => 'Product',
     'service' => 'Dienst',
