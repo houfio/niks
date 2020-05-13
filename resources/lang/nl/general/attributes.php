@@ -17,6 +17,7 @@ return [
     'motivation' => 'Motivatie',
     'short_description' => 'Korte beschrijving',
     'long_description' => 'Lange beschrijving',
+    'content' => 'Inhoud',
     'price' => 'Prijs',
     'enable_bidding' => 'Bieden',
     'minimum_price' => 'Minimum prijs',
