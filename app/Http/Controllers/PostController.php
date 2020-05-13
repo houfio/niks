@@ -59,7 +59,21 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
+        $data = $request->validated();
+        $header = new Asset();
 
+        $post->title = $data['title'];
+        $post->content = $data['content'];
+        $header->path = $data['header']->store('public');
+
+        $post->header()->delete();
+        $post->header()->associate($header);
+
+        $header->save();
+        $post->save();
+        $request->session()->flash('message', __('messages/post.updated'));
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     public function destroy(Request $request, Post $post)

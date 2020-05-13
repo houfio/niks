@@ -2,5 +2,6 @@
 
 return [
     'deleted' => 'Bericht verwijderd',
-    'sent' => 'Bericht aangemaakt'
+    'sent' => 'Bericht aangemaakt',
+    'updated' => 'Bericht bijgewerkt'
 ];
