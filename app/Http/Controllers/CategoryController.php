@@ -58,7 +58,20 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, Category $category)
     {
+        $data = $request->validated();
 
+        $category->category = $data['category'];
+
+        if (isset($data['type'])) {
+            $category->type = $data['type'];
+        } else {
+            $category->parent()->associate(Category::find($data['parent']));
+        }
+
+        $category->save();
+
+        $request->session()->flash('message', __('messages/category.updated'));
+        return redirect()->action('CategoryController@edit', $category->id);
     }
 
     public function destroy(Request $request, Category $category)
