@@ -46,6 +46,8 @@ Route::resource('advertisements', 'AdvertisementController');
 
 Route::resource('posts', 'PostController');
 
+Route::resource('categories', 'CategoryController');
+
 Route::resource('intakes', 'IntakeController')->except([
     'edit', 'update'
 ]);
