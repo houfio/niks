@@ -15,7 +15,7 @@ return [
     'password_confirmation' => 'Wachtwoord herhaling',
     'title' => 'Titel',
     'category' => 'Categorie',
-    'parent' => 'Hoofd categorie',
+    'parent' => 'Hoofdcategorie',
     'type' => 'Categorie type',
     'motivation' => 'Motivatie',
     'short_description' => 'Korte beschrijving',

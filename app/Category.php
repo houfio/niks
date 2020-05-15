@@ -48,7 +48,6 @@ class Category extends Model
         return $this->getCategories('post');
     }
 
-
     public function getAdvertisementCategories()
     {
         return $this->getCategories('advertisement');
@@ -59,7 +58,7 @@ class Category extends Model
         return $this->getCategories();
     }
 
-    private function getCategories(string $type = '')
+    private function getCategories(string $type = ''): array
     {
         $parents = $type !== '' ? self::where('type', '=', $type) : self::where('parent_id', '=', null);
         $parents = $parents->get();
