@@ -11,7 +11,7 @@ class CategoryRequest extends FormRequest
         return true;
     }
 
-    private function getCategoryId()
+    private function getCategoryId(): ?int
     {
         return $this->category ? $this->category->id : null;
     }
