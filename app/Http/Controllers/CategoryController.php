@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-
+        return view('category.create');
     }
 
     public function store(Request $request)
@@ -29,12 +29,16 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-
+        return view('category.show', [
+            'category' => $category
+        ]);
     }
 
     public function edit(Category $category)
     {
-
+        return view('category.update', [
+            'category' => $category
+        ]);
     }
 
     public function update(Request $request, Category $category)
@@ -42,8 +46,11 @@ class CategoryController extends Controller
 
     }
 
-    public function destroy(Category $category)
+    public function destroy(Request $request, Category $category)
     {
-        
+        $category->delete();
+
+        $request->session()->flash('message', __('messages/category.deleted'));
+        return redirect()->action('CategoryController@index');
     }
 }
