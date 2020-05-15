@@ -25,7 +25,21 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
+        $data = $request->validated();
 
+        $category = new Category();
+        $category->category = $data['category'];
+
+        if (isset($data['type'])) {
+            $category->type = $data['type'];
+        } else {
+            $category->parent()->associate(Category::find($data['parent']));
+        }
+
+        $category->save();
+
+        $request->session()->flash('message', __('messages/category.sent'));
+        return redirect()->action('CategoryController@index');
     }
 
     public function show(Category $category)
