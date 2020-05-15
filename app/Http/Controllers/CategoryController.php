@@ -8,13 +8,17 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Category::class, 'category');
+    }
+
     public function index()
     {
         $categories = new Category();
-        $categories = $categories->getChildren();
 
         return view('category.index', [
-            'categories' => $categories
+            'categories' => $categories->getAllCategories()
         ]);
     }
 
