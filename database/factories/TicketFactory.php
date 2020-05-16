@@ -12,6 +12,7 @@ $factory->define(Ticket::class, function (Faker $faker) {
         'Vraag',
         'Overig'
     ];
+
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,

@@ -10,6 +10,6 @@ class Ticket extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'name', 'email', 'subject', 'description'
+        'fist_name', 'last_name', 'email', 'subject', 'description'
     ];
 }
