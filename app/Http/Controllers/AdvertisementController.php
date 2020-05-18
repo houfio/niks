@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Advertisement;
 use App\Asset;
+use App\Category;
 use App\Http\Requests\AdvertisementRequest;
 use App\Services\LocationService;
 use App\UserFavorite;
@@ -25,6 +26,7 @@ class AdvertisementController extends Controller
     {
         $queries = $request->query();
         $advertisements = Advertisement::query();
+        $categories = new Category();
 
         if (isset($queries['search'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {
@@ -59,7 +61,8 @@ class AdvertisementController extends Controller
         }
 
         return view('advertisement.index', [
-            'advertisements' => $advertisements->paginate()
+            'advertisements' => $advertisements->paginate(),
+            'categories' => $categories->getAdvertisementCategories()
         ]);
     }
 
@@ -165,7 +168,7 @@ class AdvertisementController extends Controller
         if (isset($data['images'])) {
             $advertisement->assets()->saveMany($assets);
         }
-        
+
         $request->session()->flash('message', __('messages/advertisement.updated'));
 
         return redirect()->route('advertisements.show', $advertisement->id);
