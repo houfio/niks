@@ -50,14 +50,14 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function intakes()
+    public function interviews()
     {
-        return $this->hasMany(Intake::class, 'invitee_id');
+        return $this->hasMany(Interview::class, 'invitee_id');
     }
 
-    public function sentIntakes()
+    public function sentInterviews()
     {
-        return $this->hasMany(Intake::class, 'inviter_id');
+        return $this->hasMany(Interview::class, 'inviter_id');
     }
 
     public function avatar() {

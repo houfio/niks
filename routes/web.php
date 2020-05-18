@@ -48,11 +48,11 @@ Route::resource('posts', 'PostController');
 
 Route::resource('categories', 'CategoryController');
 
-Route::resource('intakes', 'IntakeController')->except([
+Route::resource('interviews', 'InterviewController')->except([
     'edit', 'update'
 ]);
 
-Route::get('intakes/accept/{intake}/{token}', 'IntakeController@accept');
+Route::get('interviews/accept/{interview}/{token}', 'InterviewController@accept');
 
 Route::resource('favorites', 'UserFavoritesController')->except([
     'create', 'show', 'edit', 'update'
