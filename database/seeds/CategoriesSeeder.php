@@ -1,5 +1,6 @@
 <?php
 
+use App\Advertisement;
 use App\Category;
 use Illuminate\Database\Seeder;
 
@@ -41,5 +42,12 @@ class CategoriesSeeder extends Seeder
         $subCategory->category = 'Grasmaaien';
         $subCategory->parent()->associate($labor);
         $subCategory->save();
+
+        $categories = Category::all();
+        $advertisements = Advertisement::all();
+
+        foreach ($advertisements as $advertisement) {
+            $advertisement->categories()->saveMany($categories->random(rand(1, 3)));
+        }
     }
 }
