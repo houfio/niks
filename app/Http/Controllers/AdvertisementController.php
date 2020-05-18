@@ -62,8 +62,19 @@ class AdvertisementController extends Controller
 
         if (isset($queries['categories'])) {
             $categories = $queries['categories'];
-            $advertisements->whereHas('categories', function ($query) use ($categories) {
-                $query->whereIn('category', $categories);
+            $categories = Category::whereIn('category', $categories)->get();
+            $categoryIds = [];
+
+            foreach ($categories as $category) {
+                $categoryIds[] = $category->id;
+
+                foreach ($category->children()->get()->pluck('id')->toArray() as $subCategory) {
+                    $categoryIds[] = $subCategory;
+                }
+            }
+
+            $advertisements->whereHas('categories', function ($query) use ($categoryIds) {
+                $query->whereIn('categories.id', $categoryIds);
             });
         }
 
