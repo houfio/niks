@@ -44,7 +44,7 @@ class DeleteInterviewTest extends DuskTestCase
 
         $interview->save();
 
-        $this->assertDatabaseHas('intakes', [
+        $this->assertDatabaseHas('interviews', [
             'inviter_id' => $user->id,
             'invitee_id' => $newUser->id
         ]);
