@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Intake;
+namespace Tests\Browser\Interview;
 
 use App\Interview;
 use App\User;
@@ -16,7 +16,7 @@ class DeleteInterviewTest extends DuskTestCase
      * @test
      * @throws Throwable
      */
-    public function testDeleteIntake()
+    public function testDeleteInterview()
     {
         $user = factory(User::class)->create([
             'is_approved' => true,
@@ -51,12 +51,12 @@ class DeleteInterviewTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user, $newUser, $dueOn, $interview) {
             $browser->loginAs($user)
-                ->visit('/intakes')
-                ->press("@delete_intake_{$interview->id}")
-                ->assertPathIs('/intakes');
+                ->visit('/interviews')
+                ->press("@delete_interview_{$interview->id}")
+                ->assertPathIs('/interviews');
         });
 
-        $this->assertDatabaseMissing('intakes', [
+        $this->assertDatabaseMissing('interviews', [
             'inviter_id' => $user->id,
             'invitee_id' => $newUser->id
         ]);
