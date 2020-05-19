@@ -11,7 +11,7 @@
       <span dusk="user_name">{{ $user->getFullName() }}</span>
       <div>
         <button class="button small" data-micromodal-trigger="transaction-modal">
-          Overmaken
+          {{ __('views/transactions.pay') }}
         </button>
         @can('update', $user)
           <a class="button light small" href="{{ action('UserController@edit', ['user' => $user]) }}">
@@ -29,11 +29,11 @@
     </x-empty>
   @endforelse
   {{ $advertisements->links() }}
-  <x-modal id="transaction" title="Transaction">
+  <x-modal id="transaction" :title="__('views/transactions.title')">
     <form>
-      <x-input name="amount" label="Bedrag"/>
+      <x-input name="amount" :label="__('views/transactions.amount')"/>
       <button class="button" type="submit">
-        Overmaken
+        {{ __('views/transactions.pay') }}
       </button>
     </form>
   </x-modal>
