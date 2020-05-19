@@ -4,7 +4,7 @@ use App\Interview;
 use App\User;
 use Illuminate\Database\Seeder;
 
-class InterviewSeeder extends Seeder
+class InterviewsSeeder extends Seeder
 {
     public function run()
     {
