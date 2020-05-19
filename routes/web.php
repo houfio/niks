@@ -59,7 +59,7 @@ Route::resource('favorites', 'UserFavoritesController')->except([
 ]);
 
 Route::resource('transactions', 'TransactionController')->except([
-    'create', 'store', 'show', 'edit', 'update', 'destroy'
+    'create', 'store', 'edit', 'update', 'destroy'
 ]);
 
 Route::prefix('bid')->group(function () {
