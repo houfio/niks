@@ -36,7 +36,12 @@ class FilterAdvertisementTest extends DuskTestCase
         $searchAdvertisement->user()->associate($user);
         $searchAdvertisement->save();
 
-        $this->browse(function (Browser $browser) use ($user, $searchAdvertisement) {
+        $countedAdvertisements = Advertisement::where('title', '=', $searchAdvertisement->title)
+            ->where('price', '<=', $searchAdvertisement->price)
+            ->where('enable_bidding', '=', 0)
+            ->count();
+
+        $this->browse(function (Browser $browser) use ($user, $searchAdvertisement, $countedAdvertisements) {
             $browser->loginAs($user)
                 ->visit('/advertisements')
                 ->type('price', $searchAdvertisement->price)
@@ -47,7 +52,7 @@ class FilterAdvertisementTest extends DuskTestCase
                 ->assertPathIs('/advertisements');
 
             $advertisements = $browser->driver->findElements(WebDriverBy::className('advertisement'));
-            $this->assertCount(1, $advertisements);
+            $this->assertCount($countedAdvertisements, $advertisements);
         });
     }
 }
