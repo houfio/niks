@@ -37,8 +37,8 @@ class FilterAdvertisementTest extends DuskTestCase
         $searchAdvertisement->save();
 
         $countedAdvertisements = Advertisement::where('title', '=', $searchAdvertisement->title)
-            ->andWhere('price', '<=', $searchAdvertisement->price)
-            ->andWhere('enable_bidding', '=', 0)
+            ->where('price', '<=', $searchAdvertisement->price)
+            ->where('enable_bidding', '=', 0)
             ->count();
 
         $this->browse(function (Browser $browser) use ($user, $searchAdvertisement, $countedAdvertisements) {
