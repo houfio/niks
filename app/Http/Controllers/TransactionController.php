@@ -13,6 +13,15 @@ class TransactionController extends Controller
 
     public function index()
     {
-        return view('transaction.index');
+        return view('transaction.index', [
+            'transactions' => Transaction::paginate()
+        ]);
+    }
+
+    public function show(Transaction $transaction)
+    {
+        return view('transaction.show', [
+            'transaction' => $transaction
+        ]);
     }
 }

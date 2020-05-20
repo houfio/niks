@@ -1,0 +1,17 @@
+.tag {
+  margin-right: .5rem;
+  padding: .25rem;
+  border-radius: .25rem;
+  font-size: .75rem;
+  font-weight: bold;
+
+  @include with-theme {
+    color: themed('foreground');
+    background-color: themed('card');
+  }
+
+  &.orange {
+    color: white;
+    background-color: $orange;
+  }
+}
