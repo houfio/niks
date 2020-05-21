@@ -28,7 +28,7 @@ class TransactionRequest extends FormRequest
         return [
             'from' => 'required|integer|exists:users,id',
             'to' => 'required|integer|exists:users,id|different:from',
-            'amount' => "required|integer|max:{$this->getMaxAmount()}"
+            'amount' => "required|integer|min:1|max:{$this->getMaxAmount()}"
         ];
     }
 
@@ -36,7 +36,8 @@ class TransactionRequest extends FormRequest
     {
         return [
             'required' => __('validation/messages.required', ['attribute' => ':attribute']),
-            'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
+            'max' => __('validation/messages.max_num', ['attribute' => ':attribute', 'max' => ':max']),
+            'min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min']),
             'integer' => __('validation/messages.numeric', ['attribute' => ':attribute']),
             'exists' => __('validation/messages.exists', ['attribute' => ':attribute']),
             'different' => __('validation/messages.different', ['attribute' => ':attribute'])

@@ -33,6 +33,7 @@ class TransactionController extends Controller
         $transaction->sender()->associate($receiver);
 
         $transaction->save();
+        $request->session()->flash('message', __('messages/transaction.sent', ['receiver' => $receiver->getFullName()]));
 
         return redirect()->action('UserController@show', $receiver->id);
     }
