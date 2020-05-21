@@ -14,13 +14,13 @@ class TransactionRequest extends FormRequest
 
     private function getMaxAmount(): int
     {
-        $from = User::find($this->request->get('from'));
-        $to = User::find($this->request->get('to'));
+        $sender = User::find($this->request->get('from'));
+        $receiver = User::find($this->request->get('to'));
 
-        $fromAmount = $from->getAmount() - (int)getenv('APP_MIN_AMOUNT');
-        $toAmount = $to->getAmount() + (int)getenv('APP_MAX_AMOUNT');
+        $senderAmount = $sender->getAmount() - (int)getenv('APP_MIN_AMOUNT');
+        $receiverAmount = $receiver->getAmount() + (int)getenv('APP_MAX_AMOUNT');
 
-        return $fromAmount > $toAmount ? $toAmount : $fromAmount;
+        return $senderAmount > $receiverAmount ? $receiverAmount : $senderAmount;
     }
 
     public function rules()

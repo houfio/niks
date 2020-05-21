@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TransactionRequest;
 use App\Transaction;
+use App\User;
 
 class TransactionController extends Controller
 {
@@ -21,9 +22,19 @@ class TransactionController extends Controller
 
     public function store(TransactionRequest $request)
     {
-        return view('transaction.index', [
-            'transactions' => Transaction::paginate()
-        ]);
+        $data = $request->validated();
+        $sender = User::find($data['from']);
+        $receiver = User::find($data['to']);
+
+        $transaction = new Transaction();
+
+        $transaction->amount = (int)$data['amount'];
+        $transaction->receiver()->associate($sender);
+        $transaction->sender()->associate($receiver);
+
+        $transaction->save();
+
+        return redirect()->action('UserController@show', $receiver->id);
     }
 
     public function show(Transaction $transaction)
