@@ -4,6 +4,7 @@ return [
     'unique' => ':attribute is al in gebruik',
     'email' => ':value is geen geldig e-mailadres',
     'exists' => ':attribute bestaat niet',
+    'different' => ':attribute moet anders zijn',
     'already_exists' => ':attribute bestaat al',
     'required' => ':attribute is een verplicht veld',
     'max' => ':attribute mag niet langer zijn dan :max karakters',
