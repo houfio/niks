@@ -71,7 +71,7 @@ class TicketController extends Controller
         $user = auth()->user();
 
         $ticket['user_id'] = $user->id;
-        Mail::to($ticket->email)->send(new TicketMail($token, $user, $ticket));
+        Mail::to($ticket->email)->send(new TicketMail($ticket));
 
         $request->session()->flash('message', __('messages/ticket.updated'));
 
