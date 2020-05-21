@@ -4,30 +4,30 @@
   @section('theme', 'dark')
 @endcan
 
-@section('title', __('views/intakes.title'))
+@section('title', __('views/interview.title'))
 
 @section('content')
   <div class="content">
     <h1 class="page-heading">
-      {{ __('views/intakes.individual_title') }} - {{ $intake->invitee->getFullName() }}
+      {{ __('views/interview.individual_title') }} - {{ $interview->invitee->getFullName() }}
     </h1>
     <x-errors/>
     <x-input
       name="inviter"
-      :label="__('views/intakes.inviter')"
-      :value="$intake->inviter->getFullName()"
+      :label="__('views/interview.inviter')"
+      :value="$interview->inviter->getFullName()"
       disabled
     />
     <x-input
       name="invitee"
-      :label="__('views/intakes.invitee')"
-      :value="$intake->invitee->getFullName()"
+      :label="__('views/interview.invitee')"
+      :value="$interview->invitee->getFullName()"
       disabled
     />
     <x-input
       name="date"
-      :label="__('views/intakes.date')"
-      :value="$intake->date->isoFormat('LLLL')"
+      :label="__('views/interview.date')"
+      :value="$interview->date->isoFormat('LLLL')"
       disabled
     />
     <div class="checkbox-input">
@@ -35,11 +35,11 @@
         type="checkbox"
         id="accepted"
         name="accepted"
-        @if($intake->accepted) checked @endif
+        @if($interview->accepted) checked @endif
         disabled
       />
       <label for="accepted">
-        {{ __('views/intakes.accepted') }}
+        {{ __('views/interview.accepted') }}
       </label>
     </div>
   </div>

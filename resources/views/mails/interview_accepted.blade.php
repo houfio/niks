@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('mails/intake.title') }}</title>
+    <title>{{ __('mails/interview.title') }}</title>
   </head>
   <body>
     <div class="content">
       <span>{{ __('mails/general.title', ['name' => $receiver->getFullName()]) }}</span>
       <p>
-        {{ __('mails/intake.accepted.paragraphOne') }}
+        {{ __('mails/interview.accepted.paragraphOne') }}
       </p>
       <ul>
         <li>
-          {{ __('mails/intake.name') }}: {{ $intake->invitee->getFullName() }}
+          {{ __('mails/interview.name') }}: {{ $interview->invitee->getFullName() }}
         </li>
         <li>
-          {{ __('mails/intake.date') }}: {{ $intake->date->format('d-m-Y') }}
+          {{ __('mails/interview.date') }}: {{ $interview->date->format('d-m-Y') }}
         </li>
         <li>
-          {{ __('mails/intake.time') }}: {{ $intake->date->format('H:i') }}
+          {{ __('mails/interview.time') }}: {{ $interview->date->format('H:i') }}
         </li>
       </ul>
       <span>
