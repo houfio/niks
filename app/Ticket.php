@@ -12,4 +12,13 @@ class Ticket extends Model
     protected $fillable = [
         'first_name', 'last_name', 'email', 'subject', 'description'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function type() {
+        return $this->belongsTo(Type::class, 'type_id');
+    }
 }

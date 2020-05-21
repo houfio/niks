@@ -15,6 +15,7 @@ return [
     'password_confirmation' => 'Wachtwoord herhaling',
     'title' => 'Titel',
     'motivation' => 'Motivatie',
+    'description' => 'description',
     'short_description' => 'Korte beschrijving',
     'long_description' => 'Lange beschrijving',
     'content' => 'Inhoud',
@@ -30,5 +31,7 @@ return [
     'remember_me' => 'Ingelogd blijven',
     'create' => 'Aanmaken',
     'advertisement' => 'Advertentie',
-    'edit' => 'Aanpassen'
+    'edit' => 'Aanpassen',
+    'subject' => 'Onderwerp',
+
 ];

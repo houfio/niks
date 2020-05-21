@@ -96,4 +96,8 @@ class User extends Authenticatable
                 'updated_at',
             ]);
     }
+
+    public function ticket() {
+        return $this->hasOne(Ticket::class);
+    }
 }
