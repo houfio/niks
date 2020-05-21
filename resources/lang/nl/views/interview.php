@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'title' => 'Intakes',
-    'title_create' => 'Intake inplannen',
-    'individual_title' => 'Intake',
-    'empty' => 'Er zijn geen intakes',
+    'title' => 'Interviews',
+    'title_create' => 'Interview inplannen',
+    'individual_title' => 'Interview',
+    'empty' => 'Er zijn geen interviews',
     'inviter' => 'Uitnodiger',
     'invitee' => 'Uitgenodigde',
     'date' => 'Datum',

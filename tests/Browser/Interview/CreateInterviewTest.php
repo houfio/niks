@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Intake;
+namespace Tests\Browser\Interview;
 
 use App\User;
 use DateTime;
@@ -9,13 +9,13 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
-class CreateIntakeTest extends DuskTestCase
+class CreateInterviewTest extends DuskTestCase
 {
     /**
      * @test
      * @throws Throwable
      */
-    public function testCreateIntake()
+    public function testCreateInterview()
     {
         $user = factory(User::class)->create([
             'is_approved' => true,
@@ -35,18 +35,18 @@ class CreateIntakeTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user, $newUser, $dueOn) {
             $browser->loginAs($user)
-                ->visit('/intakes')
-                ->press('@create_intake')
+                ->visit('/interviews')
+                ->press('@create_interview')
                 ->select('invitee', $newUser->id)
                 ->script([
                     'document.getElementById("date").value = "' . str_replace('UTC', 'T', $dueOn->format('Y-m-dTH:i')) . '"',
                 ]);
 
             $browser->press('create')
-                ->assertPathIs('/intakes');
+                ->assertPathIs('/interviews');
         });
 
-        $this->assertDatabaseHas('intakes', [
+        $this->assertDatabaseHas('interviews', [
             'inviter_id' => $user->id,
             'invitee_id' => $newUser->id
         ]);
