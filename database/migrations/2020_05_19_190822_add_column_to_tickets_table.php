@@ -19,8 +19,8 @@ class AddColumnToTicketsTable extends Migration
     public function down()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->dropColumn(' is_resolved');
-            $table->dropColumn(' phone_number');
+            $table->dropColumn('is_resolved');
+            $table->dropColumn('phone_number');
             $table->dropForeign('user_id');
         });
     }

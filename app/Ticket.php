@@ -8,7 +8,6 @@ class Ticket extends Model
 {
     protected $table = 'tickets';
     public $timestamps = true;
-
     protected $fillable = [
         'first_name', 'last_name', 'email', 'subject', 'description'
     ];
@@ -18,7 +17,8 @@ class Ticket extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function type() {
+    public function type()
+    {
         return $this->belongsTo(Type::class, 'type_id');
     }
 }

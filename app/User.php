@@ -60,11 +60,13 @@ class User extends Authenticatable
         return $this->hasMany(Intake::class, 'inviter_id');
     }
 
-    public function avatar() {
+    public function avatar()
+    {
         return $this->belongsTo(Asset::class, 'avatar_id');
     }
 
-    public function header() {
+    public function header()
+    {
         return $this->belongsTo(Asset::class, 'header_id');
     }
 
@@ -97,7 +99,8 @@ class User extends Authenticatable
             ]);
     }
 
-    public function ticket() {
+    public function ticket()
+    {
         return $this->hasOne(Ticket::class);
     }
 }

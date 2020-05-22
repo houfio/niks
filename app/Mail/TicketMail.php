@@ -15,7 +15,7 @@ class TicketMail extends Mailable
 
     public function __construct(Ticket $ticket)
     {
-        $this->subject = __('mails/ticket.title') . ': ' . $ticket->subject;
+        $this->subject = $ticket->subject;
     }
 
     public function build()

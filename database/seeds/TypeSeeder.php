@@ -13,10 +13,12 @@ class TypeSeeder extends Seeder
             'Vraag',
             'Overig'
         ];
-        foreach ($types as $type) {
-            factory(Type::class)->create([
-                'type' => $type
-            ]);
+
+        foreach ($types as $current_type)
+        {
+            $type = new Type();
+            $type->type = $current_type;
+            $type->save();
         }
     }
 }

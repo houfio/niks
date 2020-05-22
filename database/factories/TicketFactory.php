@@ -15,7 +15,6 @@ $factory->define(Ticket::class, function (Faker $faker) {
         'subject' => 'Onderwerp',
         'description' => $faker->text(250),
         'is_resolved' => false,
-        'phone_number' => $faker->boolean(50) ? '06-12345678' : null,
-//        'user_id' => 1
+        'phone_number' => $faker->boolean(50) ? $faker->phoneNumber : null,
     ];
 });

@@ -17,7 +17,7 @@ class AddTypeForeignKeyToTickets extends Migration
     public function down()
     {
         Schema::table('tickets', function (Blueprint $table) {
-
+            $table->dropForeign('type_id');
         });
     }
 }
