@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Advertisement;
 use App\Asset;
+use App\Category;
 use App\Http\Requests\AdvertisementRequest;
 use App\Services\LocationService;
 use App\UserFavorite;
@@ -25,6 +26,7 @@ class AdvertisementController extends Controller
     {
         $queries = $request->query();
         $advertisements = Advertisement::query();
+        $category = new Category();
 
         if (isset($queries['search'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {
@@ -58,8 +60,27 @@ class AdvertisementController extends Controller
                 });
         }
 
+        if (isset($queries['categories'])) {
+            $categories = $queries['categories'];
+            $categories = Category::whereIn('category', $categories)->get();
+            $categoryIds = [];
+
+            foreach ($categories as $category) {
+                $categoryIds[] = $category->id;
+
+                foreach ($category->children()->get()->pluck('id')->toArray() as $subCategory) {
+                    $categoryIds[] = $subCategory;
+                }
+            }
+
+            $advertisements->whereHas('categories', function ($query) use ($categoryIds) {
+                $query->whereIn('categories.id', $categoryIds);
+            });
+        }
+
         return view('advertisement.index', [
-            'advertisements' => $advertisements->paginate()
+            'advertisements' => $advertisements->paginate(),
+            'categories' => $category->getAdvertisementCategories()
         ]);
     }
 
@@ -165,7 +186,7 @@ class AdvertisementController extends Controller
         if (isset($data['images'])) {
             $advertisement->assets()->saveMany($assets);
         }
-        
+
         $request->session()->flash('message', __('messages/advertisement.updated'));
 
         return redirect()->route('advertisements.show', $advertisement->id);

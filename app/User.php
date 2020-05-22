@@ -5,6 +5,8 @@ namespace App;
 use App\Mail\AccountApprovalMail;
 use App\Mail\PasswordResetMail;
 use App\Traits\UpdateCoordinates;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -35,11 +37,6 @@ class User extends Authenticatable
         'zipCode' => 'zip_code'
     ];
 
-    public function setAttributes(array $attributes): void
-    {
-        $this->attributes = $attributes;
-    }
-
     public function advertisements()
     {
         return $this->hasMany(Advertisement::class);
@@ -50,14 +47,14 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function intakes()
+    public function interviews()
     {
-        return $this->hasMany(Intake::class, 'invitee_id');
+        return $this->hasMany(Interview::class, 'invitee_id');
     }
 
-    public function sentIntakes()
+    public function sentInterviews()
     {
-        return $this->hasMany(Intake::class, 'inviter_id');
+        return $this->hasMany(Interview::class, 'inviter_id');
     }
 
     public function avatar()
@@ -70,23 +67,9 @@ class User extends Authenticatable
         return $this->belongsTo(Asset::class, 'header_id');
     }
 
-    public function sendPasswordResetNotification($token)
-    {
-        if ($this->is_approved) {
-            Mail::to($this->email)->send(new PasswordResetMail($token, $this));
-        } else {
-            Mail::to($this->email)->send(new AccountApprovalMail($token, $this));
-        }
-    }
-
     public function bids()
     {
         return $this->hasMany(Bid::class);
-    }
-
-    public function getFullName(): string
-    {
-        return "$this->first_name $this->last_name";
     }
 
     public function favorites()
@@ -97,6 +80,42 @@ class User extends Authenticatable
                 'created_at',
                 'updated_at',
             ]);
+    }
+
+    public function sentTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'avatar_id');
+    }
+
+    public function receivedTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'header_id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        if ($this->is_approved) {
+            Mail::to($this->email)->send(new PasswordResetMail($token, $this));
+        } else {
+            Mail::to($this->email)->send(new AccountApprovalMail($token, $this));
+        }
+    }
+
+    public function getFullName(): string
+    {
+        return "$this->first_name $this->last_name";
+    }
+
+    public function getAmount(DateTime $date = null): int
+    {
+        if (!$date) {
+            $date = Carbon::today();
+        }
+
+        $date = $date->toDateString();
+        $sent = Transaction::where('sender_id', '=', $this->id)->whereDate('created_at', '<=', $date)->sum('amount');
+
+        return Transaction::where('receiver_id', '=', $this->id)->whereDate('created_at', '<=', $date)->sum('amount') - $sent;
     }
 
     public function ticket()

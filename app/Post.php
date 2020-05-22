@@ -18,4 +18,9 @@ class Post extends Model
     {
         return $this->belongsTo(Asset::class, 'header_id');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'post_categories');
+    }
 }

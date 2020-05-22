@@ -45,12 +45,30 @@ class Category extends Model
 
     public function getPostCategories()
     {
-        return self::where('type', '=', 'post')->get();
+        return $this->getCategories('post');
     }
-
 
     public function getAdvertisementCategories()
     {
-        return self::where('type', '=', 'advertisement')->get();
+        return $this->getCategories('advertisement');
+    }
+
+    public function getAllCategories()
+    {
+        return $this->getCategories();
+    }
+
+    private function getCategories(string $type = ''): array
+    {
+        $parents = $type !== '' ? self::where('type', '=', $type) : self::where('parent_id', '=', null);
+        $parents = $parents->get();
+
+        $categories = [];
+
+        foreach ($parents as $category) {
+            $categories[] = $category->getChildren();
+        }
+
+        return $categories;
     }
 }

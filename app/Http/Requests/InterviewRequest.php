@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IntakeRequest extends FormRequest
+class InterviewRequest extends FormRequest
 {
     public function authorize()
     {
@@ -32,8 +32,8 @@ class IntakeRequest extends FormRequest
     public function attributes()
     {
         return [
-            'invitee' => __('views/intakes.invitee'),
-            'date' => __('views/intakes.date')
+            'invitee' => __('views/interview.invitee'),
+            'date' => __('views/interview.date')
         ];
     }
 }

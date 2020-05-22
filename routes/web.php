@@ -46,18 +46,20 @@ Route::resource('advertisements', 'AdvertisementController');
 
 Route::resource('posts', 'PostController');
 
-Route::resource('intakes', 'IntakeController')->except([
+Route::resource('categories', 'CategoryController');
+
+Route::resource('interviews', 'InterviewController')->except([
     'edit', 'update'
 ]);
 
-Route::get('intakes/accept/{intake}/{token}', 'IntakeController@accept');
+Route::get('interviews/accept/{interview}/{token}', 'InterviewController@accept');
 
 Route::resource('favorites', 'UserFavoritesController')->except([
     'create', 'show', 'edit', 'update'
 ]);
 
 Route::resource('transactions', 'TransactionController')->except([
-    'create', 'store', 'show', 'edit', 'update', 'destroy'
+    'create', 'store', 'edit', 'update', 'destroy'
 ]);
 
 Route::prefix('bid')->group(function () {

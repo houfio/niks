@@ -9,8 +9,10 @@
 @import "form";
 @import "modal";
 @import "popover";
+@import "tag";
 
 @import "views/advertisements";
+@import "views/transactions";
 
 *, *::before, *::after {
   box-sizing: border-box;
