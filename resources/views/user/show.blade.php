@@ -10,9 +10,11 @@
       <div class="profile-image"></div>
       <span dusk="user_name">{{ $user->getFullName() }}</span>
       <div>
-        <button class="button small" data-micromodal-trigger="transaction-modal">
-          {{ __('views/transactions.pay') }}
-        </button>
+        @if($user->id != auth()->id())
+          <button class="button small" data-micromodal-trigger="transaction-modal">
+            {{ __('views/transactions.pay') }}
+          </button>
+        @endif
         @can('update', $user)
           <a class="button light small" href="{{ action('UserController@edit', ['user' => $user]) }}">
             {{ __('views/profile.edit') }}
@@ -20,6 +22,7 @@
         @endcan
       </div>
     </div>
+    <x-errors/>
   </div>
   @forelse($advertisements as $advertisement)
     <x-advertisement :advertisement="$advertisement"/>
@@ -30,8 +33,10 @@
   @endforelse
   {{ $advertisements->links() }}
   <x-modal id="transaction" :title="__('views/transactions.title')">
-    <form>
+    <form method="post" action="{{ @action('TransactionController@store') }}">
+      @csrf
       <x-input name="amount" :label="__('views/transactions.amount')"/>
+      <input type="hidden" name="to" id="to" value="{{ $user->id }}">
       <button class="button" type="submit">
         {{ __('views/transactions.pay') }}
       </button>

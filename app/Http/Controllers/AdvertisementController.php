@@ -6,19 +6,13 @@ use App\Advertisement;
 use App\Asset;
 use App\Category;
 use App\Http\Requests\AdvertisementRequest;
-use App\Services\LocationService;
 use App\UserFavorite;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdvertisementController extends Controller
 {
-    private LocationService $locationService;
-
-    public function __construct(LocationService $locationService)
+    public function __construct()
     {
-        $this->locationService = $locationService;
-
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
