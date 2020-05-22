@@ -28,7 +28,7 @@ class TicketController extends Controller
                 ->where('is_resolved', '=', 'false')
                 ->where(function ($query) use ($user) {
                     $query->where('user_id', 'is', 'null')->orWhere('user_id', '=', $user->id);
-                })->toSql()
+                })->get()
         ]);
     }
 
