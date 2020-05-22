@@ -4,7 +4,7 @@ use App\Intake;
 use App\User;
 use Illuminate\Database\Seeder;
 
-class IntakeSeeder extends Seeder
+class IntakesSeeder extends Seeder
 {
     public function run()
     {

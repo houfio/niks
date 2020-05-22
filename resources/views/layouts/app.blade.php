@@ -41,15 +41,15 @@
             {{ __('views/users.title') }}
           </x-navigation-item>
         @endcan
-        @can('viewAny', \App\Intake::class)
-          <x-navigation-item icon="comments" path="intakes">
-            {{ __('views/intakes.title') }}
+        @can('viewAny', \App\Interview::class)
+          <x-navigation-item icon="comments" path="interviews">
+            {{ __('views/interview.title') }}
           </x-navigation-item>
         @endcan
         @can('viewAny', \App\Transaction::class)
-          {{--<x-navigation-item icon="coins" path="transactions">
+          <x-navigation-item icon="coins" path="transactions">
             {{ __('views/transactions.title') }}
-          </x-navigation-item>--}}
+          </x-navigation-item>
         @endcan
       @endauth
     </nav>

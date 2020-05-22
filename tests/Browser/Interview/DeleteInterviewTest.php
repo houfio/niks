@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Browser\Intake;
+namespace Tests\Browser\Interview;
 
-use App\Intake;
+use App\Interview;
 use App\User;
 use DateTime;
 use Facebook\WebDriver\WebDriverBy;
@@ -10,13 +10,13 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;
 
-class DeleteIntakeTest extends DuskTestCase
+class DeleteInterviewTest extends DuskTestCase
 {
     /**
      * @test
      * @throws Throwable
      */
-    public function testDeleteIntake()
+    public function testDeleteInterview()
     {
         $user = factory(User::class)->create([
             'is_approved' => true,
@@ -34,29 +34,29 @@ class DeleteIntakeTest extends DuskTestCase
             'is_admin' => false
         ]);
 
-        /** @var Intake $intake */
-        $intake = factory(Intake::class)->make();
+        /** @var Interview $interview */
+        $interview = factory(Interview::class)->make();
 
-        $intake->invitee()->associate($newUser);
-        $intake->inviter()->associate($user);
-        $intake->date = $dueOn;
-        $intake->accepted = false;
+        $interview->invitee()->associate($newUser);
+        $interview->inviter()->associate($user);
+        $interview->date = $dueOn;
+        $interview->accepted = false;
 
-        $intake->save();
+        $interview->save();
 
-        $this->assertDatabaseHas('intakes', [
+        $this->assertDatabaseHas('interviews', [
             'inviter_id' => $user->id,
             'invitee_id' => $newUser->id
         ]);
 
-        $this->browse(function (Browser $browser) use ($user, $newUser, $dueOn, $intake) {
+        $this->browse(function (Browser $browser) use ($user, $newUser, $dueOn, $interview) {
             $browser->loginAs($user)
-                ->visit('/intakes')
-                ->press("@delete_intake_{$intake->id}")
-                ->assertPathIs('/intakes');
+                ->visit('/interviews')
+                ->press("@delete_interview_{$interview->id}")
+                ->assertPathIs('/interviews');
         });
 
-        $this->assertDatabaseMissing('intakes', [
+        $this->assertDatabaseMissing('interviews', [
             'inviter_id' => $user->id,
             'invitee_id' => $newUser->id
         ]);

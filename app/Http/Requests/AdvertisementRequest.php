@@ -32,7 +32,6 @@ class AdvertisementRequest extends FormRequest
         return [
             'required' => __('validation/messages.required', ['attribute' => ':attribute']),
             'unique' => __('validation/messages.unique', ['attribute' => ':attribute']),
-            'email' => __('validation/messages.email', ['value' => ':input']),
             'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
             'required_if' => __('validation/messages.required', ['attribute' => ':attribute']),
             'numeric' => __('validation/messages.numeric', ['attribute' => ':attribute']),

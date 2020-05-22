@@ -2,6 +2,7 @@
 
 use App\Advertisement;
 use App\Asset;
+use App\Category;
 use App\User;
 use Illuminate\Database\Seeder;
 
