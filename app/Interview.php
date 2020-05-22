@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Intake extends Model
+class Interview extends Model
 {
     public $timestamps = true;
 

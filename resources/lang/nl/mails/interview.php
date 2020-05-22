@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'title_requested' => 'Intake aangevraagd',
-    'title_accepted' => 'Intake geaccepteerd',
-    'title_rejected' => 'Intake afgewezen',
+    'title_requested' => 'Interview aangevraagd',
+    'title_accepted' => 'Interview geaccepteerd',
+    'title_rejected' => 'Interview afgewezen',
     'name' => 'Naam',
     'date' => 'Datum',
     'time' => 'Tijd',

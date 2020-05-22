@@ -2,21 +2,21 @@
 
 @section('theme', 'dark')
 
-@section('title', __('views/intakes.title_create'))
+@section('title', __('views/interview.title_create'))
 
 @section('content')
   <div class="content">
     <h1 class="page-heading" dusk="title">
-      {{ __('views/intakes.title_create') }}
+      {{ __('views/interview.title_create') }}
     </h1>
     <x-errors/>
-    <form method="post" action="{{ route('intakes.store') }}">
+    <form method="post" action="{{ route('interviews.store') }}">
       @csrf
       <div class="two-columns">
         <x-input
           name="invitee"
           type="select"
-          :label="__('views/intakes.invitee')"
+          :label="__('views/interview.invitee')"
           required
         >
           @foreach($invitees as $invitee)
@@ -26,7 +26,7 @@
         <x-input
           name="date"
           type="datetime-local"
-          :label="__('views/intakes.date')"
+          :label="__('views/interview.date')"
           required
         />
       </div>

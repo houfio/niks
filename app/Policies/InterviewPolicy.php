@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Intake;
+use App\Interview;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class IntakePolicy
+class InterviewPolicy
 {
     use HandlesAuthorization;
 
@@ -20,9 +20,9 @@ class IntakePolicy
         return false;
     }
 
-    public function view(User $user, Intake $intake)
+    public function view(User $user, Interview $interview)
     {
-        return $user->id === $intake->invitee->id;
+        return $user->id === $interview->invitee->id;
     }
 
     public function create(User $user)

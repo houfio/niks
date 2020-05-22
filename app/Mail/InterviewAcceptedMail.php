@@ -2,29 +2,29 @@
 
 namespace App\Mail;
 
-use App\Intake;
+use App\Interview;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class IntakeRejectedMail extends Mailable
+class InterviewAcceptedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Intake $intake;
+    public Interview $interview;
     public User $receiver;
 
-    public function __construct(Intake $intake, User $receiver)
+    public function __construct(Interview $interview, User $receiver)
     {
-        $this->intake = $intake;
+        $this->interview = $interview;
         $this->receiver = $receiver;
-        $this->subject = __('mails/intake.title_rejected');
+        $this->subject = __('mails/interview.title_accepted');
     }
 
     public function build()
     {
-        return $this->view('mails.intake_rejected')
+        return $this->view('mails.interview_accepted')
             ->from('no-reply@niksvoorniks.nl')
             ->replyTo('info@niksvoorniks.nl');
     }
