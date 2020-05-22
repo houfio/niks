@@ -23,13 +23,12 @@ class TransactionController extends Controller
     public function store(TransactionRequest $request)
     {
         $data = $request->validated();
-        $sender = User::find($data['from']);
         $receiver = User::find($data['to']);
 
         $transaction = new Transaction();
 
         $transaction->amount = (int)$data['amount'];
-        $transaction->receiver()->associate($sender);
+        $transaction->receiver()->associate($request->user());
         $transaction->sender()->associate($receiver);
 
         $transaction->save();

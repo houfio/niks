@@ -36,7 +36,6 @@
     <form method="post" action="{{ @action('TransactionController@store') }}">
       @csrf
       <x-input name="amount" :label="__('views/transactions.amount')"/>
-      <input type="hidden" name="from" id="from" value="{{ auth()->id() }}">
       <input type="hidden" name="to" id="to" value="{{ $user->id }}">
       <button class="button" type="submit">
         {{ __('views/transactions.pay') }}

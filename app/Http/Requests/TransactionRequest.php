@@ -14,7 +14,7 @@ class TransactionRequest extends FormRequest
 
     private function getMaxAmount(): int
     {
-        $sender = User::find($this->request->get('from'));
+        $sender = $this->user();
         $receiver = User::find($this->request->get('to'));
 
         $senderAmount = $sender->getAmount() - (int)getenv('APP_MIN_AMOUNT');
@@ -26,8 +26,7 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'from' => 'required|integer|exists:users,id',
-            'to' => 'required|integer|exists:users,id|different:from',
+            'to' => "required|integer|exists:users,id|not_in:{$this->user()->id}",
             'amount' => "required|integer|min:1|max:{$this->getMaxAmount()}"
         ];
     }
@@ -40,14 +39,13 @@ class TransactionRequest extends FormRequest
             'min' => __('validation/messages.min_num', ['attribute' => ':attribute', 'min' => ':min']),
             'integer' => __('validation/messages.numeric', ['attribute' => ':attribute']),
             'exists' => __('validation/messages.exists', ['attribute' => ':attribute']),
-            'different' => __('validation/messages.different', ['attribute' => ':attribute'])
+            'not_in' => __('validation/messages.different', ['attribute' => ':attribute'])
         ];
     }
 
     public function attributes()
     {
         return [
-            'from' => __('general/attributes.from'),
             'to' => __('general/attributes.to'),
             'amount' => __('general/attributes.amount')
         ];
