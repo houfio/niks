@@ -3,6 +3,7 @@
 return [
     'title' => 'Advertenties',
     'title_create' => 'Advertentie aanmaken',
+    'delete_advertisement' => 'Advertentie verwijderen',
     'empty' => 'Er zijn nog geen advertenties',
     'create' => 'Aanmaken',
     'edit' => 'Advertentie aanpassen',
@@ -18,5 +19,7 @@ return [
     'delete_image' => 'Afbeelding verwijderen',
     'price' => 'Max prijs (niks)',
     'search' => 'Zoeken',
-    'distance' => 'Max afstand (km)'
+    'distance' => 'Max afstand (km)',
+    'confirm' => 'Permanent verwijderen',
+    'cancel' => 'Terug'
 ];
