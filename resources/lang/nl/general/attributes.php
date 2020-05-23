@@ -36,5 +36,7 @@ return [
     'advertisement' => 'Advertentie',
     'edit' => 'Aanpassen',
     'subject' => 'Onderwerp',
-
+    'amount' => 'Bedrag',
+    'to' => 'Ontvanger',
+    'from' => 'Verzender'
 ];

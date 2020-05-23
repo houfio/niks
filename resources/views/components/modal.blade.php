@@ -5,12 +5,12 @@
         <h3 id="{{ $id }}-title">
           {{ $title }}
         </h3>
-        <button aria-label="Close modal" data-micromodal-close>
+        <button aria-label="Close modal" type="button" data-micromodal-close>
           <i class="fas fa-times"></i>
         </button>
       </header>
       <div class="modal-content">
-        {{ $slot  }}
+        {{ $slot }}
       </div>
     </div>
   </div>
