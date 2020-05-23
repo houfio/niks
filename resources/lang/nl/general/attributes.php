@@ -33,5 +33,8 @@ return [
     'remember_me' => 'Ingelogd blijven',
     'create' => 'Aanmaken',
     'advertisement' => 'Advertentie',
-    'edit' => 'Aanpassen'
+    'edit' => 'Aanpassen',
+    'amount' => 'Bedrag',
+    'to' => 'Ontvanger',
+    'from' => 'Verzender'
 ];
