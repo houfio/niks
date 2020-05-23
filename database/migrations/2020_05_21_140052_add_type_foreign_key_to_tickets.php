@@ -10,7 +10,7 @@ class AddTypeForeignKeyToTickets extends Migration
     {
         Schema::table('tickets', function (Blueprint $table) {
             $table->unsignedBigInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
+            $table->foreign('type_id')->references('id')->on('ticket_types')->onDelete('cascade');
         });
     }
 

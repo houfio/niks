@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Type extends Model
+class TicketType extends Model
 {
-    protected $table = 'types';
+    protected $table = 'ticket_types';
     public $timestamps = false;
 
 

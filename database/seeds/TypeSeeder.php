@@ -1,6 +1,6 @@
 <?php
 
-use App\Type;
+use App\TicketType;
 use Illuminate\Database\Seeder;
 
 class TypeSeeder extends Seeder
@@ -16,7 +16,7 @@ class TypeSeeder extends Seeder
 
         foreach ($types as $current_type)
         {
-            $type = new Type();
+            $type = new TicketType();
             $type->type = $current_type;
             $type->save();
         }

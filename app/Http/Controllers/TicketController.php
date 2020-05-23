@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TicketRequest;
-use App\Mail\IntakeAcceptedMail;
 use App\Mail\TicketMail;
 use App\Ticket;
-use App\Type;
+use App\TicketType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
@@ -35,7 +33,7 @@ class TicketController extends Controller
     public function create()
     {
         return view('ticket.create', [
-            'types' => Type::all()
+            'types' => TicketType::all()
         ]);
     }
 
@@ -43,7 +41,7 @@ class TicketController extends Controller
     {
         $data = $request->validated();
 
-        $type = Type::where('type', $data['type'])->first();
+        $type = TicketType::where('type', $data['type'])->first();
 
         $ticket = new Ticket();
         $ticket->first_name = $data['first_name'];
