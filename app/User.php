@@ -120,6 +120,6 @@ class User extends Authenticatable
 
     public function ticket()
     {
-        return $this->hasOne(Ticket::class);
+        return $this->hasMany(Ticket::class);
     }
 }
