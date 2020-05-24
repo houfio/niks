@@ -9,7 +9,6 @@ class TicketType extends Model
     protected $table = 'ticket_types';
     public $timestamps = false;
 
-
     protected $fillable = [
         'type'
     ];

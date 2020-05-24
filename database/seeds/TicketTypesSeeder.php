@@ -3,7 +3,7 @@
 use App\TicketType;
 use Illuminate\Database\Seeder;
 
-class TypeSeeder extends Seeder
+class TicketTypesSeeder extends Seeder
 {
     public function run()
     {
@@ -14,8 +14,7 @@ class TypeSeeder extends Seeder
             'Overig'
         ];
 
-        foreach ($types as $current_type)
-        {
+        foreach ($types as $current_type) {
             $type = new TicketType();
             $type->type = $current_type;
             $type->save();

@@ -20,6 +20,7 @@ class TicketRequest extends FormRequest
             'subject' => 'required|max:255',
             'description' => 'required',
             'phone_number' => 'nullable|phone_number',
+            'type' => 'required|exists:ticket_types,type'
         ];
     }
 
@@ -30,6 +31,7 @@ class TicketRequest extends FormRequest
             'email' => __('validation/messages.email', ['value' => ':input']),
             'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
             'phone_number' => __('validation/messages.phone_number', ['value' => ':input']),
+            'exists' => __('validation/messages.exists', ['value' => ':input']),
         ];
     }
 
@@ -41,7 +43,8 @@ class TicketRequest extends FormRequest
             'email' => __('general/attributes.email'),
             'subject' => __('general/attributes.subject'),
             'description' => __('general/attributes.description'),
-            'phone_number' => __('general/attributes.phone_number')
+            'phone_number' => __('general/attributes.phone_number'),
+            'type' => __('general/attributes.ticket_subject')
         ];
     }
 }

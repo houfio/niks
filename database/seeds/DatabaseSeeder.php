@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
             AssetsSeeder::class,
             BidsSeeder::class,
             InterviewsSeeder::class,
-            TypeSeeder::class,
+            TicketTypesSeeder::class,
             TicketsSeeder::class
         ]);
     }

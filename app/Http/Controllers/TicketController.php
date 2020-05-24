@@ -16,9 +16,9 @@ class TicketController extends Controller
         $this->authorizeResource(Ticket::class, 'ticket');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         return view('ticket.index', [
             'tickets' => Ticket::with('user')
@@ -44,12 +44,14 @@ class TicketController extends Controller
         $type = TicketType::where('type', $data['type'])->first();
 
         $ticket = new Ticket();
+
         $ticket->first_name = $data['first_name'];
         $ticket->last_name = $data['last_name'];
         $ticket->email = $data['email'];
         $ticket->subject = $data['subject'];
         $ticket->description = $data['description'];
         $ticket->phone_number = isset($data['phone_number']) ? $data['phone_number'] : null;
+
         $ticket->type()->associate($type);
 
         $ticket->save();
@@ -76,9 +78,7 @@ class TicketController extends Controller
     {
         $data = $request->validated();
 
-        $user = auth()->user();
-
-        $ticket->user_id = $user->id;
+        $ticket->user()->associate($request->user());
         Mail::to($ticket->email)->send(new TicketMail($ticket));
 
         $request->session()->flash('message', __('messages/ticket.updated'));
