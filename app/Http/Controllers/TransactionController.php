@@ -28,8 +28,8 @@ class TransactionController extends Controller
         $transaction = new Transaction();
 
         $transaction->amount = (int)$data['amount'];
-        $transaction->receiver()->associate($request->user());
-        $transaction->sender()->associate($receiver);
+        $transaction->receiver()->associate($receiver);
+        $transaction->sender()->associate($request->user());
 
         $transaction->save();
         $request->session()->flash('message', __('messages/transaction.sent', ['receiver' => $receiver->getFullName()]));

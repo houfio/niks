@@ -11,7 +11,7 @@
       <span dusk="user_name">{{ $user->getFullName() }}</span>
       <div>
         @if($user->id != auth()->id())
-          <button class="button small" data-micromodal-trigger="transaction-modal">
+          <button class="button small" data-micromodal-trigger="transaction-modal" dusk="transfer">
             {{ __('views/transactions.pay') }}
           </button>
         @endif
@@ -39,7 +39,7 @@
       @csrf
       <x-input name="amount" :label="__('views/transactions.amount')"/>
       <input type="hidden" name="to" id="to" value="{{ $user->id }}">
-      <button class="button" type="submit">
+      <button dusk="create_transaction" class="button" type="submit">
         {{ __('views/transactions.pay') }}
       </button>
     </form>
