@@ -26,12 +26,13 @@ class FormAdminReplyToTicketTest extends DuskTestCase
         $user = factory(User::class)->make();
 
         /** @var Ticket $ticket */
-        $ticket = factory(Ticket::class)->create([
+        $ticket = factory(Ticket::class)->make([
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
-            'email' => $user->email,
-            'type_id' => 1
+            'email' => $user->email
         ]);
+
+        $ticket->type()->associate(TicketType::all()->random())->save();
 
         $this->browse(function (Browser $browser) use ($admin, $ticket) {
             $browser->loginAs($admin)
