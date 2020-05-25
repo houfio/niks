@@ -18,7 +18,7 @@ class TicketMail extends Mailable
 
     public function __construct(Ticket $ticket, TicketResponse $response, string $token)
     {
-        $this->subject = $ticket;
+        $this->ticket = $ticket;
         $this->response = $response;
         $this->token = $token;
     }

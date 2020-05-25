@@ -57,7 +57,7 @@ Route::resource('interviews', 'InterviewController')->except([
 Route::get('interviews/accept/{interview}/{token}', 'InterviewController@accept');
 
 Route::prefix('ticket')->group(function () {
-    Route::get('{ticket}/{token}', 'TicketController@respond');
+    Route::get('{ticket}/{token}', 'TicketController@respond')->name('ticket_respond');
     Route::post('{ticket}/{token}', 'TicketController@reply');
 });
 

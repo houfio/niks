@@ -58,17 +58,13 @@ class TicketController extends Controller
         return redirect()->action('PostController@index');
     }
 
-    public function show(Ticket $ticket)
-    {
-        return view('ticket.show', [
-            'ticket' => $ticket
-        ]);
-    }
-
     public function edit(Ticket $ticket)
     {
         return view('ticket.update', [
-            'ticket' => $ticket
+            'ticket' => $ticket,
+            'responses' => $ticket->responses()
+                ->orderBy('created_at', 'desc')
+                ->get()
         ]);
     }
 
@@ -85,12 +81,13 @@ class TicketController extends Controller
         $response->user()->associate($request->user());
 
         $response->save();
+        $ticket->save();
 
         Mail::to($ticket->email)->send(new TicketMail($ticket, $response, $token));
 
         $request->session()->flash('message', __('messages/ticket.sent'));
 
-        return redirect()->route('ticket.show', $ticket);
+        return redirect()->route('tickets.edit', $ticket);
     }
 
     public function destroy(Request $request, Ticket $ticket)
@@ -109,7 +106,10 @@ class TicketController extends Controller
 
         return $valid ? view('ticket.respond', [
             'ticket' => $ticket,
-            'token' => $token
+            'token' => $token,
+            'responses' => $ticket->responses()
+                ->orderBy('created_at', 'desc')
+                ->get()
         ]) : abort(403);
     }
 
@@ -131,6 +131,6 @@ class TicketController extends Controller
 
         $request->session()->flash('message', __('messages/ticket.sent'));
 
-        return redirect()->route('ticket.show', $ticket);
+        return redirect()->action('PostController@index');
     }
 }

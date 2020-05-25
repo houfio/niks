@@ -21,7 +21,7 @@ return [
     'ticket_type' => 'Type',
     'ticket_subject' => 'Ticket onderwerp',
     'motivation' => 'Motivatie',
-    'description' => 'description',
+    'description' => 'Beschrijving',
     'short_description' => 'Korte beschrijving',
     'long_description' => 'Lange beschrijving',
     'content' => 'Inhoud',

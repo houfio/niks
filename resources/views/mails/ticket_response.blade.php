@@ -11,11 +11,12 @@
       <p>
         {{ __('mails/ticket.paragraphOne') }}
       </p>
+      <p>{{ $response->response }}</p>
       <p>
         {{ __('mails/ticket.react') }}
       </p>
       <p>
-        {{ route('setup_password', ['token' => $token]) }}
+        {{ route('ticket_respond', ['ticket' => $ticket, 'token' => $token]) }}
       </p>
       <span>
         {{ __('mails/general.greetings') }}<br/>
