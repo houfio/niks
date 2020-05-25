@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             BidsSeeder::class,
             InterviewsSeeder::class,
             TicketsSeeder::class,
-            TransactionsSeeder::class
+            TransactionsSeeder::class,
+            PostsSeeder::class
         ]);
     }
 }
