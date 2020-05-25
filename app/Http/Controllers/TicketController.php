@@ -87,12 +87,13 @@ class TicketController extends Controller
 
         $response->response = $data['response'];
         $response->ticket()->associate($ticket);
+        $response->user()->associate($request->user());
 
         $response->save();
 
         Mail::to($ticket->email)->send(new TicketMail($ticket, $response, $token));
 
-        $request->session()->flash('message', __('messages/ticket.updated'));
+        $request->session()->flash('message', __('messages/ticket.sent'));
 
         return redirect()->route('ticket.show', $ticket);
     }
@@ -105,5 +106,36 @@ class TicketController extends Controller
         $request->session()->flash('message', __('messages/ticket.deleted'));
 
         return redirect()->action('TicketController@index');
+    }
+
+    public function respond(Ticket $ticket, string $token)
+    {
+        $valid = Hash::check($token, $ticket->token);
+
+        return $valid ? view('ticket.respond', [
+            'ticket' => $ticket,
+            'token' => $token
+        ]) : abort(403);
+    }
+
+    public function reply(TicketResponseRequest $request, Ticket $ticket, string $token)
+    {
+        if(!Hash::check($token, $ticket->token)) return abort(403);
+
+        $data = $request->validated();
+
+        $response = new TicketResponse();
+        $response->response = $data['response'];
+        $response->ticket()->associate($ticket);
+
+        if ($request->user()) {
+            $response->user()->associate($request->user());
+        }
+
+        $response->save();
+
+        $request->session()->flash('message', __('messages/ticket.sent'));
+
+        return redirect()->route('ticket.show', $ticket);
     }
 }

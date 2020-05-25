@@ -54,6 +54,11 @@ Route::resource('interviews', 'InterviewController')->except([
 
 Route::get('interviews/accept/{interview}/{token}', 'InterviewController@accept');
 
+Route::prefix('ticket')->group(function () {
+    Route::get('{ticket}/{token}', 'TicketController@respond');
+    Route::post('{ticket}/{token}', 'TicketController@reply');
+});
+
 Route::resource('favorites', 'UserFavoritesController')->except([
     'create', 'show', 'edit', 'update'
 ]);
