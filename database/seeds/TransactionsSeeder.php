@@ -3,7 +3,7 @@
 use App\Transaction;
 use Illuminate\Database\Seeder;
 
-class TransactionSeeder extends Seeder
+class TransactionsSeeder extends Seeder
 {
     public function run()
     {
