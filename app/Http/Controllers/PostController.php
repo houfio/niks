@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Asset;
+use App\Category;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class PostController extends Controller
     public function index()
     {
         return view('index', [
-            'posts' => Post::orderBy('created_at', 'desc')->paginate()
+            'posts' => Post::orderBy('created_at', 'desc')->paginate(),
+            'categories' => Category::getPostCategories()
         ]);
     }
 
