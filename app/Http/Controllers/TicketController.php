@@ -20,17 +20,12 @@ class TicketController extends Controller
         $this->authorizeResource(Ticket::class, 'ticket');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $user = $request->user();
-
         return view('ticket.index', [
-            'tickets' => Ticket::with('user')
-                ->orderBy('created_at', 'desc')
-                ->where('is_resolved', '=', 'false')
-                ->where(function ($query) use ($user) {
-                    $query->where('user_id', 'is', 'null')->orWhere('user_id', '=', $user->id);
-                })->get()
+            'tickets' => Ticket::orderBy('created_at', 'desc')
+                ->where('is_resolved', '=', false)
+                ->get()
         ]);
     }
 

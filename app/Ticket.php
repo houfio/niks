@@ -21,4 +21,9 @@ class Ticket extends Model
     {
         return $this->hasMany(TicketResponse::class);
     }
+
+    public function getFullName()
+    {
+        return "$this->first_name $this->last_name";
+    }
 }
