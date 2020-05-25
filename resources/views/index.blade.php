@@ -32,6 +32,11 @@
         <div class="advertisement-description">
           {{ $post->content }}
         </div>
+        @can('update', \App\Post::class)
+          <a class="button light small" href="{{ action('PostController@edit', ['post' => $post]) }}">
+            {{ __('views/posts.update') }}
+          </a>
+        @endcan
         @if(isset($post->header))
           <div>
             <img src="{{ $post->header->url() }}" class="image"/>

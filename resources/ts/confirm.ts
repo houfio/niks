@@ -9,19 +9,19 @@ declare const confirmation: string;
     return;
   }
 
-  if(input)
+  if (input) {
     input.removeAttribute('data-error');
+  }
 
   submit.addEventListener('click', () => {
-    if(input) {
-      if (input.value.toLowerCase() === confirmation.toLowerCase()) {
-        input.removeAttribute('data-error');
-        form.submit();
-      } else {
-        input.setAttribute('data-error', '');
+    if (input) {
+      if (input.value.toLowerCase() !== confirmation.toLowerCase()) {
+        return input.setAttribute('data-error', '');
       }
-    } else {
-      form.submit();
+
+      input.removeAttribute('data-error');
     }
+
+    form.submit();
   });
 })();

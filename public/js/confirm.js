@@ -102,21 +102,17 @@
     if (!form || !submit) {
         return;
     }
-    if (input)
+    if (input) {
         input.removeAttribute('data-error');
+    }
     submit.addEventListener('click', function () {
         if (input) {
-            if (input.value.toLowerCase() === confirmation.toLowerCase()) {
-                input.removeAttribute('data-error');
-                form.submit();
+            if (input.value.toLowerCase() !== confirmation.toLowerCase()) {
+                return input.setAttribute('data-error', '');
             }
-            else {
-                input.setAttribute('data-error', '');
-            }
+            input.removeAttribute('data-error');
         }
-        else {
-            form.submit();
-        }
+        form.submit();
     });
 })();
 
