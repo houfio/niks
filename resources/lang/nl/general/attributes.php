@@ -32,6 +32,7 @@ return [
     'is_asking' => 'Vraag',
     'header' => 'Hoofd afbeelding',
     'images' => 'Afbeeldingen',
+    'image' => 'Afbeelding',
     'product' => 'Product',
     'service' => 'Dienst',
     'remember_me' => 'Ingelogd blijven',

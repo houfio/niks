@@ -43,6 +43,11 @@ class CategoriesSeeder extends Seeder
         $subCategory->parent()->associate($labor);
         $subCategory->save();
 
+        $december = new Category();
+        $december->category = 'Sinterklaas';
+        $december->type = 'post';
+        $december->save();
+
         $categories = Category::all();
         $advertisements = Advertisement::all();
 

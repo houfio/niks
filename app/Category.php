@@ -43,22 +43,22 @@ class Category extends Model
         return $this->belongsToMany(Post::class, 'post_categories');
     }
 
-    public function getPostCategories()
+    public static function getPostCategories()
     {
-        return $this->getCategories('post');
+        return static::getCategories('post');
     }
 
-    public function getAdvertisementCategories()
+    public static function getAdvertisementCategories()
     {
-        return $this->getCategories('advertisement');
+        return static::getCategories('advertisement');
     }
 
-    public function getAllCategories()
+    public static function getAllCategories()
     {
-        return $this->getCategories();
+        return static::getCategories();
     }
 
-    private function getCategories(string $type = ''): array
+    private static function getCategories(string $type = ''): array
     {
         $parents = $type !== '' ? self::where('type', '=', $type) : self::where('parent_id', '=', null);
         $parents = $parents->get();

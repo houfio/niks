@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'index')->name('home');
+Route::get('/', 'PostController@index')->name('home');
 Route::view('/register', 'register');
 Route::view('/login', 'login');
 
@@ -44,7 +43,9 @@ Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
 
 Route::resource('advertisements', 'AdvertisementController');
 
-Route::resource('posts', 'PostController');
+Route::resource('posts', 'PostController')->except([
+    'index', 'show'
+]);
 
 Route::resource('categories', 'CategoryController');
 

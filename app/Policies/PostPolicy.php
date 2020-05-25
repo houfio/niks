@@ -20,7 +20,7 @@ class PostPolicy
         return true;
     }
 
-    public function view(?User $user, Post $model)
+    public function view(?User $user, Post $post)
     {
         return true;
     }
@@ -30,12 +30,12 @@ class PostPolicy
         return false;
     }
 
-    public function update(User $user, User $model)
+    public function update(User $user, Post $post)
     {
         return false;
     }
 
-    public function delete(User $user, User $model)
+    public function delete(User $user, Post $post)
     {
         return false;
     }

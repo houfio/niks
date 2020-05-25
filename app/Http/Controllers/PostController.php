@@ -16,8 +16,8 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('post.index', [
-            'posts' => Post::paginate()
+        return view('index', [
+            'posts' => Post::orderBy('created_at', 'desc')->paginate()
         ]);
     }
 
@@ -50,14 +50,6 @@ class PostController extends Controller
         $request->session()->flash('message', __('messages/post.sent'));
 
         return redirect()->action('PostController@index');
-    }
-
-    public function show(Post $post)
-    {
-        return view('post.show', [
-            'post' => $post,
-            'creator' => $post->author()->get()
-        ]);
     }
 
     public function edit(Post $post)
