@@ -20,7 +20,6 @@ class AdvertisementController extends Controller
     {
         $queries = $request->query();
         $advertisements = Advertisement::query();
-        $category = new Category();
 
         if (isset($queries['search'])) {
             $advertisements = $advertisements->where(function ($query) use ($queries) {
@@ -56,7 +55,7 @@ class AdvertisementController extends Controller
 
         if (isset($queries['categories'])) {
             $categories = $queries['categories'];
-            $categories = Category::whereIn('category', $categories)->get();
+            $categories = Category::whereIn('id', $categories)->get();
             $categoryIds = [];
 
             foreach ($categories as $category) {
@@ -74,7 +73,7 @@ class AdvertisementController extends Controller
 
         return view('advertisement.index', [
             'advertisements' => $advertisements->paginate(),
-            'categories' => $category->getAdvertisementCategories()
+            'categories' => Category::getAdvertisementCategories()
         ]);
     }
 

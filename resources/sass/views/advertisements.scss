@@ -5,17 +5,19 @@
   outline: none;
   transition: background-color .25s ease;
 
-  &:hover, &:focus {
-    cursor: pointer;
+  &[data-href] {
+    &:hover, &:focus {
+      cursor: pointer;
 
-    @include with-theme {
-      background-color: themed('card');
+      @include with-theme {
+        background-color: themed('card');
+      }
     }
-  }
 
-  &:active {
-    @include with-theme {
-      background-color: themed('cardClick');
+    &:active {
+      @include with-theme {
+        background-color: themed('cardClick');
+      }
     }
   }
 
@@ -68,6 +70,29 @@
       color: white;
       background-color: $orange;
       border-radius: .5rem;
+    }
+  }
+}
+
+.categories {
+  display: flex;
+  margin-top: .5rem;
+
+  > div {
+    padding: .25rem .5rem;
+    background-color: transparentize($orange, .75);
+    border-radius: .5rem;
+    font-size: .75rem;
+
+    &:not(:last-child) {
+      margin-right: .5rem;
+    }
+
+    &.type {
+      @include with-theme {
+        color: themed('foreground');
+        background-color: themed('card');
+      }
     }
   }
 }

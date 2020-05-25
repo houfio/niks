@@ -12,6 +12,18 @@
       {{ $advertisement->cost() ?? '-' }}
     </div>
   </div>
+  <div class="categories">
+    @if($advertisement->is_asking)
+      <div class="type">
+        {{ __('views/advertisements.asking') }}
+      </div>
+    @endif
+    @foreach($advertisement->categories as $category)
+      <div>
+        {{ $category->category }}
+      </div>
+    @endforeach
+  </div>
   <div class="advertisement-description">
     {{ $advertisement->short_description }}
     @if($advertisement->enable_bidding)

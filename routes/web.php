@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'index')->name('home');
+Route::get('/', 'PostController@index')->name('home');
 Route::view('/register', 'register');
 Route::view('/login', 'login');
 
@@ -44,15 +43,24 @@ Route::put('users/approve/{user}', 'Auth\ApproveController@approve');
 
 Route::resource('advertisements', 'AdvertisementController');
 
-Route::resource('posts', 'PostController');
+Route::resource('posts', 'PostController')->except([
+    'index', 'show'
+]);
 
 Route::resource('categories', 'CategoryController');
+
+Route::resource('tickets', 'TicketController');
 
 Route::resource('interviews', 'InterviewController')->except([
     'edit', 'update'
 ]);
 
 Route::get('interviews/accept/{interview}/{token}', 'InterviewController@accept');
+
+Route::prefix('ticket')->group(function () {
+    Route::get('{ticket}/{token}', 'TicketController@respond')->name('ticket_respond');
+    Route::post('{ticket}/{token}', 'TicketController@reply');
+});
 
 Route::resource('favorites', 'UserFavoritesController')->except([
     'create', 'show', 'edit', 'update'
