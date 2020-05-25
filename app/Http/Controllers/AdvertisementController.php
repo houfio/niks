@@ -56,7 +56,7 @@ class AdvertisementController extends Controller
 
         if (isset($queries['categories'])) {
             $categories = $queries['categories'];
-            $categories = Category::whereIn('category', $categories)->get();
+            $categories = Category::whereIn('id', $categories)->get();
             $categoryIds = [];
 
             foreach ($categories as $category) {

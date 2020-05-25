@@ -71,3 +71,26 @@
     }
   }
 }
+
+.categories {
+  display: flex;
+  margin-top: .5rem;
+
+  > div {
+    padding: .25rem .5rem;
+    background-color: transparentize($orange, .75);
+    border-radius: .5rem;
+    font-size: .75rem;
+
+    &:not(:last-child) {
+      margin-right: .5rem;
+    }
+
+    &.type {
+      @include with-theme {
+        color: themed('foreground');
+        background-color: themed('card');
+      }
+    }
+  }
+}

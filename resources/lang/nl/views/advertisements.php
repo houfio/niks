@@ -21,5 +21,6 @@ return [
     'search' => 'Zoeken',
     'distance' => 'Max afstand (km)',
     'confirm' => 'Permanent verwijderen',
-    'cancel' => 'Terug'
+    'cancel' => 'Terug',
+    'asking' => 'Vraag'
 ];
