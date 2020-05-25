@@ -23,7 +23,7 @@
         required
       />
       <div class="button-group">
-        <button type="submit" class="button" name="edit">
+        <button type="submit" class="button" name="reply">
           {{ __('views/updateTicket.submit') }}
         </button>
       </div>
@@ -32,7 +32,7 @@
       {{ __('views/updateTicket.responses') }}
     </h2>
     @forelse($responses as $response)
-      <div class="list-item">
+      <div class="list-item" id="response_item">
         <p>{{ $response->response }}</p>
         <div class="spacer"></div>
       </div>
