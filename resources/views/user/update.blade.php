@@ -12,7 +12,7 @@
       {{ __('views/updateUser.title', ['fullName' => "$user->first_name $user->last_name"]) }}
     </h1>
     <x-errors/>
-    <form method="post" action="{{ @action('UserController@update', ['user' => $user->id]) }}">
+    <form method="post" action="{{ @action('UserController@update', ['user' => $user->id]) }}" enctype="multipart/form-data">
       @csrf
       @method('put')
       <div class="two-columns">
@@ -59,6 +59,17 @@
           name="neighbourhood"
           :value="$user->neighbourhood"
           :label="__('general/attributes.neighbourhood')"
+        />
+        <x-input
+          name="avatar"
+          type="file"
+          :label="__('general/attributes.avatar')"
+        />
+        <x-input
+          name="header"
+          type="file"
+          :label="__('general/attributes.header')"
+          :help="__('views/profile.header_help')"
         />
         @can('edit-all')
           <div class="checkbox-input">

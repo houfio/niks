@@ -30,7 +30,7 @@ return [
     'minimum_price' => 'Minimum prijs',
     'is_service' => 'Type',
     'is_asking' => 'Vraag',
-    'header' => 'Hoofd afbeelding',
+    'header' => 'Header',
     'images' => 'Afbeeldingen',
     'image' => 'Afbeelding',
     'product' => 'Product',
@@ -42,5 +42,6 @@ return [
     'subject' => 'Onderwerp',
     'amount' => 'Bedrag',
     'to' => 'Ontvanger',
-    'from' => 'Verzender'
+    'from' => 'Verzender',
+    'avatar' => 'Profielfoto'
 ];
