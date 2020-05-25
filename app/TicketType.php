@@ -13,7 +13,7 @@ class TicketType extends Model
         'type'
     ];
 
-    public function ticket()
+    public function tickets()
     {
         return $this->belongsToMany(Ticket::class);
     }

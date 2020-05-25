@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('mails/approved.title') }}</title>
+    <title>{{ __('mails/ticket.title', ['subject' => $ticket->subject, 'id' => $ticket->id]) }}</title>
   </head>
   <body>
     <div class="content">
-      <span>{{ __('mails/general.title', ['name' => $user->getFullName()]) }}</span>
+      <span>{{ __('mails/general.title', ['name' => "$ticket->first_name $ticket->last"]) }}</span>
       <p>
-        {{ __('mails/approved.paragraphOne') }}
+        {{ __('mails/ticket.paragraphOne') }}
       </p>
       <p>
-        {{ __('mails/approved.paragraphTwo') }}
+        {{ __('mails/ticket.react') }}
       </p>
       <p>
         {{ route('setup_password', ['token' => $token]) }}

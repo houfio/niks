@@ -6,6 +6,7 @@ use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketResponseRequest;
 use App\Mail\TicketMail;
 use App\Ticket;
+use App\TicketResponse;
 use App\TicketType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -80,10 +81,16 @@ class TicketController extends Controller
     {
         $data = $request->validated();
 
+        $response = new TicketResponse();
         $token = $faker->regexify('[A-Za-z0-9]{80}');
         $ticket->token = Hash::make($token);
 
-        Mail::to($ticket->email)->send(new TicketMail($ticket, $data['response'], $token));
+        $response->response = $data['response'];
+        $response->ticket()->associate($ticket);
+
+        $response->save();
+
+        Mail::to($ticket->email)->send(new TicketMail($ticket, $response, $token));
 
         $request->session()->flash('message', __('messages/ticket.updated'));
 

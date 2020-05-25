@@ -16,4 +16,9 @@ class Ticket extends Model
     {
         return $this->belongsTo(TicketType::class, 'type_id');
     }
+
+    public function responses()
+    {
+        return $this->hasMany(TicketResponse::class);
+    }
 }

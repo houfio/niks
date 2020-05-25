@@ -2,6 +2,7 @@
 namespace App\Mail;
 
 use App\Ticket;
+use App\TicketResponse;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -12,12 +13,14 @@ class TicketMail extends Mailable
     use Queueable, SerializesModels;
 
     public Ticket $ticket;
-    public string $response, $token;
+    public TicketResponse $response;
+    public string $token;
 
-    public function __construct(Ticket $ticket, string $response, string $token)
+    public function __construct(Ticket $ticket, TicketResponse $response, string $token)
     {
         $this->subject = $ticket;
         $this->response = $response;
+        $this->token = $token;
     }
 
     public function build()
