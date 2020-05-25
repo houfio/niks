@@ -13,7 +13,7 @@ $factory->define(Post::class, function (Faker $faker) {
     $poster = User::where('is_approved', 1)->where('is_admin', 1)->get()->random();
 
     return [
-        'title' => 'Nieuwsbericht van ' . Carbon::parse($postDate)->format('dd-mm-YYYY'),
+        'title' => 'Nieuwsbericht van ' . Carbon::parse($postDate)->format('d-m-Y'),
         'content' => $faker->text(300),
         'author_id' => $poster->id,
         'created_at' => $postDate
