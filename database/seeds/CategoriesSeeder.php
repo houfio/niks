@@ -69,7 +69,7 @@ class CategoriesSeeder extends Seeder
         $posts = Post::all();
 
         foreach ($advertisements as $advertisement) {
-            $advertisement->categories()->saveMany($categories->where('type', 'advertisement')->random(rand(1, 3)));
+            $advertisement->categories()->saveMany($categories->where('type', 'advertisement')->random(rand(1, 2)));
         }
 
         foreach ($posts as $post) {
