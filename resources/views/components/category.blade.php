@@ -1,7 +1,5 @@
 @foreach($children as $child)
-  <div
-    @if(isset($parent)) data-parent="{{ $parent }}" style="display: none" @endif
-  >
+  <div @if(isset($parent)) data-parent="{{ $parent }}" style="display: none" @endif>
     <div class="category" style="margin-left: {{ $depth }}rem">
       <input
         id="category_{{ $child['id'] }}"
