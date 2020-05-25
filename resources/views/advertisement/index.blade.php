@@ -56,5 +56,6 @@
         {{ __('views/advertisements.search') }}
       </button>
     </form>
+    <x-category :children="$categories"/>
   </div>
 @endsection
