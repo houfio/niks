@@ -50,7 +50,7 @@
         :label="__('general/attributes.description')"
         required
       />
-      <button type="submit" class="button" name="ticket">
+      <button type="submit" class="button" name="create_ticket">
         {{ __('views/ticket.submit') }}
       </button>
     </form>
