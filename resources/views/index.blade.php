@@ -32,11 +32,22 @@
         <div class="advertisement-description">
           {{ $post->content }}
         </div>
-        @can('update', \App\Post::class)
-          <a class="button light small" href="{{ action('PostController@edit', ['post' => $post]) }}">
-            {{ __('views/posts.update') }}
-          </a>
-        @endcan
+        <div style="display: flex">
+          @can('update', \App\Post::class)
+            <a class="button light small" href="{{ action('PostController@edit', ['post' => $post]) }}">
+              {{ __('views/posts.update') }}
+            </a>
+          @endcan
+          @can('delete', \App\Post::class)
+            <form method="post" action="{{ @action('PostController@destroy', ['post' => $post]) }}">
+              @csrf
+              @method('delete')
+              <button type="submit" class="button danger small">
+                {{ __('views/posts.delete') }}
+              </button>
+            </form>
+          @endcan
+        </div>
         @if(isset($post->header))
           <div>
             <img src="{{ $post->header->url() }}" class="image"/>
