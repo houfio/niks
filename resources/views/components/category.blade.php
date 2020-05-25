@@ -6,7 +6,7 @@
         name="categories[]"
         type="checkbox"
         value="{{ $child['id'] }}"
-        @if(in_array($child['id'], request()->get('categories') ?? [])) checked @endif
+        @if(in_array($child['id'], request()->get('categories') ?? $value ?? [])) checked @endif
       />
       <label for="category_{{ $child['id'] }}">{{ $child['category'] }}</label>
       @if(count($child['children']))
@@ -15,6 +15,6 @@
         </button>
       @endif
     </div>
-    <x-category :parent="$child['id']" :children="$child['children']" :depth="$depth + 1"/>
+    <x-category :parent="$child['id']" :children="$child['children']" :depth="$depth + 1" :value="$value ?? null"/>
   </div>
 @endforeach
