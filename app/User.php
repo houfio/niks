@@ -117,4 +117,9 @@ class User extends Authenticatable
 
         return Transaction::where('receiver_id', '=', $this->id)->whereDate('created_at', '<=', $date)->sum('amount') - $sent;
     }
+
+    public function ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

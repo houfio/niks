@@ -48,11 +48,18 @@ Route::resource('posts', 'PostController');
 
 Route::resource('categories', 'CategoryController');
 
+Route::resource('tickets', 'TicketController');
+
 Route::resource('interviews', 'InterviewController')->except([
     'edit', 'update'
 ]);
 
 Route::get('interviews/accept/{interview}/{token}', 'InterviewController@accept');
+
+Route::prefix('ticket')->group(function () {
+    Route::get('{ticket}/{token}', 'TicketController@respond')->name('ticket_respond');
+    Route::post('{ticket}/{token}', 'TicketController@reply');
+});
 
 Route::resource('favorites', 'UserFavoritesController')->except([
     'create', 'show', 'edit', 'update'

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Post;
+use App\Ticket;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class TicketPolicy
 {
     use HandlesAuthorization;
 
@@ -15,19 +15,19 @@ class PostPolicy
         return optional($user)->is_admin ? true : null;
     }
 
-    public function viewAny(?User $user)
-    {
-        return true;
-    }
-
-    public function view(?User $user, Post $model)
-    {
-        return true;
-    }
-
-    public function create(User $user)
+    public function viewAny(User $user)
     {
         return false;
+    }
+
+    public function view(User $user, Ticket $model)
+    {
+        return false;
+    }
+
+    public function create(?User $user)
+    {
+        return true;
     }
 
     public function update(User $user, User $model)
