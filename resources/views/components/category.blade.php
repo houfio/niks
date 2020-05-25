@@ -8,7 +8,7 @@
         name="categories[]"
         type="checkbox"
         value="{{ $child['id'] }}"
-        @if(in_array($child['id'], request()->get('categories'))) checked @endif
+        @if(in_array($child['id'], request()->get('categories') ?? [])) checked @endif
       />
       <label for="category_{{ $child['id'] }}">{{ $child['category'] }}</label>
       @if(count($child['children']))
