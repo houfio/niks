@@ -40,8 +40,8 @@ class PostController extends Controller
 
             $header->path = $data['header']->store('public');
 
-            $post->header()->associate($header);
             $header->save();
+            $post->header()->associate($header);
         }
 
         $post->author()->associate($request->user());
