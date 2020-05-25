@@ -22,6 +22,8 @@
         @endcan
       </div>
     </div>
+  </div>
+  <div class="content">
     <x-errors/>
   </div>
   @forelse($advertisements as $advertisement)
