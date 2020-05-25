@@ -32,7 +32,11 @@ class FormAdminReplyToTicketTest extends DuskTestCase
             'email' => $user->email
         ]);
 
-        $ticket->type()->associate(TicketType::all()->random())->save();
+        $type = new TicketType();
+        $type->type = 'Test type';
+        $type->save();
+
+        $ticket->type()->associate($type)->save();
 
         $this->browse(function (Browser $browser) use ($admin, $ticket) {
             $browser->loginAs($admin)
