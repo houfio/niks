@@ -60,7 +60,7 @@ class TicketController extends Controller
         $ticket->save();
         $request->session()->flash('message', __('messages/ticket.sent'));
 
-        return redirect()->action('TicketController@index');
+        return redirect()->action('PostController@index');
     }
 
     public function show(Ticket $ticket)
