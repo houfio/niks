@@ -309,3 +309,39 @@
     color: $red;
   }
 }
+
+.category {
+  position: relative;
+  display: flex;
+  margin-bottom: .5rem;
+
+  & > input {
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+    &:checked {
+      & ~ label {
+        background-color: transparentize($orange, .5);
+      }
+    }
+
+    &:focus ~ label {
+      box-shadow: 0 0 0 3px $orange;
+    }
+  }
+
+  & > label {
+    flex: 1;
+    display: block;
+    padding: .5rem;
+    background-color: transparentize($orange, .75);
+    border-radius: .5rem;
+    transition: background-color .25s ease, box-shadow .25s ease;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
