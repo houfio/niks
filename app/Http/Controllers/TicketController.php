@@ -55,7 +55,7 @@ class TicketController extends Controller
         $ticket->save();
         $request->session()->flash('message', __('messages/ticket.sent'));
 
-        return redirect()->action('PostController@index');
+        return redirect()->route('home');
     }
 
     public function edit(Ticket $ticket)
@@ -131,6 +131,6 @@ class TicketController extends Controller
 
         $request->session()->flash('message', __('messages/ticket.sent'));
 
-        return redirect()->action('PostController@index');
+        return redirect()->route('home');
     }
 }

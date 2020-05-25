@@ -13,23 +13,13 @@
       <div class="two-columns">
         <x-input
           name="first_name"
-          @auth
-          :value="request()->user()->first_name"
-          @endauth
-          @guest
-          :value="old('first_name')"
-          @endguest
+          :value="request()->user()->first_name ?? old('first_name')"
           :label="__('general/attributes.first_name')"
           required
         />
         <x-input
           name="last_name"
-          @auth
-          :value="request()->user()->last_name"
-          @endauth
-          @guest
-          :value="old('last_name')"
-          @endguest
+          :value="request()->user()->last_name ?? old('last_name')"
           :label="__('general/attributes.last_name')"
           required
         />
@@ -37,12 +27,7 @@
       <x-input
         name="email"
         type="email"
-        @auth
-        :value="request()->user()->email"
-        @endauth
-        @guest
-        :value="old('email')"
-        @endguest
+        :value="request()->user()->email ?? old('email')"
         :label="__('general/attributes.email')"
         required
       />
