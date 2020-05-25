@@ -73,7 +73,7 @@
       {{ $advertisement->created_at->diffForHumans() }}
     </div>
     @can('delete', $advertisement)
-      <button type="button" class="button light" data-micromodal-trigger="delete-modal">
+      <button type="button" class="button light small" data-micromodal-trigger="delete-modal">
         {{ __('views/advertisements.delete') }}
       </button>
       <form method="post" action="{{ @action('AdvertisementController@destroy', ['advertisement' => $advertisement]) }}" id="deleteForm">
@@ -97,7 +97,7 @@
       </form>
     @endcan
     @can('update', $advertisement)
-      <a dusk="edit_advertisement" class="button light" href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
+      <a dusk="edit_advertisement" class="button light small" href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
         {{ __('general/attributes.edit') }}
       </a>
     @endcan

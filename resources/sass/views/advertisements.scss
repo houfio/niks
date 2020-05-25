@@ -5,17 +5,19 @@
   outline: none;
   transition: background-color .25s ease;
 
-  &:hover, &:focus {
-    cursor: pointer;
+  &[data-href] {
+    &:hover, &:focus {
+      cursor: pointer;
 
-    @include with-theme {
-      background-color: themed('card');
+      @include with-theme {
+        background-color: themed('card');
+      }
     }
-  }
 
-  &:active {
-    @include with-theme {
-      background-color: themed('cardClick');
+    &:active {
+      @include with-theme {
+        background-color: themed('cardClick');
+      }
     }
   }
 
