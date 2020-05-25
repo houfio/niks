@@ -48,6 +48,8 @@ Route::resource('posts', 'PostController');
 
 Route::resource('categories', 'CategoryController');
 
+Route::resource('tickets', 'TicketController');
+
 Route::resource('interviews', 'InterviewController')->except([
     'edit', 'update'
 ]);

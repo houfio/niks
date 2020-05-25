@@ -18,6 +18,7 @@ return [
     'category' => 'Categorie',
     'parent' => 'Hoofdcategorie',
     'type' => 'Categorie type',
+    'ticket_type' => 'Type',
     'ticket_subject' => 'Ticket onderwerp',
     'motivation' => 'Motivatie',
     'description' => 'description',

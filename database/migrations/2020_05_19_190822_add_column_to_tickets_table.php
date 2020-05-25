@@ -9,7 +9,7 @@ class AddColumnToTicketsTable extends Migration
     public function up()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->boolean('is_resolved');
+            $table->boolean('is_resolved')->default(false);
             $table->string('token')->nullable();
         });
     }
