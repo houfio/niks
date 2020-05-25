@@ -11,16 +11,18 @@ class TicketMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public string $token;
+    public Ticket $ticket;
+    public string $response, $token;
 
-    public function __construct(Ticket $ticket)
+    public function __construct(Ticket $ticket, string $response, string $token)
     {
-        $this->subject = $ticket->subject;
+        $this->subject = $ticket;
+        $this->response = $response;
     }
 
     public function build()
     {
-        return $this->view('mails.ticket')
+        return $this->view('mails.ticket_response')
             ->from('no-reply@niksvoorniks.nl')
             ->replyTo('info@niksvoorniks.nl');
     }

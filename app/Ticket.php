@@ -12,11 +12,6 @@ class Ticket extends Model
         'first_name', 'last_name', 'email', 'subject', 'description'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
     public function type()
     {
         return $this->belongsTo(TicketType::class, 'type_id');

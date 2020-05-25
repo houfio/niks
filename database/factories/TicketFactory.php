@@ -1,7 +1,8 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 
+use Illuminate\Database\Eloquent\Factory;
 use App\Ticket;
 use Faker\Generator as Faker;
 
@@ -12,7 +13,6 @@ $factory->define(Ticket::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'subject' => 'Onderwerp',
         'description' => $faker->text(250),
-        'is_resolved' => false,
-        'phone_number' => $faker->boolean(50) ? $faker->phoneNumber : null,
+        'is_resolved' => false
     ];
 });

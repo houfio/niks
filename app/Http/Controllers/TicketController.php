@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TicketRequest;
+use App\Http\Requests\TicketResponseRequest;
 use App\Mail\TicketMail;
 use App\Ticket;
 use App\TicketType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Faker\Generator as Faker;
 
 class TicketController extends Controller
 {
@@ -50,7 +53,6 @@ class TicketController extends Controller
         $ticket->email = $data['email'];
         $ticket->subject = $data['subject'];
         $ticket->description = $data['description'];
-        $ticket->phone_number = isset($data['phone_number']) ? $data['phone_number'] : null;
 
         $ticket->type()->associate($type);
 
@@ -60,7 +62,7 @@ class TicketController extends Controller
         return redirect()->action('TicketController@index');
     }
 
-    public function show(Request $request, Ticket $ticket)
+    public function show(Ticket $ticket)
     {
         return view('ticket.show', [
             'ticket' => $ticket
@@ -74,12 +76,14 @@ class TicketController extends Controller
         ]);
     }
 
-    public function update(TicketRequest $request, Ticket $ticket)
+    public function update(TicketResponseRequest $request, Ticket $ticket, Faker $faker)
     {
         $data = $request->validated();
 
-        $ticket->user()->associate($request->user());
-        Mail::to($ticket->email)->send(new TicketMail($ticket));
+        $token = $faker->regexify('[A-Za-z0-9]{80}');
+        $ticket->token = Hash::make($token);
+
+        Mail::to($ticket->email)->send(new TicketMail($ticket, $data['response'], $token));
 
         $request->session()->flash('message', __('messages/ticket.updated'));
 

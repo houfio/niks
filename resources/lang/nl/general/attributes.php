@@ -4,6 +4,7 @@ return [
     'bid' => 'Bod',
     'email' => 'E-mailadres',
     'first_name' => 'Voornaam',
+    'response' => 'Reactie',
     'last_name' => 'Achternaam',
     'phone_number' => 'Telefoonnummer',
     'zip_code' => 'Postcode',
