@@ -2,6 +2,7 @@
 
 use App\Advertisement;
 use App\Category;
+use App\Post;
 use Illuminate\Database\Seeder;
 
 class CategoriesSeeder extends Seeder
@@ -43,16 +44,36 @@ class CategoriesSeeder extends Seeder
         $subCategory->parent()->associate($labor);
         $subCategory->save();
 
-        $december = new Category();
-        $december->category = 'Sinterklaas';
-        $december->type = 'post';
-        $december->save();
+        $holiday = new Category();
+        $holiday->category = 'Feestdag';
+        $holiday->type = 'post';
+        $holiday->save();
+
+        $important = new Category();
+        $important->category = 'Belangrijk';
+        $important->type = 'post';
+        $important->save();
+
+        $technical = new Category();
+        $technical->category = 'Technisch';
+        $technical->type = 'post';
+        $technical->save();
+
+        $regional = new Category();
+        $regional->category = 'Regionaal';
+        $regional->type = 'post';
+        $regional->save();
 
         $categories = Category::all();
         $advertisements = Advertisement::all();
+        $posts = Post::all();
 
         foreach ($advertisements as $advertisement) {
-            $advertisement->categories()->saveMany($categories->random(rand(1, 3)));
+            $advertisement->categories()->saveMany($categories->where('type', 'advertisement')->random(rand(1, 3)));
+        }
+
+        foreach ($posts as $post) {
+            $post->categories()->saveMany($categories->where('type', 'post')->random(rand(1, 2)));
         }
     }
 }
