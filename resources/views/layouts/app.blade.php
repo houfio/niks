@@ -39,9 +39,15 @@
         <x-navigation-item duskSelector="profile" icon="user" path="{{ 'users/' . auth()->user()->id }}">
           {{ __('views/profile.title') }}
         </x-navigation-item>
-        <x-navigation-item icon="envelope" path="/tickets/create">
-          {{ __('views/ticket.title') }}
-        </x-navigation-item>
+        @can('viewAny', \App\User::class)
+          <x-navigation-item icon="envelope" path="/tickets">
+            {{ __('views/ticket.title') }}
+          </x-navigation-item>
+        @else
+          <x-navigation-item icon="envelope" path="/tickets/create">
+            {{ __('views/ticket.title') }}
+          </x-navigation-item>
+        @endcan
         @can('viewAny', \App\User::class)
           <x-navigation-item icon="users" path="users" dot>
             {{ __('views/users.title') }}

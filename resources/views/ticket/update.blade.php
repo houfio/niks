@@ -31,13 +31,16 @@
     <h2 class="page-heading">
       {{ __('views/updateTicket.responses') }}
     </h2>
-    @forelse($responses as $response)
-      <div class="list-item" id="response_item">
-        <p>{{ $response->response }}</p>
-        <div class="spacer"></div>
-      </div>
-    @empty
-      <p>{{ __('views/updateTicket.no_responses') }}</p>
-    @endforelse
   </div>
+  @forelse($responses as $response)
+    <div class="list-item" id="response_item">
+      <div>
+        <p>{{ $response->response }}</p>
+      </div>
+      <div class="spacer"></div>
+      - {{ $response->user->getFullname() }}
+    </div>
+  @empty
+    <p>{{ __('views/updateTicket.no_responses') }}</p>
+  @endforelse
 @endsection
