@@ -334,6 +334,7 @@
 .category {
   position: relative;
   display: flex;
+  flex-grow: 1;
   margin-bottom: .5rem;
 
   & > input {
@@ -342,15 +343,21 @@
     height: 0;
     opacity: 0;
 
-    &:checked {
-      & ~ label {
-        background-color: transparentize($orange, .5);
-      }
+    &:checked ~ label {
+      background-color: transparentize($orange, .5);
+    }
+
+    &:disabled ~ label {
+      opacity: .5;
     }
 
     &:focus ~ label {
       box-shadow: 0 0 0 3px $orange;
     }
+  }
+
+  &.orange {
+    background-color: $orange;
   }
 
   & > label {
@@ -364,5 +371,20 @@
     &:hover {
       cursor: pointer;
     }
+  }
+
+  & > button {
+    @include with-theme {
+      color: themed('foreground');
+    }
+  }
+}
+
+.center-items {
+  align-self: center;
+  margin-bottom: .5rem;
+
+  & > button {
+    color: white;
   }
 }
