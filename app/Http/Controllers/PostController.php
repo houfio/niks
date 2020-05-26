@@ -15,10 +15,39 @@ class PostController extends Controller
         $this->authorizeResource(Post::class, 'post');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $queries = $request->query();
+        $posts = Post::query();
+
+        if (isset($queries['search'])) {
+            $posts = $posts->where(function ($query) use ($queries) {
+                $query->where('title', 'like', "%{$queries['search']}%")
+                    ->orWhere('content', 'like', "%{$queries['search']}%");
+            });
+        }
+
+        if (isset($queries['categories'])) {
+            $categories = $queries['categories'];
+            $categories = Category::whereIn('id', $categories)->get();
+            $categoryIds = [];
+
+            foreach ($categories as $category) {
+                $categoryIds[] = $category->id;
+
+                foreach ($category->children()->get()->pluck('id')->toArray() as $subCategory) {
+                    $categoryIds[] = $subCategory;
+                }
+            }
+
+            $posts->whereHas('categories', function ($query) use ($categoryIds) {
+                $query->whereIn('categories.id', $categoryIds);
+            });
+        }
+
         return view('index', [
-            'posts' => Post::orderBy('created_at', 'desc')->paginate()
+            'posts' => $posts->orderBy('created_at', 'desc')->paginate(),
+            'categories' => Category::getPostCategories()
         ]);
     }
 
