@@ -21,6 +21,8 @@ class AdvertisementRequest extends FormRequest
             'is_service' => 'required|boolean',
             'images' => 'required_if:is_asking,false',
             'images.*' => 'image|mimes:png,jpeg,jpg',
+            'existing_images' => 'array',
+            'existing_images.*' => 'integer',
             'enable_bidding' => 'nullable',
             'is_asking' => 'nullable',
             'delete_images' => 'nullable',

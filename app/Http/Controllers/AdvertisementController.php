@@ -162,20 +162,18 @@ class AdvertisementController extends Controller
 
         $advertisement->categories()->sync($data['categories'] ?? []);
         $advertisement->user()->associate($request->user());
+        $advertisement->assets()->sync($data['existing_images'] ?? []);
 
-        if (!isset($data['delete_images'])) {
-            $advertisement->assets()->detach();
+        if (isset($data['images'])) {
+            $assets = [];
 
-            if (isset($data['images'])) {
-                $assets = [];
-                foreach ($data['images'] as $image) {
-                    $asset = new Asset();
+            foreach ($data['images'] as $image) {
+                $asset = new Asset();
 
-                    $asset->path = $image->store('public');
+                $asset->path = $image->store('public');
 
-                    $asset->save();
-                    $assets[] = $asset;
-                }
+                $asset->save();
+                $assets[] = $asset;
             }
         }
 
