@@ -1,10 +1,10 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 
-use App\Model;
 use App\Post;
 use App\User;
+use Illuminate\Database\Eloquent\Factory;
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 

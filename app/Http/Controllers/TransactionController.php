@@ -16,7 +16,7 @@ class TransactionController extends Controller
     public function index()
     {
         return view('transaction.index', [
-            'transactions' => Transaction::orderBy('created_at', 'DESC')->paginate()
+            'transactions' => Transaction::orderBy('created_at', 'desc')->paginate()
         ]);
     }
 
