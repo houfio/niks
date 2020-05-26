@@ -109,7 +109,7 @@ class User extends Authenticatable
     public function getAmount(DateTime $date = null): int
     {
         if (!$date) {
-            $date = Carbon::today();
+            $date = Carbon::now();
         }
 
         $date = $date->toDateTime();
