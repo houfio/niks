@@ -19,14 +19,14 @@ class CategoriesSeeder extends Seeder
         $subCategory->parent()->associate($cake);
         $subCategory->save();
 
-        $subCategory = new Category();
-        $subCategory->category = 'Kersentaart';
-        $subCategory->parent()->associate($cake);
-        $subCategory->save();
+        $cherryCake = new Category();
+        $cherryCake->category = 'Kersentaart';
+        $cherryCake->parent()->associate($cake);
+        $cherryCake->save();
 
         $subCategory = new Category();
         $subCategory->category = 'Zonder suiker';
-        $subCategory->parent()->associate($subCategory);
+        $subCategory->parent()->associate($cherryCake);
         $subCategory->save();
 
         $labor = new Category();
@@ -58,6 +58,16 @@ class CategoriesSeeder extends Seeder
         $technical->category = 'Technisch';
         $technical->type = 'post';
         $technical->save();
+
+        $subCategory = new Category();
+        $subCategory->category = 'Nieuwe versie';
+        $subCategory->parent()->associate($technical);
+        $subCategory->save();
+
+        $subCategory = new Category();
+        $subCategory->category = 'Onderhoud';
+        $subCategory->parent()->associate($technical);
+        $subCategory->save();
 
         $regional = new Category();
         $regional->category = 'Regionaal';

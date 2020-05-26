@@ -11,12 +11,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UsersSeeder::class,
+            PostsSeeder::class,
             CategoriesSeeder::class,
             AssetsSeeder::class,
             BidsSeeder::class,
             InterviewsSeeder::class,
             TransactionsSeeder::class,
-            PostsSeeder::class,
             TicketTypesSeeder::class,
             TicketsSeeder::class
         ]);
