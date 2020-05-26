@@ -15,6 +15,9 @@
         @if(isset($user->avatar)) style="background-image: url('{{ $user->avatar->url() }}')" @endif
       ></div>
       <span dusk="user_name">{{ $user->getFullName() }}</span>
+      <span>
+        wdad
+      </span>
       <div>
         @if($user->id != auth()->id())
           <button class="button small" data-micromodal-trigger="transaction-modal" dusk="transfer">
@@ -32,13 +35,9 @@
   <div class="content">
     <x-errors/>
   </div>
-  @forelse($advertisements as $advertisement)
+  @foreach($advertisements as $advertisement)
     <x-advertisement :advertisement="$advertisement"/>
-  @empty
-    <x-empty icon="store">
-      {{ __('views/advertisements.empty') }}
-    </x-empty>
-  @endforelse
+  @endforeach
   {{ $advertisements->links() }}
   <x-modal id="transaction" :title="__('views/transactions.title')">
     <form method="post" action="{{ @action('TransactionController@store') }}">

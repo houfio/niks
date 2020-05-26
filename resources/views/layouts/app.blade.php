@@ -16,12 +16,12 @@
       <x-navigation-item icon="newspaper" path="/">
         {{ __('views/home.title') }}
       </x-navigation-item>
-      <x-navigation-item icon="envelope" path="/tickets/create">
-        {{ __('views/ticket.title') }}
-      </x-navigation-item>
       @guest
         <x-navigation-item icon="envelope-open-text" path="register">
           {{ __('views/register.title') }}
+        </x-navigation-item>
+        <x-navigation-item icon="envelope" path="/tickets/create">
+          {{ __('views/ticket.title') }}
         </x-navigation-item>
         @if(!Request::is('login'))
           <button class="button" data-micromodal-trigger="login-modal">
@@ -38,6 +38,9 @@
         </x-navigation-item>
         <x-navigation-item duskSelector="profile" icon="user" path="{{ 'users/' . auth()->user()->id }}">
           {{ __('views/profile.title') }}
+        </x-navigation-item>
+        <x-navigation-item icon="envelope" path="/tickets/create">
+          {{ __('views/ticket.title') }}
         </x-navigation-item>
         @can('viewAny', \App\User::class)
           <x-navigation-item icon="users" path="users" dot>
