@@ -10,8 +10,9 @@
       {{ __('views/posts.title_create') }}
     </h1>
     <x-errors/>
-    <form method="post" action="{{ @action('PostController@store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ @action('PostController@update', ['post' => $post]) }}" enctype="multipart/form-data">
       @csrf
+      @method('put')
       <x-input
         name="title"
         :value="$post->title"

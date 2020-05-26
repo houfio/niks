@@ -115,7 +115,7 @@ class PostController extends Controller
         $post->save();
         $request->session()->flash('message', __('messages/post.updated'));
 
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->action('PostController@index');
     }
 
     public function destroy(Request $request, Post $post)
