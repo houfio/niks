@@ -93,6 +93,8 @@ main > .content {
   height: 10rem;
   margin-bottom: 10rem;
   border-bottom-right-radius: 1.5rem;
+  background-size: cover;
+  background-position: center;
 
   @include with-breakpoint(tablet_landscape) {
     height: 20rem;
@@ -120,6 +122,8 @@ main > .content {
   height: 10rem;
   margin-bottom: 1rem;
   border-radius: 50%;
+  background-size: cover;
+  background-position: center;
 
   @include with-theme {
     border: .5rem solid themed('background');

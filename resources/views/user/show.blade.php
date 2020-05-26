@@ -5,9 +5,15 @@
 @endsection
 
 @section('content')
-  <div class="profile-header">
+  <div
+    class="profile-header"
+    @if(isset($user->header)) style="background-image: url('{{ $user->header->url() }}')" @endif
+  >
     <div class="profile-info">
-      <div class="profile-image"></div>
+      <div
+        class="profile-image"
+        @if(isset($user->avatar)) style="background-image: url('{{ $user->avatar->url() }}')" @endif
+      ></div>
       <span dusk="user_name">{{ $user->getFullName() }}</span>
       <div>
         @if($user->id != auth()->id())

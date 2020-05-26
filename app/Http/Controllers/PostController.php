@@ -53,7 +53,9 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('post.create');
+        return view('post.create', [
+            'categories' => Category::getPostCategories()
+        ]);
     }
 
     public function store(PostRequest $request)
@@ -75,6 +77,7 @@ class PostController extends Controller
         }
 
         $post->author()->associate($request->user());
+        $post->categories()->attach($data['categories'] ?? []);
 
         $post->save();
         $request->session()->flash('message', __('messages/post.sent'));
@@ -85,7 +88,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return view('post.update', [
-            'post' => $post
+            'post' => $post,
+            'categories' => Category::getPostCategories()
         ]);
     }
 
@@ -105,6 +109,8 @@ class PostController extends Controller
             $post->header()->associate($header);
             $header->save();
         }
+
+        $post->categories()->sync($data['categories'] ?? []);
 
         $post->save();
         $request->session()->flash('message', __('messages/post.updated'));
