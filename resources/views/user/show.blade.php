@@ -15,11 +15,11 @@
         @if(isset($user->avatar)) style="background-image: url('{{ $user->avatar->url() }}')" @endif
       ></div>
       <span dusk="user_name">{{ $user->getFullName() }}</span>
-      @if($user->id != auth()->id())
+      @can('update', $user)
         <span class="subtle">
           {{ $user->getAmount() }} niksen
         </span>
-      @endif
+      @endcan
       <div>
         @if($user->id != auth()->id())
           <button class="button small" data-micromodal-trigger="transaction-modal" dusk="transfer">
