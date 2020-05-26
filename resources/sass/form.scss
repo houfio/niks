@@ -326,6 +326,7 @@
 .category {
   position: relative;
   display: flex;
+  flex-grow: 1;
   margin-bottom: .5rem;
 
   & > input {
@@ -334,10 +335,12 @@
     height: 0;
     opacity: 0;
 
-    &:checked {
-      & ~ label {
-        background-color: transparentize($orange, .5);
-      }
+    &:checked ~ label {
+      background-color: transparentize($orange, .5);
+    }
+
+    &:disabled ~ label {
+      opacity: .5;
     }
 
     &:focus ~ label {
@@ -347,10 +350,6 @@
 
   &.orange {
     background-color: $orange;
-  }
-
-  &.margin-bottom-0 {
-    margin-bottom: 0;
   }
 
   & > label {
@@ -365,9 +364,24 @@
       cursor: pointer;
     }
   }
+
+  & > button {
+    @include with-theme {
+      color: themed('foreground');
+    }
+  }
 }
 
 select:disabled  {
   background-color: transparentize($lightgrey, .8) !important;
   color: $lightgrey !important;;
+}
+
+.center-items {
+  align-self: center;
+  margin-bottom: .5rem;
+
+  & > button {
+    color: white;
+  }
 }

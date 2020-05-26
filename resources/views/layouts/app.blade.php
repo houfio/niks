@@ -53,7 +53,7 @@
         @endcan
         @can('viewAny', \App\Category::class)
           <x-navigation-item icon="list-alt" path="categories">
-            {{ __('views/category.title') }}
+            {{ __('views/categories.title') }}
           </x-navigation-item>
         @endcan
       @endauth

@@ -68,7 +68,9 @@
     @endif
   </div>
   <div class="sidebar-footer">
-    <div>{{ $user->first_name }} {{ $user->last_name }}</div>
+    <a href="{{ action('UserController@show', ['user' => $user]) }}">
+      {{ $user->getFullName() }}
+    </a>
     <div class="subtle" title="{{ $advertisement->created_at->isoFormat('LLLL') }}">
       {{ $advertisement->created_at->diffForHumans() }}
     </div>

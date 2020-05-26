@@ -5,7 +5,6 @@ mix
   .ts('resources/ts/confirm.ts', 'public/js')
   .ts('resources/ts/gallery.ts', 'public/js')
   .ts('resources/ts/tree.ts', 'public/js')
-  .ts('resources/ts/form.ts', 'public/js')
   .sass('resources/sass/app.scss', 'public/css')
   .disableSuccessNotifications();
 

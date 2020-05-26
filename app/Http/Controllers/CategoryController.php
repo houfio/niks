@@ -23,7 +23,8 @@ class CategoryController extends Controller
     public function create()
     {
         return view('category.create', [
-            'categories' => Category::getAllCategories()
+            'advertisement' => Category::getAdvertisementCategories(),
+            'post' => Category::getPostCategories()
         ]);
     }
 
@@ -32,12 +33,12 @@ class CategoryController extends Controller
         $data = $request->validated();
 
         $category = new Category();
-        $category->category = $data['category'];
+        $category->category = $data['title'];
 
-        if (isset($data['type'])) {
-            $category->type = $data['type'];
+        if (is_numeric($data['category'])) {
+            $category->parent()->associate(Category::find($data['category']));
         } else {
-            $category->parent()->associate(Category::find($data['parent']));
+            $category->type = $data['category'];
         }
 
         $category->save();
@@ -51,7 +52,8 @@ class CategoryController extends Controller
     {
         return view('category.update', [
             'category' => $category,
-            'categories' => Category::getAllCategories()
+            'advertisement' => Category::getAdvertisementCategories(),
+            'post' => Category::getPostCategories()
         ]);
     }
 
@@ -59,22 +61,29 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
-        $category->category = $data['category'];
+        $category->category = $data['title'];
 
-        if (isset($data['type'])) {
-            $category->type = $data['type'];
+        if (is_numeric($data['category'])) {
+            $category->parent()->associate(Category::find($data['category']));
+            $category->type = null;
         } else {
-            $category->parent()->associate(Category::find($data['parent']));
+            $category->type = $data['category'];
+            $category->parent()->dissociate();
         }
 
         $category->save();
 
         $request->session()->flash('message', __('messages/category.updated'));
-        return redirect()->action('CategoryController@index', $category->id);
+        return redirect()->action('CategoryController@index');
     }
 
     public function destroy(Request $request, Category $category)
     {
+        $category->children()->update([
+            'type' => $category->type,
+            'parent_id' => $category->parent->id ?? null
+        ]);
+
         $category->delete();
 
         $request->session()->flash('message', __('messages/category.deleted'));
