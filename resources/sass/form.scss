@@ -332,6 +332,14 @@
     }
   }
 
+  &.orange {
+    background-color: $orange;
+  }
+
+  &.margin-bottom-0 {
+    margin-bottom: 0;
+  }
+
   & > label {
     flex: 1;
     display: block;
@@ -344,4 +352,9 @@
       cursor: pointer;
     }
   }
+}
+
+select:disabled  {
+  background-color: transparentize($lightgrey, .8) !important;
+  color: $lightgrey !important;;
 }

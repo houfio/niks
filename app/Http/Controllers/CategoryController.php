@@ -24,7 +24,11 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('category.create');
+        $categories = new Category();
+
+        return view('category.create', [
+            'categories' => $categories->getAllCategories()
+        ]);
     }
 
     public function store(CategoryRequest $request)
@@ -46,17 +50,14 @@ class CategoryController extends Controller
         return redirect()->action('CategoryController@index');
     }
 
-    public function show(Category $category)
-    {
-        return view('category.show', [
-            'category' => $category
-        ]);
-    }
 
     public function edit(Category $category)
     {
+        $categories = new Category();
+
         return view('category.update', [
-            'category' => $category
+            'category' => $category,
+            'categories' => $categories->getAllCategories()
         ]);
     }
 
@@ -75,7 +76,7 @@ class CategoryController extends Controller
         $category->save();
 
         $request->session()->flash('message', __('messages/category.updated'));
-        return redirect()->action('CategoryController@edit', $category->id);
+        return redirect()->action('CategoryController@index', $category->id);
     }
 
     public function destroy(Request $request, Category $category)

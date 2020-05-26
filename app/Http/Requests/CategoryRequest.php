@@ -11,17 +11,12 @@ class CategoryRequest extends FormRequest
         return true;
     }
 
-    private function getCategoryId(): ?int
-    {
-        return $this->category ? $this->category->id : null;
-    }
-
     public function rules()
     {
         return [
-            'category' => "required|max:40|unique:categories,category,{$this->getCategoryId()}",
-            'parent' => 'required_without:type|numeric|min:1|exists:categories,id',
-            'type' => 'required_without:parent|max:30|in:advertisement,post'
+            'category' => "required|max:40",
+            'parent' => 'required_without:type|numeric',
+            'type' => 'required_without:parent|in:advertisement,post'
         ];
     }
 

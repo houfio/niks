@@ -51,6 +51,11 @@
             {{ __('views/transactions.title') }}
           </x-navigation-item>
         @endcan
+        @can('viewAny', \App\Category::class)
+          <x-navigation-item icon="list-alt" path="categories">
+            {{ __('views/category.title') }}
+          </x-navigation-item>
+        @endcan
       @endauth
     </nav>
     <div class="main">

@@ -42,5 +42,9 @@ return [
     'subject' => 'Onderwerp',
     'amount' => 'Bedrag',
     'to' => 'Ontvanger',
-    'from' => 'Verzender'
+    'from' => 'Verzender',
+    'category_name' => 'Categorie naam',
+    'post' => 'Nieuwsbericht',
+    'applied_to' => 'Kan worden toegepast op...',
+    'none' => 'Geen'
 ];

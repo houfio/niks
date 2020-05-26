@@ -47,7 +47,9 @@ Route::resource('posts', 'PostController')->except([
     'index', 'show'
 ]);
 
-Route::resource('categories', 'CategoryController');
+Route::resource('categories', 'CategoryController')->except([
+    'show'
+]);
 
 Route::resource('tickets', 'TicketController');
 
