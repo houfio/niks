@@ -70,7 +70,6 @@
     <a class="button" href="{{ action('PostController@create') }}">
       {{ __('views/posts.create') }}
     </a>
-    </a>
     <form method="get" action="{{ @action('PostController@index') }}" style="margin-top: 1rem">
       <x-input name="search" :label="__('views/posts.search')" light/>
       <x-category :children="$categories" :depth="0"/>
