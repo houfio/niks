@@ -40,7 +40,9 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         return view('transaction.show', [
-            'transaction' => $transaction
+            'transaction' => $transaction,
+            'sender' => $transaction->sender,
+            'receiver' => $transaction->receiver
         ]);
     }
 }
