@@ -14,8 +14,8 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category' => "required|max:40",
-            'parent' => 'required_without:type|numeric',
+            'category' => 'required|max:40',
+            'parent' => 'required_without:type|numeric|exists:categories,id',
             'type' => 'required_without:parent|in:advertisement,post'
         ];
     }

@@ -15,19 +15,15 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = new Category();
-
         return view('category.index', [
-            'categories' => $categories->getAllCategories()
+            'categories' => Category::getAllCategories()
         ]);
     }
 
     public function create()
     {
-        $categories = new Category();
-
         return view('category.create', [
-            'categories' => $categories->getAllCategories()
+            'categories' => Category::getAllCategories()
         ]);
     }
 
@@ -53,11 +49,9 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        $categories = new Category();
-
         return view('category.update', [
             'category' => $category,
-            'categories' => $categories->getAllCategories()
+            'categories' => Category::getAllCategories()
         ]);
     }
 
