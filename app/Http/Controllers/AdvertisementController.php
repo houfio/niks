@@ -79,7 +79,9 @@ class AdvertisementController extends Controller
 
     public function create()
     {
-        return view('advertisement.create');
+        return view('advertisement.create', [
+            'categories' => Category::getAdvertisementCategories()
+        ]);
     }
 
     public function store(AdvertisementRequest $request)
@@ -112,6 +114,7 @@ class AdvertisementController extends Controller
 
         $advertisement->save();
         $advertisement->assets()->saveMany($assets);
+        $advertisement->categories()->attach($data['categories'] ?? []);
         $request->session()->flash('message', __('messages/advertisement.sent'));
 
         return redirect()->action('AdvertisementController@index');
@@ -140,7 +143,8 @@ class AdvertisementController extends Controller
     {
         return view('advertisement.update', [
             'advertisement' => $advertisement,
-            'assets' => $advertisement->assets()->get()
+            'assets' => $advertisement->assets()->get(),
+            'categories' => Category::getAdvertisementCategories()
         ]);
     }
 
@@ -156,6 +160,7 @@ class AdvertisementController extends Controller
         $advertisement->is_service = $data['is_service'];
         $advertisement->is_asking = isset($data['is_asking']);
 
+        $advertisement->categories()->sync($data['categories'] ?? []);
         $advertisement->user()->associate($request->user());
         $advertisement->assets()->sync($data['existing_images'] ?? []);
 

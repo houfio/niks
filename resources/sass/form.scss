@@ -285,7 +285,7 @@
   grid-gap: 1rem;
   margin-bottom: 1rem;
 
-  & > .text-input {
+  & > .text-input, & > .checkbox-input {
     margin-bottom: 0;
   }
 }
