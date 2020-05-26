@@ -289,7 +289,7 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  & > .text-input {
+  & > .text-input, & > .checkbox-input {
     margin-bottom: 0;
   }
 }

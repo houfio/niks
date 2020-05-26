@@ -23,7 +23,9 @@ class AdvertisementRequest extends FormRequest
             'images.*' => 'image|mimes:png,jpeg,jpg',
             'enable_bidding' => 'nullable',
             'is_asking' => 'nullable',
-            'delete_images' => 'nullable'
+            'delete_images' => 'nullable',
+            'categories' => 'nullable|array',
+            'categories.*' => 'integer'
         ];
     }
 

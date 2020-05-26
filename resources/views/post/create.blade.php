@@ -31,9 +31,14 @@
         :label="__('general/attributes.image')"
         :help="__('views/posts.image_help')"
       />
+      <x-category :children="$categories" :depth="0"/>
       <button class="button" type="submit" name="create">
         {{ __('general/attributes.create') }}
       </button>
     </form>
   </div>
+@endsection
+
+@section('scripts')
+  <script src="{{ mix('/js/tree.js') }}"></script>
 @endsection

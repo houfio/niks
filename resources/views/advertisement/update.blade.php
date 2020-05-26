@@ -85,6 +85,7 @@
             <label for="is_asking">{{ __('general/attributes.is_asking') }}</label>
           </div>
       </div>
+      <x-category :children="$categories" :depth="0" :value="$advertisement->categories->pluck('id')->all()"/>
       <button dusk="update" class="button" type="submit" name="edit">
         {{ __('general/attributes.edit') }}
       </button>
@@ -94,4 +95,5 @@
 
 @section('scripts')
   <script src="{{ mix('/js/images.js') }}"></script>
+  <script src="{{ mix('/js/tree.js') }}"></script>
 @endsection
