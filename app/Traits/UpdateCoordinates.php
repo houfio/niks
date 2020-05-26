@@ -17,7 +17,7 @@ trait UpdateCoordinates
         }
 
         if ($changed) {
-            $coordinates = $locationService->getCoordinates($updatedAttributes['zip_code'], $updatedAttributes['house_number']);
+            $coordinates = $locationService->getCoordinates($updatedAttributes['zip_code'] ?? $this->zip_code, $updatedAttributes['house_number'] ?? $this->house_number);
             $this->latitude = optional($coordinates)->getLatitude();
             $this->longitude = optional($coordinates)->getLongitude();
             $this->zip_code = str_replace(' ', '', $this->zip_code);
