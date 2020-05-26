@@ -372,11 +372,6 @@
   }
 }
 
-select:disabled  {
-  background-color: transparentize($lightgrey, .8) !important;
-  color: $lightgrey !important;;
-}
-
 .center-items {
   align-self: center;
   margin-bottom: .5rem;
