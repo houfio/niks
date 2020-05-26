@@ -78,6 +78,5 @@
       </button>
     </form>
   </div>
-  </div>
 @endsection
 @endcan
