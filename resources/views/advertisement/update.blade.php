@@ -44,21 +44,25 @@
         :value="$advertisement->long_description"
         :label="__('general/attributes.long_description')"
       />
+      <div class="four-columns">
+        @foreach($advertisement->assets as $asset)
+          <div class="force-square" data-anchor="{{ $asset->id }}">
+            <div class="image-preview" style="background-image: url('{{ $asset->url() }}')">
+              <button type="button" data-remove="{{ $asset->id }}">
+                <a class="fa fa-times"></a>
+              </button>
+            </div>
+            <input type="hidden" name="existing_images[]" value="{{ $asset->id }}"/>
+          </div>
+        @endforeach
+      </div>
       <div class="two-columns">
-        @if($assets)
-          <button dusk="clear_images" class="button danger" id="delete-images">
-            {{ __('views/advertisements.delete_image') }}
-          </button>
-        @endif
         <x-input
           name="images[]"
           type="file"
           :label="__('general/attributes.images')"
           multiple
         />
-        @if($assets)
-          <input type="hidden" value="1" name="delete_images">
-        @endif
         <x-input
           name="is_service"
           type="select"
@@ -71,19 +75,19 @@
             {{ __('general/attributes.service') }}
           </option>
         </x-input>
-          <div class="checkbox-input">
-            <input
-              type="checkbox"
-              id="enable_bidding"
-              name="enable_bidding"
-              @if($advertisement->enable_bidding) checked @endif
-            />
-            <label for="enable_bidding">{{ __('general/attributes.enable_bidding') }}</label>
-          </div>
-          <div class="checkbox-input">
-            <input type="checkbox" id="is_asking" name="is_asking" @if($advertisement->is_asking) checked @endif>
-            <label for="is_asking">{{ __('general/attributes.is_asking') }}</label>
-          </div>
+        <div class="checkbox-input">
+          <input
+            type="checkbox"
+            id="enable_bidding"
+            name="enable_bidding"
+            @if($advertisement->enable_bidding) checked @endif
+          />
+          <label for="enable_bidding">{{ __('general/attributes.enable_bidding') }}</label>
+        </div>
+        <div class="checkbox-input">
+          <input type="checkbox" id="is_asking" name="is_asking" @if($advertisement->is_asking) checked @endif>
+          <label for="is_asking">{{ __('general/attributes.is_asking') }}</label>
+        </div>
       </div>
       <button dusk="update" class="button" type="submit" name="edit">
         {{ __('general/attributes.edit') }}
@@ -93,5 +97,5 @@
 @endsection
 
 @section('scripts')
-  <script src="{{ mix('/js/images.js') }}"></script>
+  <script src="{{ mix('/js/gallery.js') }}"></script>
 @endsection

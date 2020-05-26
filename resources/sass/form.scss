@@ -280,17 +280,30 @@
   }
 }
 
-.two-columns {
+%columns {
   display: grid;
   grid-gap: 1rem;
   margin-bottom: 1rem;
 
+  & > .text-input {
+    margin-bottom: 0;
+  }
+}
+
+.two-columns {
+  @extend %columns;
+
   @include with-breakpoint(tablet_landscape) {
     grid-template-columns: 1fr 1fr;
   }
+}
 
-  & > .text-input {
-    margin-bottom: 0;
+.four-columns {
+  @extend %columns;
+  grid-template-columns: 1fr 1fr;
+
+  @include with-breakpoint(tablet_landscape) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
