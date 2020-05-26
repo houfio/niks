@@ -34,7 +34,6 @@ class EditAdvertisementTest extends DuskTestCase
                 ->press("@edit_advertisement")
                 ->type('title', 'Nieuwe bosbessentaart!')
                 ->select('is_service', '0')
-                ->press('@clear_images')
                 ->attach('images[]', $image)
                 ->press('@update');
         });

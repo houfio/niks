@@ -33,9 +33,14 @@
         :label="__('general/attributes.image')"
         :help="__('views/posts.image_help')"
       />
+      <x-category :children="$categories" :depth="0" :value="$post->categories->pluck('id')->all()"/>
       <button class="button" type="submit">
         {{ __('views/posts.update') }}
       </button>
     </form>
   </div>
+@endsection
+
+@section('scripts')
+  <script src="{{ mix('/js/tree.js') }}"></script>
 @endsection
