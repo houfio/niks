@@ -59,9 +59,14 @@
           <label for="is_asking">{{ __('general/attributes.is_asking') }}</label>
         </div>
       </div>
+      <x-category :children="$categories" :depth="0"/>
       <button class="button" type="submit" name="create">
         {{ __('general/attributes.create') }}
       </button>
     </form>
   </div>
+@endsection
+
+@section('scripts')
+  <script src="{{ mix('/js/tree.js') }}"></script>
 @endsection

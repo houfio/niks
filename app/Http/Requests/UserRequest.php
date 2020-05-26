@@ -18,8 +18,8 @@ class UserRequest extends FormRequest
             'neighbourhood' => 'max:80',
             'is_admin' => 'in:on,null',
             'is_approved' => 'in:on,null',
-            'avatar' => 'sometimes|image|mimes:png,jpeg,jpg',
-            'header' => 'sometimes|image|mimes:png,jpeg,jpg'
+            'avatar' => 'image|mimes:png,jpeg,jpg',
+            'header' => 'image|mimes:png,jpeg,jpg'
         ];
     }
 
@@ -32,7 +32,8 @@ class UserRequest extends FormRequest
             'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
             'phone_number' => __('validation/messages.phone_number', ['value' => ':input']),
             'zip_code' => __('validation/messages.zip_code', ['value' => ':input']),
-            'boolean' => __('validation/messages.boolean', ['attribute' => ':attribute'])
+            'boolean' => __('validation/messages.boolean', ['attribute' => ':attribute']),
+            'image' => __('validation/messages.image', ['attribute' => ':attribute'])
         ];
     }
 
@@ -47,7 +48,8 @@ class UserRequest extends FormRequest
             'house_number' => __('general/attributes.house_number'),
             'neighbourhood' => __('general/attributes.neighbourhood'),
             'is_admin' => __('general/attributes.is_admin'),
-            'is_approved' => __('general/attributes.is_approved')
+            'is_approved' => __('general/attributes.is_approved'),
+            'image' => __('validation/messages.image', ['attribute' => ':attribute'])
         ];
     }
 }

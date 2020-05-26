@@ -30,7 +30,7 @@ return [
     'minimum_price' => 'Minimum prijs',
     'is_service' => 'Type',
     'is_asking' => 'Vraag',
-    'header' => 'Hoofd afbeelding',
+    'header' => 'Header',
     'images' => 'Afbeeldingen',
     'image' => 'Afbeelding',
     'product' => 'Product',
@@ -46,5 +46,6 @@ return [
     'category_name' => 'Categorie naam',
     'post' => 'Nieuwsbericht',
     'applied_to' => 'Kan worden toegepast op...',
-    'none' => 'Geen'
+    'none' => 'Geen',
+    'avatar' => 'Profielfoto'
 ];
