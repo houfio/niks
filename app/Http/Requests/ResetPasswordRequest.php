@@ -25,7 +25,8 @@ class ResetPasswordRequest extends FormRequest
             'required' => __('validation/messages.required', ['attribute' => ':attribute']),
             'max' => __('validation/messages.max', ['attribute' => ':attribute', 'max' => ':max']),
             'exists' => __('validation/messages.exists', ['attribute' => ':attribute']),
-            'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min'])
+            'min' => __('validation/messages.min', ['attribute' => ':attribute', 'min' => ':min']),
+            'confirmed' => __('validation/messages.confirmed', ['attribute' => ':attribute'])
         ];
     }
 

@@ -32,6 +32,11 @@
         <div class="advertisement-description">
           {{ $post->content }}
         </div>
+        @if(isset($post->header))
+          <div>
+            <img src="{{ $post->header->url() }}" class="image"/>
+          </div>
+        @endif
         <div style="display: flex">
           @can('update', $post)
             <a class="button light small" href="{{ action('PostController@edit', ['post' => $post]) }}">
@@ -48,11 +53,6 @@
             </form>
           @endcan
         </div>
-        @if(isset($post->header))
-          <div>
-            <img src="{{ $post->header->url() }}" class="image"/>
-          </div>
-        @endif
       </div>
     @endforeach
     {{ $posts->links() }}

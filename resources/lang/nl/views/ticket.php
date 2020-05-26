@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'title' => 'Contact opnemen',
+    'title' => 'Contact',
     'submit' => 'Versturen'
 ];
