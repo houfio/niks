@@ -16,6 +16,9 @@
       <x-navigation-item icon="newspaper" path="/">
         {{ __('views/home.title') }}
       </x-navigation-item>
+      <x-navigation-item icon="envelope" path="/tickets/create">
+        {{ __('views/ticket.title') }}
+      </x-navigation-item>
       @guest
         <x-navigation-item icon="envelope-open-text" path="register">
           {{ __('views/register.title') }}
