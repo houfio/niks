@@ -28,6 +28,9 @@
         </button>
       </div>
     </form>
+    <p>
+      {{ $ticket->description }} ({{ $ticket->type->type }})
+    </p>
     <h2 class="page-heading">
       {{ __('views/updateTicket.responses') }}
     </h2>
@@ -41,6 +44,8 @@
       - {{ $response->user->getFullname() }}
     </div>
   @empty
-    <p>{{ __('views/updateTicket.no_responses') }}</p>
+    <div class="content">
+      {{ __('views/updateTicket.no_responses') }}
+    </div>
   @endforelse
 @endsection
