@@ -52,9 +52,14 @@
           {{ __('views/advertisements.bid') }}
         </label>
       </div>
+      <x-category :children="$categories" :depth="0"/>
       <button class="button" type="submit" dusk="search">
         {{ __('views/advertisements.search') }}
       </button>
     </form>
   </div>
+@endsection
+
+@section('scripts')
+  <script src="{{ mix('/js/tree.js') }}"></script>
 @endsection

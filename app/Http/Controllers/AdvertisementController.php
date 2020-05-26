@@ -4,20 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Advertisement;
 use App\Asset;
+use App\Category;
 use App\Http\Requests\AdvertisementRequest;
-use App\Services\LocationService;
 use App\UserFavorite;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdvertisementController extends Controller
 {
-    private LocationService $locationService;
-
-    public function __construct(LocationService $locationService)
+    public function __construct()
     {
-        $this->locationService = $locationService;
-
         $this->authorizeResource(Advertisement::class, 'advertisement');
     }
 
@@ -40,7 +35,7 @@ class AdvertisementController extends Controller
         }
 
         if (isset($queries['bidding'])) {
-            $advertisements = $advertisements->where('enable_bidding', '=', (int)$queries['bidding']);
+            $advertisements = $advertisements->where('enable_bidding', '=', $queries['bidding'] === 'on');
         }
 
         if (isset($queries['distance'])) {
@@ -58,14 +53,35 @@ class AdvertisementController extends Controller
                 });
         }
 
+        if (isset($queries['categories'])) {
+            $categories = $queries['categories'];
+            $categories = Category::whereIn('id', $categories)->get();
+            $categoryIds = [];
+
+            foreach ($categories as $category) {
+                $categoryIds[] = $category->id;
+
+                foreach ($category->children()->get()->pluck('id')->toArray() as $subCategory) {
+                    $categoryIds[] = $subCategory;
+                }
+            }
+
+            $advertisements->whereHas('categories', function ($query) use ($categoryIds) {
+                $query->whereIn('categories.id', $categoryIds);
+            });
+        }
+
         return view('advertisement.index', [
-            'advertisements' => $advertisements->paginate()
+            'advertisements' => $advertisements->paginate(),
+            'categories' => Category::getAdvertisementCategories()
         ]);
     }
 
     public function create()
     {
-        return view('advertisement.create');
+        return view('advertisement.create', [
+            'categories' => Category::getAdvertisementCategories()
+        ]);
     }
 
     public function store(AdvertisementRequest $request)
@@ -98,6 +114,7 @@ class AdvertisementController extends Controller
 
         $advertisement->save();
         $advertisement->assets()->saveMany($assets);
+        $advertisement->categories()->attach($data['categories'] ?? []);
         $request->session()->flash('message', __('messages/advertisement.sent'));
 
         return redirect()->action('AdvertisementController@index');
@@ -126,7 +143,8 @@ class AdvertisementController extends Controller
     {
         return view('advertisement.update', [
             'advertisement' => $advertisement,
-            'assets' => $advertisement->assets()->get()
+            'assets' => $advertisement->assets()->get(),
+            'categories' => Category::getAdvertisementCategories()
         ]);
     }
 
@@ -142,28 +160,29 @@ class AdvertisementController extends Controller
         $advertisement->is_service = $data['is_service'];
         $advertisement->is_asking = isset($data['is_asking']);
 
+        $advertisement->categories()->sync($data['categories'] ?? []);
         $advertisement->user()->associate($request->user());
+        $advertisement->assets()->sync($data['existing_images'] ?? []);
 
-        if (!isset($data['delete_images'])) {
-            $advertisement->assets()->detach();
+        if (isset($data['images'])) {
+            $assets = [];
 
-            if (isset($data['images'])) {
-                $assets = [];
-                foreach ($data['images'] as $image) {
-                    $asset = new Asset();
+            foreach ($data['images'] as $image) {
+                $asset = new Asset();
 
-                    $asset->path = $image->store('public');
+                $asset->path = $image->store('public');
 
-                    $asset->save();
-                    $assets[] = $asset;
-                }
+                $asset->save();
+                $assets[] = $asset;
             }
         }
 
         $advertisement->save();
+
         if (isset($data['images'])) {
             $advertisement->assets()->saveMany($assets);
         }
+
         $request->session()->flash('message', __('messages/advertisement.updated'));
 
         return redirect()->route('advertisements.show', $advertisement->id);

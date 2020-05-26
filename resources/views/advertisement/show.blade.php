@@ -68,26 +68,44 @@
     @endif
   </div>
   <div class="sidebar-footer">
-    <div>{{ $user->first_name }} {{ $user->last_name }}</div>
+    <a href="{{ action('UserController@show', ['user' => $user]) }}">
+      {{ $user->getFullName() }}
+    </a>
     <div class="subtle" title="{{ $advertisement->created_at->isoFormat('LLLL') }}">
       {{ $advertisement->created_at->diffForHumans() }}
     </div>
     @can('delete', $advertisement)
-      <form
-        method="post"
-        action="{{ @action('AdvertisementController@destroy', ['advertisement' => $advertisement]) }}"
-      >
+      <button type="button" class="button light small" data-micromodal-trigger="delete-modal">
+        {{ __('views/advertisements.delete') }}
+      </button>
+      <form method="post" action="{{ @action('AdvertisementController@destroy', ['advertisement' => $advertisement]) }}" id="deleteForm">
         @csrf
         @method('delete')
-        <button type="submit" class="button light" style="margin-top: 1rem">
-          {{ __('views/advertisements.delete') }}
-        </button>
+        <x-modal id="delete" :title="__('views/advertisements.delete')">
+          <p>
+            {{ __('views/advertisements.delete_advertisement') }}
+          </p>
+          <div class="button-group">
+            <button type="button" class="button danger" id="deleteSubmit">{{ __('views/advertisements.confirm') }}</button>
+            <button
+              type="button"
+              class="button light"
+              data-micromodal-close
+            >
+              {{ __('views/advertisements.cancel') }}
+            </button>
+          </div>
+        </x-modal>
       </form>
     @endcan
     @can('update', $advertisement)
-      <a dusk="edit_advertisement" class="button light" href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
+      <a dusk="edit_advertisement" class="button light small" href="{{ @action('AdvertisementController@edit', ['advertisement' => $advertisement]) }}">
         {{ __('general/attributes.edit') }}
       </a>
     @endcan
   </div>
+@endsection
+
+@section('scripts')
+  <script src="{{ mix('/js/confirm.js') }}"></script>
 @endsection

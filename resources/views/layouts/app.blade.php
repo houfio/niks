@@ -20,6 +20,9 @@
         <x-navigation-item icon="envelope-open-text" path="register">
           {{ __('views/register.title') }}
         </x-navigation-item>
+        <x-navigation-item icon="envelope" path="/tickets/create">
+          {{ __('views/ticket.title') }}
+        </x-navigation-item>
         @if(!Request::is('login'))
           <button class="button" data-micromodal-trigger="login-modal">
             {{ __('views/login.title') }}
@@ -37,19 +40,33 @@
           {{ __('views/profile.title') }}
         </x-navigation-item>
         @can('viewAny', \App\User::class)
+          <x-navigation-item icon="envelope" path="/tickets">
+            {{ __('views/ticket.title') }}
+          </x-navigation-item>
+        @else
+          <x-navigation-item icon="envelope" path="/tickets/create">
+            {{ __('views/ticket.title') }}
+          </x-navigation-item>
+        @endcan
+        @can('viewAny', \App\User::class)
           <x-navigation-item icon="users" path="users" dot>
             {{ __('views/users.title') }}
           </x-navigation-item>
         @endcan
-        @can('viewAny', \App\Intake::class)
-          <x-navigation-item icon="comments" path="intakes">
-            {{ __('views/intakes.title') }}
+        @can('viewAny', \App\Interview::class)
+          <x-navigation-item icon="comments" path="interviews">
+            {{ __('views/interview.title') }}
           </x-navigation-item>
         @endcan
         @can('viewAny', \App\Transaction::class)
-          {{--<x-navigation-item icon="coins" path="transactions">
+          <x-navigation-item icon="coins" path="transactions">
             {{ __('views/transactions.title') }}
-          </x-navigation-item>--}}
+          </x-navigation-item>
+        @endcan
+        @can('viewAny', \App\Category::class)
+          <x-navigation-item icon="list-alt" path="categories">
+            {{ __('views/categories.title') }}
+          </x-navigation-item>
         @endcan
       @endauth
     </nav>

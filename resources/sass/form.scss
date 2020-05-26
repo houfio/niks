@@ -280,17 +280,38 @@
   }
 }
 
-.two-columns {
+%columns {
   display: grid;
   grid-gap: 1rem;
   margin-bottom: 1rem;
 
+  & > .text-input, & > .checkbox-input {
+    margin-bottom: 0;
+  }
+}
+
+.two-columns {
+  @extend %columns;
+
   @include with-breakpoint(tablet_landscape) {
     grid-template-columns: 1fr 1fr;
   }
+}
 
-  & > .text-input {
-    margin-bottom: 0;
+.three-columns {
+  @extend %columns;
+
+  @include with-breakpoint(tablet_landscape) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.four-columns {
+  @extend %columns;
+  grid-template-columns: 1fr 1fr;
+
+  @include with-breakpoint(tablet_landscape) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -307,5 +328,63 @@
 
   &.active {
     color: $red;
+  }
+}
+
+.category {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  margin-bottom: .5rem;
+
+  & > input {
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+    &:checked ~ label {
+      background-color: transparentize($orange, .5);
+    }
+
+    &:disabled ~ label {
+      opacity: .5;
+    }
+
+    &:focus ~ label {
+      box-shadow: 0 0 0 3px $orange;
+    }
+  }
+
+  &.orange {
+    background-color: $orange;
+  }
+
+  & > label {
+    flex: 1;
+    display: block;
+    padding: .5rem;
+    background-color: transparentize($orange, .75);
+    border-radius: .5rem;
+    transition: background-color .25s ease, box-shadow .25s ease;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  & > button {
+    @include with-theme {
+      color: themed('foreground');
+    }
+  }
+}
+
+.center-items {
+  align-self: center;
+  margin-bottom: .5rem;
+
+  & > button {
+    color: white;
   }
 }

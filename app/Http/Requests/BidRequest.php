@@ -15,7 +15,7 @@ class BidRequest extends FormRequest
     public function rules()
     {
         return [
-            'bid' => "required|numeric|min:{$this->minimumBid()}"
+            'bid' => "required|numeric|max:300|min:{$this->minimumBid()}"
         ];
     }
 

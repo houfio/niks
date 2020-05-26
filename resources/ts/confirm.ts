@@ -5,18 +5,23 @@ declare const confirmation: string;
   const input = document.getElementById('confirmation') as HTMLInputElement | null;
   const submit = document.getElementById('deleteSubmit');
 
-  if (!form || !input || !submit) {
+  if (!form || !submit) {
     return;
   }
 
-  input.removeAttribute('data-error');
+  if (input) {
+    input.removeAttribute('data-error');
+  }
 
   submit.addEventListener('click', () => {
-    if (input.value.toLowerCase() === confirmation.toLowerCase()) {
+    if (input) {
+      if (input.value.toLowerCase() !== confirmation.toLowerCase()) {
+        return input.setAttribute('data-error', '');
+      }
+
       input.removeAttribute('data-error');
-      form.submit();
-    } else {
-      input.setAttribute('data-error', '');
     }
+
+    form.submit();
   });
 })();
