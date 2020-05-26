@@ -33,12 +33,12 @@
           {{ $post->content }}
         </div>
         <div style="display: flex">
-          @can('update', \App\Post::class)
+          @can('update', $post)
             <a class="button light small" href="{{ action('PostController@edit', ['post' => $post]) }}">
               {{ __('views/posts.update') }}
             </a>
           @endcan
-          @can('delete', \App\Post::class)
+          @can('delete', $post)
             <form method="post" action="{{ @action('PostController@destroy', ['post' => $post]) }}">
               @csrf
               @method('delete')
@@ -64,12 +64,13 @@
   @endif
 @endsection
 
-@can('create', \App\Post::class)
 @section('sidebar')
   <div class="sidebar">
-    <a class="button" href="{{ action('PostController@create') }}">
-      {{ __('views/posts.create') }}
-    </a>
+    @can('create', \App\Post::class)
+      <a class="button" href="{{ action('PostController@create') }}">
+        {{ __('views/posts.create') }}
+      </a>
+    @endcan
     <form method="get" action="{{ @action('PostController@index') }}" style="margin-top: 1rem">
       <x-input name="search" :label="__('views/posts.search')" light/>
       <x-category :children="$categories" :depth="0"/>
@@ -79,4 +80,7 @@
     </form>
   </div>
 @endsection
-@endcan
+
+@section('scripts')
+  <script src="{{ mix('/js/tree.js') }}"></script>
+@endsection
