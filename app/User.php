@@ -112,10 +112,10 @@ class User extends Authenticatable
             $date = Carbon::today();
         }
 
-        $date = $date->toDateString();
-        $sent = Transaction::where('sender_id', '=', $this->id)->whereDate('created_at', '<=', $date)->sum('amount');
+        $date = $date->toDateTime();
+        $sent = Transaction::where('sender_id', '=', $this->id)->where('created_at', '<=', $date)->sum('amount');
 
-        return Transaction::where('receiver_id', '=', $this->id)->whereDate('created_at', '<=', $date)->sum('amount') - $sent;
+        return Transaction::where('receiver_id', '=', $this->id)->where('created_at', '<=', $date)->sum('amount') - $sent;
     }
 
     public function ticket()

@@ -298,6 +298,14 @@
   }
 }
 
+.three-columns {
+  @extend %columns;
+
+  @include with-breakpoint(tablet_landscape) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 .four-columns {
   @extend %columns;
   grid-template-columns: 1fr 1fr;
